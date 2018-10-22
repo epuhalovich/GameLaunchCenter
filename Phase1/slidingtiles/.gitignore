@@ -24,3 +24,6 @@ obj/
 .externalNativeBuild
 *.txt
 output.json
+
+#test
+IGNOREME
