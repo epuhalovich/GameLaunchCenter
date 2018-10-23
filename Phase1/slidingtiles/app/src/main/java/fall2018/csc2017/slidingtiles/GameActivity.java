@@ -165,5 +165,6 @@ public class GameActivity extends AppCompatActivity implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         display();
+        saveToFile(StartingActivity.SAVE_FILENAME);
     }
 }
