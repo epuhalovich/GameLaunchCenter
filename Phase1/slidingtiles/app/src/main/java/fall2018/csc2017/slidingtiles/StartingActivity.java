@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.widget.PopupMenu;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -17,7 +19,7 @@ import java.io.ObjectOutputStream;
 /**
  * The initial activity for the sliding puzzle tile game.
  */
-public class StartingActivity extends AppCompatActivity {
+public class StartingActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
     /**
      * The main save file.
@@ -52,10 +54,40 @@ public class StartingActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boardManager = new BoardManager();
-                switchToGame();
+                showPopup(v);
+//                boardManager = new BoardManager();
+//                switchToGame();
             }
         });
+    }
+
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        popup.setOnMenuItemClickListener(this);
+        popup.inflate(R.menu.complexity_menu);
+        popup.show();
+    }
+
+    public boolean onMenuItemClick(MenuItem item){
+        switch(item.getItemId()){
+            case R.id.item1:
+                boardManager = new BoardManager();
+                switchToGame();
+                return true;
+
+            case R.id.item2:
+                boardManager = new BoardManager();
+                switchToGame();
+                return true;
+
+            case R.id.item3:
+                boardManager = new BoardManager();
+                switchToGame();
+                return true;
+
+            default:
+                return false;
+        }
     }
 
     /**
