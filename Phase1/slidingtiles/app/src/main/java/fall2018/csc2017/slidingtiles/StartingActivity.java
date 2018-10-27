@@ -37,7 +37,7 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        boardManager = new BoardManager();
+        boardManager = new BoardManager(4, 4);
         saveToFile(TEMP_SAVE_FILENAME);
 
         setContentView(R.layout.activity_starting_);
@@ -71,17 +71,17 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
     public boolean onMenuItemClick(MenuItem item){
         switch(item.getItemId()){
             case R.id.item1:
-                boardManager = new BoardManager();
+                boardManager = new BoardManager(3,3);
                 switchToGame();
                 return true;
 
             case R.id.item2:
-                boardManager = new BoardManager();
+                boardManager = new BoardManager(4,4);
                 switchToGame();
                 return true;
 
             case R.id.item3:
-                boardManager = new BoardManager();
+                boardManager = new BoardManager(5,5);
                 switchToGame();
                 return true;
 

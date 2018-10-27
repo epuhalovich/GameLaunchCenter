@@ -42,6 +42,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     // Grid View and calculated column height and width based on device size
     private GestureDetectGridView gridView;
     private static int columnWidth, columnHeight;
+    private int NUM_COLS, NUM_ROWS;
 
     /**
      * Set up the background image for each button based on the master list
@@ -57,12 +58,14 @@ public class GameActivity extends AppCompatActivity implements Observer {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadFromFile(StartingActivity.TEMP_SAVE_FILENAME);
+        this.NUM_COLS = boardManager.getBoard().NUM_COLS;
+        this.NUM_ROWS = boardManager.getBoard().NUM_ROWS;
         createTileButtons(this);
         setContentView(R.layout.activity_main);
 
         // Add View to activity
         gridView = findViewById(R.id.grid);
-        gridView.setNumColumns(Board.NUM_COLS);
+        gridView.setNumColumns(NUM_COLS);
         gridView.setBoardManager(boardManager);
         boardManager.getBoard().addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function
@@ -75,8 +78,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
                         int displayWidth = gridView.getMeasuredWidth();
                         int displayHeight = gridView.getMeasuredHeight();
 
-                        columnWidth = displayWidth / Board.NUM_COLS;
-                        columnHeight = displayHeight / Board.NUM_ROWS;
+                        columnWidth = displayWidth / NUM_COLS;
+                        columnHeight = displayHeight / NUM_ROWS;
 
                         display();
                     }
@@ -91,8 +94,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
     private void createTileButtons(Context context) {
         Board board = boardManager.getBoard();
         tileButtons = new ArrayList<>();
-        for (int row = 0; row != Board.NUM_ROWS; row++) {
-            for (int col = 0; col != Board.NUM_COLS; col++) {
+        for (int row = 0; row != NUM_ROWS; row++) {
+            for (int col = 0; col != NUM_COLS; col++) {
                 Button tmp = new Button(context);
                 tmp.setBackgroundResource(board.getTile(row, col).getBackground());
                 this.tileButtons.add(tmp);
@@ -107,8 +110,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
         Board board = boardManager.getBoard();
         int nextPos = 0;
         for (Button b : tileButtons) {
-            int row = nextPos / Board.NUM_ROWS;
-            int col = nextPos % Board.NUM_COLS;
+            int row = nextPos / NUM_ROWS;
+            int col = nextPos % NUM_COLS;
             b.setBackgroundResource(board.getTile(row, col).getBackground());
             nextPos++;
         }

@@ -1,12 +1,8 @@
 package fall2018.csc2017.slidingtiles;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
-import android.widget.Button;
 
 import java.io.Serializable;
-
-import fall2018.csc2017.slidingtiles.R;
 
 /**
  * A Tile in a sliding tiles puzzle.
@@ -109,8 +105,35 @@ public class Tile implements Comparable<Tile>, Serializable {
             case 16:
                 background = R.drawable.tile_16;
                 break;
+            case 17:
+                background = R.drawable.tile_17;
+                break;
+            case 18:
+                background = R.drawable.tile_18;
+                break;
+            case 19:
+                background = R.drawable.tile_19;
+                break;
+            case 20:
+                background = R.drawable.tile_20;
+                break;
+            case 21:
+                background = R.drawable.tile_21;
+                break;
+            case 22:
+                background = R.drawable.tile_22;
+                break;
+            case 23:
+                background = R.drawable.tile_23;
+                break;
+            case 24:
+                background = R.drawable.tile_24;
+                break;
+            case 25:
+                background = R.drawable.tile_25;
+                break;
             default:
-                background = R.drawable.tile_16;
+                background = R.drawable.tile_25;
         }
     }
 
