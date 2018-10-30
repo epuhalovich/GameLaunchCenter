@@ -13,6 +13,7 @@ class BoardManager implements Serializable {
     /**
      * The board being managed.
      */
+    private int score;
     private Board board;
 
     /**
@@ -35,6 +36,7 @@ class BoardManager implements Serializable {
      * Manage a new shuffled board.
      */
     BoardManager(int rows, int cols) {
+        this.score = 0;
         List<Tile> tiles = new ArrayList<>();
         final int numTiles = rows * cols;
         for (int tileNum = 0; tileNum != numTiles - 1; tileNum++) {
@@ -44,6 +46,15 @@ class BoardManager implements Serializable {
 
         Collections.shuffle(tiles);
         this.board = new Board(tiles, rows, cols);
+    }
+
+    /**
+     * Return the score of a slidingtiles game
+     * @return score
+     */
+
+    public int getScore() {
+        return score;
     }
 
     /**
@@ -101,12 +112,16 @@ class BoardManager implements Serializable {
         Tile left = col == 0 ? null : board.getTile(row, col - 1);
 
         if (above != null && above.getId() == blankId) {
+            score++;
             board.swapTiles(row, col, row - 1, col);
         } else if (below != null && below.getId() == blankId) {
+            score++;
             board.swapTiles(row, col, row + 1, col);
         } else if (left != null && left.getId() == blankId) {
+            score++;
             board.swapTiles(row, col, row, col - 1);
         } else { // the tile to the right is the blank tile
+            score++;
             board.swapTiles(row, col, row, col + 1);
         }
     }
