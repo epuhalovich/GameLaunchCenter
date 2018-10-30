@@ -96,7 +96,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
         undoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.print("Do Undo Method Here"); //TODO: Create and link undo method(s).
+                boardManager.tryUndo();
             }
         });
     }
