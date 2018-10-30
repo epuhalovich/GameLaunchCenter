@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Manage a board, including swapping tiles, checking for a win, and managing taps.
@@ -15,6 +16,7 @@ class BoardManager implements Serializable {
      */
     private int score;
     private Board board;
+    private Stack<Integer> undoStack;
 
     /**
      * Manage a board that has been pre-populated.
@@ -46,6 +48,7 @@ class BoardManager implements Serializable {
 
         Collections.shuffle(tiles);
         this.board = new Board(tiles, rows, cols);
+        this.undoStack = new Stack<Integer>();
     }
 
     /**
@@ -98,6 +101,8 @@ class BoardManager implements Serializable {
 
     /**
      * Process a touch at position in the board, swapping tiles as appropriate.
+     * Also adds an integer to the undo stack. 0,1,2,3 correspond to a tile swapped to
+     * the right, above, left, and below respectively.
      *
      * @param position the position
      */
@@ -111,18 +116,42 @@ class BoardManager implements Serializable {
         Tile below = row == board.NUM_ROWS - 1 ? null : board.getTile(row + 1, col);
         Tile left = col == 0 ? null : board.getTile(row, col - 1);
 
+        score++;
+
         if (above != null && above.getId() == blankId) {
-            score++;
             board.swapTiles(row, col, row - 1, col);
+            this.undoStack.push(1);
         } else if (below != null && below.getId() == blankId) {
-            score++;
             board.swapTiles(row, col, row + 1, col);
+            this.undoStack.push(3);
         } else if (left != null && left.getId() == blankId) {
-            score++;
             board.swapTiles(row, col, row, col - 1);
+            this.undoStack.push(2);
         } else { // the tile to the right is the blank tile
-            score++;
             board.swapTiles(row, col, row, col + 1);
+            this.undoStack.push(0);
+        }
+    }
+
+    void tryUndo() {
+        if (!this.undoStack.empty()) {
+            switch (undoStack.pop()) {
+                case 0:
+                    System.out.println(0);
+                    break;
+                case 1:
+                    System.out.println(1);
+                    break;
+                case 2:
+                    System.out.println(2);
+                    break;
+                default: // case 3
+                    System.out.println(3);
+                    break;
+            }
+        }
+        else {
+            System.out.println("No undos left.");
         }
     }
 
