@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 
@@ -62,6 +63,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
         this.NUM_ROWS = boardManager.getBoard().NUM_ROWS;
         createTileButtons(this);
         setContentView(R.layout.activity_main);
+        addUndoButtonListener();
 
         // Add View to activity
         gridView = findViewById(R.id.grid);
@@ -84,6 +86,19 @@ public class GameActivity extends AppCompatActivity implements Observer {
                         display();
                     }
                 });
+    }
+
+    /**
+     * Activate the undo button.
+     */
+    private void addUndoButtonListener() {
+        Button undoButton = findViewById(R.id.UndoButton);
+        undoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.print("Do Undo Method Here"); //TODO: Create and link undo method(s).
+            }
+        });
     }
 
     /**
