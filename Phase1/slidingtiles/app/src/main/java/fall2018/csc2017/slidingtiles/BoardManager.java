@@ -16,7 +16,8 @@ class BoardManager implements Serializable {
      */
     private int score;
     private Board board;
-    private Stack<Integer> undoStack;
+    private Stack<Integer> undoDirectionStack;
+    private Stack<Integer> undoPositionStack;
 
     /**
      * Manage a board that has been pre-populated.
@@ -48,7 +49,8 @@ class BoardManager implements Serializable {
 
         Collections.shuffle(tiles);
         this.board = new Board(tiles, rows, cols);
-        this.undoStack = new Stack<Integer>();
+        this.undoDirectionStack = new Stack<Integer>();
+        this.undoPositionStack = new Stack<Integer>();
     }
 
     /**
@@ -116,42 +118,51 @@ class BoardManager implements Serializable {
         Tile left = col == 0 ? null : board.getTile(row, col - 1);
         Tile below = row == board.NUM_ROWS - 1 ? null : board.getTile(row + 1, col);
 
-        score++;
-
         if (above != null && above.getId() == blankId) {
             board.swapTiles(row, col, row - 1, col);
-            this.undoStack.push(0);
+            this.undoDirectionStack.push(0);
         } else if (left != null && left.getId() == blankId) {
             board.swapTiles(row, col, row, col - 1);
-            this.undoStack.push(1);
+            this.undoDirectionStack.push(1);
         } else if (below != null && below.getId() == blankId) {
             board.swapTiles(row, col, row + 1, col);
-            this.undoStack.push(2);
+            this.undoDirectionStack.push(2);
         }  else { // the tile to the right is the blank tile
             board.swapTiles(row, col, row, col + 1);
-            this.undoStack.push(3);
+            this.undoDirectionStack.push(3);
         }
+        this.undoPositionStack.push(position);
+        score++;
     }
 
+    /**
+     * Checks if there are undo moves left, and if so, swaps tiles in the reverse order of
+     * the last move.
+     */
     void tryUndo() {
-        if (!this.undoStack.empty()) {
-            switch (undoStack.pop()) {
-                case 0: // Tile was last moved UP. Now move it DOWN.
-                    System.out.println(0);
+        if (!(this.undoDirectionStack.empty() && this.undoPositionStack.empty())) {
+            int position = undoPositionStack.pop();
+            int direction = undoDirectionStack.pop();
+            int row = position / board.NUM_ROWS;
+            int col = position % board.NUM_COLS;
+
+            switch (direction) {
+                case 0: // Swap blank tile with ABOVE.
+                    board.swapTiles(row, col, row - 1, col);
                     break;
-                case 1: // Tile was last moved LEFT. Now move it RIGHT.
-                    System.out.println(1);
+                case 1: // Swap blank tile with LEFT.
+                    board.swapTiles(row, col, row, col - 1);
                     break;
-                case 2: // Tile was last moved DOWN. Now move it UP.
-                    System.out.println(2);
+                case 2: // Swap blank tile with BELOW.
+                    board.swapTiles(row, col, row + 1, col);
                     break;
-                default: // Tile was last moved RIGHT. Now move it LEFT.
-                    System.out.println(3);
+                default: // Swap blank tile with RIGHT.
+                    board.swapTiles(row, col, row, col + 1);
                     break;
             }
         }
         else {
-            System.out.println("No undos left.");
+            System.out.println("No undos left."); //TODO: Make an on-screen pop-up that says this.
         }
     }
 
