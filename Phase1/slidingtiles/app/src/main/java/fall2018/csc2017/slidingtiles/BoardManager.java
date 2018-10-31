@@ -102,7 +102,7 @@ class BoardManager implements Serializable {
     /**
      * Process a touch at position in the board, swapping tiles as appropriate.
      * Also adds an integer to the undo stack. 0,1,2,3 correspond to a tile swapped to
-     * the right, above, left, and below respectively.
+     * the above, left, below, and right respectively.
      *
      * @param position the position
      */
@@ -113,39 +113,39 @@ class BoardManager implements Serializable {
         int blankId = 25;
 
         Tile above = row == 0 ? null : board.getTile(row - 1, col);
-        Tile below = row == board.NUM_ROWS - 1 ? null : board.getTile(row + 1, col);
         Tile left = col == 0 ? null : board.getTile(row, col - 1);
+        Tile below = row == board.NUM_ROWS - 1 ? null : board.getTile(row + 1, col);
 
         score++;
 
         if (above != null && above.getId() == blankId) {
             board.swapTiles(row, col, row - 1, col);
+            this.undoStack.push(0);
+        } else if (left != null && left.getId() == blankId) {
+            board.swapTiles(row, col, row, col - 1);
             this.undoStack.push(1);
         } else if (below != null && below.getId() == blankId) {
             board.swapTiles(row, col, row + 1, col);
-            this.undoStack.push(3);
-        } else if (left != null && left.getId() == blankId) {
-            board.swapTiles(row, col, row, col - 1);
             this.undoStack.push(2);
-        } else { // the tile to the right is the blank tile
+        }  else { // the tile to the right is the blank tile
             board.swapTiles(row, col, row, col + 1);
-            this.undoStack.push(0);
+            this.undoStack.push(3);
         }
     }
 
     void tryUndo() {
         if (!this.undoStack.empty()) {
             switch (undoStack.pop()) {
-                case 0:
+                case 0: // Tile was last moved UP. Now move it DOWN.
                     System.out.println(0);
                     break;
-                case 1:
+                case 1: // Tile was last moved LEFT. Now move it RIGHT.
                     System.out.println(1);
                     break;
-                case 2:
+                case 2: // Tile was last moved DOWN. Now move it UP.
                     System.out.println(2);
                     break;
-                default: // case 3
+                default: // Tile was last moved RIGHT. Now move it LEFT.
                     System.out.println(3);
                     break;
             }
