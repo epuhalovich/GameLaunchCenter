@@ -16,6 +16,7 @@ class BoardManager implements Serializable {
      */
     private int score;
     private Board board;
+    private int numUndos;
     private Stack<Integer> undoDirectionStack;
     private Stack<Integer> undoPositionStack;
 
@@ -49,6 +50,8 @@ class BoardManager implements Serializable {
 
         Collections.shuffle(tiles);
         this.board = new Board(tiles, rows, cols);
+
+        this.numUndos = 3;
         this.undoDirectionStack = new Stack<Integer>();
         this.undoPositionStack = new Stack<Integer>();
     }
@@ -132,6 +135,9 @@ class BoardManager implements Serializable {
             this.undoDirectionStack.push(3);
         }
         this.undoPositionStack.push(position);
+        if (this.numUndos < 3) {
+            numUndos++;
+        }
         score++;
     }
 
@@ -140,7 +146,8 @@ class BoardManager implements Serializable {
      * the last move.
      */
     void tryUndo() {
-        if (!(this.undoDirectionStack.empty() && this.undoPositionStack.empty())) {
+        if (this.numUndos > 0 && !(this.undoDirectionStack.empty() && this.undoPositionStack.empty())) {
+            numUndos--;
             int position = undoPositionStack.pop();
             int direction = undoDirectionStack.pop();
             int row = position / board.NUM_ROWS;
