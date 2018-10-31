@@ -16,7 +16,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="202dp"
         android:gravity="center"
-        android:text="Welcome To Sliding Tiles \n A Puzzle Game where you must arrange the numbers in the correct order"
+        android:text="@string/welcome_to_sliding_tiles_n_a_puzzle_game_where_you_must_arrange_the_numbers_in_the_correct_order"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     <Button
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/GameText"
         android:layout_centerHorizontal="true"
-        android:text="Load Saved Game" />
+        android:text="@string/load_saved_game" />
 
     <Button
         android:id="@+id/StartButton"
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/LoadButton"
         android:layout_centerHorizontal="true"
-        android:text="New Game" />
+        android:text="@string/new_game" />
 
     <Button
         android:id="@+id/SaveButton"
@@ -41,6 +41,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/StartButton"
         android:layout_centerHorizontal="true"
-        android:text="Save Game" />
+        android:text="@string/save_game" />
 
 </RelativeLayout>
