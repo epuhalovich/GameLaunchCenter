@@ -31,7 +31,7 @@ public class LogInActivity extends AppCompatActivity{
             else {
                 if(users.signIn(userName, passWord)){
                     textBox.setText("Sign In Sucessfully!");
-                    Intent tmp = new Intent(this, StartingActivity.class);
+                    Intent tmp = new Intent(this, LaunchCenterActivity.class);
                     startActivity(tmp);
                 }
                 else{textBox.setText("Incorrect Password.");}

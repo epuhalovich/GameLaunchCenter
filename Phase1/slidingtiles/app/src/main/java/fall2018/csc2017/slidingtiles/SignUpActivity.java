@@ -1,5 +1,6 @@
 package fall2018.csc2017.slidingtiles;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -35,7 +36,9 @@ public class SignUpActivity extends AppCompatActivity {
                 }
                 else{
                 users.signUp(userName, passWord);
-                textBox.setText("Sign up Successfully!");}
+                textBox.setText("Sign up Successfully!");
+                Intent tmp = new Intent(this, LogInActivity.class);
+                startActivity(tmp);}
 
             }
         });

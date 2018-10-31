@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#5467"
     tools:context=".RegisterActivity">
 
     <Button
@@ -13,7 +14,7 @@
         android:layout_height="55dp"
         android:layout_marginStart="59dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginEnd="59dp"
         android:layout_marginBottom="200dp"
         android:text="@string/sign_up"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,7 +30,6 @@
         android:layout_marginStart="59dp"
         android:layout_marginTop="200dp"
         android:layout_marginEnd="59dp"
-        android:layout_marginBottom="71dp"
         android:text="@string/sign_in"
         app:layout_constraintBottom_toTopOf="@+id/signUp"
         app:layout_constraintEnd_toEndOf="parent"
