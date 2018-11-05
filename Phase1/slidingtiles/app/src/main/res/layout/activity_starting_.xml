@@ -40,25 +40,13 @@
         android:layout_marginTop="19dp"
         android:text="@string/new_game" />
 
-    <TextView
-        android:id="@+id/textView3"
+    <Button
+        android:id="@+id/ScoreBoardButton"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_below="@+id/StartButton"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="93dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="91dp"
-        android:layout_marginBottom="120dp"
-        android:textSize="16sp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:text="View Scoreboard"/>
 
-    <Button
-            android:id="@+id/ScoreBoardButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/StartButton"
-            android:layout_centerHorizontal="true"
-            android:text="@string/view_scoreboard"/>
 </RelativeLayout>
