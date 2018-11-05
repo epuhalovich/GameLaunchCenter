@@ -14,26 +14,45 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="202dp"
+        android:layout_marginTop="174dp"
         android:gravity="center"
         android:text="@string/welcome_to_sliding_tiles_n_a_puzzle_game_where_you_must_arrange_the_numbers_in_the_correct_order"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+        android:textAppearance="@android:style/TextAppearance.Material.Small"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/LoadButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@android:style/Widget.DeviceDefault.Button.Small"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/GameText"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
         android:text="@string/load_saved_game" />
 
     <Button
         android:id="@+id/StartButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@android:style/Widget.DeviceDefault.Button.Small"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/LoadButton"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
         android:text="@string/new_game" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/StartButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="93dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginBottom="120dp"
+        android:textSize="16sp" />
 
     <Button
             android:id="@+id/ScoreBoardButton"
@@ -41,5 +60,5 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/StartButton"
             android:layout_centerHorizontal="true"
-            android:text="View Scoreboard"/>
+            android:text="@string/view_scoreboard"/>
 </RelativeLayout>

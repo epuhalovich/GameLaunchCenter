@@ -10,14 +10,14 @@
 
     <Button
         android:id="@+id/choosebutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="131dp"
-        android:layout_marginBottom="234dp"
-        android:text="Choose Game"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="117dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="117dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/choose_game"
+        app:layout_constraintBottom_toTopOf="@+id/viewscorebutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -26,28 +26,43 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="241dp"
-        android:layout_marginEnd="63dp"
-        android:layout_marginBottom="9dp"
-        android:text="                           Welcome!\nPlease choose the game you want to play"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="50dp"
+        android:text="@string/welcome_nplease_choose_the_game_you_want_to_play"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/choosebutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <Button
         android:id="@+id/viewscorebutton"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="98dp"
+        android:layout_marginEnd="97dp"
+        android:layout_marginBottom="59dp"
+        android:text="@string/view_your_scoreboard"
+        app:layout_constraintBottom_toTopOf="@+id/logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choosebutton" />
+
+    <Button
+        android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="98dp"
-        android:layout_marginTop="107dp"
-        android:layout_marginEnd="97dp"
-        android:layout_marginBottom="76dp"
-        android:text="view your scoreboard"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="148dp"
+        android:layout_marginBottom="46dp"
+        android:text="@string/log_out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choosebutton" />
+        app:layout_constraintTop_toBottomOf="@+id/viewscorebutton" />
 </android.support.constraint.ConstraintLayout>

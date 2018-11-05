@@ -28,7 +28,7 @@
         android:layout_marginTop="125dp"
         android:layout_marginEnd="88dp"
         android:layout_marginBottom="420dp"
-        android:text="SlidingTile"
+        android:text="@string/slidingtile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/STscore"
         app:layout_constraintStart_toStartOf="parent"
