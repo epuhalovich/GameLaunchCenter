@@ -29,12 +29,15 @@ public class SignUpActivity extends AppCompatActivity {
             }
             catch (DuplicateException e) {
                 textBox.setText("This username has been registered.");
+                return;
             }
             catch (AccountsException e) {
                 textBox.setText("Please fill in your username.");
+                return;
             }
             catch (NoPassWordException e) {
                 textBox.setText("Please fill in your password.");
+                return;
             }
 //
 //            }

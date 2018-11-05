@@ -58,7 +58,7 @@ public class UserManager implements Serializable{
        else if (password.length() == 0){
            throw new NoPassWordException();
       }
-        allUsers.add(new User(account, password));
+           allUsers.add(new User(account, password));
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     context.openFileOutput(fileName, MODE_PRIVATE));

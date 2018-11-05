@@ -32,9 +32,11 @@ public class LogInActivity extends AppCompatActivity{
             }
             catch (AuthenticatorException e){
                 textBox.setText("Incorrect Password.");
+                return;
             }
             catch (AccountsException e) {
                 textBox.setText("Username is not found.");
+                return;
             }
             textBox.setText("Sign In Sucessfully!");
             Intent tmp = new Intent(this, StartingActivity.class);
