@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.Locale;
 
-public class UserScoreBoardActivity extends AppCompatActivity {
+public class ScoreBoardActivity extends AppCompatActivity {
     private User player = LogInActivity.currentPlayer;
 
     @Override
