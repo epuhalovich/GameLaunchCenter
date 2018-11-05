@@ -22,11 +22,6 @@ import java.io.ObjectOutputStream;
 public class StartingActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
     /**
-     * The main save file.
-     */
-    public static final String SAVE_FILENAME = "save_file.ser";
-    // save the game inside
-    /**
      * A temporary save file.
      */
     public static final String TEMP_SAVE_FILENAME = "save_file_tmp.ser";
@@ -38,7 +33,7 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        boardManager = new BoardManager(4, 4);
+        boardManager = new BoardManager(4, 4);
         saveToFile(TEMP_SAVE_FILENAME);
 
         setContentView(R.layout.activity_starting_);
@@ -72,16 +67,19 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
         switch(item.getItemId()){
             case R.id.item1:
                 boardManager = new BoardManager(3,3);
+                saveToFile(LogInActivity.currentPlayer.getGameFile());
                 switchToGame();
                 return true;
 
             case R.id.item2:
                 boardManager = new BoardManager(4,4);
+                saveToFile(LogInActivity.currentPlayer.getGameFile());
                 switchToGame();
                 return true;
 
             case R.id.item3:
                 boardManager = new BoardManager(5,5);
+                saveToFile(LogInActivity.currentPlayer.getGameFile());
                 switchToGame();
                 return true;
 
