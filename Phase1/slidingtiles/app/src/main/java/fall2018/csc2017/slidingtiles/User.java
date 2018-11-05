@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class User {
     private String account;
     private String password;
-    //    private ArrayList<String> score;
     private String gameFile;
     private int heighest_score;
 
@@ -21,8 +20,6 @@ public class User {
         this.password = password;
         this.gameFile = this.account + ".ser";
         this.heighest_score = 9999999;
-//        this.score = new ArrayList();
-        //this.login =?
     }
 
     public String getGameFile() {

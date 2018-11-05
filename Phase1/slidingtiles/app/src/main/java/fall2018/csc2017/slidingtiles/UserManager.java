@@ -3,9 +3,8 @@ package fall2018.csc2017.slidingtiles;
 
 import android.accounts.AccountsException;
 import android.accounts.AuthenticatorException;
-import android.app.AuthenticationRequiredException;
 import android.content.Context;
-import android.content.res.Resources;
+import android.util.Log;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,10 +12,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.DuplicateFormatFlagsException;
-import java.util.MissingFormatArgumentException;
-import java.util.NoSuchElementException;
-
 import static android.content.Context.MODE_PRIVATE;
 
 /**
@@ -45,8 +40,6 @@ public class UserManager implements Serializable{
         return -1;
     }
 
-
-
     public void signUp(String account, String password) throws DuplicateException, AccountsException,
             NoPassWordException {
        if (hasAccount(account) != -1) {
@@ -65,7 +58,7 @@ public class UserManager implements Serializable{
             outputStream.writeObject(allUsers);
             outputStream.close();
         } catch (IOException e) {
-//            Log.e("Exception", "File write failed: " + e.toString());
+            Log.e("Exception", "File write failed: " + e.toString());
         }
     }
 
@@ -92,12 +85,12 @@ public class UserManager implements Serializable{
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {
-//            Log.e("login activity", "File not found: " + e.toString());
+            Log.e("login activity", "File not found: " + e.toString());
         }
         catch (IOException e) {
-//            Log.e("login activity", "Can not read file: " + e.toString());
+            Log.e("login activity", "Can not read file: " + e.toString());
         } catch (ClassNotFoundException e) {
-//            Log.e("login activity", "File contained unexpected data type: " + e.toString());
+            Log.e("login activity", "File contained unexpected data type: " + e.toString());
         }
     }
 }

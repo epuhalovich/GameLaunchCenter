@@ -1,12 +1,14 @@
 package fall2018.csc2017.slidingtiles;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.PopupMenu;
 
@@ -15,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.NoSuchElementException;
 
 /**
  * The initial activity for the sliding puzzle tile game.
@@ -33,7 +36,8 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        boardManager = new BoardManager(4, 4);
+//        boardManager = new BoardManager(4, 4);(we don't need this line)
+
         saveToFile(TEMP_SAVE_FILENAME);
 
         setContentView(R.layout.activity_starting_);
@@ -47,14 +51,9 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
      */
     private void addStartButtonListener() {
         Button startButton = findViewById(R.id.StartButton);
-        startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPopup(v);
-//                boardManager = new BoardManager();
+        //                boardManager = new BoardManager();
 //                switchToGame();
-            }
-        });
+        startButton.setOnClickListener(this::showPopup);
     }
 
     public void showPopup(View v) {
@@ -64,23 +63,20 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
         popup.show();
     }
 
-    public boolean onMenuItemClick(MenuItem item){
-        switch(item.getItemId()){
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.item1:
-                boardManager = new BoardManager(3,3);
-                saveToFile(LogInActivity.currentPlayer.getGameFile());
+                boardManager = BoardManager.getLevel("Easy");
                 switchToGame();
                 return true;
 
             case R.id.item2:
-                boardManager = new BoardManager(4,4);
-                saveToFile(LogInActivity.currentPlayer.getGameFile());
+                boardManager = BoardManager.getLevel("Medium");
                 switchToGame();
                 return true;
 
             case R.id.item3:
-                boardManager = new BoardManager(5,5);
-                saveToFile(LogInActivity.currentPlayer.getGameFile());
+                boardManager = BoardManager.getLevel("Hard");
                 switchToGame();
                 return true;
 
@@ -94,16 +90,16 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
      */
     private void addLoadButtonListener() {
         Button loadButton = findViewById(R.id.LoadButton);
-        loadButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        loadButton.setOnClickListener(v -> {
                 loadFromFile(LogInActivity.currentPlayer.getGameFile());
-                //change SAVE_FILENAME to each  user's
-                // for user in UserManager if user.login == true loadFromFile(user.file)
+                if (boardManager != null){
                 saveToFile(TEMP_SAVE_FILENAME);
                 makeToastLoadedText();
                 switchToGame();
-            }
+                }
+                else{
+                    makeToastNoLoadedText();
+                }
         });
     }
 
@@ -112,6 +108,10 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
      */
     private void makeToastLoadedText() {
         Toast.makeText(this, "Loaded Game", Toast.LENGTH_SHORT).show();
+    }
+
+    private void makeToastNoLoadedText() {
+        Toast.makeText(this, "No Saved Game", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -137,13 +137,13 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
      *
      * @param fileName the name of the file
      */
-    private void loadFromFile(String fileName) {
+    private void loadFromFile(String fileName) throws NoSuchElementException {
 
         try {
             InputStream inputStream = this.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
-                boardManager = (BoardManager) input.readObject();
+                    boardManager = (BoardManager) input.readObject();
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {
@@ -153,8 +153,10 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
         } catch (ClassNotFoundException e) {
             Log.e("login activity", "File contained unexpected data type: " + e.toString());
         }
-//        return 1;
     }
+
+
+
 
     /**
      * Save the board manager to fileName.
