@@ -1,6 +1,7 @@
 package fall2018.csc2017.slidingtiles;
 
 import android.annotation.SuppressLint;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -65,6 +66,15 @@ class BoardManager implements Serializable {
 
     public int getScore() {
         return score;
+    }
+
+    /**
+     * Return the numUndos left of a slidingtiles game
+     * @return numUndos
+     */
+
+    public int getNumUndos() {
+        return numUndos;
     }
 
     /**
@@ -174,9 +184,6 @@ class BoardManager implements Serializable {
                     score --;
                     break;
             }
-        }
-        else {
-            System.out.println("No undos left."); //TODO: Make an on-screen pop-up that says this.
         }
     }
 

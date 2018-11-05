@@ -101,6 +101,9 @@ public class GameActivity extends AppCompatActivity implements Observer {
             @Override
             public void onClick(View v) {
                 boardManager.tryUndo();
+                if (boardManager.getNumUndos() == 0){
+                    makeToastNoUndosText();
+                }
             }
         });
     }
@@ -126,6 +129,13 @@ public class GameActivity extends AppCompatActivity implements Observer {
      */
     private void makeToastSavedText() {
         Toast.makeText(this, "Game Saved", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Display that a game was saved successfully.
+     */
+    private void makeToastNoUndosText() {
+        Toast.makeText(this, "no undos left", Toast.LENGTH_SHORT).show();
     }
 
     /**
