@@ -1,6 +1,7 @@
 package fall2018.csc2017.slidingtiles;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -66,6 +67,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
         setContentView(R.layout.activity_main);
         addUndoButtonListener();
         addSaveButtonListener();
+
 
         // Add View to activity
         gridView = findViewById(R.id.grid);
@@ -209,5 +211,18 @@ public class GameActivity extends AppCompatActivity implements Observer {
     public void update(Observable o, Object arg) {
         display();
         saveToFile(LogInActivity.currentPlayer.getGameFile());
+    }
+    private void addViewScoreButtonListener() {
+        Button chooseButton = (Button)findViewById(R.id.viewscorebutton);
+        chooseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchToUserScoreBoard();
+            }
+        });
+    }
+    private void switchToUserScoreBoard() {
+        Intent tmp = new Intent(this, UserScoreBoardActivity.class);
+        startActivity(tmp);
     }
 }

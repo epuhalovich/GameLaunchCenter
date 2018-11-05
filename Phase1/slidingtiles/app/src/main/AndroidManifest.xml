@@ -22,6 +22,11 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".LaunchCenterActivity" />
         <activity android:name=".ScoreBoardActivity" />
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         <activity android:name=".UserScoreBoardActivity"></activity>
     </application>
 

@@ -39,6 +39,7 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
         setContentView(R.layout.activity_starting_);
         addStartButtonListener();
         addLoadButtonListener();
+        addViewScoreButtonListener();
     }
 
     /**
@@ -169,5 +170,17 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
         }
+    }
+
+    private void addViewScoreButtonListener() {
+        Button ScoreBoardButton = (Button)findViewById(R.id.ScoreBoardButton);
+        ScoreBoardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { switchToScoreBoard(); }
+        });
+    }
+    private void switchToScoreBoard(){
+        Intent tmp = new Intent(this, ScoreBoardActivity.class);
+        startActivity(tmp);
     }
 }
