@@ -1,7 +1,11 @@
 package fall2018.csc2017.slidingtiles;
 
 
+import android.accounts.AccountsException;
+import android.accounts.AuthenticatorException;
+import android.app.AuthenticationRequiredException;
 import android.content.Context;
+import android.content.res.Resources;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,7 +13,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-
+import java.util.DuplicateFormatFlagsException;
+import java.util.MissingFormatArgumentException;
+import java.util.NoSuchElementException;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -17,7 +23,7 @@ import static android.content.Context.MODE_PRIVATE;
  * A UserManager to manage users.
  */
 
-public class UserManager implements Serializable {
+public class UserManager implements Serializable{
     private static ArrayList<User> allUsers = new ArrayList<>();
     private static final String fileName = "allUsers.ser";
     private Context context;
@@ -39,10 +45,19 @@ public class UserManager implements Serializable {
         return -1;
     }
 
-    public void signUp(String account, String password){
-//        if (hasAccount(account) != -1) {
-//            throw new MissingFormatArgumentException("This username has been registered.");
-//        }
+
+
+    public void signUp(String account, String password) throws DuplicateException, AccountsException,
+            NoPassWordException {
+       if (hasAccount(account) != -1) {
+           throw new DuplicateException();
+       }
+       else if (account.length() == 0) {
+           throw new AccountsException();
+       }
+       else if (password.length() == 0){
+           throw new NoPassWordException();
+      }
         allUsers.add(new User(account, password));
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
@@ -54,12 +69,17 @@ public class UserManager implements Serializable {
         }
     }
 
-    public boolean signIn (String account, String password){
-//        if (hasAccount(account) == -1) {
-//            throw new NoSuchElementException("Username is not found.");
-//        }
+    public User signIn (String account, String password) throws AccountsException {
         int index = hasAccount(account);
-        return (allUsers.get(index).getPassword()).equals(password);
+        if (index == -1) {
+            throw new AccountsException();
+        }
+        else if (!(allUsers.get(index).getPassword()).equals(password)) {
+            throw new AuthenticatorException();
+        }
+        else{
+        return allUsers.get(index);
+        }
     }
 
     private void loadFromFile() {

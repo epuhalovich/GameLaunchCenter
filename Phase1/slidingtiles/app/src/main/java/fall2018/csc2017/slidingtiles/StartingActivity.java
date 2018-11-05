@@ -25,6 +25,7 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
      * The main save file.
      */
     public static final String SAVE_FILENAME = "save_file.ser";
+    // save the game inside
     /**
      * A temporary save file.
      */
@@ -37,7 +38,7 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        boardManager = new BoardManager(4, 4);
+//        boardManager = new BoardManager(4, 4);
         saveToFile(TEMP_SAVE_FILENAME);
 
         setContentView(R.layout.activity_starting_);
@@ -98,7 +99,9 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
         loadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFromFile(SAVE_FILENAME);
+                loadFromFile(LogInActivity.currentPlayer.getGameFile());
+                //change SAVE_FILENAME to each  user's
+                // for user in UserManager if user.login == true loadFromFile(user.file)
                 saveToFile(TEMP_SAVE_FILENAME);
                 makeToastLoadedText();
                 switchToGame();
@@ -121,7 +124,8 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveToFile(SAVE_FILENAME);
+                // for user in UserManager if user.login == true SaveToFile(user.file)
+                saveToFile(LogInActivity.currentPlayer.getGameFile());
                 saveToFile(TEMP_SAVE_FILENAME);
                 makeToastSavedText();
             }
