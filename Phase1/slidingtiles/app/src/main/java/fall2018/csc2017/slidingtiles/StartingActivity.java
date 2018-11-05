@@ -44,7 +44,6 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
         setContentView(R.layout.activity_starting_);
         addStartButtonListener();
         addLoadButtonListener();
-        addSaveButtonListener();
     }
 
     /**
@@ -116,28 +115,6 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
         Toast.makeText(this, "Loaded Game", Toast.LENGTH_SHORT).show();
     }
 
-    /**
-     * Activate the save button.
-     */
-    private void addSaveButtonListener() {
-        Button saveButton = findViewById(R.id.SaveButton);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // for user in UserManager if user.login == true SaveToFile(user.file)
-                saveToFile(LogInActivity.currentPlayer.getGameFile());
-                saveToFile(TEMP_SAVE_FILENAME);
-                makeToastSavedText();
-            }
-            });
-    }
-
-    /**
-     * Display that a game was saved successfully.
-     */
-    private void makeToastSavedText() {
-        Toast.makeText(this, "Game Saved", Toast.LENGTH_SHORT).show();
-    }
     /**
      * Read the temporary board from disk.
      */

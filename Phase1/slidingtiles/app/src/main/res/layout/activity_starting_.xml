@@ -35,12 +35,4 @@
         android:layout_centerHorizontal="true"
         android:text="@string/new_game" />
 
-    <Button
-        android:id="@+id/SaveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/StartButton"
-        android:layout_centerHorizontal="true"
-        android:text="@string/save_game" />
-
 </RelativeLayout>
