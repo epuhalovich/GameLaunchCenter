@@ -1,8 +1,6 @@
 package fall2018.csc2017.slidingtiles;
 
 import android.annotation.SuppressLint;
-import android.widget.Toast;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
