@@ -15,7 +15,6 @@ public class LaunchCenterActivity extends AppCompatActivity implements PopupMenu
 
         setContentView(R.layout.activity_launchcenter);
         addChooseButtonListener();
-        addViewScoreButtonListener();
     }
 
     private void addChooseButtonListener() {
@@ -44,15 +43,6 @@ public class LaunchCenterActivity extends AppCompatActivity implements PopupMenu
 
     private void switchToSlidingTile() {
         Intent tmp = new Intent(this, StartingActivity.class);
-        startActivity(tmp);
-    }
-
-    private void addViewScoreButtonListener() {
-        Button chooseButton = findViewById(R.id.viewscorebutton);
-        chooseButton.setOnClickListener(v -> switchToUserScoreBoard());
-    }
-    private void switchToUserScoreBoard(){
-        Intent tmp = new Intent(this, UserScoreBoardActivity.class);
         startActivity(tmp);
     }
 

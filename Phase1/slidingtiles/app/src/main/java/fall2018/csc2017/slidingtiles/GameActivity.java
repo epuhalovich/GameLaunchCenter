@@ -135,7 +135,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * Display that a game was saved successfully.
      */
     private void makeToastNoUndosText() {
-        Toast.makeText(this, "no undos left", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "No undos left", Toast.LENGTH_SHORT).show();
     }
 
     /**
