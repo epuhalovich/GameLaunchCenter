@@ -13,11 +13,11 @@ public class SlidingTilesScoreboard {
 
     /**
      * Add's a score to the SlidingTilesScoreboard and then sorts the scores
-     * @param current_player
+     * @param currentPlayerId
      * @param score
      */
-    public static void addScore(User current_player, int score){
-        Score s = new Score(current_player, score);
+    public static void addScore(String currentPlayerId, int score){
+        Score s = new Score(currentPlayerId, score);
         globalScores.add(s);
         globalScores = sortScores(globalScores);
     }

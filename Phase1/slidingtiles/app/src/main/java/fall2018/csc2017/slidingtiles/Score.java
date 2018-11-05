@@ -6,16 +6,16 @@ package fall2018.csc2017.slidingtiles;
  */
 
 public class Score implements Comparable<Score>{
-    private User user;
+    private String userId;
     private int score;
 
     /**
      * Creates a score object
-     * @param user the user the score belongs to
+     * @param userId the user the score belongs to
      * @param score numerical representation of score
      */
-    public Score(User user, int score){
-        this.user = user;
+    public Score(String userId, int score){
+        this.userId = userId;
         this.score = score;
     }
 
@@ -32,7 +32,7 @@ public class Score implements Comparable<Score>{
      * @return username
      */
     public String getUsername(){
-        return user.getAccount();
+        return userId;
     }
 
     /**
