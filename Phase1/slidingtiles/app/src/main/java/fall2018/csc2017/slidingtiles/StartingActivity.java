@@ -152,6 +152,7 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
         } catch (ClassNotFoundException e) {
             Log.e("login activity", "File contained unexpected data type: " + e.toString());
         }
+//        return 1;
     }
 
     /**

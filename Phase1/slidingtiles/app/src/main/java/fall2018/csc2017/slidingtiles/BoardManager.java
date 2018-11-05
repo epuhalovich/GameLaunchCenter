@@ -1,5 +1,7 @@
 package fall2018.csc2017.slidingtiles;
 
+import android.annotation.SuppressLint;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -70,6 +72,7 @@ class BoardManager implements Serializable {
      *
      * @return whether the tiles are in row-major order
      */
+    @SuppressLint("DefaultLocale")
     boolean puzzleSolved() {
         boolean solved = true;
         int i = 1;
@@ -79,6 +82,7 @@ class BoardManager implements Serializable {
             }
             i++;
         }
+        LogInActivity.currentPlayer.getScore().add(String.format ("%d", getScore()));
         return solved;
     }
 
@@ -156,15 +160,19 @@ class BoardManager implements Serializable {
             switch (direction) {
                 case 0: // Swap blank tile with ABOVE.
                     board.swapTiles(row, col, row - 1, col);
+                    score --;
                     break;
                 case 1: // Swap blank tile with LEFT.
                     board.swapTiles(row, col, row, col - 1);
+                    score --;
                     break;
                 case 2: // Swap blank tile with BELOW.
                     board.swapTiles(row, col, row + 1, col);
+                    score --;
                     break;
                 default: // Swap blank tile with RIGHT.
                     board.swapTiles(row, col, row, col + 1);
+                    score --;
                     break;
             }
         }
