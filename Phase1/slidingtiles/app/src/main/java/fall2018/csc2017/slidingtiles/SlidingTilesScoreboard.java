@@ -1,18 +1,35 @@
 package fall2018.csc2017.slidingtiles;
 
 import java.util.ArrayList;
-import java.util.Map;
+
+/**
+ * A scoreboard for sliding tiles that can return a representation of the users scoreboard and global
+ * scoreboard for sliding tiles.
+ */
 
 public class SlidingTilesScoreboard {
 
     private static ArrayList<Score> globalScores = new ArrayList<Score>();
 
-
+    /**
+     * Add's a score to the SlidingTilesScoreboard and then sorts the scores
+     * @param current_player
+     * @param score
+     */
     public static void addScore(User current_player, int score){
         Score s = new Score(current_player, score);
         globalScores.add(s);
-        sortScores(globalScores);
+        globalScores = sortScores(globalScores);
     }
+
+    /**
+     * A sortScores() helper method that merges the left and right lists.
+     * This code was adapted from Codexpedia's post on merge sort in 2016 retrieved on 11052018
+     * from: https://www.codexpedia.com/java/java-merge-sort-implementation/
+     * @param left
+     * @param right
+     * @param whole
+     */
     private static void merge(ArrayList<Score> left, ArrayList<Score> right, ArrayList<Score> whole) {
         int leftIndex = 0;
         int rightIndex = 0;
@@ -51,6 +68,13 @@ public class SlidingTilesScoreboard {
         }
     }
 
+    /**
+     * Returns the original ArrayList sorted. This code was adapted from Codexpedia's post on merge
+     * sort in 2016 retrieved on 11052018.
+     * from: https://www.codexpedia.com/java/java-merge-sort-implementation/
+     * @param scores
+     * @return scores
+     */
     public static ArrayList<Score> sortScores(ArrayList<Score> scores){
         ArrayList<Score> left = new ArrayList<Score>();
         ArrayList<Score> right = new ArrayList<Score>();
@@ -79,9 +103,19 @@ public class SlidingTilesScoreboard {
         }
         return scores;
     }
+
+    /**
+     * Returns an ArrayList representing the global scoreboard for sliding tiles game.
+     * @return globalScores
+     */
     public ArrayList<Score> getGlobalScoreboard(){
         return globalScores;
     }
+
+    /**
+     * Returns an ArrayList representing the users scoreboard for sliding tiles game.
+     * @return UserScores
+     */
     public ArrayList<Score> getUserScoreboard(User current_player){
         ArrayList<Score> UserScores = new ArrayList<Score>();
         for(int i = 0; i < globalScores.size(); i++){
