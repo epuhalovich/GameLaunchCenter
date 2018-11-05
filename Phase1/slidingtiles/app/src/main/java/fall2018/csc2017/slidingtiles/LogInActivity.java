@@ -39,7 +39,7 @@ public class LogInActivity extends AppCompatActivity{
                 return;
             }
             textBox.setText("Sign In Sucessfully!");
-            Intent tmp = new Intent(this, StartingActivity.class);
+            Intent tmp = new Intent(this, LaunchCenterActivity.class);
             startActivity(tmp);
 //            i
 //            if(users.hasAcccount(userName) == -1) {

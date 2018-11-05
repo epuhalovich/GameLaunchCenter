@@ -11,15 +11,18 @@ import java.util.ArrayList;
 public class User {
     private String account;
     private String password;
-    private ArrayList<String> score;
+    //    private ArrayList<String> score;
     private String gameFile;
+    private int heighest_score;
 
 
     public User(String account, String password) {
         this.account = account;
         this.password = password;
         this.gameFile = this.account + ".ser";
-        this.score = new ArrayList<>();
+        this.heighest_score = 9999999;
+//        this.score = new ArrayList();
+        //this.login =?
     }
 
     public String getGameFile() {
@@ -30,17 +33,14 @@ public class User {
         return account;
     }
 
-    public String getPassword() {
+    public String getPassword() { return password; }
 
-        return password;
+    public int getHeighest_score() { return heighest_score; }
+
+    public void setHeighest_score(int heighest_score) {
+        this.heighest_score = heighest_score;
     }
-
-    public ArrayList<String> getScore() {
-        return score;
-    }
-
-    }
-
+}
 
 
 

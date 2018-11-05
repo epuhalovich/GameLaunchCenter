@@ -9,18 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name="fall2018.csc2017.slidingtiles.RegisterActivity">
+        <activity android:name=".RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="fall2018.csc2017.slidingtiles.GameActivity" />
-        <activity android:name="fall2018.csc2017.slidingtiles.LogInActivity" />
-        <activity android:name="fall2018.csc2017.slidingtiles.StartingActivity" />
-        <activity android:name="fall2018.csc2017.slidingtiles.SignUpActivity"/>
-        <activity android:name="fall2018.csc2017.slidingtiles.LaunchCenterActivity"/>
+        <activity android:name=".GameActivity" />
+        <activity android:name=".LogInActivity" />
+        <activity android:name=".StartingActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".LaunchCenterActivity" />
+        <activity android:name=".UserScoreBoardActivity"></activity>
     </application>
 
 </manifest>

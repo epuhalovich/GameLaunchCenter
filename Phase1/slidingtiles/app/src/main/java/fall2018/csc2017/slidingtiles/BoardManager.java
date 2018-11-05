@@ -16,7 +16,7 @@ class BoardManager implements Serializable {
     /**
      * The board being managed.
      */
-    private int score;
+    private static int score;
     private Board board;
     private int numUndos;
     private Stack<Integer> undoDirectionStack;
@@ -82,7 +82,6 @@ class BoardManager implements Serializable {
             }
             i++;
         }
-        LogInActivity.currentPlayer.getScore().add(String.format ("%d", getScore()));
         return solved;
     }
 
