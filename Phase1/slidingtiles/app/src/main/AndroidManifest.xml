@@ -21,6 +21,7 @@
         <activity android:name=".StartingActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".LaunchCenterActivity" />
+        <activity android:name=".ScoreBoardActivity" />
         <activity android:name=".UserScoreBoardActivity"></activity>
     </application>
 
