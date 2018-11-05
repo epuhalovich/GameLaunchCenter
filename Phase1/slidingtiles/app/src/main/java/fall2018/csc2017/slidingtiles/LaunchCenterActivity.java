@@ -26,6 +26,7 @@ public class LaunchCenterActivity extends AppCompatActivity implements PopupMenu
                 popup(v);
             }
         });
+        setupLogOutListener();
     }
 
     public void popup(View v) {
@@ -63,6 +64,15 @@ public class LaunchCenterActivity extends AppCompatActivity implements PopupMenu
     private void switchToUserScoreBoard(){
         Intent tmp = new Intent(this, UserScoreBoardActivity.class);
         startActivity(tmp);
+    }
+
+    public void setupLogOutListener(){
+        Button signIn = findViewById(R.id.logout);
+        LogInActivity.currentPlayer = null;
+        signIn.setOnClickListener((v) -> {
+            Intent tmp = new Intent(this, RegisterActivity.class);
+            startActivity(tmp);
+        });
     }
 }
 

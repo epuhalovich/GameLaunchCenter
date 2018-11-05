@@ -124,6 +124,7 @@ class BoardManager implements Serializable {
                 || (above != null && above.getId() == blankId)
                 || (left != null && left.getId() == blankId)
                 || (right != null && right.getId() == blankId);
+
     }
 
     /**
