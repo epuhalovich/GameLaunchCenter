@@ -19,13 +19,8 @@ public class LaunchCenterActivity extends AppCompatActivity implements PopupMenu
     }
 
     private void addChooseButtonListener() {
-        Button chooseButton = (Button)findViewById(R.id.choosebutton);
-        chooseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popup(v);
-            }
-        });
+        Button chooseButton = findViewById(R.id.choosebutton);
+        chooseButton.setOnClickListener(this::popup);
         setupLogOutListener();
     }
 
@@ -53,13 +48,8 @@ public class LaunchCenterActivity extends AppCompatActivity implements PopupMenu
     }
 
     private void addViewScoreButtonListener() {
-        Button chooseButton = (Button)findViewById(R.id.viewscorebutton);
-        chooseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switchToUserScoreBoard();
-            }
-        });
+        Button chooseButton = findViewById(R.id.viewscorebutton);
+        chooseButton.setOnClickListener(v -> switchToUserScoreBoard());
     }
     private void switchToUserScoreBoard(){
         Intent tmp = new Intent(this, UserScoreBoardActivity.class);
@@ -68,7 +58,6 @@ public class LaunchCenterActivity extends AppCompatActivity implements PopupMenu
 
     public void setupLogOutListener(){
         Button signIn = findViewById(R.id.logout);
-        LogInActivity.currentPlayer = null;
         signIn.setOnClickListener((v) -> {
             Intent tmp = new Intent(this, RegisterActivity.class);
             startActivity(tmp);
