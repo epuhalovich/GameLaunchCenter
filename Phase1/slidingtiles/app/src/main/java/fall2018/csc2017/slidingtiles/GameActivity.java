@@ -212,17 +212,5 @@ public class GameActivity extends AppCompatActivity implements Observer {
         display();
         saveToFile(LogInActivity.currentPlayer.getGameFile());
     }
-    private void addViewScoreButtonListener() {
-        Button chooseButton = (Button)findViewById(R.id.viewscorebutton);
-        chooseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switchToUserScoreBoard();
-            }
-        });
-    }
-    private void switchToUserScoreBoard() {
-        Intent tmp = new Intent(this, UserScoreBoardActivity.class);
-        startActivity(tmp);
-    }
+
 }
