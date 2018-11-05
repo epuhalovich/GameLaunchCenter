@@ -221,6 +221,9 @@ public class GameActivity extends AppCompatActivity implements Observer {
     public void update(Observable o, Object arg) {
         display();
         saveToFile(LogInActivity.currentPlayer.getGameFile());
+        if(boardManager.puzzleSolved()){
+            SlidingTilesScoreboard.addScore(LogInActivity.currentPlayer, boardManager.getScore());
+        }
     }
 
 }
