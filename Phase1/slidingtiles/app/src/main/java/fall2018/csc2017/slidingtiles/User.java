@@ -15,7 +15,11 @@ public class User implements Serializable {
     private String gameFile;
     private int heighest_score;
 
-
+    /**
+     * Constructs a user
+     * @param account the username
+     * @param password the password
+     */
     public User(String account, String password) {
         this.account = account;
         this.password = password;

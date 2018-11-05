@@ -49,13 +49,12 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
      */
     private void addStartButtonListener() {
         Button startButton = findViewById(R.id.StartButton);
-        //                boardManager = new BoardManager();
-//                switchToGame();
         startButton.setOnClickListener(this::showPopup);
     }
 
     /**
-     * Pop up a menu of choices.
+     * Show pop up menu
+     * @param v the View
      */
     public void showPopup(View v) {
         PopupMenu popup = new PopupMenu(this, v);
@@ -65,7 +64,9 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
     }
 
     /**
-     * Activate the items in the menu.
+     * The selection options of a menu for game complexity.
+     * @param item option on menu
+     * @return true iff on item is selected false otherwise
      */
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
@@ -159,6 +160,9 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
         }
     }
 
+
+
+
     /**
      * Save the board manager to fileName.
      *
@@ -176,7 +180,7 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
     }
 
     /**
-     * Activate the view score button.
+     * Activate Score button
      */
     private void addViewScoreButtonListener() {
         Button ScoreBoardButton = (Button)findViewById(R.id.ScoreBoardButton);
@@ -187,7 +191,7 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
     }
 
     /**
-     * Switch to the ScoreBoardActivity view.
+     * Switch view to ScoreBoardActivity
      */
     private void switchToScoreBoard(){
         Intent tmp = new Intent(this, ScoreBoardActivity.class);

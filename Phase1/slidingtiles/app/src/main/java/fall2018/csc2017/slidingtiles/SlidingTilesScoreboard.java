@@ -9,12 +9,12 @@ import java.util.ArrayList;
 
 public class SlidingTilesScoreboard {
 
-    private static ArrayList<Score> globalScores = new ArrayList<Score>();
+    private static ArrayList<Score> globalScores = new ArrayList<>();
 
     /**
      * Add's a score to the SlidingTilesScoreboard and then sorts the scores
-     * @param currentPlayerId
-     * @param score
+     * @param currentPlayerId username of current player
+     * @param score players score
      */
     public static void addScore(String currentPlayerId, int score){
         Score s = new Score(currentPlayerId, score);
@@ -26,9 +26,9 @@ public class SlidingTilesScoreboard {
      * A sortScores() helper method that merges the left and right lists.
      * This code was adapted from Codexpedia's post on merge sort in 2016 retrieved on 11052018
      * from: https://www.codexpedia.com/java/java-merge-sort-implementation/
-     * @param left
-     * @param right
-     * @param whole
+     * @param left list on the left to be merged
+     * @param right list on the right to be merged
+     * @param whole full list
      */
     private static void merge(ArrayList<Score> left, ArrayList<Score> right, ArrayList<Score> whole) {
         int leftIndex = 0;
@@ -72,12 +72,12 @@ public class SlidingTilesScoreboard {
      * Returns the original ArrayList sorted. This code was adapted from Codexpedia's post on merge
      * sort in 2016 retrieved on 11052018.
      * from: https://www.codexpedia.com/java/java-merge-sort-implementation/
-     * @param scores
-     * @return scores
+     * @param scores unsorted ArrayList of scores
+     * @return scores sorted ArrayList of scores
      */
-    public static ArrayList<Score> sortScores(ArrayList<Score> scores){
-        ArrayList<Score> left = new ArrayList<Score>();
-        ArrayList<Score> right = new ArrayList<Score>();
+    private static ArrayList<Score> sortScores(ArrayList<Score> scores){
+        ArrayList<Score> left = new ArrayList<>();
+        ArrayList<Score> right = new ArrayList<>();
         int center;
 
         if (scores.size() == 1) {
@@ -117,7 +117,7 @@ public class SlidingTilesScoreboard {
      * @return UserScores
      */
     public ArrayList<Score> getUserScoreboard(User current_player){
-        ArrayList<Score> UserScores = new ArrayList<Score>();
+        ArrayList<Score> UserScores = new ArrayList<>();
         for(int i = 0; i < globalScores.size(); i++){
             if(globalScores.get(i).getUsername().equals(current_player.getAccount())){
                 UserScores.add(globalScores.get(i));
