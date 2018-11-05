@@ -2,13 +2,14 @@ package fall2018.csc2017.slidingtiles;
 
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * A User.
  */
 
-public class User {
+public class User implements Serializable {
     private String account;
     private String password;
     private String gameFile;
