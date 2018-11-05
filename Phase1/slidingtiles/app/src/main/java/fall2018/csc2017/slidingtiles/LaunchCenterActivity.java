@@ -8,7 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
 
+/**
+ * The launch center activity.
+ */
 public class LaunchCenterActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,12 +21,18 @@ public class LaunchCenterActivity extends AppCompatActivity implements PopupMenu
         addChooseButtonListener();
     }
 
+    /**
+     * Activate the choose button.
+     */
     private void addChooseButtonListener() {
         Button chooseButton = findViewById(R.id.choosebutton);
         chooseButton.setOnClickListener(this::popup);
         setupLogOutListener();
     }
 
+    /**
+     * Pop up a menu of choices.
+     */
     public void popup(View v) {
         PopupMenu pop = new PopupMenu(this, v);
         pop.setOnMenuItemClickListener(this);
@@ -30,6 +40,9 @@ public class LaunchCenterActivity extends AppCompatActivity implements PopupMenu
         pop.show();
     }
 
+    /**
+     * Activate the items in the menu.
+     */
     public boolean onMenuItemClick(MenuItem item){
         switch(item.getItemId()){
             case R.id.game1:
@@ -41,11 +54,17 @@ public class LaunchCenterActivity extends AppCompatActivity implements PopupMenu
         }
     }
 
+    /**
+     * Switch to the sliding tile starting acticity.
+     */
     private void switchToSlidingTile() {
         Intent tmp = new Intent(this, StartingActivity.class);
         startActivity(tmp);
     }
 
+    /**
+     * Activate the logout button.
+     */
     public void setupLogOutListener(){
         Button signIn = findViewById(R.id.logout);
         signIn.setOnClickListener((v) -> {

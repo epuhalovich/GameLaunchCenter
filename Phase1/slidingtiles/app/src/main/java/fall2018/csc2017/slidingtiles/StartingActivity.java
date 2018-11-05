@@ -54,6 +54,9 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
         startButton.setOnClickListener(this::showPopup);
     }
 
+    /**
+     * Pop up a menu of choices.
+     */
     public void showPopup(View v) {
         PopupMenu popup = new PopupMenu(this, v);
         popup.setOnMenuItemClickListener(this);
@@ -61,6 +64,9 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
         popup.show();
     }
 
+    /**
+     * Activate the items in the menu.
+     */
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item1:
@@ -153,9 +159,6 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
         }
     }
 
-
-
-
     /**
      * Save the board manager to fileName.
      *
@@ -172,6 +175,9 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
         }
     }
 
+    /**
+     * Activate the view score button.
+     */
     private void addViewScoreButtonListener() {
         Button ScoreBoardButton = (Button)findViewById(R.id.ScoreBoardButton);
         ScoreBoardButton.setOnClickListener(new View.OnClickListener() {
@@ -179,6 +185,10 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
             public void onClick(View v) { switchToScoreBoard(); }
         });
     }
+
+    /**
+     * Switch to the ScoreBoardActivity view.
+     */
     private void switchToScoreBoard(){
         Intent tmp = new Intent(this, ScoreBoardActivity.class);
         startActivity(tmp);
