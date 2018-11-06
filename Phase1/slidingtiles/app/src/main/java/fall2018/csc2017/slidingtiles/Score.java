@@ -1,11 +1,13 @@
 package fall2018.csc2017.slidingtiles;
 
 
+import java.io.Serializable;
+
 /**
  * Score object class
  */
 
-public class Score implements Comparable<Score> {
+public class Score implements Comparable<Score>, Serializable {
     private String userId;
     private int score;
 
