@@ -185,19 +185,19 @@ class BoardManager implements Serializable {
             switch (direction) {
                 case 0: // Swap blank tile with ABOVE.
                     board.swapTiles(row, col, row - 1, col);
-                    score ++;
+                    score --;
                     break;
                 case 1: // Swap blank tile with LEFT.
                     board.swapTiles(row, col, row, col - 1);
-                    score ++;
+                    score --;
                     break;
                 case 2: // Swap blank tile with BELOW.
                     board.swapTiles(row, col, row + 1, col);
-                    score ++;
+                    score --;
                     break;
                 default: // Swap blank tile with RIGHT.
                     board.swapTiles(row, col, row, col + 1);
-                    score ++;
+                    score --;
                     break;
             }
         }

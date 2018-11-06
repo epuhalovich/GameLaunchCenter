@@ -26,14 +26,26 @@ public class User implements Serializable {
 
     }
 
+    /**
+     * Return user's game file.
+     * @return a game file name
+     */
     public String getGameFile() {
         return gameFile;
     }
 
+    /**
+     * Return user's account.
+     * @return the account of user
+     */
     public String getAccount() {
         return account;
     }
 
+    /**
+     * Return user's password.
+     * @return the password of user
+     */
     public String getPassword() { return password; }
 
 }

@@ -1,12 +1,11 @@
 package fall2018.csc2017.slidingtiles;
 
 
-import android.support.annotation.NonNull;
 /**
  * Score object class
  */
 
-public class Score implements Comparable<Score>{
+public class Score implements Comparable<Score> {
     private String userId;
     private int score;
 
@@ -42,7 +41,7 @@ public class Score implements Comparable<Score>{
      * @return -1, 1, 0 if less than, greater than, or equal too.
      */
     @Override
-    public int compareTo(@NonNull Score o) {
+    public int compareTo(Score o) {
         if(this.score > o.getScore()) {
             return -1;
         }

@@ -1,7 +1,6 @@
 package fall2018.csc2017.slidingtiles;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -222,7 +221,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
         display();
         saveToFile(LogInActivity.currentPlayer.getGameFile());
         if(boardManager.puzzleSolved()){
-            SlidingTilesScoreboard.addScore(LogInActivity.currentPlayer.getAccount(), boardManager.getScore());
+            SlidingTilesScoreboard.addScore(LogInActivity.currentPlayer, boardManager.getScore());
         }
     }
 
