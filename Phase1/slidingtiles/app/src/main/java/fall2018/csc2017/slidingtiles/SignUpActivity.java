@@ -1,6 +1,7 @@
 package fall2018.csc2017.slidingtiles;
 
 import android.accounts.AccountsException;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,13 +20,14 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        users = new UserManager(this);
+        users = UserManager.getUserManger();
         setupSignUpListener();
     }
 
     /**
      * Activate the signUp button.
      */
+    @SuppressLint("SetTextI18n")
     public void setupSignUpListener() {
         Button signUp = findViewById(R.id.signupa);
         signUp.setOnClickListener((v) -> {
@@ -33,7 +35,7 @@ public class SignUpActivity extends AppCompatActivity {
             String passWord = ((EditText)findViewById(R.id.passworda)).getText().toString();
             TextView textBox = findViewById(R.id.textboxa);
             try{
-                users.signUp(userName, passWord);
+                users.signUp(userName, passWord, this);
             }
             catch (DuplicateException e) {
                 textBox.setText("This username has been registered.");
@@ -54,4 +56,3 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 }
-

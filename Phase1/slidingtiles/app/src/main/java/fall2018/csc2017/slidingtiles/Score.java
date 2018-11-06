@@ -1,6 +1,8 @@
 package fall2018.csc2017.slidingtiles;
 
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 
 /**
@@ -43,15 +45,7 @@ public class Score implements Comparable<Score>, Serializable {
      * @return -1, 1, 0 if less than, greater than, or equal to.
      */
     @Override
-    public int compareTo(Score o) {
-        if(this.score > o.getScore()) {
-            return -1;
-        }
-        else if(this.score < o.getScore()){
-            return 1;
-        }
-        else{
-            return 0;
-        }
+    public int compareTo(@NonNull Score o) {
+        return Integer.compare(o.getScore(), this.score);
     }
 }

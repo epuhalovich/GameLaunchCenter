@@ -23,7 +23,7 @@ public class UserManager implements Serializable{
     /**
      * A list that store all users.
      */
-    private static ArrayList<User> allUsers = new ArrayList<>();
+    private ArrayList<User> allUsers = new ArrayList<>();
 
     /**
      * A name of the file that store the object UserManager.
@@ -31,19 +31,27 @@ public class UserManager implements Serializable{
     private static final String fileName = "allUsers.ser";
 
     /**
-     * A context.
+     * A private static UserManager
      */
-    private Context context;
+    private static UserManager u;
 
     /**
      * Construct a new UserManager with context and load it from "allUsers.ser" if needed.
-     * @param context the context to store UserManager in the phone's storage
+     */
+    private UserManager() {
+    }
+
+    /**
+     * Construct a getter to create new UserManager iff UserManager hasn't been created.
      */
 
-    public UserManager(Context context) {
-        this.context = context;
-        loadFromFile();
+    public static UserManager getUserManger(){
+        if(u == null){
+            u = new UserManager();
+        }
+        return u;
     }
+
 
     /**
      * Return the index of the user in UserManger iff there exists a user with the account name.
@@ -73,18 +81,18 @@ public class UserManager implements Serializable{
      * @throws AccountsException if user doesn't provide username
      * @throws NoPassWordException if user doesn't provide password
      */
-    public void signUp(String account, String password) throws DuplicateException, AccountsException,
+    public void signUp(String account, String password, Context context) throws DuplicateException, AccountsException,
             NoPassWordException {
-       if (hasAccount(account) != -1) {
-           throw new DuplicateException();
-       }
-       else if (account.length() == 0) {
-           throw new AccountsException();
-       }
-       else if (password.length() == 0){
-           throw new NoPassWordException();
-      }
-           allUsers.add(new User(account, password));
+        if (hasAccount(account) != -1) {
+            throw new DuplicateException();
+        }
+        else if (account.length() == 0) {
+            throw new AccountsException();
+        }
+        else if (password.length() == 0){
+            throw new NoPassWordException();
+        }
+        allUsers.add(new User(account, password));
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     context.openFileOutput(fileName, MODE_PRIVATE));
@@ -112,14 +120,14 @@ public class UserManager implements Serializable{
             throw new AuthenticatorException();
         }
         else{
-        return allUsers.get(index);
+            return allUsers.get(index);
         }
     }
 
     /**
      *  Load the UserManager.
      */
-    private void loadFromFile() {
+    public void loadFromFile(Context context) {
 
         try {
             InputStream inputStream = context.openFileInput(fileName);

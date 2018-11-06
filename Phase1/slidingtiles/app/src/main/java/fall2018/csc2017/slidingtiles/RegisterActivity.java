@@ -13,6 +13,8 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         setupSignInListener();
         setupSignUpListener();
+        UserManager u = UserManager.getUserManger();
+        u.loadFromFile(this);
 
     }
 

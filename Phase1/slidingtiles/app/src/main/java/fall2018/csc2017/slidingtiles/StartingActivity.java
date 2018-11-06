@@ -188,11 +188,8 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
      * Activate the view score button.
      */
     private void addViewScoreButtonListener() {
-        Button ScoreBoardButton = (Button)findViewById(R.id.ScoreBoardButton);
-        ScoreBoardButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { switchToScoreBoard(); }
-        });
+        Button ScoreBoardButton = findViewById(R.id.ScoreBoardButton);
+        ScoreBoardButton.setOnClickListener(v -> switchToScoreBoard());
     }
 
     /**
@@ -207,11 +204,8 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
      * Activate the setnumundo button.
      */
     private void addSetUndoButtonListener() {
-        Button UndoButton = (Button)findViewById(R.id.SetundoButton);
-        UndoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { switchToSetNumundo();}
-        });
+        Button UndoButton = findViewById(R.id.SetundoButton);
+        UndoButton.setOnClickListener(v -> switchToSetNumundo());
     }
 
     /**

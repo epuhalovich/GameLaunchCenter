@@ -1,5 +1,7 @@
 package fall2018.csc2017.slidingtiles;
 
+import android.support.annotation.NonNull;
+
 import java.util.NoSuchElementException;
 import java.util.Observable;
 
@@ -84,6 +86,7 @@ public class Board extends Observable implements Serializable, Iterable<Tile> {
                 '}';
     }
 
+    @NonNull
     @Override
     public Iterator<Tile> iterator() {
         return new TileIterator();

@@ -4,7 +4,6 @@ package fall2018.csc2017.slidingtiles;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -69,24 +68,21 @@ public class ScoreBoardActivity extends AppCompatActivity {
             numScores = 5;
         }
 
-        String scoreValues = "";
+        StringBuilder scoreValues = new StringBuilder();
         for (int i = 0; i < numScores; i++) {
             Score currentItem = scoresList.get(i);
-            scoreValues = scoreValues + String.format(Locale.US, "%s: %d",
-                    currentItem.getUsername(), currentItem.getScore()) + "\n";
+            scoreValues.append(String.format(Locale.US, "%s: %d",
+                    currentItem.getUsername(), currentItem.getScore())).append("\n");
         }
-        return scoreValues;
+        return scoreValues.toString();
     }
 
     /**
      * Active the button to return to the main game screen.
      */
     private void addReturnButtonListener() {
-        Button ReturnButton = (Button)findViewById(R.id.ReturnButton);
-        ReturnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { switchToStarting(); }
-        });
+        Button ReturnButton = findViewById(R.id.ReturnButton);
+        ReturnButton.setOnClickListener(v -> switchToStarting());
     }
     private void switchToStarting(){
         Intent tmp = new Intent(this, StartingActivity.class);

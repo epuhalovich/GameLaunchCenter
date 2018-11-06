@@ -66,7 +66,7 @@ public class GameActivity extends AppCompatActivity implements Observer, Seriali
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         slidingTilesScoreboard = new SlidingTilesScoreboard(this);
-        loadFromFile(StartingActivity.TEMP_SAVE_FILENAME);
+        loadFromFile();
         this.NUM_COLS = boardManager.getBoard().NUM_COLS;
         this.NUM_ROWS = boardManager.getBoard().NUM_ROWS;
         createTileButtons(this);
@@ -103,14 +103,11 @@ public class GameActivity extends AppCompatActivity implements Observer, Seriali
      */
     private void addUndoButtonListener() {
         Button undoButton = findViewById(R.id.UndoButton);
-        undoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boardManager.tryUndo();
-                if (boardManager.getNumUndos() == 0){
-                    makeToastNoUndosText();
-                }
+        undoButton.setOnClickListener(v -> {
+            if (boardManager.getNumUndos() == 0){
+                makeToastNoUndosText();
             }
+            boardManager.tryUndo();
         });
     }
 
@@ -119,14 +116,10 @@ public class GameActivity extends AppCompatActivity implements Observer, Seriali
      */
     private void addSaveButtonListener() {
         Button saveButton = findViewById(R.id.save);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // for user in UserManager if user.login == true SaveToFile(user.file)
-                saveToFile(LogInActivity.currentPlayer.getGameFile());
-                saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
-                makeToastSavedText();
-            }
+        saveButton.setOnClickListener(v -> {
+            saveToFile(LogInActivity.currentPlayer.getGameFile());
+            saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+            makeToastSavedText();
         });
     }
 
@@ -187,12 +180,11 @@ public class GameActivity extends AppCompatActivity implements Observer, Seriali
     /**
      * Load the board manager from fileName.
      *
-     * @param fileName the name of the file
      */
-    private void loadFromFile(String fileName) {
+    private void loadFromFile() {
 
         try {
-            InputStream inputStream = this.openFileInput(fileName);
+            InputStream inputStream = this.openFileInput(StartingActivity.TEMP_SAVE_FILENAME);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
                 boardManager = (BoardManager) input.readObject();

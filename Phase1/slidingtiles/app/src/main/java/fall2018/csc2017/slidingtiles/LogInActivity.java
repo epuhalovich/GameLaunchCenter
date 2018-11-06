@@ -2,6 +2,7 @@ package fall2018.csc2017.slidingtiles;
 
 import android.accounts.AccountsException;
 import android.accounts.AuthenticatorException;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,13 +26,14 @@ public class LogInActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-        users = new UserManager(this);
+        users = UserManager.getUserManger();
         setupSignInListener();
     }
 
     /**
      *  Activate the signIn button.
      */
+    @SuppressLint("SetTextI18n")
     public void setupSignInListener() {
         Button signIn = findViewById(R.id.signina);
         signIn.setOnClickListener((v) -> {
