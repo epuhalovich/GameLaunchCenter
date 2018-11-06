@@ -18,13 +18,22 @@ public class User implements Serializable {
         this.gameFile = this.account + ".ser";
     }
 
+    /**
+     * Returns the file containing this user's data.
+     */
     public String getGameFile() {
         return gameFile;
     }
 
+    /**
+     * Returns the string identifier for this user.
+     */
     public String getAccount() {
         return account;
     }
 
+    /**
+     * Returns this user's password.
+     */
     public String getPassword() { return password; }
 }
