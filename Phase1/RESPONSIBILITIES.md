@@ -3,7 +3,7 @@
 
 
 ### Scoreboard implementation
-* Luke & Allen
+* Luke, Allen, Ellen, Nick
 
 ### Undo functionality
 * Nick
