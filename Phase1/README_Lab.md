@@ -5,6 +5,8 @@
 
 ## Project setup instructions
 
+* Please note Java SDK version 8 is required. Ensure you have upgraded before attempting to run our program!
+
 1. Open Android Studio. Click "Check out project from Version Control" -> "Git".
 2. Copy the Phase 1 Git repository link (above) into the URL box. Click "Clone".
 3. Enter any MarkUs login info if prompted.
