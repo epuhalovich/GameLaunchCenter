@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class ScoreBoardActivity extends AppCompatActivity {
-    private User player = LogInActivity.currentPlayer;
+    private User currentPlayer = LogInActivity.currentPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,53 +20,49 @@ public class ScoreBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_score_board);
         addReturnButtonListener();
 
-        SlidingTilesScoreboard.addScore("npnp", 45);
-        SlidingTilesScoreboard.addScore("npnp", 103);
-
-        SlidingTilesScoreboard.addScore("bhbhj", 22);
-        SlidingTilesScoreboard.addScore("bhbhj", 82);
-
-        // HERE WE GET THE GLOBAL TOP SCORES
-
         TextView globalScoresText = findViewById(R.id.GlobalScores);
-        ArrayList<Score> globalScoresList = SlidingTilesScoreboard.getGlobalScoreboard();
-        int numGlobalScores;
-
-        if (globalScoresList.size() < 5) {
-            numGlobalScores = globalScoresList.size();
-        }
-        else {
-            numGlobalScores = 5;
-        }
-
-        String globalScoreValues = "";
-        for (int i = 0; i < numGlobalScores; i++) {
-            Score currentItem = globalScoresList.get(i);
-            globalScoreValues = globalScoreValues + String.format(Locale.US, "%s: %d",
-                    currentItem.getUsername(), currentItem.getScore()) + "\n";
-        }
+        String globalScoreValues = getScoreValues(false);
         globalScoresText.setText(globalScoreValues);
 
-// NOW WE GET THE USER TOP SCORES
-
         TextView userScoresText = findViewById(R.id.UserScores);
-        ArrayList<Score> userScoresList = SlidingTilesScoreboard.getUserScoreboard(LogInActivity.currentPlayer);
-        int numUserScores;
+        String userScoreValues = getScoreValues(true);
+        userScoresText.setText(userScoreValues);
+    }
 
-        if (userScoresList.size() < 5) {
-            numUserScores = userScoresList.size();
+    /**
+     * Checks the Sliding Tiles scoreboard for the top scores.
+     * If userScoresOnly is true, only looks up scores for the current player.
+     * Returns a string of the top 5 (or less if less than 5 exist) scores for this game.
+     *
+     * @param userScoresOnly true when looking only for current player's scores
+     * @return scoreValues
+     */
+    private String getScoreValues(boolean userScoresOnly) {
+
+        ArrayList<Score> scoresList;
+        int numScores;
+
+        if (userScoresOnly) {
+            scoresList = SlidingTilesScoreboard.getUserScoreboard(currentPlayer);
         }
         else {
-            numUserScores = 5;
+            scoresList = SlidingTilesScoreboard.getGlobalScoreboard();
         }
 
-        String userScoreValues = "";
-        for (int i = 0; i < numUserScores; i++) {
-            Score currentItem = userScoresList.get(i);
-            userScoreValues = userScoreValues + String.format(Locale.US, "%s: %d",
+        if (scoresList.size() < 5) {
+            numScores = scoresList.size();
+        }
+        else {
+            numScores = 5;
+        }
+
+        String scoreValues = "";
+        for (int i = 0; i < numScores; i++) {
+            Score currentItem = scoresList.get(i);
+            scoreValues = scoreValues + String.format(Locale.US, "%s: %d",
                     currentItem.getUsername(), currentItem.getScore()) + "\n";
         }
-        userScoresText.setText(userScoreValues);
+        return scoreValues;
     }
 
     private void addReturnButtonListener() {
