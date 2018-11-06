@@ -18,12 +18,21 @@
         android:textSize="36sp" />
 
     <TextView
+        android:id="@+id/ScoreDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/GameTitle"
+        android:text="(Least steps taken)"
+        android:textAppearance="@android:style/TextAppearance.Widget.TextView" />
+
+    <TextView
         android:id="@+id/GlobalTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/GameTitle"
+        android:layout_below="@+id/ScoreDescription"
         android:text="Global Top Scores"
         android:textAppearance="@android:style/TextAppearance.Widget.TextView"
         android:textSize="24sp" />
@@ -35,7 +44,7 @@
         android:layout_below="@+id/GlobalTitle"
         android:layout_marginTop="25dp"
         android:layout_centerHorizontal="true"
-        android:text="Score_01        154\nScore_02        154\nScore_03        154\nScore_04        154\nScore_05        154"
+        android:text=""
         android:textAppearance="@android:style/TextAppearance.Widget.TextView" />
 
     <TextView
@@ -56,7 +65,7 @@
         android:layout_below="@+id/UserTitle"
         android:layout_marginTop="25dp"
         android:layout_centerHorizontal="true"
-        android:text="Score_01        154\nScore_02        154\nScore_03        154\nScore_04        154\nScore_05        154"
+        android:text=""
         android:textAppearance="@android:style/TextAppearance.Widget.TextView" />
 
     <Button
