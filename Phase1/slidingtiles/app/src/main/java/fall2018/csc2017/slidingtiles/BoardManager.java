@@ -167,9 +167,6 @@ class BoardManager implements Serializable {
             this.undoDirectionStack.push(3);
         }
         this.undoPositionStack.push(position);
-        if (this.numUndos < maximumNumUndos) {
-            numUndos++;
-        }
         score++;
     }
 
@@ -184,23 +181,19 @@ class BoardManager implements Serializable {
             int direction = undoDirectionStack.pop();
             int row = position / board.NUM_ROWS;
             int col = position % board.NUM_COLS;
-
+            score--;
             switch (direction) {
                 case 0: // Swap blank tile with ABOVE.
                     board.swapTiles(row, col, row - 1, col);
-                    score ++;
                     break;
                 case 1: // Swap blank tile with LEFT.
                     board.swapTiles(row, col, row, col - 1);
-                    score ++;
                     break;
                 case 2: // Swap blank tile with BELOW.
                     board.swapTiles(row, col, row + 1, col);
-                    score ++;
                     break;
                 default: // Swap blank tile with RIGHT.
                     board.swapTiles(row, col, row, col + 1);
-                    score ++;
                     break;
             }
         }
