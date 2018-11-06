@@ -20,6 +20,7 @@ class BoardManager implements Serializable {
     private int numUndos;
     private Stack<Integer> undoDirectionStack;
     private Stack<Integer> undoPositionStack;
+    private int maximumNumUndos = 3;
 
     /**
      * Manage a board that has been pre-populated.
@@ -37,12 +38,6 @@ class BoardManager implements Serializable {
         return board;
     }
 
-    /**
-     * Get the level of the game and create corresponding BoardManager.
-     *
-     * @param level the complexity of the game
-     * @return the corresponding BoardManager
-     */
     public static BoardManager getLevel(String level){
         if(level.equals("Easy")){
             return new BoardManager(3, 3);
@@ -75,22 +70,30 @@ class BoardManager implements Serializable {
     }
 
     /**
-     * Return the score of a slidingtiles game
+     * Return the score of a slidingtiles game.
      * @return score
      */
-
     public int getScore() {
         return score;
     }
 
     /**
-     * Return the numUndos left of a slidingtiles game
+     * Return the numUndos left of a slidingtiles game.
      * @return numUndos
      */
-
     public int getNumUndos() {
         return numUndos;
     }
+
+    /**
+     * Set the numUndos of a slidingtiles game.
+     */
+    public void setNumUndos(int num) { this.numUndos = num; }
+
+    /**
+     * Set the maximumNumUndos of a slidingtiles game.
+     */
+    public void setMaximumNumUndos(int num) { this.maximumNumUndos = num; }
 
     /**
      * Return whether the tiles are in row-major order.
@@ -164,7 +167,7 @@ class BoardManager implements Serializable {
             this.undoDirectionStack.push(3);
         }
         this.undoPositionStack.push(position);
-        if (this.numUndos < 3) {
+        if (this.numUndos < maximumNumUndos) {
             numUndos++;
         }
         score++;
@@ -182,19 +185,22 @@ class BoardManager implements Serializable {
             int row = position / board.NUM_ROWS;
             int col = position % board.NUM_COLS;
 
-            score--;
             switch (direction) {
                 case 0: // Swap blank tile with ABOVE.
                     board.swapTiles(row, col, row - 1, col);
+                    score ++;
                     break;
                 case 1: // Swap blank tile with LEFT.
                     board.swapTiles(row, col, row, col - 1);
+                    score ++;
                     break;
                 case 2: // Swap blank tile with BELOW.
                     board.swapTiles(row, col, row + 1, col);
+                    score ++;
                     break;
                 default: // Swap blank tile with RIGHT.
                     board.swapTiles(row, col, row, col + 1);
+                    score ++;
                     break;
             }
         }

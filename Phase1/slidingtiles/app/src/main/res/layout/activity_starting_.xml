@@ -35,7 +35,7 @@
         android:layout_height="50dp"
         android:layout_below="@+id/LoadButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="15dp"
         android:text="New Game" />
 
     <Button
@@ -44,7 +44,16 @@
         android:layout_height="50dp"
         android:layout_below="@+id/StartButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
-        android:text="View Scoreboard"/>
+        android:layout_marginTop="16dp"
+        android:text="View Scoreboard" />
+
+    <Button
+        android:id="@+id/SetundoButton"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/StartButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:text="set numundo" />
 
 </RelativeLayout>

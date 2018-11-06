@@ -38,7 +38,7 @@ public class Score implements Comparable<Score> {
     /**
      * Making the Scores comparable
      * @param o Score being compared
-     * @return -1, 1, 0 if less than, greater than, or equal too.
+     * @return -1, 1, 0 if less than, greater than, or equal to.
      */
     @Override
     public int compareTo(Score o) {

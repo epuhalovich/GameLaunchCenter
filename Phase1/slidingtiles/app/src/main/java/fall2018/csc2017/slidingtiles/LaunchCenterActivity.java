@@ -31,7 +31,7 @@ public class LaunchCenterActivity extends AppCompatActivity implements PopupMenu
     }
 
     /**
-     * Pop up a menu of choices.
+     * Pop up a menu of games.
      */
     public void popup(View v) {
         PopupMenu pop = new PopupMenu(this, v);

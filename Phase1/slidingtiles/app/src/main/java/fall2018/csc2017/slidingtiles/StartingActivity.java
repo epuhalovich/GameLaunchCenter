@@ -30,6 +30,11 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
      * The board manager.
      */
     private BoardManager boardManager;
+    /**
+     * The number of undos.
+     */
+    public static int NumUndos = 3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,7 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
         addStartButtonListener();
         addLoadButtonListener();
         addViewScoreButtonListener();
+        addSetUndoButtonListener();
     }
 
     /**
@@ -49,12 +55,13 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
      */
     private void addStartButtonListener() {
         Button startButton = findViewById(R.id.StartButton);
+        //                boardManager = new BoardManager();
+//                switchToGame();
         startButton.setOnClickListener(this::showPopup);
     }
 
     /**
-     * Show pop up menu
-     * @param v the View
+     * Pop up a menu of complexities.
      */
     public void showPopup(View v) {
         PopupMenu popup = new PopupMenu(this, v);
@@ -64,24 +71,28 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
     }
 
     /**
-     * The selection options of a menu for game complexity.
-     * @param item option on menu
-     * @return true iff on item is selected false otherwise
+     * Activate the items in the menu.
      */
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item1:
                 boardManager = BoardManager.getLevel("Easy");
+                boardManager.setNumUndos(NumUndos);
+                boardManager.setMaximumNumUndos(NumUndos);
                 switchToGame();
                 return true;
 
             case R.id.item2:
                 boardManager = BoardManager.getLevel("Medium");
+                boardManager.setNumUndos(NumUndos);
+                boardManager.setMaximumNumUndos(NumUndos);
                 switchToGame();
                 return true;
 
             case R.id.item3:
                 boardManager = BoardManager.getLevel("Hard");
+                boardManager.setNumUndos(NumUndos);
+                boardManager.setMaximumNumUndos(NumUndos);
                 switchToGame();
                 return true;
 
@@ -96,15 +107,15 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
     private void addLoadButtonListener() {
         Button loadButton = findViewById(R.id.LoadButton);
         loadButton.setOnClickListener(v -> {
-                loadFromFile(LogInActivity.currentPlayer.getGameFile());
-                if (boardManager != null){
+            loadFromFile(LogInActivity.currentPlayer.getGameFile());
+            if (boardManager != null){
                 saveToFile(TEMP_SAVE_FILENAME);
                 makeToastLoadedText();
                 switchToGame();
-                }
-                else{
-                    makeToastNoLoadedText();
-                }
+            }
+            else{
+                makeToastNoLoadedText();
+            }
         });
     }
 
@@ -148,7 +159,7 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
             InputStream inputStream = this.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
-                    boardManager = (BoardManager) input.readObject();
+                boardManager = (BoardManager) input.readObject();
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {
@@ -159,9 +170,6 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
             Log.e("login activity", "File contained unexpected data type: " + e.toString());
         }
     }
-
-
-
 
     /**
      * Save the board manager to fileName.
@@ -180,18 +188,40 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
     }
 
     /**
-     * Activate Score button
+     * Activate the view score button.
      */
     private void addViewScoreButtonListener() {
-        Button ScoreBoardButton = findViewById(R.id.ScoreBoardButton);
-        ScoreBoardButton.setOnClickListener(v -> switchToScoreBoard());
+        Button ScoreBoardButton = (Button)findViewById(R.id.ScoreBoardButton);
+        ScoreBoardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { switchToScoreBoard(); }
+        });
     }
 
     /**
-     * Switch view to ScoreBoardActivity
+     * Switch to the ScoreBoardActivity view.
      */
     private void switchToScoreBoard(){
         Intent tmp = new Intent(this, ScoreBoardActivity.class);
+        startActivity(tmp);
+    }
+
+    /**
+     * Activate the setnumundo button.
+     */
+    private void addSetUndoButtonListener() {
+        Button UndoButton = (Button)findViewById(R.id.SetundoButton);
+        UndoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { switchToSetNumundo();}
+        });
+    }
+
+    /**
+     * Switch to the SetNumundoActivity view.
+     */
+    private void switchToSetNumundo(){
+        Intent tmp = new Intent(this, SetNumundoActivity.class);
         startActivity(tmp);
     }
 }
