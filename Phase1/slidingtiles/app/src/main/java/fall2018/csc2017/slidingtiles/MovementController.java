@@ -20,10 +20,6 @@ public class MovementController {
             boardManager.touchMove(position);
             if (boardManager.puzzleSolved()) {
                 Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
-                if (boardManager.getScore() <= LogInActivity.currentPlayer.getHeighest_score()) {
-                    LogInActivity.currentPlayer.setHeighest_score(boardManager.getScore());
-                }
-
             }
         } else {
             Toast.makeText(context, "Invalid Tap", Toast.LENGTH_SHORT).show();

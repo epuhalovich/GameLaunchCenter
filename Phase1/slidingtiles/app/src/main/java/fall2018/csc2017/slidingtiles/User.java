@@ -24,7 +24,7 @@ public class User implements Serializable {
         this.account = account;
         this.password = password;
         this.gameFile = this.account + ".ser";
-        this.heighest_score = 9999999;
+
     }
 
     public String getGameFile() {
@@ -37,11 +37,6 @@ public class User implements Serializable {
 
     public String getPassword() { return password; }
 
-    public int getHeighest_score() { return heighest_score; }
-
-    public void setHeighest_score(int heighest_score) {
-        this.heighest_score = heighest_score;
-    }
 }
 
 

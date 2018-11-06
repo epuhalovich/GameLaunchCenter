@@ -39,7 +39,7 @@ public class SlidingTilesScoreboard {
         // been used up, keep taking the smaller of left.get(leftIndex)
         // or right.get(rightIndex) and adding it at both.get(bothIndex).
         while (leftIndex < left.size() && rightIndex < right.size()) {
-            if ( (left.get(leftIndex).compareTo(right.get(rightIndex))) < 0) {
+            if ( (left.get(leftIndex).compareTo(right.get(rightIndex))) > 0) {
                 whole.set(wholeIndex, left.get(leftIndex));
                 leftIndex++;
             } else {
