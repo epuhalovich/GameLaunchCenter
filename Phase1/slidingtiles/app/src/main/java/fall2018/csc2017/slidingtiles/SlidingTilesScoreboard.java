@@ -1,25 +1,54 @@
 package fall2018.csc2017.slidingtiles;
 
+import android.content.Context;
+import android.util.Log;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A scoreboard for sliding tiles that can return a representation of the users scoreboard and global
  * scoreboard for sliding tiles.
  */
 
-public class SlidingTilesScoreboard {
+public class SlidingTilesScoreboard implements Serializable {
 
     private static ArrayList<Score> globalScores = new ArrayList<>();
 
+    /**
+     * A name of the file that store the object SlidingTilesScoreboard.
+     */
+    private static final String fileName = "globalscores.ser";
+
+    /**
+     * A context.
+     */
+    public Context context;
+
+    /**
+     * Construct a new SlidingTilesScoreboard with context and load it from "globalscores.ser" if needed
+     * @param context the context to store SlidingTilesScoreboard in the phone's storage
+     */
+    public SlidingTilesScoreboard(Context context){
+        this.context = context;
+        loadFromFile();
+    }
     /**
      * Add's a score to the SlidingTilesScoreboard and then sorts the scores
      * @param currentPlayerId username of current player
      * @param score players score
      */
-    public static void addScore(String currentPlayerId, int score){
+    public void addScore(String currentPlayerId, int score){
         Score s = new Score(currentPlayerId, score);
         globalScores.add(s);
         globalScores = sortScores(globalScores);
+        saveToFile(fileName);
     }
 
     /**
@@ -30,7 +59,7 @@ public class SlidingTilesScoreboard {
      * @param right list on the right to be merged
      * @param whole full list
      */
-    private static void merge(ArrayList<Score> left, ArrayList<Score> right, ArrayList<Score> whole) {
+    private void merge(ArrayList<Score> left, ArrayList<Score> right, ArrayList<Score> whole) {
         int leftIndex = 0;
         int rightIndex = 0;
         int wholeIndex = 0;
@@ -75,7 +104,7 @@ public class SlidingTilesScoreboard {
      * @param scores unsorted ArrayList of scores
      * @return scores sorted ArrayList of scores
      */
-    private static ArrayList<Score> sortScores(ArrayList<Score> scores){
+    private ArrayList<Score> sortScores(ArrayList<Score> scores){
         ArrayList<Score> left = new ArrayList<>();
         ArrayList<Score> right = new ArrayList<>();
         int center;
@@ -108,7 +137,7 @@ public class SlidingTilesScoreboard {
      * Returns an ArrayList representing the global scoreboard for sliding tiles game.
      * @return globalScores
      */
-    public static ArrayList<Score> getGlobalScoreboard(){
+    public ArrayList<Score> getGlobalScoreboard(){
         return globalScores;
     }
 
@@ -116,7 +145,7 @@ public class SlidingTilesScoreboard {
      * Returns an ArrayList representing the users scoreboard for sliding tiles game.
      * @return UserScores
      */
-    public static ArrayList<Score> getUserScoreboard(User current_player){
+    public ArrayList<Score> getUserScoreboard(User current_player){
         ArrayList<Score> UserScores = new ArrayList<>();
         for(int i = 0; i < globalScores.size(); i++){
             if(globalScores.get(i).getUsername().equals(current_player.getAccount())){
@@ -124,6 +153,35 @@ public class SlidingTilesScoreboard {
             }
         }
         return UserScores;
+    }
+    private void loadFromFile() {
+
+        try {
+            InputStream inputStream = context.openFileInput(fileName);
+            if (inputStream != null) {
+                ObjectInputStream input = new ObjectInputStream(inputStream);
+                globalScores = (ArrayList<Score>) input.readObject();
+                inputStream.close();
+            }
+        } catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        }
+        catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        } catch (ClassNotFoundException e) {
+            Log.e("login activity", "File contained unexpected data type: " + e.toString());
+        }
+    }
+
+    public void saveToFile(String fileName) {
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(
+                    context.openFileOutput(fileName, MODE_PRIVATE));
+            outputStream.writeObject(globalScores);
+            outputStream.close();
+        } catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
     }
 
 

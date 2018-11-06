@@ -12,11 +12,13 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class ScoreBoardActivity extends AppCompatActivity {
+    private SlidingTilesScoreboard slidingTilesScoreboard;
     private User currentPlayer = LogInActivity.currentPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        slidingTilesScoreboard = new SlidingTilesScoreboard(this);
         setContentView(R.layout.activity_score_board);
         addReturnButtonListener();
 
@@ -43,10 +45,10 @@ public class ScoreBoardActivity extends AppCompatActivity {
         int numScores;
 
         if (userScoresOnly) {
-            scoresList = SlidingTilesScoreboard.getUserScoreboard(currentPlayer);
+            scoresList = slidingTilesScoreboard.getUserScoreboard(currentPlayer);
         }
         else {
-            scoresList = SlidingTilesScoreboard.getGlobalScoreboard();
+            scoresList = slidingTilesScoreboard.getGlobalScoreboard();
         }
 
         if (scoresList.size() < 5) {

@@ -24,6 +24,11 @@ import java.util.Observer;
 public class GameActivity extends AppCompatActivity implements Observer {
 
     /**
+     * The sliding tiles scoreboard
+     */
+    public SlidingTilesScoreboard slidingTilesScoreboard;
+
+    /**
      * The board manager.
      */
     private BoardManager boardManager;
@@ -59,6 +64,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        slidingTilesScoreboard = new SlidingTilesScoreboard(this);
         loadFromFile(StartingActivity.TEMP_SAVE_FILENAME);
         this.NUM_COLS = boardManager.getBoard().NUM_COLS;
         this.NUM_ROWS = boardManager.getBoard().NUM_ROWS;
@@ -221,7 +227,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
         display();
         saveToFile(LogInActivity.currentPlayer.getGameFile());
         if(boardManager.puzzleSolved()){
-            SlidingTilesScoreboard.addScore(LogInActivity.currentPlayer.getAccount(), boardManager.getScore());
+            slidingTilesScoreboard.addScore(LogInActivity.currentPlayer.getAccount(), boardManager.getScore());
         }
     }
 
