@@ -183,11 +183,8 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
      * Activate Score button
      */
     private void addViewScoreButtonListener() {
-        Button ScoreBoardButton = (Button)findViewById(R.id.ScoreBoardButton);
-        ScoreBoardButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { switchToScoreBoard(); }
-        });
+        Button ScoreBoardButton = findViewById(R.id.ScoreBoardButton);
+        ScoreBoardButton.setOnClickListener(v -> switchToScoreBoard());
     }
 
     /**

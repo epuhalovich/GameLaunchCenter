@@ -15,6 +15,10 @@ public class RegisterActivity extends AppCompatActivity {
         setupSignUpListener();
 
     }
+
+    /**
+     * Activate the signIn button.
+     */
     public void setupSignInListener(){
         Button signIn = findViewById(R.id.signIn);
         signIn.setOnClickListener((v) -> {
@@ -24,6 +28,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Activate the signUp button.
+     */
     public void setupSignUpListener(){
         Button signUp = findViewById(R.id.signUp);
         signUp.setOnClickListener((v) -> {

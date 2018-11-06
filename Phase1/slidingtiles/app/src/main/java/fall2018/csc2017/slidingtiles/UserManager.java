@@ -19,16 +19,39 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 public class UserManager implements Serializable{
+
+    /**
+     * A list that store all users.
+     */
     private static ArrayList<User> allUsers = new ArrayList<>();
+
+    /**
+     * A name of the file that store the object UserManager.
+     */
     private static final String fileName = "allUsers.ser";
+
+    /**
+     * A context.
+     */
     private Context context;
 
+    /**
+     * Construct a new UserManager with context and load it from "allUsers.ser" if needed.
+     * @param context the context to store UserManager in the phone's storage
+     */
 
     public UserManager(Context context) {
         this.context = context;
         loadFromFile();
     }
 
+    /**
+     * Return the index of the user in UserManger iff there exists a user with the account name.
+     * Otherwise, return -1 iff the user doesn't exist.
+     *
+     * @param account username
+     * @return the index
+     */
     public int hasAccount(String account){
         if (allUsers.size() != 0){
             for (int i = 0; i < allUsers.size(); i++) {
@@ -40,6 +63,16 @@ public class UserManager implements Serializable{
         return -1;
     }
 
+    /**
+     * Add an account in the UserManager iff user fills in the valid signUp information
+     * (account name and password) and write it in the file "allUsers.ser".
+     *
+     * @param account the username that user provides.
+     * @param password the password that user provides.
+     * @throws DuplicateException if a same username has already exists
+     * @throws AccountsException if user doesn't provide username
+     * @throws NoPassWordException if user doesn't provide password
+     */
     public void signUp(String account, String password) throws DuplicateException, AccountsException,
             NoPassWordException {
        if (hasAccount(account) != -1) {
@@ -62,7 +95,15 @@ public class UserManager implements Serializable{
         }
     }
 
-    public User signIn (String account, String password) throws AccountsException {
+    /**
+     * Return the user object iff the password that the user provides matches the password
+     * of the account which user have.
+     * @param account the username
+     * @param password the password that user enter
+     * @return the User
+     * @throws AccountsException if the password is incorrect
+     */
+    public User signIn (String account, String password) throws AccountsException{
         int index = hasAccount(account);
         if (index == -1) {
             throw new AccountsException();
@@ -75,6 +116,9 @@ public class UserManager implements Serializable{
         }
     }
 
+    /**
+     *  Load the UserManager.
+     */
     private void loadFromFile() {
 
         try {

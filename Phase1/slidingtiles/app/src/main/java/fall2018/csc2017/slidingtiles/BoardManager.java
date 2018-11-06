@@ -37,6 +37,12 @@ class BoardManager implements Serializable {
         return board;
     }
 
+    /**
+     * Get the level of the game and create corresponding BoardManager.
+     *
+     * @param level the complexity of the game
+     * @return the corresponding BoardManager
+     */
     public static BoardManager getLevel(String level){
         if(level.equals("Easy")){
             return new BoardManager(3, 3);

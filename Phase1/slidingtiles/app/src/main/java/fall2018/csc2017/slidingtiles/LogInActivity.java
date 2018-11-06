@@ -11,8 +11,16 @@ import android.widget.TextView;
 
 public class LogInActivity extends AppCompatActivity{
 
+    /**
+     * A UserManager.
+     */
     private UserManager users;
+
+    /**
+     * The current player of the game.
+     */
     public static User currentPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +29,9 @@ public class LogInActivity extends AppCompatActivity{
         setupSignInListener();
     }
 
+    /**
+     *  Activate the signIn button.
+     */
     public void setupSignInListener() {
         Button signIn = findViewById(R.id.signina);
         signIn.setOnClickListener((v) -> {
@@ -41,19 +52,6 @@ public class LogInActivity extends AppCompatActivity{
             textBox.setText("Sign In Sucessfully!");
             Intent tmp = new Intent(this, LaunchCenterActivity.class);
             startActivity(tmp);
-//            i
-//            if(users.hasAcccount(userName) == -1) {
-//                textBox.setText("Username is not found.");
-//
-//            }
-//            else {
-//                if(users.signIn(userName, passWord)){
-//                    textBox.setText("Sign In Sucessfully!");
-//                    Intent tmp = new Intent(this, StartingActivity.class);
-//                    startActivity(tmp);
-//                }
-//                else{textBox.setText("Incorrect Password.");}
-//            }
         });
     }
 }
