@@ -14,5 +14,8 @@
 ### Game launch centre
 * Allen & Ellen
 
+### Set number of undo
+* Allen
+
 ### Completed: Autosave & complexity
 * Ellen
