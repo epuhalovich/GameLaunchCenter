@@ -29,7 +29,7 @@ public class SlidingTilesScoreboard implements Serializable {
     /**
      * A context.
      */
-    public Context context;
+    private Context context;
 
     /**
      * Construct a new SlidingTilesScoreboard with context and load it from "globalscores.ser" if needed
