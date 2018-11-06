@@ -20,7 +20,6 @@ class BoardManager implements Serializable {
     private int numUndos;
     private Stack<Integer> undoDirectionStack;
     private Stack<Integer> undoPositionStack;
-    private int maximumNumUndos = 3;
 
     /**
      * Manage a board that has been pre-populated.
@@ -89,11 +88,6 @@ class BoardManager implements Serializable {
      * Set the numUndos of a slidingtiles game.
      */
     public void setNumUndos(int num) { this.numUndos = num; }
-
-    /**
-     * Set the maximumNumUndos of a slidingtiles game.
-     */
-    public void setMaximumNumUndos(int num) { this.maximumNumUndos = num; }
 
     /**
      * Return whether the tiles are in row-major order.

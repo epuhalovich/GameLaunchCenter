@@ -78,21 +78,18 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
             case R.id.item1:
                 boardManager = BoardManager.getLevel("Easy");
                 boardManager.setNumUndos(NumUndos);
-                boardManager.setMaximumNumUndos(NumUndos);
                 switchToGame();
                 return true;
 
             case R.id.item2:
                 boardManager = BoardManager.getLevel("Medium");
                 boardManager.setNumUndos(NumUndos);
-                boardManager.setMaximumNumUndos(NumUndos);
                 switchToGame();
                 return true;
 
             case R.id.item3:
                 boardManager = BoardManager.getLevel("Hard");
                 boardManager.setNumUndos(NumUndos);
-                boardManager.setMaximumNumUndos(NumUndos);
                 switchToGame();
                 return true;
 
