@@ -11,8 +11,19 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * The score board display activity.
+ */
 public class ScoreBoardActivity extends AppCompatActivity {
+
+    /**
+     * The scoreboard containing all the user and score data for sliding tiles.
+     */
     private SlidingTilesScoreboard slidingTilesScoreboard;
+
+    /**
+     * The quick reference for the currently logged in player.
+     */
     private User currentPlayer = LogInActivity.currentPlayer;
 
     @Override
@@ -67,6 +78,9 @@ public class ScoreBoardActivity extends AppCompatActivity {
         return scoreValues;
     }
 
+    /**
+     * Active the button to return to the main game screen.
+     */
     private void addReturnButtonListener() {
         Button ReturnButton = (Button)findViewById(R.id.ReturnButton);
         ReturnButton.setOnClickListener(new View.OnClickListener() {
