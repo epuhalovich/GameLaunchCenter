@@ -108,7 +108,7 @@ public class SlidingTilesScoreboard {
      * Returns an ArrayList representing the global scoreboard for sliding tiles game.
      * @return globalScores
      */
-    public ArrayList<Score> getGlobalScoreboard(){
+    public static ArrayList<Score> getGlobalScoreboard(){
         return globalScores;
     }
 
@@ -116,7 +116,7 @@ public class SlidingTilesScoreboard {
      * Returns an ArrayList representing the users scoreboard for sliding tiles game.
      * @return UserScores
      */
-    public ArrayList<Score> getUserScoreboard(User current_player){
+    public static ArrayList<Score> getUserScoreboard(User current_player){
         ArrayList<Score> UserScores = new ArrayList<>();
         for(int i = 0; i < globalScores.size(); i++){
             if(globalScores.get(i).getUsername().equals(current_player.getAccount())){
