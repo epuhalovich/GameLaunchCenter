@@ -1,0 +1,21 @@
+# RESPONSIBILITIES
+## Lab Meeting Oct 29, 2018
+
+
+### Scoreboard implementation
+* Luke, Allen, Ellen, Nick
+
+### Undo functionality
+* Nick
+
+### User manager/sign in functionality
+* Katherine
+
+### Game launch centre
+* Allen & Ellen
+
+### Set number of undo
+* Allen
+
+### Completed: Autosave & complexity
+* Ellen
