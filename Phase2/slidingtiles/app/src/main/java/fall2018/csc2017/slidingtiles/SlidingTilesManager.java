@@ -8,51 +8,51 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * Manage a board, including swapping tiles, checking for a win, and managing taps.
+ * Manage a slidingTilesBoard, including swapping tiles, checking for a win, and managing taps.
  */
-class BoardManager implements Serializable {
+class SlidingTilesManager implements GameManager, Serializable {
 
     /**
-     * The board being managed.
+     * The slidingTilesBoard being managed.
      */
-    private static int score;
-    private Board board;
+    private int score;
+    private SlidingTilesBoard slidingTilesBoard;
     private int numUndos;
     private Stack<Integer> undoDirectionStack;
     private Stack<Integer> undoPositionStack;
 
     /**
-     * Manage a board that has been pre-populated.
+     * Manage a slidingTilesBoard that has been pre-populated.
      *
-     * @param board the board
+     * @param slidingTilesBoard the slidingTilesBoard
      */
-    BoardManager(Board board) {
-        this.board = board;
+    SlidingTilesManager(SlidingTilesBoard slidingTilesBoard) {
+        this.slidingTilesBoard = slidingTilesBoard;
     }
 
     /**
-     * Return the current board.
+     * Return the current slidingTilesBoard.
      */
-    Board getBoard() {
-        return board;
+    SlidingTilesBoard getSlidingTilesBoard() {
+        return slidingTilesBoard;
     }
 
-    public static BoardManager getLevel(String level){
+    public static SlidingTilesManager getLevel(String level){
         if(level.equals("Easy")){
-            return new BoardManager(3, 3);
+            return new SlidingTilesManager(3, 3);
         }
         else if(level.equals("Medium")){
-            return new BoardManager(4, 4);
+            return new SlidingTilesManager(4, 4);
         }
         else{
-            return new BoardManager(5, 5);
+            return new SlidingTilesManager(5, 5);
         }
     }
     /**
-     * Manage a new shuffled board.
+     * Manage a new shuffled slidingTilesBoard.
      */
-    BoardManager(int rows, int cols) {
-        score = 0;
+    SlidingTilesManager(int rows, int cols) {
+        super();
         List<Tile> tiles = new ArrayList<>();
         final int numTiles = rows * cols;
         for (int tileNum = 0; tileNum != numTiles - 1; tileNum++) {
@@ -61,7 +61,7 @@ class BoardManager implements Serializable {
         tiles.add(new Tile(24));
 
         Collections.shuffle(tiles);
-        this.board = new Board(tiles, rows, cols);
+        this.slidingTilesBoard = new SlidingTilesBoard(tiles, rows, cols);
 
         this.numUndos = 3;
         this.undoDirectionStack = new Stack<>();
@@ -95,10 +95,10 @@ class BoardManager implements Serializable {
      * @return whether the tiles are in row-major order
      */
     @SuppressLint("DefaultLocale")
-    boolean puzzleSolved() {
+    public boolean isGameOver() {
         boolean solved = true;
         int i = 1;
-        for (Tile t : board) {
+        for (Tile t : slidingTilesBoard) {
             if (t.getId() != i) {
                 solved = false;
             }
@@ -113,16 +113,16 @@ class BoardManager implements Serializable {
      * @param position the tile to check
      * @return whether the tile at position is surrounded by a blank tile
      */
-    boolean isValidTap(int position) {
+    public boolean isValidTap(int position) {
 
-        int row = position / board.NUM_COLS;
-        int col = position % board.NUM_COLS;
+        int row = position / slidingTilesBoard.NUM_COLS;
+        int col = position % slidingTilesBoard.NUM_COLS;
         int blankId = 25;
         // Are any of the 4 the blank tile?
-        Tile above = row == 0 ? null : board.getTile(row - 1, col);
-        Tile below = row == board.NUM_ROWS - 1 ? null : board.getTile(row + 1, col);
-        Tile left = col == 0 ? null : board.getTile(row, col - 1);
-        Tile right = col == board.NUM_COLS - 1 ? null : board.getTile(row, col + 1);
+        Tile above = row == 0 ? null : slidingTilesBoard.getTile(row - 1, col);
+        Tile below = row == slidingTilesBoard.NUM_ROWS - 1 ? null : slidingTilesBoard.getTile(row + 1, col);
+        Tile left = col == 0 ? null : slidingTilesBoard.getTile(row, col - 1);
+        Tile right = col == slidingTilesBoard.NUM_COLS - 1 ? null : slidingTilesBoard.getTile(row, col + 1);
         return (below != null && below.getId() == blankId)
                 || (above != null && above.getId() == blankId)
                 || (left != null && left.getId() == blankId)
@@ -131,33 +131,33 @@ class BoardManager implements Serializable {
     }
 
     /**
-     * Process a touch at position in the board, swapping tiles as appropriate.
+     * Process a touch at position in the slidingTilesBoard, swapping tiles as appropriate.
      * Also adds an integer to the undo stack. 0,1,2,3 correspond to a tile swapped to
      * the above, left, below, and right respectively.
      *
      * @param position the position
      */
-    void touchMove(int position) {
+    public void touchMove(int position) {
 
-        int row = position / board.NUM_ROWS;
-        int col = position % board.NUM_COLS;
+        int row = position / slidingTilesBoard.NUM_ROWS;
+        int col = position % slidingTilesBoard.NUM_COLS;
         int blankId = 25;
 
-        Tile above = row == 0 ? null : board.getTile(row - 1, col);
-        Tile left = col == 0 ? null : board.getTile(row, col - 1);
-        Tile below = row == board.NUM_ROWS - 1 ? null : board.getTile(row + 1, col);
+        Tile above = row == 0 ? null : slidingTilesBoard.getTile(row - 1, col);
+        Tile left = col == 0 ? null : slidingTilesBoard.getTile(row, col - 1);
+        Tile below = row == slidingTilesBoard.NUM_ROWS - 1 ? null : slidingTilesBoard.getTile(row + 1, col);
 
         if (above != null && above.getId() == blankId) {
-            board.swapTiles(row, col, row - 1, col);
+            slidingTilesBoard.swapTiles(row, col, row - 1, col);
             this.undoDirectionStack.push(0);
         } else if (left != null && left.getId() == blankId) {
-            board.swapTiles(row, col, row, col - 1);
+            slidingTilesBoard.swapTiles(row, col, row, col - 1);
             this.undoDirectionStack.push(1);
         } else if (below != null && below.getId() == blankId) {
-            board.swapTiles(row, col, row + 1, col);
+            slidingTilesBoard.swapTiles(row, col, row + 1, col);
             this.undoDirectionStack.push(2);
         }  else { // the tile to the right is the blank tile
-            board.swapTiles(row, col, row, col + 1);
+            slidingTilesBoard.swapTiles(row, col, row, col + 1);
             this.undoDirectionStack.push(3);
         }
         this.undoPositionStack.push(position);
@@ -173,21 +173,21 @@ class BoardManager implements Serializable {
             numUndos--;
             int position = undoPositionStack.pop();
             int direction = undoDirectionStack.pop();
-            int row = position / board.NUM_ROWS;
-            int col = position % board.NUM_COLS;
+            int row = position / slidingTilesBoard.NUM_ROWS;
+            int col = position % slidingTilesBoard.NUM_COLS;
             score--;
             switch (direction) {
                 case 0: // Swap blank tile with ABOVE.
-                    board.swapTiles(row, col, row - 1, col);
+                    slidingTilesBoard.swapTiles(row, col, row - 1, col);
                     break;
                 case 1: // Swap blank tile with LEFT.
-                    board.swapTiles(row, col, row, col - 1);
+                    slidingTilesBoard.swapTiles(row, col, row, col - 1);
                     break;
                 case 2: // Swap blank tile with BELOW.
-                    board.swapTiles(row, col, row + 1, col);
+                    slidingTilesBoard.swapTiles(row, col, row + 1, col);
                     break;
                 default: // Swap blank tile with RIGHT.
-                    board.swapTiles(row, col, row, col + 1);
+                    slidingTilesBoard.swapTiles(row, col, row, col + 1);
                     break;
             }
         }

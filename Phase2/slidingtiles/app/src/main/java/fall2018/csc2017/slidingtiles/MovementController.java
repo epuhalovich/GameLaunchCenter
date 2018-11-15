@@ -6,19 +6,19 @@ import android.widget.Toast;
 
 public class MovementController {
 
-    private BoardManager boardManager = null;
+    private SlidingTilesManager slidingTilesManager = null;
 
     public MovementController() {
     }
 
-    public void setBoardManager(BoardManager boardManager) {
-        this.boardManager = boardManager;
+    public void setSlidingTilesManager(SlidingTilesManager slidingTilesManager) {
+        this.slidingTilesManager = slidingTilesManager;
     }
 
     public void processTapMovement(Context context, int position, boolean display) {
-        if (boardManager.isValidTap(position)) {
-            boardManager.touchMove(position);
-            if (boardManager.puzzleSolved()) {
+        if (slidingTilesManager.isValidTap(position)) {
+            slidingTilesManager.touchMove(position);
+            if (slidingTilesManager.isGameOver()) {
                 Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
             }
         } else {

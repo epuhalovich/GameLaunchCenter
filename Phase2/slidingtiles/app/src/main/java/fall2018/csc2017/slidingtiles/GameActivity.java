@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.Toast;
@@ -32,7 +31,7 @@ public class GameActivity extends AppCompatActivity implements Observer, Seriali
     /**
      * The board manager.
      */
-    private BoardManager boardManager;
+    private SlidingTilesManager slidingTilesManager;
 
     /**
      * The buttons to display.
@@ -67,8 +66,8 @@ public class GameActivity extends AppCompatActivity implements Observer, Seriali
         super.onCreate(savedInstanceState);
         slidingTilesScoreboard = new SlidingTilesScoreboard(this);
         loadFromFile();
-        this.NUM_COLS = boardManager.getBoard().NUM_COLS;
-        this.NUM_ROWS = boardManager.getBoard().NUM_ROWS;
+        this.NUM_COLS = slidingTilesManager.getSlidingTilesBoard().NUM_COLS;
+        this.NUM_ROWS = slidingTilesManager.getSlidingTilesBoard().NUM_ROWS;
         createTileButtons(this);
         setContentView(R.layout.activity_main);
         addUndoButtonListener();
@@ -78,8 +77,8 @@ public class GameActivity extends AppCompatActivity implements Observer, Seriali
         // Add View to activity
         gridView = findViewById(R.id.grid);
         gridView.setNumColumns(NUM_COLS);
-        gridView.setBoardManager(boardManager);
-        boardManager.getBoard().addObserver(this);
+        gridView.setSlidingTilesManager(slidingTilesManager);
+        slidingTilesManager.getSlidingTilesBoard().addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function
         gridView.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -104,10 +103,10 @@ public class GameActivity extends AppCompatActivity implements Observer, Seriali
     private void addUndoButtonListener() {
         Button undoButton = findViewById(R.id.UndoButton);
         undoButton.setOnClickListener(v -> {
-            if (boardManager.getNumUndos() == 0){
+            if (slidingTilesManager.getNumUndos() == 0){
                 makeToastNoUndosText();
             }
-            boardManager.tryUndo();
+            slidingTilesManager.tryUndo();
         });
     }
 
@@ -143,12 +142,12 @@ public class GameActivity extends AppCompatActivity implements Observer, Seriali
      * @param context the context
      */
     private void createTileButtons(Context context) {
-        Board board = boardManager.getBoard();
+        SlidingTilesBoard slidingTilesBoard = slidingTilesManager.getSlidingTilesBoard();
         tileButtons = new ArrayList<>();
         for (int row = 0; row != NUM_ROWS; row++) {
             for (int col = 0; col != NUM_COLS; col++) {
                 Button tmp = new Button(context);
-                tmp.setBackgroundResource(board.getTile(row, col).getBackground());
+                tmp.setBackgroundResource(slidingTilesBoard.getTile(row, col).getBackground());
                 this.tileButtons.add(tmp);
             }
         }
@@ -158,12 +157,12 @@ public class GameActivity extends AppCompatActivity implements Observer, Seriali
      * Update the backgrounds on the buttons to match the tiles.
      */
     private void updateTileButtons() {
-        Board board = boardManager.getBoard();
+        SlidingTilesBoard slidingTilesBoard = slidingTilesManager.getSlidingTilesBoard();
         int nextPos = 0;
         for (Button b : tileButtons) {
             int row = nextPos / NUM_ROWS;
             int col = nextPos % NUM_COLS;
-            b.setBackgroundResource(board.getTile(row, col).getBackground());
+            b.setBackgroundResource(slidingTilesBoard.getTile(row, col).getBackground());
             nextPos++;
         }
     }
@@ -187,7 +186,7 @@ public class GameActivity extends AppCompatActivity implements Observer, Seriali
             InputStream inputStream = this.openFileInput(StartingActivity.TEMP_SAVE_FILENAME);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
-                boardManager = (BoardManager) input.readObject();
+                slidingTilesManager = (SlidingTilesManager) input.readObject();
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {
@@ -208,7 +207,7 @@ public class GameActivity extends AppCompatActivity implements Observer, Seriali
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     this.openFileOutput(fileName, MODE_PRIVATE));
-            outputStream.writeObject(boardManager);
+            outputStream.writeObject(slidingTilesManager);
             outputStream.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
@@ -219,8 +218,8 @@ public class GameActivity extends AppCompatActivity implements Observer, Seriali
     public void update(Observable o, Object arg) {
         display();
         saveToFile(LogInActivity.currentPlayer.getGameFile());
-        if(boardManager.puzzleSolved()){
-            slidingTilesScoreboard.addScore(LogInActivity.currentPlayer.getAccount(), boardManager.getScore());
+        if(slidingTilesManager.isGameOver()){
+            slidingTilesScoreboard.addScore(LogInActivity.currentPlayer.getAccount(), slidingTilesManager.getScore());
         }
     }
 

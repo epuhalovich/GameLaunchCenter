@@ -17,14 +17,14 @@ import static android.content.Context.MODE_PRIVATE;
  * scoreboard for sliding tiles.
  */
 
-public class SlidingTilesScoreboard implements Serializable {
+public class SlidingTilesScoreboard extends Scoreboard implements Serializable {
 
-    private static ArrayList<Score> globalScores = new ArrayList<>();
+//    private static ArrayList<Score> globalScores = new ArrayList<>();
 
     /**
      * A name of the file that store the object SlidingTilesScoreboard.
      */
-    private static final String fileName = "globalscores.ser";
+    private static final String fileName = "slidingtilesscores.ser";
 
     /**
      * A context.
@@ -104,7 +104,7 @@ public class SlidingTilesScoreboard implements Serializable {
      * @param scores unsorted ArrayList of scores
      * @return scores sorted ArrayList of scores
      */
-    private ArrayList<Score> sortScores(ArrayList<Score> scores){
+    public ArrayList<Score> sortScores(ArrayList<Score> scores){
         ArrayList<Score> left = new ArrayList<>();
         ArrayList<Score> right = new ArrayList<>();
         int center;
@@ -133,27 +133,6 @@ public class SlidingTilesScoreboard implements Serializable {
         return scores;
     }
 
-    /**
-     * Returns an ArrayList representing the global scoreboard for sliding tiles game.
-     * @return globalScores
-     */
-    public ArrayList<Score> getGlobalScoreboard(){
-        return globalScores;
-    }
-
-    /**
-     * Returns an ArrayList representing the users scoreboard for sliding tiles game.
-     * @return UserScores
-     */
-    public ArrayList<Score> getUserScoreboard(User current_player){
-        ArrayList<Score> UserScores = new ArrayList<>();
-        for(int i = 0; i < globalScores.size(); i++){
-            if(globalScores.get(i).getUsername().equals(current_player.getAccount())){
-                UserScores.add(globalScores.get(i));
-            }
-        }
-        return UserScores;
-    }
     private void loadFromFile() {
 
         try {

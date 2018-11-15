@@ -29,7 +29,7 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
     /**
      * The board manager.
      */
-    private BoardManager boardManager;
+    private SlidingTilesManager slidingTilesManager;
     /**
      * The number of undos.
      */
@@ -39,7 +39,7 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        boardManager = new BoardManager(4, 4);(we don't need this line)
+//        slidingTilesManager = new SlidingTilesManager(4, 4);(we don't need this line)
 
         saveToFile(TEMP_SAVE_FILENAME);
 
@@ -55,7 +55,7 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
      */
     private void addStartButtonListener() {
         Button startButton = findViewById(R.id.StartButton);
-        //                boardManager = new BoardManager();
+        //                slidingTilesManager = new SlidingTilesManager();
 //                switchToGame();
         startButton.setOnClickListener(this::showPopup);
     }
@@ -76,20 +76,23 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item1:
-                boardManager = BoardManager.getLevel("Easy");
-                boardManager.setNumUndos(NumUndos);
+                slidingTilesManager = SlidingTilesManager.getLevel("Easy");
+                slidingTilesManager.setNumUndos(NumUndos);
+                saveToFile(LogInActivity.currentPlayer.getGameFile());
                 switchToGame();
                 return true;
 
             case R.id.item2:
-                boardManager = BoardManager.getLevel("Medium");
-                boardManager.setNumUndos(NumUndos);
+                slidingTilesManager = SlidingTilesManager.getLevel("Medium");
+                slidingTilesManager.setNumUndos(NumUndos);
+                saveToFile(LogInActivity.currentPlayer.getGameFile());
                 switchToGame();
                 return true;
 
             case R.id.item3:
-                boardManager = BoardManager.getLevel("Hard");
-                boardManager.setNumUndos(NumUndos);
+                slidingTilesManager = SlidingTilesManager.getLevel("Hard");
+                slidingTilesManager.setNumUndos(NumUndos);
+                saveToFile(LogInActivity.currentPlayer.getGameFile());
                 switchToGame();
                 return true;
 
@@ -105,7 +108,7 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
         Button loadButton = findViewById(R.id.LoadButton);
         loadButton.setOnClickListener(v -> {
             loadFromFile(LogInActivity.currentPlayer.getGameFile());
-            if (boardManager != null){
+            if (slidingTilesManager != null){
                 saveToFile(TEMP_SAVE_FILENAME);
                 makeToastLoadedText();
                 switchToGame();
@@ -156,7 +159,7 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
             InputStream inputStream = this.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
-                boardManager = (BoardManager) input.readObject();
+                slidingTilesManager = (SlidingTilesManager) input.readObject();
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {
@@ -177,7 +180,7 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     this.openFileOutput(fileName, MODE_PRIVATE));
-            outputStream.writeObject(boardManager);
+            outputStream.writeObject(slidingTilesManager);
             outputStream.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
