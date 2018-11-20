@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.slidingtiles.slidingtiles;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +9,10 @@ import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-public class SetNumundoActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
+import fall2018.csc2017.slidingtiles.R;
+import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesStartingActivity;
+
+public class SlidingTilesSetNumundoActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,37 +45,37 @@ public class SetNumundoActivity extends AppCompatActivity implements PopupMenu.O
     public boolean onMenuItemClick(MenuItem item){
         switch(item.getItemId()){
             case R.id.i5:
-                StartingActivity.NumUndos = 5;
+                SlidingTilesStartingActivity.NumUndos = 5;
                 makeToastText();
                 switchToStartingActivity();
                 return true;
 
             case R.id.i4:
-                StartingActivity.NumUndos = 4;
+                SlidingTilesStartingActivity.NumUndos = 4;
                 makeToastText();
                 switchToStartingActivity();
                 return true;
 
             case R.id.i3:
-                StartingActivity.NumUndos = 3;
+                SlidingTilesStartingActivity.NumUndos = 3;
                 makeToastText();
                 switchToStartingActivity();
                 return true;
 
             case R.id.i2:
-                StartingActivity.NumUndos = 2;
+                SlidingTilesStartingActivity.NumUndos = 2;
                 makeToastText();
                 switchToStartingActivity();
                 return true;
 
             case R.id.i1:
-                StartingActivity.NumUndos = 1;
+                SlidingTilesStartingActivity.NumUndos = 1;
                 makeToastText();
                 switchToStartingActivity();
                 return true;
 
             case R.id.i0:
-                StartingActivity.NumUndos = 0;
+                SlidingTilesStartingActivity.NumUndos = 0;
                 makeToastText();
                 switchToStartingActivity();
                 return true;
@@ -83,10 +86,10 @@ public class SetNumundoActivity extends AppCompatActivity implements PopupMenu.O
     }
 
     /**
-     * Switch to the StartingActivity view.
+     * Switch to the SlidingTilesStartingActivity view.
      */
     private void switchToStartingActivity(){
-        Intent tmp = new Intent(this, StartingActivity.class);
+        Intent tmp = new Intent(this, SlidingTilesStartingActivity.class);
         startActivity(tmp);
     }
 

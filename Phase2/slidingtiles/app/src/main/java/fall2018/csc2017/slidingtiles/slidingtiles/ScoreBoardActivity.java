@@ -1,5 +1,5 @@
 
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.slidingtiles.slidingtiles;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Locale;
+
+import fall2018.csc2017.slidingtiles.LogInActivity;
+import fall2018.csc2017.slidingtiles.R;
+import fall2018.csc2017.slidingtiles.Score;
+import fall2018.csc2017.slidingtiles.User;
 
 /**
  * The score board display activity.
@@ -85,7 +90,7 @@ public class ScoreBoardActivity extends AppCompatActivity {
         ReturnButton.setOnClickListener(v -> switchToStarting());
     }
     private void switchToStarting(){
-        Intent tmp = new Intent(this, StartingActivity.class);
+        Intent tmp = new Intent(this, SlidingTilesStartingActivity.class);
         startActivity(tmp);
     }
 }

@@ -1,7 +1,9 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.slidingtiles.slidingtiles;
 
 import android.content.Context;
 import android.widget.Toast;
+
+import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesManager;
 
 
 public class MovementController {

@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.slidingtiles.slidingtiles;
 
 import android.annotation.SuppressLint;
 import java.io.Serializable;
@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
+
+import fall2018.csc2017.slidingtiles.GameManager;
 
 /**
  * Manage a slidingTilesBoard, including swapping tiles, checking for a win, and managing taps.

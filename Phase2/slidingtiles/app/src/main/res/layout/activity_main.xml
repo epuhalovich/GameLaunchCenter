@@ -4,7 +4,7 @@
     android:background="#5467"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fall2018.csc2017.slidingtiles.StartingActivity">
+    tools:context="fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesStartingActivity">
 
     <Button
         android:id="@+id/UndoButton"
@@ -16,13 +16,13 @@
         android:layout_marginEnd="56dp"
         android:text="@string/undo" />
 
-    <fall2018.csc2017.slidingtiles.GestureDetectGridView xmlns:android="http://schemas.android.com/apk/res/android"
+    <fall2018.csc2017.slidingtiles.slidingtiles.GestureDetectGridView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/UndoButton"
-        tools:context="fall2018.csc2017.slidingtiles.GameActivity"/>
+        tools:context="fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesGameActivity"/>
 
     <Button
         android:id="@+id/save"
