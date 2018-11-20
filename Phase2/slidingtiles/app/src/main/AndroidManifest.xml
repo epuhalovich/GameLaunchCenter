@@ -22,7 +22,8 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".LaunchCenterActivity" />
         <activity android:name=".ScoreBoardActivity" />
-        <activity android:name=".SetNumundoActivity"></activity>
+        <activity android:name=".SetNumundoActivity" />
+        <activity android:name=".SudokuActivity"></activity>
     </application>
 
 </manifest>
