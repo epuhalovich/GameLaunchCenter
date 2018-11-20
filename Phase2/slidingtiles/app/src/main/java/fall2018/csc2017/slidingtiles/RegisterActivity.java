@@ -37,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         Button signUp = findViewById(R.id.signUp);
         signUp.setOnClickListener((v) -> {
             Intent tmp = new Intent(this, SignUpActivity.class);
+//            Intent tmp = new Intent(this, SudokuActivity.class);
             startActivity(tmp);
         });
 

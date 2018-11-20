@@ -5,7 +5,10 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.MotionEvent;
 import android.view.View;
+
+import java.util.List;
 
 class MyView extends View {
     public MyView(Context context) {
@@ -13,10 +16,10 @@ class MyView extends View {
     }
 
     private float boxSide;
-    private int X;
-    private int Y;
+    private int X = 20;
+    private int Y = 20;
 
-//    SudoGame sudo = new SudoGame();
+//    SudoGame sudo = new SudokuManager();
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -46,24 +49,46 @@ class MyView extends View {
                 canvas.drawLine(20, i * boxSide + 20, 20 + 9 * boxSide,i * boxSide + 20, black);
                 canvas.drawLine(i * boxSide + 20, 20,i * boxSide + 20,9 * boxSide + 20,black);
             }
-            // the way to draw the number on the box on the first grid
-            // rectangle's x center = text's x center
-            // rec' y center - (text' top + test's bottom) / 2 = text's x center
-            @SuppressLint("DrawAllocation") Paint numberPaint = new Paint();
-            numberPaint.setColor(Color.BLACK);
-            //设置空心
-            numberPaint.setStyle(Paint.Style.STROKE);
-            //设置文字大小为0.75 单元格 大小
-            numberPaint.setTextSize(boxSide * 0.75f);
-            //设置文字居中对齐
-            numberPaint.setTextAlign(Paint.Align.CENTER);
-            Paint.FontMetrics fontMetrics = numberPaint.getFontMetrics();
+//            drawNumber("1",canvas,0,0);
+//            drawNumber("2",canvas,0,1);
+//            drawNumber("3",canvas,0,2);
+//            drawNumber("4",canvas,0,3);
+//            drawNumber("",canvas,1,0);
+//            drawNumber("8",canvas,2,0);
 
-            float x = boxSide / 2;
-            //x默认是‘3’这个字符的左边在屏幕的位置，如果设置了
-            //paint.setTextAlign(Paint.Align.CENTER);
-            //那就是字符的中心，y是指定这个字符baseline在屏幕上的位置
-            canvas.drawText("1",20 + x,20 + x - ((fontMetrics.top + fontMetrics.bottom)) / 2, numberPaint);
-//
+        }
+    }
 //            super.onDraw(canvas);
-        }}}
+
+
+
+    // Draw a number on Canvas according to the matrix given.
+    private void drawNumber(Canvas canvas, List<List<String>> matrix){
+        for(int row = 0; row != 9 ; row++){
+            for(int col = 0 ; col != 9; col++){
+                Paint numberPaint = new Paint();
+                numberPaint.setColor(Color.BLACK);
+                numberPaint.setStyle(Paint.Style.STROKE);
+                numberPaint.setTextSize(boxSide * 0.75f);
+                numberPaint.setTextAlign(Paint.Align.CENTER);
+                Paint.FontMetrics fontMetrics = numberPaint.getFontMetrics();
+                float x = 20 + (col + (float)(0.5)) * boxSide;
+                float y = 20 + (row + (float)(0.5)) * boxSide - ((fontMetrics.top +
+                        fontMetrics.bottom)) / 2;
+                canvas.drawText(matrix.get(row).get(col), x, y, numberPaint);
+            }
+        }
+    }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        if( event.getAction() != event.ACTION_DOWN ) {
+            return super.onTouchEvent(event);
+        }
+        return true;
+    }
+
+
+}

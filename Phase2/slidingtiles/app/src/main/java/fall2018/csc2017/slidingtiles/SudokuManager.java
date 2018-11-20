@@ -46,6 +46,15 @@ public class SudokuManager {
         }
         return r == correct;
     }
-
+    // return the rows or columns depends on the position of view of x or y
+    private int changeToIndex(float viewX, float boxSide){
+        int index = -1;
+        for(int i = 0; i!= 9; i++){
+            if ((20 + i * boxSide < viewX) && (20 + (i + 1) * boxSide > viewX)) {
+                index = i;
+            }
+        }
+        return index;
+    }
 
 }
