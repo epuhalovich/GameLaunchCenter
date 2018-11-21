@@ -34,52 +34,17 @@ public class ScoreBoardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         slidingTilesScoreboard = new SlidingTilesScoreboard(this);
+        ScoreboardSetup setup = new ScoreboardSetup(slidingTilesScoreboard, currentPlayer);
         setContentView(R.layout.activity_score_board);
         addReturnButtonListener();
 
         TextView globalScoresText = findViewById(R.id.GlobalScores);
-        String globalScoreValues = getScoreValues(false);
+        String globalScoreValues = setup.getScoreValues(false);
         globalScoresText.setText(globalScoreValues);
 
         TextView userScoresText = findViewById(R.id.UserScores);
-        String userScoreValues = getScoreValues(true);
+        String userScoreValues = setup.getScoreValues(true);
         userScoresText.setText(userScoreValues);
-    }
-
-    /**
-     * Checks the Sliding Tiles scoreboard for the top scores.
-     * If userScoresOnly is true, only looks up scores for the current player.
-     * Returns a string of the top 5 (or less if less than 5 exist) scores for this game.
-     *
-     * @param userScoresOnly true when looking only for current player's scores
-     * @return scoreValues
-     */
-    private String getScoreValues(boolean userScoresOnly) {
-
-        ArrayList<Score> scoresList;
-        int numScores;
-
-        if (userScoresOnly) {
-            scoresList = slidingTilesScoreboard.getUserScoreboard(currentPlayer);
-        }
-        else {
-            scoresList = slidingTilesScoreboard.getGlobalScoreboard();
-        }
-
-        if (scoresList.size() < 5) {
-            numScores = scoresList.size();
-        }
-        else {
-            numScores = 5;
-        }
-
-        StringBuilder scoreValues = new StringBuilder();
-        for (int i = 0; i < numScores; i++) {
-            Score currentItem = scoresList.get(i);
-            scoreValues.append(String.format(Locale.US, "%s: %d",
-                    currentItem.getUsername(), currentItem.getScore())).append("\n");
-        }
-        return scoreValues.toString();
     }
 
     /**
