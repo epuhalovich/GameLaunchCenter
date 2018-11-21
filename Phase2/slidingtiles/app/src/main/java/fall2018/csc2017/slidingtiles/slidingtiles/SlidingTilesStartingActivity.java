@@ -79,29 +79,29 @@ public class SlidingTilesStartingActivity extends AppCompatActivity implements P
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item1:
-                slidingTilesManager = SlidingTilesManager.getLevel("Easy");
-                slidingTilesManager.setNumUndos(NumUndos);
-                saveToFile(LogInActivity.currentPlayer.getGameFile());
+                setUpSlidingTiles("Easy");
                 switchToGame();
                 return true;
 
             case R.id.item2:
-                slidingTilesManager = SlidingTilesManager.getLevel("Medium");
-                slidingTilesManager.setNumUndos(NumUndos);
-                saveToFile(LogInActivity.currentPlayer.getGameFile());
+                setUpSlidingTiles("Medium");
                 switchToGame();
                 return true;
 
             case R.id.item3:
-                slidingTilesManager = SlidingTilesManager.getLevel("Hard");
-                slidingTilesManager.setNumUndos(NumUndos);
-                saveToFile(LogInActivity.currentPlayer.getGameFile());
+                setUpSlidingTiles("Hard");
                 switchToGame();
                 return true;
 
             default:
                 return false;
         }
+    }
+
+    private void setUpSlidingTiles(String level) {
+        slidingTilesManager = SlidingTilesManager.getLevel(level);
+        slidingTilesManager.setNumUndos(NumUndos);
+        saveToFile(LogInActivity.currentPlayer.getGameFile());
     }
 
     /**
