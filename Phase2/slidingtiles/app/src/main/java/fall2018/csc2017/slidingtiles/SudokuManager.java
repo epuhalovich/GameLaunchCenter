@@ -1,5 +1,6 @@
 package fall2018.csc2017.slidingtiles;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,11 +8,31 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class SudokuManager {
+public class SudokuManager implements GameManager, Serializable{
 
     private String arr[] = { "1","2","3","4","5","6","7","8","9" };
     private Set<String> correct = new HashSet<>(Arrays.asList(arr));
+    private SudokuBoard sudokuBoard;
 
+
+    public static SudokuManager getLevel(String level){
+        if(level.equals("Easy")){
+            return new SudokuManager(60);
+        }
+        else if(level.equals("Medium")){
+            return new SudokuManager(40);
+        }
+        else{
+            return new SudokuManager(20);
+        }
+    }
+
+
+    public SudokuManager(int num){
+        super();
+        this.sudokuBoard = new SudokuBoard();
+        this.sudokuBoard.createPuzzle(num);
+    }
 
     // check whether the all rows contains 1-9.
     private boolean checkRows (ArrayList<ArrayList<String>> s) {
@@ -57,4 +78,23 @@ public class SudokuManager {
         return index;
     }
 
+    @Override
+    public int getScore() {
+        return 0;
+    }
+
+    @Override
+    public boolean isGameOver() {
+        return false;
+    }
+
+    @Override
+    public boolean isValidTap(int Position) {
+        return false;
+    }
+
+    @Override
+    public void touchMove(int Position) {
+
+    }
 }

@@ -81,4 +81,32 @@ public class SudokuBoard {
 //        }
 //        return sample;
 //    }
+
+    /**
+     * make the implemented sudoku board a puzzle.
+     * @param num the number of boxes that are empty.
+     * @return the SudokuBoard that has num empty boxes.
+     */
+    public SudokuBoard createPuzzle(int num) {
+        for (int i = 0; i != num; i++) {
+            Random rand = new Random();
+            int x = rand.nextInt(10);
+            int y = rand.nextInt(10);
+            while (this.getElement(x, y) == "0"){
+                x = rand.nextInt(10);
+                y = rand.nextInt(10);
+            }
+            this.setElement(x, y, "0");
+        }
+        return this;
+    }
+
+    //todo--------- getElement(x, y)(returns the element at xth row, yth column)
+    private String getElement(int x, int y){
+        return "";
+    }
+    //todo--------- setElement(x, y, String num)(set the element at (x,y) to num)
+    private void setElement(int x, int y, String num){
+
+    }
 }
