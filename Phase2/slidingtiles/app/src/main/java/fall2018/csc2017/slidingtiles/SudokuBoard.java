@@ -1,13 +1,15 @@
 package fall2018.csc2017.slidingtiles;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class SudokuBoard {
+public class SudokuBoard implements Serializable {
     private Random rand = new Random();
     public  List<List<String>> listSudoku;
+    public List<List<String>> puzzleSudoku;
     private final String[][][] seedSudokus = {{
             {"1", "2","3","4","5","6","7","8","9"},
             {"4","5","6","7","8","9","1","2","3"},
@@ -29,8 +31,9 @@ public class SudokuBoard {
                     { "8", "6", "2", "1", "4", "3", "7", "5", "9" }}};
 
 
-    public SudokuBoard(){
+    public SudokuBoard(int level){
         this.listSudoku = getListSampleSudoku(getNewSudoku());
+        this.puzzleSudoku = createPuzzle(level, this.listSudoku);
     }
 
     // create a new sudoku based on the sample by swapping rows and cols by 20 times.
@@ -136,13 +139,17 @@ public class SudokuBoard {
      * make the implemented sudoku board a puzzle.
      * @param num the number of boxes that are empty.
      */
-    public void createPuzzle(int num) {
-        Random rand = new Random();
+
+    public List<List<String>> createPuzzle(int num, List<List<String>> solution) {
+        List<List<String>> puzzle = new ArrayList<>(solution);
         for (int i = 0; i != 9; i++) {
             for (int j = 0; j != num; j++){
                 int x = rand.nextInt(9);
-                this.listSudoku.get(i).set(x, "");
+                puzzle.get(i).set(x, "");
             }
         }
+        return puzzle;
     }
 }
+
+

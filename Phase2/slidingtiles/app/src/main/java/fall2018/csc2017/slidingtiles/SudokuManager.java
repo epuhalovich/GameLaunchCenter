@@ -12,6 +12,8 @@ public class SudokuManager implements GameManager, Serializable{
     private String arr[] = { "1","2","3","4","5","6","7","8","9" };
     private Set<String> correct = new HashSet<>(Arrays.asList(arr));
     private SudokuBoard sudokuBoard;
+//    private List<List<String>> puzzle = sudokuBoard.listSudoku;
+//    private List<List<String>> solution = sudokuBoard.puzzleSudoku;
 
 
     public static SudokuManager getLevel(String level){
@@ -28,8 +30,15 @@ public class SudokuManager implements GameManager, Serializable{
 
     public SudokuManager(int num){
         super();
-        this.sudokuBoard = new SudokuBoard();
-        this.sudokuBoard.createPuzzle(num);
+        this.sudokuBoard = new SudokuBoard(num);
+    }
+
+    public List<List<String>> getPuzzle(){
+        return sudokuBoard.puzzleSudoku;
+    }
+
+    public List<List<String>> getSolultion(){
+        return sudokuBoard.listSudoku;
     }
 
     public boolean checkSudoku(List<List<String>> s){

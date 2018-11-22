@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import fall2018.csc2017.slidingtiles.CustomAdapter;
 import fall2018.csc2017.slidingtiles.LogInActivity;
 import fall2018.csc2017.slidingtiles.R;
 
@@ -69,9 +68,12 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         slidingTilesScoreboard = new SlidingTilesScoreboard(this);
+        // load the slidingtilesManager
         loadFromFile();
         this.NUM_COLS = slidingTilesManager.getSlidingTilesBoard().NUM_COLS;
         this.NUM_ROWS = slidingTilesManager.getSlidingTilesBoard().NUM_ROWS;
+        // create the tile button
+
         createTileButtons(this);
         setContentView(R.layout.activity_main);
         addUndoButtonListener();

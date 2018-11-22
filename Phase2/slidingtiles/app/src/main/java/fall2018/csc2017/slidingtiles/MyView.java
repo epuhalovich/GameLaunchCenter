@@ -5,21 +5,91 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.AttributeSet;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.GridView;
+import android.widget.ImageView;
 
 import java.util.List;
 
+import fall2018.csc2017.slidingtiles.slidingtiles.GestureDetectGridView;
+import fall2018.csc2017.slidingtiles.slidingtiles.MovementController;
+
 class MyView extends View {
+    private List<List<String>> answer;
+    private List<List<String>> puzzle;
+    private SudokuManager sudokuManager;
+//    private SudokuBoard sudokuBoard = new SudokuBoard(40);
+    private float boxSide;
+    private int phoneWidth;
+    private GestureDetector gDetector;
+//    private SudokuMovementController mController;
+    private boolean mFlingConfirmed = false;
+    private float mTouchX;
+    private float mTouchY;
+
+    public MyView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        initView();
+    }
+
+    public MyView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        initView();
+    }
+
     public MyView(Context context) {
         super(context);
+
+        initView();
     }
-    private SudokuBoard Sudoku = new SudokuBoard();
-    private float boxSide;
-    private int X = 20;
-    private int Y = 20;
+
+    private void initView(){
+
+    }
 
 //    SudoGame sudo = new SudokuManager();
+
+
+//    public MyView(Context context) {
+//        super(context);
+//        init(context);
+//    }
+
+    public void setSudokuManager(SudokuManager sudokuManager) {
+        this.sudokuManager = sudokuManager;
+    }
+
+    public float getBoxSide() {
+        return boxSide;
+    }
+
+//    private void init(Context context) {
+//        mController = new SudokuMovementController();
+//        gDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
+//
+//            @Override
+//            public boolean onSingleTapConfirmed(MotionEvent event) {
+//                int position = MyView.this.pointToPosition
+//                        (Math.round(event.getX()), Math.round(event.getY()));
+//
+//                mController.processTapMovement(context, position, true);
+//                return true;
+//            }
+//        });
+//    }
+//
+//    public MyView(Context context, AttributeSet attrs) {
+//        super(context, attrs);
+//        init(context);
+//    }
+
+//    public MyView(Context context, AttributeSet attrs, int defStyleAttr, int defstyleRes) {
+//        super(context, attrs, defStyleAttr, defstyleRes);
+//        init(context);
+//    }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -27,6 +97,18 @@ class MyView extends View {
         // the width and height of each small box.
         this.boxSide= (w - 40) /9f;
     }
+
+//
+//    public MyView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+//        super(context, attrs, defStyleAttr, defStyleRes);
+//        init();
+//    }
+//
+//    void init() {
+//        Paint paint = new Paint();
+//        paint.setColor(Color.BLACK);
+//        paint.setAntiAlias(true);
+//    }
 
 
     @Override
@@ -49,7 +131,7 @@ class MyView extends View {
                 canvas.drawLine(20, i * boxSide + 20, 20 + 9 * boxSide,i * boxSide + 20, black);
                 canvas.drawLine(i * boxSide + 20, 20,i * boxSide + 20,9 * boxSide + 20,black);
             }
-            drawNumber(canvas,Sudoku.listSudoku);
+            drawNumber(canvas,sudokuManager.getPuzzle());
 
         }
     }
@@ -75,15 +157,11 @@ class MyView extends View {
         }
     }
 
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-
-        if( event.getAction() != event.ACTION_DOWN ) {
-            return super.onTouchEvent(event);
-        }
-        return true;
-    }
-
+//    @Override
+//    public boolean onTouchEvent(MotionEvent ev) {
+//        mTouchX = ev.getX();
+//        mTouchY = ev.getY();
+//        return gDetector.onTouchEvent(ev);
+//    }
 
 }
