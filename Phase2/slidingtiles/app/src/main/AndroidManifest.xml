@@ -31,7 +31,8 @@
         <!-- SUDOKU -->
         <activity android:name=".SudokuGameActivity">
 
-            <!-- MEMORY GAME -->
+        <!-- MEMORY GAME -->
+
 
         </activity>
         <activity android:name=".SudokuStartingActivity"></activity>
