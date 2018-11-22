@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.slidingtiles.slidingtiles;
 
 import android.annotation.SuppressLint;
 import java.io.Serializable;
@@ -7,10 +7,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
+import fall2018.csc2017.slidingtiles.GameManager;
+
 /**
  * Manage a slidingTilesBoard, including swapping tiles, checking for a win, and managing taps.
  */
-class SlidingTilesManager implements GameManager, Serializable {
+public class SlidingTilesManager implements GameManager, Serializable {
 
     /**
      * The slidingTilesBoard being managed.
@@ -26,14 +28,14 @@ class SlidingTilesManager implements GameManager, Serializable {
      *
      * @param slidingTilesBoard the slidingTilesBoard
      */
-    SlidingTilesManager(SlidingTilesBoard slidingTilesBoard) {
+    public SlidingTilesManager(SlidingTilesBoard slidingTilesBoard) {
         this.slidingTilesBoard = slidingTilesBoard;
     }
 
     /**
      * Return the current slidingTilesBoard.
      */
-    SlidingTilesBoard getSlidingTilesBoard() {
+    public SlidingTilesBoard getSlidingTilesBoard() {
         return slidingTilesBoard;
     }
 
@@ -51,7 +53,7 @@ class SlidingTilesManager implements GameManager, Serializable {
     /**
      * Manage a new shuffled slidingTilesBoard.
      */
-    SlidingTilesManager(int rows, int cols) {
+    public SlidingTilesManager(int rows, int cols) {
         super();
         List<Tile> tiles = new ArrayList<>();
         final int numTiles = rows * cols;

@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
 
+import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesStartingActivity;
+
 /**
  * The launch center activity.
  */
@@ -58,7 +60,7 @@ public class LaunchCenterActivity extends AppCompatActivity implements PopupMenu
      * Switch to the sliding tile starting acticity.
      */
     private void switchToSlidingTile() {
-        Intent tmp = new Intent(this, StartingActivity.class);
+        Intent tmp = new Intent(this, SlidingTilesStartingActivity.class);
         startActivity(tmp);
     }
 

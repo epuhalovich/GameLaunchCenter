@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.slidingtiles.slidingtiles;
 
 import android.support.annotation.NonNull;
 
@@ -36,7 +36,7 @@ public class SlidingTilesBoard extends Observable implements Serializable, Itera
      *
      * @param tiles the tiles for the board
      */
-    SlidingTilesBoard(List<Tile> tiles, int r, int c) {
+    public SlidingTilesBoard(List<Tile> tiles, int r, int c) {
         Iterator<Tile> iter = tiles.iterator();
         this.NUM_ROWS = r;
         this.NUM_COLS = c;
@@ -56,7 +56,7 @@ public class SlidingTilesBoard extends Observable implements Serializable, Itera
      * @param col the tile column
      * @return the tile at (row, col)
      */
-    Tile getTile(int row, int col) {
+    public Tile getTile(int row, int col) {
         return tiles[row][col];
     }
 
@@ -68,7 +68,7 @@ public class SlidingTilesBoard extends Observable implements Serializable, Itera
      * @param row2 the second tile row
      * @param col2 the second tile col
      */
-    void swapTiles(int row1, int col1, int row2, int col2) {
+    public void swapTiles(int row1, int col1, int row2, int col2) {
         Tile tile1 = tiles[row1][col1];
         Tile tile2 = tiles[row2][col2];
 

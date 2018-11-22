@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.slidingtiles.slidingtiles;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
@@ -18,10 +18,14 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import fall2018.csc2017.slidingtiles.CustomAdapter;
+import fall2018.csc2017.slidingtiles.LogInActivity;
+import fall2018.csc2017.slidingtiles.R;
+
 /**
  * The game activity.
  */
-public class GameActivity extends AppCompatActivity implements Observer, Serializable {
+public class SlidingTilesGameActivity extends AppCompatActivity implements Observer, Serializable {
 
     /**
      * The sliding tiles scoreboard
@@ -117,7 +121,7 @@ public class GameActivity extends AppCompatActivity implements Observer, Seriali
         Button saveButton = findViewById(R.id.save);
         saveButton.setOnClickListener(v -> {
             saveToFile(LogInActivity.currentPlayer.getGameFile());
-            saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+            saveToFile(SlidingTilesStartingActivity.TEMP_SAVE_FILENAME);
             makeToastSavedText();
         });
     }
@@ -173,7 +177,7 @@ public class GameActivity extends AppCompatActivity implements Observer, Seriali
     @Override
     protected void onPause() {
         super.onPause();
-        saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+        saveToFile(SlidingTilesStartingActivity.TEMP_SAVE_FILENAME);
     }
 
     /**
@@ -183,7 +187,7 @@ public class GameActivity extends AppCompatActivity implements Observer, Seriali
     private void loadFromFile() {
 
         try {
-            InputStream inputStream = this.openFileInput(StartingActivity.TEMP_SAVE_FILENAME);
+            InputStream inputStream = this.openFileInput(SlidingTilesStartingActivity.TEMP_SAVE_FILENAME);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
                 slidingTilesManager = (SlidingTilesManager) input.readObject();

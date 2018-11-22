@@ -9,6 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        <!-- GAME CENTRE FUNCTIONALITY -->
+        <activity android:name=".LogInActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".LaunchCenterActivity" />
         <activity android:name=".RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,14 +21,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameActivity" />
-        <activity android:name=".LogInActivity" />
-        <activity android:name=".StartingActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".LaunchCenterActivity" />
-        <activity android:name=".ScoreBoardActivity" />
-        <activity android:name=".SetNumundoActivity" />
-        <activity android:name=".SudokuActivity"></activity>
+
+        <!-- SLIDING TILES -->
+        <activity android:name=".slidingtiles.SlidingTilesGameActivity" />
+        <activity android:name=".slidingtiles.ScoreBoardActivity" />
+        <activity android:name=".slidingtiles.SlidingTilesStartingActivity" />
+        <activity android:name=".slidingtiles.SlidingTilesSetNumundoActivity" />
+
+        <!-- SUDOKU -->
+        <activity android:name=".SudokuActivity">
+
+        <!-- MEMORY GAME -->
+
+        </activity>
     </application>
 
 </manifest>

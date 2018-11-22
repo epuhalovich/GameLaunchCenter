@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.slidingtiles.slidingtiles;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -17,10 +17,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.NoSuchElementException;
 
+import fall2018.csc2017.slidingtiles.LogInActivity;
+import fall2018.csc2017.slidingtiles.R;
+
 /**
  * The initial activity for the sliding puzzle tile game.
  */
-public class StartingActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+public class SlidingTilesStartingActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
     /**
      * A temporary save file.
@@ -76,29 +79,29 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item1:
-                slidingTilesManager = SlidingTilesManager.getLevel("Easy");
-                slidingTilesManager.setNumUndos(NumUndos);
-                saveToFile(LogInActivity.currentPlayer.getGameFile());
+                setUpSlidingTiles("Easy");
                 switchToGame();
                 return true;
 
             case R.id.item2:
-                slidingTilesManager = SlidingTilesManager.getLevel("Medium");
-                slidingTilesManager.setNumUndos(NumUndos);
-                saveToFile(LogInActivity.currentPlayer.getGameFile());
+                setUpSlidingTiles("Medium");
                 switchToGame();
                 return true;
 
             case R.id.item3:
-                slidingTilesManager = SlidingTilesManager.getLevel("Hard");
-                slidingTilesManager.setNumUndos(NumUndos);
-                saveToFile(LogInActivity.currentPlayer.getGameFile());
+                setUpSlidingTiles("Hard");
                 switchToGame();
                 return true;
 
             default:
                 return false;
         }
+    }
+
+    private void setUpSlidingTiles(String level) {
+        slidingTilesManager = SlidingTilesManager.getLevel(level);
+        slidingTilesManager.setNumUndos(NumUndos);
+        saveToFile(LogInActivity.currentPlayer.getGameFile());
     }
 
     /**
@@ -140,11 +143,11 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
     }
 
     /**
-     * Switch to the GameActivity view to play the game.
+     * Switch to the SlidingTilesGameActivity view to play the game.
      */
     private void switchToGame() {
-        Intent tmp = new Intent(this, GameActivity.class);
-        saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+        Intent tmp = new Intent(this, SlidingTilesGameActivity.class);
+        saveToFile(SlidingTilesStartingActivity.TEMP_SAVE_FILENAME);
         startActivity(tmp);
     }
 
@@ -212,10 +215,10 @@ public class StartingActivity extends AppCompatActivity implements PopupMenu.OnM
     }
 
     /**
-     * Switch to the SetNumundoActivity view.
+     * Switch to the SlidingTilesSetNumundoActivity view.
      */
     private void switchToSetNumundo(){
-        Intent tmp = new Intent(this, SetNumundoActivity.class);
+        Intent tmp = new Intent(this, SlidingTilesSetNumundoActivity.class);
         startActivity(tmp);
     }
 }
