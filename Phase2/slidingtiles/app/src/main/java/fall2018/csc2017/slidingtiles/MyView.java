@@ -14,7 +14,7 @@ class MyView extends View {
     public MyView(Context context) {
         super(context);
     }
-
+    private SudokuBoard Sudoku = new SudokuBoard();
     private float boxSide;
     private int X = 20;
     private int Y = 20;
@@ -49,12 +49,7 @@ class MyView extends View {
                 canvas.drawLine(20, i * boxSide + 20, 20 + 9 * boxSide,i * boxSide + 20, black);
                 canvas.drawLine(i * boxSide + 20, 20,i * boxSide + 20,9 * boxSide + 20,black);
             }
-//            drawNumber("1",canvas,0,0);
-//            drawNumber("2",canvas,0,1);
-//            drawNumber("3",canvas,0,2);
-//            drawNumber("4",canvas,0,3);
-//            drawNumber("",canvas,1,0);
-//            drawNumber("8",canvas,2,0);
+            drawNumber(canvas,Sudoku.listSudoku);
 
         }
     }
