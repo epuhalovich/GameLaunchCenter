@@ -16,13 +16,13 @@ public class SudokuManager implements GameManager, Serializable{
 
     public static SudokuManager getLevel(String level){
         if(level.equals("Easy")){
-            return new SudokuManager(60);
+            return new SudokuManager(3);
         }
         else if(level.equals("Medium")){
-            return new SudokuManager(40);
+            return new SudokuManager(5);
         }
         else{
-            return new SudokuManager(20);
+            return new SudokuManager(7);
         }
     }
 

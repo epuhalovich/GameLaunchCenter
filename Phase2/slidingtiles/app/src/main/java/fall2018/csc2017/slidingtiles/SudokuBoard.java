@@ -135,19 +135,14 @@ public class SudokuBoard {
     /**
      * make the implemented sudoku board a puzzle.
      * @param num the number of boxes that are empty.
-     * @return the SudokuBoard that has num empty boxes.
      */
-    public SudokuBoard createPuzzle(int num) {
-        for (int i = 0; i != num; i++) {
-            Random rand = new Random();
-            int x = rand.nextInt(10);
-            int y = rand.nextInt(10);
-            while (this.listSudoku.get(x).get(y) == ""){
-                x = rand.nextInt(10);
-                y = rand.nextInt(10);
+    public void createPuzzle(int num) {
+        Random rand = new Random();
+        for (int i = 0; i != 9; i++) {
+            for (int j = 0; j != num; j++){
+                int x = rand.nextInt(9);
+                this.listSudoku.get(i).set(x, "");
             }
-            this.listSudoku.get(x).set(y, "");
         }
-        return this;
     }
 }
