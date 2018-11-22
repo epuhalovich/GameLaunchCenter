@@ -54,7 +54,6 @@ public class SlidingTilesManager implements GameManager, Serializable {
      * Manage a new shuffled slidingTilesBoard.
      */
     public SlidingTilesManager(int rows, int cols) {
-        super();
         List<Tile> tiles = new ArrayList<>();
         final int numTiles = rows * cols;
         for (int tileNum = 0; tileNum != numTiles - 1; tileNum++) {

@@ -9,21 +9,61 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public abstract class Scoreboard implements Serializable {
 
+
     public ArrayList<Score> globalScores = new ArrayList<>();
 
 
-    public Scoreboard(){
-   };
+    public Scoreboard(){}
+
+    public void setGlobalScores(ArrayList<Score> globalScores) {
+        this.globalScores = globalScores;
+    }
 
     public abstract void addScore(String currentPlayerId, int score);
 
 
     public abstract ArrayList<Score> sortScores(ArrayList<Score> scores);
+    /**
+     * Checks the Sliding Tiles scoreboard for the top scores.
+     * If userScoresOnly is true, only looks up scores for the current player.
+     * Returns a string of the top 5 (or less if less than 5 exist) scores for this game.
+     *
+     * @param userScoresOnly true when looking only for current player's scores
+     * @return scoreValues
+     */
+    public String getScoreValues(boolean userScoresOnly, User currentPlayer ) {
+
+        ArrayList<Score> scoresList;
+        int numScores;
+
+        if (userScoresOnly) {
+            scoresList = this.getUserScoreboard(currentPlayer);
+        }
+        else {
+            scoresList = this.getGlobalScoreboard();
+        }
+
+        if (scoresList.size() < 5) {
+            numScores = scoresList.size();
+        }
+        else {
+            numScores = 5;
+        }
+
+        StringBuilder scoreValues = new StringBuilder();
+        for (int i = 0; i < numScores; i++) {
+            Score currentItem = scoresList.get(i);
+            scoreValues.append(String.format(Locale.US, "%s: %d",
+                    currentItem.getUsername(), currentItem.getScore())).append("\n");
+        }
+        return scoreValues.toString();
+    }
 
     /**
      * Returns an ArrayList representing the global scoreboard for sliding tiles game.
