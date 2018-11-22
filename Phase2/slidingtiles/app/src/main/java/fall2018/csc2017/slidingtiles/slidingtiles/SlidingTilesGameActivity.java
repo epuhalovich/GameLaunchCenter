@@ -15,10 +15,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import fall2018.csc2017.slidingtiles.CustomAdapter;
 import fall2018.csc2017.slidingtiles.LogInActivity;
+import fall2018.csc2017.slidingtiles.PhaseTwoObserver;
+import fall2018.csc2017.slidingtiles.PhaseTwoSubject;
 import fall2018.csc2017.slidingtiles.R;
 
 /**
@@ -26,11 +30,7 @@ import fall2018.csc2017.slidingtiles.R;
  */
 public class SlidingTilesGameActivity extends AppCompatActivity implements Observer, Serializable {
 
-    /**
-     * The sliding tiles scoreboard
-     */
-    public SlidingTilesScoreboard slidingTilesScoreboard;
-
+    private List<PhaseTwoObserver> observers;
     /**
      * The board manager.
      */
@@ -67,13 +67,10 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        slidingTilesScoreboard = new SlidingTilesScoreboard(this);
-        // load the slidingtilesManager
+
         loadFromFile();
         this.NUM_COLS = slidingTilesManager.getSlidingTilesBoard().NUM_COLS;
         this.NUM_ROWS = slidingTilesManager.getSlidingTilesBoard().NUM_ROWS;
-        // create the tile button
-
         createTileButtons(this);
         setContentView(R.layout.activity_main);
         addUndoButtonListener();
@@ -225,7 +222,7 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
         display();
         saveToFile(LogInActivity.currentPlayer.getGameFile());
         if(slidingTilesManager.isGameOver()){
-            slidingTilesScoreboard.addScore(LogInActivity.currentPlayer.getAccount(), slidingTilesManager.getScore());
+            SlidingTilesStartingActivity.slidingTilesScoreboard.addScore(LogInActivity.currentPlayer.getAccount(), slidingTilesManager.getScore());
         }
     }
 

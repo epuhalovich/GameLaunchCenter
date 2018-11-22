@@ -1,48 +1,35 @@
 package fall2018.csc2017.slidingtiles.slidingtiles;
 
-import android.content.Context;
-import android.util.Log;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
+import fall2018.csc2017.slidingtiles.PhaseTwoObserver;
+import fall2018.csc2017.slidingtiles.PhaseTwoSubject;
 import fall2018.csc2017.slidingtiles.Score;
 import fall2018.csc2017.slidingtiles.Scoreboard;
 
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A scoreboard for sliding tiles that can return a representation of the users scoreboard and global
  * scoreboard for sliding tiles.
  */
 
-public class SlidingTilesScoreboard extends Scoreboard implements Serializable {
+public class SlidingTilesScoreboard extends Scoreboard implements Serializable, PhaseTwoSubject {
 
-//    private static ArrayList<Score> globalScores = new ArrayList<>();
 
-    /**
-     * A name of the file that store the object SlidingTilesScoreboard.
-     */
-    private static final String fileName = "slidingtilesscores.ser";
+    private static ArrayList<Score> globalScores;
+    private List<PhaseTwoObserver> observers;
 
-    /**
-     * A context.
-     */
-    private Context context;
-
-    /**
-     * Construct a new SlidingTilesScoreboard with context and load it from "globalscores.ser" if needed
-     * @param context the context to store SlidingTilesScoreboard in the phone's storage
-     */
-    public SlidingTilesScoreboard(Context context){
-        this.context = context;
-        loadFromFile();
+    public SlidingTilesScoreboard(){
+        globalScores = new ArrayList<>();
+        this.observers = new ArrayList<>();
     }
+
+    public static ArrayList<Score> getGlobalScores() {
+        return globalScores;
+    }
+
     /**
      * Add's a score to the SlidingTilesScoreboard and then sorts the scores
      * @param currentPlayerId username of current player
@@ -52,7 +39,7 @@ public class SlidingTilesScoreboard extends Scoreboard implements Serializable {
         Score s = new Score(currentPlayerId, score);
         globalScores.add(s);
         globalScores = sortScores(globalScores);
-        saveToFile(fileName);
+        notifyObservers();
     }
 
     /**
@@ -137,37 +124,17 @@ public class SlidingTilesScoreboard extends Scoreboard implements Serializable {
         return scores;
     }
 
-    private void loadFromFile() {
-
-        try {
-            InputStream inputStream = context.openFileInput(fileName);
-            if (inputStream != null) {
-                ObjectInputStream input = new ObjectInputStream(inputStream);
-                globalScores = (ArrayList<Score>) input.readObject();
-                inputStream.close();
-            }
-        } catch (FileNotFoundException e) {
-            Log.e("login activity", "File not found: " + e.toString());
-        }
-        catch (IOException e) {
-            Log.e("login activity", "Can not read file: " + e.toString());
-        } catch (ClassNotFoundException e) {
-            Log.e("login activity", "File contained unexpected data type: " + e.toString());
-        }
-    }
-
-    public void saveToFile(String fileName) {
-        try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(
-                    context.openFileOutput(fileName, MODE_PRIVATE));
-            outputStream.writeObject(globalScores);
-            outputStream.close();
-        } catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
-        }
+    public void register(PhaseTwoObserver obj){
+        if(obj == null) throw new NullPointerException("Null Observer");
+        if(!observers.contains(obj)) observers.add(obj);
     }
 
 
+    public void notifyObservers(){
+        for (PhaseTwoObserver obj : observers) {
+            obj.update();
+        }
+    }
 
 }
 

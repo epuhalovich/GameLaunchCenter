@@ -38,12 +38,14 @@ public class SlidingTilesStartingActivity extends AppCompatActivity implements P
      */
     public static int NumUndos = 3;
 
+    public static SlidingTilesScoreboard slidingTilesScoreboard;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        slidingTilesManager = new SlidingTilesManager(4, 4);(we don't need this line)
-
+        slidingTilesScoreboard = new SlidingTilesScoreboard();
+        slidingTilesScoreboard.register(new SlidingTilesScoreboardFileSaver(this));
         saveToFile(TEMP_SAVE_FILENAME);
 
         setContentView(R.layout.activity_starting_);
