@@ -28,7 +28,7 @@ import fall2018.csc2017.slidingtiles.R;
 /**
  * The game activity.
  */
-public class SlidingTilesGameActivity extends AppCompatActivity implements Observer, Serializable {
+public class SlidingTilesGameActivity extends AppCompatActivity implements Observer, Serializable, PhaseTwoSubject{
 
     private List<PhaseTwoObserver> observers;
     /**
@@ -224,6 +224,15 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
         if(slidingTilesManager.isGameOver()){
             SlidingTilesStartingActivity.slidingTilesScoreboard.addScore(LogInActivity.currentPlayer.getAccount(), slidingTilesManager.getScore());
         }
+    }
+    public void register(PhaseTwoObserver obj){
+
+    }
+
+
+    //method to notify observers of change
+    public void notifyObservers(){
+
     }
 
 }

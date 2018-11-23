@@ -23,7 +23,6 @@ public class SlidingTilesScoreboardFileSaver implements PhaseTwoObserver {
      * A name of the file that store the object SlidingTilesScoreboard.
      */
     private static final String fileName = "slidingtilesscores.ser";
-
     /**
      * A context.
      */
@@ -39,6 +38,10 @@ public class SlidingTilesScoreboardFileSaver implements PhaseTwoObserver {
     public SlidingTilesScoreboardFileSaver(Context context){
         this.context = context;
         loadFromFile();
+    }
+
+    public void setSubject(PhaseTwoSubject subject){
+        this.subject = (SlidingTilesScoreboard) subject;
     }
 
     public void update() {

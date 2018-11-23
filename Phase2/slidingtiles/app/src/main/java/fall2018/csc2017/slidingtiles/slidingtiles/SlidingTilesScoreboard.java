@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import fall2018.csc2017.slidingtiles.PhaseTwoObserver;
 import fall2018.csc2017.slidingtiles.PhaseTwoSubject;
 import fall2018.csc2017.slidingtiles.Score;
 import fall2018.csc2017.slidingtiles.Scoreboard;
+
 
 
 /**
@@ -18,16 +20,13 @@ import fall2018.csc2017.slidingtiles.Scoreboard;
 public class SlidingTilesScoreboard extends Scoreboard implements Serializable, PhaseTwoSubject {
 
 
-    private static ArrayList<Score> globalScores;
-    private List<PhaseTwoObserver> observers;
+    private ArrayList<Score> globalScores;
+    private static List<PhaseTwoObserver> observers;
+    private SlidingTilesScoreboardFileSaver subject;
 
     public SlidingTilesScoreboard(){
         globalScores = new ArrayList<>();
-        this.observers = new ArrayList<>();
-    }
-
-    public static ArrayList<Score> getGlobalScores() {
-        return globalScores;
+        observers = new ArrayList<>();
     }
 
     /**
@@ -126,7 +125,9 @@ public class SlidingTilesScoreboard extends Scoreboard implements Serializable, 
 
     public void register(PhaseTwoObserver obj){
         if(obj == null) throw new NullPointerException("Null Observer");
-        if(!observers.contains(obj)) observers.add(obj);
+        if(!observers.contains(obj))
+        {observers.add(obj);
+        obj.setSubject(this);}
     }
 
 
