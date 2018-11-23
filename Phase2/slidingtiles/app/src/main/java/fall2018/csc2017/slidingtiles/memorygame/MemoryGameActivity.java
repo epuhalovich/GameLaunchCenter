@@ -25,8 +25,13 @@ public class MemoryGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory);
 
+        Collections.shuffle(Arrays.asList(CardCollection));
+
+        FrontCardIcon();
+
         icon_11 = (ImageView) findViewById(R.id.icon_11);
         icon_11.setTag("11");
+        icon_11.setClickable(true);
         icon_11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -171,42 +176,43 @@ public class MemoryGameActivity extends AppCompatActivity {
         });
         scoretitle = (TextView) findViewById(R.id.scoretitle);
         score = (TextView) findViewById(R.id.score);
-
-        Collections.shuffle(Arrays.asList(CardCollection));
     }
-    private void CardIcon(ImageView icon, int card){
-        if(CardCollection[card]==10){
+    private void CardIcon(ImageView icon, int card) {
+        if (CardCollection[card] == 10) {
             icon.setImageResource(front10);
-        } else if(CardCollection[card]==11){
+        } else if (CardCollection[card] == 11) {
             icon.setImageResource(front11);
-        } else if(CardCollection[card]==12){
+        } else if (CardCollection[card] == 12) {
             icon.setImageResource(front12);
-        } else if(CardCollection[card]==13){
+        } else if (CardCollection[card] == 13) {
             icon.setImageResource(front13);
-        } else if(CardCollection[card]==14){
+        } else if (CardCollection[card] == 14) {
             icon.setImageResource(front14);
-        } else if(CardCollection[card]==15){
+        } else if (CardCollection[card] == 15) {
             icon.setImageResource(front15);
-        } else if(CardCollection[card]==16){
+        } else if (CardCollection[card] == 16) {
             icon.setImageResource(front16);
-        } else if(CardCollection[card]==17){
+        } else if (CardCollection[card] == 17) {
             icon.setImageResource(front17);
-        } else if(CardCollection[card]==20){
+        } else if (CardCollection[card] == 20) {
             icon.setImageResource(front20);
-        } else if(CardCollection[card]==21){
+        } else if (CardCollection[card] == 21) {
             icon.setImageResource(front21);
-        } else if(CardCollection[card]==22){
+        } else if (CardCollection[card] == 22) {
             icon.setImageResource(front22);
-        } else if(CardCollection[card]==23){
+        } else if (CardCollection[card] == 23) {
             icon.setImageResource(front23);
-        } else if(CardCollection[card]==24){
+        } else if (CardCollection[card] == 24) {
             icon.setImageResource(front24);
-        } else if(CardCollection[card]==25){
+        } else if (CardCollection[card] == 25) {
             icon.setImageResource(front25);
-        } else if(CardCollection[card]==26){
+        } else if (CardCollection[card] == 26) {
             icon.setImageResource(front26);
-        } else if(CardCollection[card]==27){
+        } else if (CardCollection[card] == 27) {
             icon.setImageResource(front27);
+        }
     }
-
+    private void FrontCardIcon(){
+            front10 = R.drawable.front_10
+    }
 }
