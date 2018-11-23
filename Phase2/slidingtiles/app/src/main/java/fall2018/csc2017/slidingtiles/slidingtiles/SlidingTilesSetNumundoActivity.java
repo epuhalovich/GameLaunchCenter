@@ -10,7 +10,6 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import fall2018.csc2017.slidingtiles.R;
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesStartingActivity;
 
 public class SlidingTilesSetNumundoActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
 
@@ -45,37 +44,37 @@ public class SlidingTilesSetNumundoActivity extends AppCompatActivity implements
     public boolean onMenuItemClick(MenuItem item){
         switch(item.getItemId()){
             case R.id.i5:
-                SlidingTilesStartingActivity.NumUndos = 5;
+                SlidingTilesStartingActivity.controller.setNumUndos(5);
                 makeToastText();
                 switchToStartingActivity();
                 return true;
 
             case R.id.i4:
-                SlidingTilesStartingActivity.NumUndos = 4;
+                SlidingTilesStartingActivity.controller.setNumUndos(4);
                 makeToastText();
                 switchToStartingActivity();
                 return true;
 
             case R.id.i3:
-                SlidingTilesStartingActivity.NumUndos = 3;
+                SlidingTilesStartingActivity.controller.setNumUndos(3);
                 makeToastText();
                 switchToStartingActivity();
                 return true;
 
             case R.id.i2:
-                SlidingTilesStartingActivity.NumUndos = 2;
+                SlidingTilesStartingActivity.controller.setNumUndos(2);
                 makeToastText();
                 switchToStartingActivity();
                 return true;
 
             case R.id.i1:
-                SlidingTilesStartingActivity.NumUndos = 1;
+                SlidingTilesStartingActivity.controller.setNumUndos(1);
                 makeToastText();
                 switchToStartingActivity();
                 return true;
 
             case R.id.i0:
-                SlidingTilesStartingActivity.NumUndos = 0;
+                SlidingTilesStartingActivity.controller.setNumUndos(0);
                 makeToastText();
                 switchToStartingActivity();
                 return true;

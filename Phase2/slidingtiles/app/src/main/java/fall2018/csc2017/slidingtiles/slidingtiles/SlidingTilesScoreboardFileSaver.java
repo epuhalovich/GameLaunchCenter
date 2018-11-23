@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import fall2018.csc2017.slidingtiles.PhaseTwoObserver;
@@ -17,7 +18,7 @@ import fall2018.csc2017.slidingtiles.Score;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class SlidingTilesScoreboardFileSaver implements PhaseTwoObserver {
+public class SlidingTilesScoreboardFileSaver implements Serializable, PhaseTwoObserver {
 
     /**
      * A name of the file that store the object SlidingTilesScoreboard.

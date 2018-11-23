@@ -3,13 +3,13 @@ package fall2018.csc2017.slidingtiles.slidingtiles;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 import fall2018.csc2017.slidingtiles.PhaseTwoObserver;
 import fall2018.csc2017.slidingtiles.PhaseTwoSubject;
 import fall2018.csc2017.slidingtiles.Score;
-import fall2018.csc2017.slidingtiles.Scoreboard;
-
+import fall2018.csc2017.slidingtiles.User;
 
 
 /**
@@ -17,16 +17,23 @@ import fall2018.csc2017.slidingtiles.Scoreboard;
  * scoreboard for sliding tiles.
  */
 
-public class SlidingTilesScoreboard extends Scoreboard implements Serializable, PhaseTwoSubject {
+public class SlidingTilesScoreboard implements Serializable, PhaseTwoSubject {
 
 
     private ArrayList<Score> globalScores;
     private static List<PhaseTwoObserver> observers;
-    private SlidingTilesScoreboardFileSaver subject;
 
     public SlidingTilesScoreboard(){
         globalScores = new ArrayList<>();
         observers = new ArrayList<>();
+    }
+
+    public ArrayList<Score> getGlobalScores() {
+        return globalScores;
+    }
+
+    public void setGlobalScores(ArrayList<Score> globalScores) {
+        this.globalScores = globalScores;
     }
 
     /**
@@ -121,6 +128,64 @@ public class SlidingTilesScoreboard extends Scoreboard implements Serializable, 
             merge(left, right, scores);
         }
         return scores;
+    }
+
+    /**
+     * Checks the Sliding Tiles scoreboard for the top scores.
+     * If userScoresOnly is true, only looks up scores for the current player.
+     * Returns a string of the top 5 (or less if less than 5 exist) scores for this game.
+     *
+     * @param userScoresOnly true when looking only for current player's scores
+     * @return scoreValues
+     */
+    public String getScoreValues(boolean userScoresOnly, User currentPlayer ) {
+
+        ArrayList<Score> scoresList;
+        int numScores;
+
+        if (userScoresOnly) {
+            scoresList = getUserScoreboard(currentPlayer);
+        }
+        else {
+            scoresList = globalScores;
+        }
+
+        if (scoresList.size() < 5) {
+            numScores = scoresList.size();
+        }
+        else {
+            numScores = 5;
+        }
+
+        StringBuilder scoreValues = new StringBuilder();
+        for (int i = 0; i < numScores; i++) {
+            Score currentItem = scoresList.get(i);
+            scoreValues.append(String.format(Locale.US, "%s: %d",
+                    currentItem.getUsername(), currentItem.getScore())).append("\n");
+        }
+        return scoreValues.toString();
+    }
+
+    /**
+     * Returns an ArrayList representing the global scoreboard for sliding tiles game.
+     * @return globalScores
+     */
+    public ArrayList<Score> getGlobalScoreboard(){
+        return globalScores;
+    }
+
+    /**
+     * Returns an ArrayList representing the users scoreboard for sliding tiles game.
+     * @return UserScores
+     */
+    public ArrayList<Score> getUserScoreboard(User current_player){
+        ArrayList<Score> UserScores = new ArrayList<>();
+        for(int i = 0; i < globalScores.size(); i++){
+            if(globalScores.get(i).getUsername().equals(current_player.getAccount())){
+                UserScores.add(globalScores.get(i));
+            }
+        }
+        return UserScores;
     }
 
     public void register(PhaseTwoObserver obj){
