@@ -29,13 +29,13 @@
         <activity android:name=".slidingtiles.SlidingTilesSetNumundoActivity" />
 
         <!-- SUDOKU -->
-        <activity android:name=".SudokuGameActivity">
+        <activity android:name=".SudokuGameActivity"/>
+        <activity android:name=".SudokuStartingActivity"/>
 
-        <!-- MEMORY GAME -->
+        <!-- MEMORY -->
+        <activity android:name=".memorygame.MemoryGameActivity"/>
 
 
-        </activity>
-        <activity android:name=".SudokuStartingActivity"></activity>
     </application>
 
 </manifest>
