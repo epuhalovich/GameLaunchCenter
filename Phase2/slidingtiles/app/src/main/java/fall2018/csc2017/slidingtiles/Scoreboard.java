@@ -16,19 +16,24 @@ import static android.content.Context.MODE_PRIVATE;
 public abstract class Scoreboard implements Serializable {
 
 
-    public ArrayList<Score> globalScores = new ArrayList<>();
+    public ArrayList<Score> globalScores;
 
 
     public Scoreboard(){}
 
-    public void setGlobalScores(ArrayList<Score> globalScores) {
-        this.globalScores = globalScores;
+    public ArrayList<Score> getGlobalScores() {
+         return globalScores;
     }
 
     public abstract void addScore(String currentPlayerId, int score);
 
 
+
     public abstract ArrayList<Score> sortScores(ArrayList<Score> scores);
+
+    public void setGlobalScores(ArrayList<Score> globalScores) {
+        this.globalScores = globalScores;
+    }
     /**
      * Checks the Sliding Tiles scoreboard for the top scores.
      * If userScoresOnly is true, only looks up scores for the current player.
@@ -43,10 +48,10 @@ public abstract class Scoreboard implements Serializable {
         int numScores;
 
         if (userScoresOnly) {
-            scoresList = this.getUserScoreboard(currentPlayer);
+            scoresList = getUserScoreboard(currentPlayer);
         }
         else {
-            scoresList = this.getGlobalScoreboard();
+            scoresList = globalScores;
         }
 
         if (scoresList.size() < 5) {

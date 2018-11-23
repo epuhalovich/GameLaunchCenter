@@ -45,7 +45,9 @@ public class SlidingTilesStartingActivity extends AppCompatActivity implements P
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         slidingTilesScoreboard = new SlidingTilesScoreboard();
-        slidingTilesScoreboard.register(new SlidingTilesScoreboardFileSaver(this));
+        SlidingTilesScoreboardFileSaver fileSaver = new SlidingTilesScoreboardFileSaver(this);
+        slidingTilesScoreboard.register(fileSaver);
+        slidingTilesScoreboard.setGlobalScores(fileSaver.globalScores);
         saveToFile(TEMP_SAVE_FILENAME);
 
         setContentView(R.layout.activity_starting_);
