@@ -161,7 +161,7 @@ class MyView extends View {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent ev) {
+    public boolean onTouchEvent(MotionEvent ev){
         if (ev.getAction() != MotionEvent.ACTION_DOWN) {
             return super.onTouchEvent(ev);
         }
@@ -172,6 +172,7 @@ class MyView extends View {
         mTouchX = ev.getX();
         mTouchY = ev.getY();
         if (sudokuManager.getemptySpot(changeToIndex(mTouchX,boxSide),changeToIndex(mTouchY,boxSide))){
+            
             return true;
         }
         invalidate();
