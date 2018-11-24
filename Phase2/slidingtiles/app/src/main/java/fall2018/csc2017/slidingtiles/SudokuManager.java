@@ -7,12 +7,14 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Stack;
 
 public class SudokuManager implements GameManager, Serializable{
     private String arr[] = { "1","2","3","4","5","6","7","8","9" };
     private Set<String> correct = new HashSet<>(Arrays.asList(arr));
     private SudokuBoard sudokuBoard;
     private int score = 0;
+    private Stack<Integer> undoPositionStack;
 //    private List<List<String>> puzzle = sudokuBoard.listSudoku;
 //    private List<List<String>> solution = sudokuBoard.puzzleSudoku;
 
@@ -32,6 +34,7 @@ public class SudokuManager implements GameManager, Serializable{
     public SudokuManager(int num){
         super();
         this.sudokuBoard = new SudokuBoard(num);
+        this.undoPositionStack = new Stack<>();
     }
 
     public List<List<String>> getPuzzle(){
@@ -111,27 +114,32 @@ public class SudokuManager implements GameManager, Serializable{
 
     @Override
     public int getScore() {
-        return 0;
+        return this.score;
     }
 
     @Override
     public boolean isGameOver() {
-        return false;
+        return this.sudokuBoard.listSudoku == this.sudokuBoard.puzzleSudoku;
     }
 
     @Override
     public boolean isValidTap(int Position) {
-        return false;
+        return checkSudoku(this.sudokuBoard.listSudoku);
     }
 
     public void touchFill(int x, int y, String number) {
-        this.sudokuBoard.fillNumber(x, y, number);
-        if (checkCorrect(x, y, number)){
-            this.score += 2;
-        }
+        this.sudokuBoard.puzzleSudoku.get(x).set(y, number);
+        this.undoPositionStack.push(x);
+        this.undoPositionStack.push(y);
+        score++;
     }
 
-    private boolean checkCorrect(int x, int y, String number) {
-        return (this.sudokuBoard.listSudoku.get(x).get(y) == number);
+    void tryUndo() {
+        if (!(this.undoPositionStack.empty())){
+            int y = undoPositionStack.pop();
+            int x = undoPositionStack.pop();
+            this.sudokuBoard.puzzleSudoku.get(x).set(y, "");
+            score++;
+        }
     }
 }
