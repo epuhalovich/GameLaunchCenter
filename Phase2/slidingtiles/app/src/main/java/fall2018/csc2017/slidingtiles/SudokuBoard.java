@@ -150,6 +150,10 @@ public class SudokuBoard implements Serializable {
         }
         return puzzle;
     }
+
+    public void fillNumber(int x, int y, String number){
+        this.puzzleSudoku.get(x).set(y, number);
+    }
 }
 
 

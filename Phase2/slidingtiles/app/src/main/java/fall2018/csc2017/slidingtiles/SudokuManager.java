@@ -12,6 +12,7 @@ public class SudokuManager implements GameManager, Serializable{
     private String arr[] = { "1","2","3","4","5","6","7","8","9" };
     private Set<String> correct = new HashSet<>(Arrays.asList(arr));
     private SudokuBoard sudokuBoard;
+    private int score = 0;
 //    private List<List<String>> puzzle = sudokuBoard.listSudoku;
 //    private List<List<String>> solution = sudokuBoard.puzzleSudoku;
 
@@ -123,7 +124,14 @@ public class SudokuManager implements GameManager, Serializable{
         return false;
     }
 
-    @Override
-    public void touchMove(int Position) {
+    public void touchFill(int x, int y, String number) {
+        this.sudokuBoard.fillNumber(x, y, number);
+        if (checkCorrect(x, y, number)){
+            this.score += 2;
+        }
+    }
+
+    private boolean checkCorrect(int x, int y, String number) {
+        return (this.sudokuBoard.listSudoku.get(x).get(y) == number);
     }
 }
