@@ -28,6 +28,11 @@ public class SlidingTilesScoreboard implements Serializable, PhaseTwoSubject {
         observers = new ArrayList<>();
     }
 
+    public SlidingTilesScoreboard(ArrayList<Score> globalScores){
+        this.globalScores = globalScores;
+        observers = new ArrayList<>();
+    }
+
     public ArrayList<Score> getGlobalScores() {
         return globalScores;
     }

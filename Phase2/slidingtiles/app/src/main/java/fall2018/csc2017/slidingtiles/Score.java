@@ -39,6 +39,14 @@ public class Score implements Comparable<Score>, Serializable {
         return userId;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Score)
+        {Score o = (Score) obj;
+        return (o.getUsername().equals(this.getUsername()) && o.getScore() == this.getScore());}
+        return false;
+    }
+
     /**
      * Making the Scores comparable
      * @param o Score being compared

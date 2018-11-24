@@ -18,12 +18,12 @@ public class SlidingTilesBoard extends Observable implements Serializable, Itera
     /**
      * The number of rows.
      */
-    int NUM_ROWS;
+    public int NUM_ROWS;
 
     /**
      * The number of rows.
      */
-    int NUM_COLS;
+    public int NUM_COLS;
 
     /**
      * The tiles on the board in row-major order.

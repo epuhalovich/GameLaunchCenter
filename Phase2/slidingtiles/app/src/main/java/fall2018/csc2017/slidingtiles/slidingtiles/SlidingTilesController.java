@@ -10,8 +10,9 @@ import fall2018.csc2017.slidingtiles.PhaseTwoObserver;
 import fall2018.csc2017.slidingtiles.PhaseTwoSubject;
 
 
-
-
+/**
+ * Control the view and model of a Sliding tiles game.
+ */
 public class SlidingTilesController implements PhaseTwoSubject {
 
 
@@ -20,34 +21,66 @@ public class SlidingTilesController implements PhaseTwoSubject {
      */
     private ArrayList<Button> tileButtons;
 
-    private int NumUndos;
+    /**
+     * The amount of undos in a sliding tiles game
+     */
+    private int NumUndos = 3;
 
+    /**
+     * The list of observers of this class
+     */
     private static List<PhaseTwoObserver> observers;
 
+    /**
+     * The SlidingTilesManager that is being controlled
+     */
     private SlidingTilesManager slidingTilesManager;
 
+    /**
+     * Create a new SlidingTilesController
+     */
     public SlidingTilesController (){
         observers = new ArrayList<>();
     }
 
+    /**
+     * Set the amount of undos available in the slidingtiles game
+     * @param numUndos the amount of undos
+     */
     public void setNumUndos(int numUndos) {
         NumUndos = numUndos;
     }
 
+    /**
+     * Return the manager for sliding tiles
+     * @return SlidingTilesManager
+     */
     public SlidingTilesManager getSlidingTilesManager() {
         return slidingTilesManager;
     }
 
+    /**
+     * Set a new slidingTilesManager for this class
+     * @param slidingTilesManager
+     */
     public void setSlidingTilesManager(SlidingTilesManager slidingTilesManager) {
         this.slidingTilesManager = slidingTilesManager;
     }
 
+    /**
+     * Set up a slidingtiles game in accordance with the selected level
+     * @param level the level the user has selected
+     */
     public void setUpSlidingTiles(String level) {
         slidingTilesManager = SlidingTilesManager.getLevel(level);
         slidingTilesManager.setNumUndos(NumUndos);
         notifyObservers();
     }
 
+    /**
+     * Return the array of tile buttons
+     * @return ArrayList</Button>
+     */
     public ArrayList<Button> getTileButtons() {
         return tileButtons;
     }
@@ -88,12 +121,21 @@ public class SlidingTilesController implements PhaseTwoSubject {
     }
 
 
-    void checkToAddScore(SlidingTilesScoreboard slidingTilesScoreboard, String user) {
+    /**
+     * Add a score to the slidingTilesScoreboard iff the game is finished
+     * @param slidingTilesScoreboard
+     * @param user
+     */
+    public void checkToAddScore(SlidingTilesScoreboard slidingTilesScoreboard, String user) {
         if (slidingTilesManager.isGameOver()) {
             slidingTilesScoreboard.addScore(user, slidingTilesManager.getScore());
         }
     }
 
+    /**
+     * Add an observer, obj, to this class
+     * @param obj The observer to be added
+     */
     public void register(PhaseTwoObserver obj){
         if(obj == null) throw new NullPointerException("Null Observer");
         if(!observers.contains(obj))
@@ -101,6 +143,9 @@ public class SlidingTilesController implements PhaseTwoSubject {
             obj.setSubject(this);}
     }
 
+    /**
+     * Update the observers of this class
+     */
     public void notifyObservers(){
         for (PhaseTwoObserver obj : observers) {
             obj.update();
