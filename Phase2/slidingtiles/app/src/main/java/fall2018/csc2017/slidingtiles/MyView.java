@@ -6,18 +6,21 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import java.util.Arrays;
 import java.util.List;
 
 import fall2018.csc2017.slidingtiles.slidingtiles.GestureDetectGridView;
 import fall2018.csc2017.slidingtiles.slidingtiles.MovementController;
 
 class MyView extends View {
+//    private View view;
     private List<List<String>> answer;
     private List<List<String>> puzzle;
     private SudokuManager sudokuManager;
@@ -80,24 +83,24 @@ class MyView extends View {
 //            }
 //        });
 //    }
-//
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        // the width and height of each small box.
+        this.boxSide = (w - 40) /9f;
+    }
 //    public MyView(Context context, AttributeSet attrs) {
 //        super(context, attrs);
 //        init(context);
 //    }
+    public void setBoxSide(float framsize){
+        this.boxSide = (framsize) / 9;
+    }
 
 //    public MyView(Context context, AttributeSet attrs, int defStyleAttr, int defstyleRes) {
 //        super(context, attrs, defStyleAttr, defstyleRes);
 //        init(context);
 //    }
-
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        // the width and height of each small box.
-        this.boxSide= (w - 40) /9f;
-    }
-
 //
 //    public MyView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 //        super(context, attrs, defStyleAttr, defStyleRes);
@@ -157,11 +160,33 @@ class MyView extends View {
         }
     }
 
-//    @Override
-//    public boolean onTouchEvent(MotionEvent ev) {
-//        mTouchX = ev.getX();
-//        mTouchY = ev.getY();
-//        return gDetector.onTouchEvent(ev);
-//    }
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        if (ev.getAction() != MotionEvent.ACTION_DOWN) {
+            return super.onTouchEvent(ev);
+        }
+        if (ev.getX()<20 || ev.getY()<20 || ev.getX()>(20 + 9 * boxSide)) {
+            Log.e("123", "点到边了");
+            return super.onTouchEvent(ev);
+        }
+        mTouchX = ev.getX();
+        mTouchY = ev.getY();
+        if (sudokuManager.getemptySpot(changeToIndex(mTouchX,boxSide),changeToIndex(mTouchY,boxSide))){
+            return true;
+        }
+        invalidate();
+        return true;
+
+    }
+
+    private int changeToIndex(float view, float boxSide){
+        int index = -1;
+        for(int i = 0; i!= 9; i++){
+            if ((20 + i * boxSide < view) && (20 + (i + 1) * boxSide > view)) {
+                index = i;
+            }
+        }
+        return index;
+    }
 
 }

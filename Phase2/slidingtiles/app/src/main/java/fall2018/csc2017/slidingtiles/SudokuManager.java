@@ -41,6 +41,15 @@ public class SudokuManager implements GameManager, Serializable{
         return sudokuBoard.listSudoku;
     }
 
+
+    public void setNumber(int row, int col, String number){
+        sudokuBoard.puzzleSudoku.get(row).set(col, number);
+    }
+
+    public void clearNumber(int row, int col){
+        sudokuBoard.puzzleSudoku.get(row).set(col, "");
+    }
+
     public boolean checkSudoku(List<List<String>> s){
         return checkSquares(s) && (checkColumns(s) && checkRows(s));
     }
@@ -106,6 +115,10 @@ public class SudokuManager implements GameManager, Serializable{
             }
         }
         return index;
+    }
+
+    public  boolean getemptySpot(int x, int y){
+        return this.getPuzzle().get(x).get(y).equals("");
     }
 
     @Override

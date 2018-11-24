@@ -28,7 +28,7 @@ public class SudokuStartingActivity extends AppCompatActivity implements PopupMe
     /**
      * A temporary save file.
      */
-    public static final String TEMP_SAVE_FILENAME = "save_file_tmp.ser";
+    public static final String TEMP_SAVE_FILENAME = "save_file_tmp_1.ser";
     /**
      * The board manager.
      */

@@ -1,9 +1,14 @@
 package fall2018.csc2017.slidingtiles;
 
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -30,22 +35,28 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     // the answer
     public List<List<String>> solution;
 
+    private MyView myView;
+
 //    public MyView myView = new MyView(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_sudoku);
         loadFromFile();
-//        myView.setSudokuManager(sudokuManager);
-//        setContentView(R.layout.activity_sudoku);
-        MyView myView = new MyView(this);
-        myView.setSudokuManager(sudokuManager);
-        setContentView(myView);
-
+        setContentView(R.layout.activity_sudoku);
+        initView();
     }
 
 
+    public void initView() {
+        MyView myView = new MyView(this);
+        myView.setSudokuManager(sudokuManager);
+        FrameLayout frameLayout = findViewById(R.id.sudokufram);
+//        int side = this.getWindow().getDecorView().getWidth();
+////        ConstraintLayout.LayoutParams oldParams= new ConstraintLayout.LayoutParams(side,side);
+////        frameLayout.setLayoutParams(oldParams);
+        frameLayout.addView(myView);
+    }
     @Override
     public void update(Observable observable, Object o) {
 
