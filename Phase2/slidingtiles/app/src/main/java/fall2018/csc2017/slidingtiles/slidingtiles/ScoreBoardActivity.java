@@ -24,21 +24,19 @@ public class ScoreBoardActivity extends AppCompatActivity {
     /**
      *The controller of this view
      */
-    private SlidingTilesScoreboard controller;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        controller = SlidingTilesStartingActivity.slidingTilesScoreboard;
         setContentView(R.layout.activity_score_board);
         addReturnButtonListener();
-
         TextView globalScoresText = findViewById(R.id.GlobalScores);
-        String globalScoreValues = controller.getScoreValues(false, currentPlayer);
+        String globalScoreValues = SlidingTilesStartingActivity.slidingTilesScoreboard.getScoreValues(false, currentPlayer);
         globalScoresText.setText(globalScoreValues);
 
         TextView userScoresText = findViewById(R.id.UserScores);
-        String userScoreValues = controller.getScoreValues(true, currentPlayer);
+        String userScoreValues = SlidingTilesStartingActivity.slidingTilesScoreboard.getScoreValues(true, currentPlayer);
         userScoresText.setText(userScoreValues);
     }
 
