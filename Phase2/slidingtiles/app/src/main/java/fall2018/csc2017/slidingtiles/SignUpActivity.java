@@ -20,7 +20,7 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        users = UserManager.getUserManger();
+        users = RegisterActivity.userManager;
         setupSignUpListener();
     }
 
@@ -35,7 +35,7 @@ public class SignUpActivity extends AppCompatActivity {
             String passWord = ((EditText)findViewById(R.id.passworda)).getText().toString();
             TextView textBox = findViewById(R.id.textboxa);
             try{
-                users.signUp(userName, passWord, this);
+                users.signUp(userName, passWord);
             }
             catch (DuplicateException e) {
                 textBox.setText("This username has been registered.");
