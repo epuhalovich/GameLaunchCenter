@@ -33,10 +33,6 @@ public class SudokuStartingActivity extends AppCompatActivity implements PopupMe
      * The board manager.
      */
     private SudokuManager sudokuManager;
-    /**
-     * The number of undos.
-     */
-    public static int NumUndos = 3;
 
 
     @Override
@@ -144,7 +140,7 @@ public class SudokuStartingActivity extends AppCompatActivity implements PopupMe
     }
 
     /**
-     * Switch to the SlidingTilesGameActivity view to play the game.
+     * Switch to the SudookuGameActivity view to play the game.
      */
     private void switchToGame() {
         saveToFile(TEMP_SAVE_FILENAME);
@@ -204,22 +200,6 @@ public class SudokuStartingActivity extends AppCompatActivity implements PopupMe
      */
 //    private void switchToScoreBoard(){
 //        Intent tmp = new Intent(this, ScoreBoardActivity.class);
-//        startActivity(tmp);
-//    }
-
-    /**
-     * Activate the setnumundo button.
-     */
-//    private void addSetUndoButtonListener() {
-//        Button UndoButton = findViewById(R.id.SetundoButton);
-//        UndoButton.setOnClickListener(v -> switchToSetNumundo());
-//    }
-
-    /**
-     * Switch to the SlidingTilesSetNumundoActivity view.
-     */
-//    private void switchToSetNumundo(){
-//        Intent tmp = new Intent(this, SlidingTilesSetNumundoActivity.class);
 //        startActivity(tmp);
 //    }
 }

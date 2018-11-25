@@ -47,6 +47,10 @@ public class LaunchCenterActivity extends AppCompatActivity implements PopupMenu
      */
     public boolean onMenuItemClick(MenuItem item){
         switch(item.getItemId()){
+            case R.id.game2:
+                switchToSudoku();
+                return true;
+
             case R.id.game1:
                 switchToSlidingTile();
                 return true;
@@ -61,6 +65,14 @@ public class LaunchCenterActivity extends AppCompatActivity implements PopupMenu
      */
     private void switchToSlidingTile() {
         Intent tmp = new Intent(this, SlidingTilesStartingActivity.class);
+        startActivity(tmp);
+    }
+
+    /**
+     * Switch to the sudoku starting acticity.
+     */
+    private void switchToSudoku() {
+        Intent tmp = new Intent(this, SudokuStartingActivity.class);
         startActivity(tmp);
     }
 
