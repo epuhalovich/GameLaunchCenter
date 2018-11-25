@@ -79,6 +79,46 @@ public class SlidingTilesBoard extends Observable implements Serializable, Itera
         notifyObservers();
     }
 
+    public boolean isSolvable(List<Tile> tiles) {
+        if (this.NUM_COLS == 3 || this.NUM_COLS == 5) {
+            return getNumInversion(tiles) % 2 == 0;
+        } else {
+            if (checkEmptyOnOdd()) {
+                return getNumInversion(tiles) % 2 == 1;
+            } else {
+                return getNumInversion(tiles) % 2 == 0;
+            }
+        }
+    }
+
+    private int getNumInversion(List<Tile> tiles){
+        int sum = 0;
+        for (int i = 0; i != tiles.size(); i++){
+            int sub = 0;
+            int currentId = tiles.get(i).getId();
+            if (currentId != 25) {
+                for (int j = i; j != tiles.size(); j++) {
+                    if (currentId > tiles.get(j).getId()) {
+                        sub++;
+                    }
+                }
+            }
+            sum += sub;
+        }
+        return sum;
+    }
+
+    private boolean checkEmptyOnOdd(){
+        boolean onOdd = false;
+        for (int i = 0; i != 4; i++){
+            if (this.getTile(0, i).getId() == 25 ||
+                    this.getTile(2, i).getId() == 25){
+                onOdd = true;
+            }
+        }
+        return onOdd;
+    }
+
     @Override
     public String toString() {
         return "SlidingTilesBoard{" +
