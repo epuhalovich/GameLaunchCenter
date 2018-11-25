@@ -131,12 +131,6 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
         display();
         SlidingTilesStartingActivity.controller.notifyObservers();
         SlidingTilesStartingActivity.controller.checkToAddScore(SlidingTilesStartingActivity.slidingTilesScoreboard, LogInActivity.currentPlayer.getAccount());
-        switchToScoreBoard();
         }
-
-    private void switchToScoreBoard(){
-        Intent tmp = new Intent(this, ScoreBoardActivity.class);
-        startActivity(tmp);
-    }
 
 }
