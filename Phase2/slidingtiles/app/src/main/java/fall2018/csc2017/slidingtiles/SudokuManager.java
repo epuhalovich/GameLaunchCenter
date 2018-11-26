@@ -133,11 +133,8 @@ public class SudokuManager implements GameManager,Serializable{
     public boolean isValidTap(int position) {
         int row = position / 9;
         int col = position % 9;
-        if(getemptySpot(row,col)){
-            return true;
-        }
+        return getemptySpot(row,col);
 //        return checkSudoku(this.sudokuBoard.listSudoku);
-        return false;
     }
 //
 //    public void touchFill(int x, int y, String number) {
