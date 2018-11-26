@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -23,6 +24,7 @@ class MyView extends View {
 //    private View view;
     private List<List<String>> answer;
     private List<List<String>> puzzle;
+    private boolean drawRect = false;
     private SudokuManager sudokuManager;
 //    private SudokuBoard sudokuBoard = new SudokuBoard(40);
     private float boxSide;
@@ -134,10 +136,13 @@ class MyView extends View {
                 canvas.drawLine(20, i * boxSide + 20, 20 + 9 * boxSide,i * boxSide + 20, black);
                 canvas.drawLine(i * boxSide + 20, 20,i * boxSide + 20,9 * boxSide + 20,black);
             }
-            drawNumber(canvas,sudokuManager.getPuzzle());
-
+//            drawNumber(canvas,sudokuManager.getPuzzle());
+//            if (drawRect){
+//                draw(canvas,changeToIndex(mTouchX,boxSide), changeToIndex(mTouchY,boxSide));
+//                drawRect = false;
+            }
         }
-    }
+
 //            super.onDraw(canvas);
 
 
@@ -155,29 +160,43 @@ class MyView extends View {
                 float x = 20 + (col + (float)(0.5)) * boxSide;
                 float y = 20 + (row + (float)(0.5)) * boxSide - ((fontMetrics.top +
                         fontMetrics.bottom)) / 2;
-                canvas.drawText(matrix.get(row).get(col), x, y, numberPaint);
+//                canvas.drawText(matrix.get(row).get(col), x, y, numberPaint);
             }
         }
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent ev){
-        if (ev.getAction() != MotionEvent.ACTION_DOWN) {
-            return super.onTouchEvent(ev);
-        }
-        if (ev.getX()<20 || ev.getY()<20 || ev.getX()>(20 + 9 * boxSide)) {
-            Log.e("123", "点到边了");
-            return super.onTouchEvent(ev);
-        }
-        mTouchX = ev.getX();
-        mTouchY = ev.getY();
-        if (sudokuManager.getemptySpot(changeToIndex(mTouchX,boxSide),changeToIndex(mTouchY,boxSide))){
-            
-            return true;
-        }
-        invalidate();
-        return true;
+//    @Override
+//    public boolean onTouchEvent(MotionEvent ev){
+//        if (ev.getAction() != MotionEvent.ACTION_DOWN) {
+//            return super.onTouchEvent(ev);
+//        }
+//        if (ev.getX()<20 || ev.getY()<20 || ev.getX()>(20 + 9 * boxSide)) {
+//            Log.e("123", "点到边了");
+//            return super.onTouchEvent(ev);
+//        }
+//        mTouchX = ev.getX();
+//        mTouchY = ev.getY();
+//        int row = changeToIndex(mTouchX,boxSide);
+//        int col = changeToIndex(mTouchY,boxSide);
+//        if (sudokuManager.getemptySpot(row,col)){
+//            drawRect = true;
+//            invalidate();
+//            return true;
+//        }
+//        return true;
+//
+//    }
 
+    private void draw(Canvas canvas, int row, int col){
+        Rect rectangle = new Rect(Math.round(20 + row * boxSide) + 3, Math.round(20 + col * boxSide)+3
+                , Math.round(20 + (row + 1)*boxSide)-3, Math.round(20 + (col + 1) * boxSide -3));
+        Paint paint = new Paint();
+        paint.setColor(Color.GRAY);
+        canvas.drawRect(rectangle, paint);
+    }
+
+    private float changeToRect(int x){
+        return 20 + x * boxSide;
     }
 
     private int changeToIndex(float view, float boxSide){

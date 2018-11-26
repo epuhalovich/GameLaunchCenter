@@ -1,14 +1,11 @@
 package fall2018.csc2017.slidingtiles;
 
-import android.support.constraint.ConstraintLayout;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,12 +13,14 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesManager;
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesStartingActivity;
+import fall2018.csc2017.slidingtiles.sudoku.CustomAdapt;
+import fall2018.csc2017.slidingtiles.sudoku.GestureDetectView;
+import fall2018.csc2017.slidingtiles.sudoku.SudokuGrid;
 
 public class SudokuGameActivity extends AppCompatActivity implements Observer, Serializable {
 
@@ -29,15 +28,53 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     //SudokuManager
     public SudokuManager sudokuManager;
 
+    private ArrayList<Button> BoxButtons;
+
     // the puzzle
     public List<List<String>> puzzle;
 
     // the answer
     public List<List<String>> solution;
 
-    private MyView myView;
+//    private MyView myView;
+    private static int columnWidth, columnHeight;
+    private GestureDetectView gridView;
 
 //    public MyView myView = new MyView(this);
+
+    public ArrayList<Button> getBoxButtons(){
+        return BoxButtons;
+    }
+
+
+    public void display() {
+        gridView.setAdapter(new CustomAdapt(BoxButtons, columnWidth, columnHeight));
+    }
+
+    public void createTileButtons(Context context) {
+        SudokuGrid[][] sudokuPuzzle = sudokuManager.getPuzzle();
+        BoxButtons = new ArrayList<>();
+        for (int row = 0; row != 9; row++) {
+            for (int col = 0; col != 9; col++) {
+                Button tmp = new Button(context);
+                tmp.setText(sudokuPuzzle[row][col].getNumber());
+                tmp.setBackgroundResource(R.drawable.custom_button);
+                tmp.setId(sudokuPuzzle[row][col].getId());
+                this.BoxButtons.add(tmp);
+            }
+        }
+    }
+
+//    private void updateTileButtons() {
+//        SudokuGrid[][] sudokuBoard = sudokuManager.getPuzzle();
+//        for (Button b : BoxButtons) {
+//            for(int row = 0; row != 9; row ++){
+//                for(int col = 0; col != 9; col++){
+//                    b.setText(sudokuBoard.get(row).get(col));
+//                }
+//            }
+//        }
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +86,38 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
 
 
     public void initView() {
-        MyView myView = new MyView(this);
-        myView.setSudokuManager(sudokuManager);
-        FrameLayout frameLayout = findViewById(R.id.sudokufram);
+//        init View with My View
+//        MyView myView = new MyView(this);
+//        myView.setSudokuManager(sudokuManager);
+//        FrameLayout frameLayout = findViewById(R.id.sudokufram);
 //        int side = this.getWindow().getDecorView().getWidth();
 ////        ConstraintLayout.LayoutParams oldParams= new ConstraintLayout.LayoutParams(side,side);
 ////        frameLayout.setLayoutParams(oldParams);
-        frameLayout.addView(myView);
+//        frameLayout.addView(myView);
+
+    //initView with gridView
+        gridView = findViewById(R.id.sudokugrid);
+        gridView.setNumColumns(9);
+        gridView.setSudokuManager(sudokuManager);
+        createTileButtons(this);
+//        SlidingTilesStartingActivity.controller.getSlidingTilesManager().getSlidingTilesBoard().addObserver(this);
+        // Observer sets up desired dimensions as well as calls our display function
+        gridView.getViewTreeObserver().addOnGlobalLayoutListener(
+                new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        gridView.getViewTreeObserver().removeOnGlobalLayoutListener(
+                                this);
+                        int displayWidth = gridView.getMeasuredWidth();
+                        int displayHeight = gridView.getMeasuredHeight();
+
+                        columnWidth = displayWidth / 9;
+                        columnHeight = displayHeight / 9;
+//                        gridView.setBoxSide(displayWidth / 9);
+
+                        display();
+                    }
+                });
     }
     @Override
     public void update(Observable observable, Object o) {

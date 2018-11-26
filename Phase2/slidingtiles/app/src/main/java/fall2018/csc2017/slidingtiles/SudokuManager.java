@@ -9,10 +9,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
-public class SudokuManager implements GameManager, Serializable{
+import fall2018.csc2017.slidingtiles.sudoku.SudokuGrid;
+
+public class SudokuManager implements GameManager,Serializable{
     private String arr[] = { "1","2","3","4","5","6","7","8","9" };
     private Set<String> correct = new HashSet<>(Arrays.asList(arr));
-    private SudokuBoard sudokuBoard;
+    public SudokuBoard sudokuBoard;
     private int score = 0;
     private Stack<Integer> undoPositionStack;
 //    private List<List<String>> puzzle = sudokuBoard.listSudoku;
@@ -37,21 +39,12 @@ public class SudokuManager implements GameManager, Serializable{
         this.undoPositionStack = new Stack<>();
     }
 
-    public List<List<String>> getPuzzle(){
+    public SudokuGrid[][] getPuzzle(){
         return sudokuBoard.puzzleSudoku;
     }
 
-    public List<List<String>> getSolultion(){
+    public SudokuGrid[][] getSolution(){
         return sudokuBoard.listSudoku;
-    }
-
-
-    public void setNumber(int row, int col, String number){
-        sudokuBoard.puzzleSudoku.get(row).set(col, number);
-    }
-
-    public void clearNumber(int row, int col){
-        sudokuBoard.puzzleSudoku.get(row).set(col, "");
     }
 
     public boolean checkSudoku(List<List<String>> s){
@@ -121,8 +114,8 @@ public class SudokuManager implements GameManager, Serializable{
         return index;
     }
 
-    public  boolean getemptySpot(int x, int y){
-        return this.getPuzzle().get(x).get(y).equals("");
+    public boolean getemptySpot(int x, int y){
+        return this.getPuzzle()[x][y].getNumber().equals("");
     }
 
     @Override
@@ -132,27 +125,35 @@ public class SudokuManager implements GameManager, Serializable{
 
     @Override
     public boolean isGameOver() {
-        return this.sudokuBoard.listSudoku == this.sudokuBoard.puzzleSudoku;
+//        return this.sudokuBoard.listSudoku == this.sudokuBoard.puzzleSudoku;
+        return false;
     }
 
     @Override
-    public boolean isValidTap(int Position) {
-        return checkSudoku(this.sudokuBoard.listSudoku);
-    }
-
-    public void touchFill(int x, int y, String number) {
-        this.sudokuBoard.puzzleSudoku.get(x).set(y, number);
-        this.undoPositionStack.push(x);
-        this.undoPositionStack.push(y);
-        score++;
-    }
-
-    void tryUndo() {
-        if (!(this.undoPositionStack.empty())){
-            int y = undoPositionStack.pop();
-            int x = undoPositionStack.pop();
-            this.sudokuBoard.puzzleSudoku.get(x).set(y, "");
-            score++;
+    public boolean isValidTap(int position) {
+        int row = position / 9;
+        int col = position % 9;
+        if(getemptySpot(row,col)){
+            return true;
         }
+//        return checkSudoku(this.sudokuBoard.listSudoku);
+        return false;
     }
+//
+//    public void touchFill(int x, int y, String number) {
+////        this.sudokuBoard.puzzleSudoku.get(x).set(y, number);
+////        this.undoPositionStack.push(x);
+////        this.undoPositionStack.push(y);
+////        score++;
+//
+//    }
+//
+////    void tryUndo() {
+////        if (!(this.undoPositionStack.empty())){
+////            int y = undoPositionStack.pop();
+////            int x = undoPositionStack.pop();
+////            this.sudokuBoard.puzzleSudoku.get(x).set(y, "");
+////            score++;
+////        }
+////    }
 }

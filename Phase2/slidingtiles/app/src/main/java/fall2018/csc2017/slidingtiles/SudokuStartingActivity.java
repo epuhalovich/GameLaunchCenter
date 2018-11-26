@@ -18,6 +18,7 @@ import java.io.ObjectOutputStream;
 import java.util.NoSuchElementException;
 
 import fall2018.csc2017.slidingtiles.slidingtiles.ScoreBoardActivity;
+import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesController;
 import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesGameActivity;
 import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesManager;
 import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesSetNumundoActivity;
@@ -37,6 +38,9 @@ public class SudokuStartingActivity extends AppCompatActivity implements PopupMe
      * The number of undos.
      */
     public static int NumUndos = 3;
+
+    public static SudokuController controller;
+
 
 
     @Override

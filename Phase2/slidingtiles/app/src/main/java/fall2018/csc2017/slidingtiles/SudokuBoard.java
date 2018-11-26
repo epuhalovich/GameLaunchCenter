@@ -6,10 +6,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import fall2018.csc2017.slidingtiles.sudoku.SudokuGrid;
+
 public class SudokuBoard implements Serializable {
     private Random rand = new Random();
-    public  List<List<String>> listSudoku;
-    public List<List<String>> puzzleSudoku;
+    public SudokuGrid[][] listSudoku;
+    public SudokuGrid[][] puzzleSudoku;
     private final String[][][] seedSudokus = {{
             {"1", "2","3","4","5","6","7","8","9"},
             {"4","5","6","7","8","9","1","2","3"},
@@ -32,9 +34,10 @@ public class SudokuBoard implements Serializable {
 
 
     public SudokuBoard(int level){
-        this.listSudoku = getListSampleSudoku(getNewSudoku());
+        this.listSudoku = getSudoku(getNewSudoku());
         this.puzzleSudoku = createPuzzle(level, this.listSudoku);
     }
+
 
     // create a new sudoku based on the sample by swapping rows and cols by 20 times.
     private String[][] getNewSudoku(){
@@ -126,26 +129,34 @@ public class SudokuBoard implements Serializable {
     }
 
     // change a String[][] to a list
-    public static List<List<String>> getListSampleSudoku(String[][] clone){
-        List<List<String>> sample = new ArrayList<>();
-        for (int i = 0; i < 9; i++) {
-            List<String> a = Arrays.asList(clone[i]);
-            sample.add(a);
+    private static SudokuGrid[][] getSudoku(String[][] clone){
+        SudokuGrid[][] sample = new SudokuGrid[9][9];
+        int id = 0;
+        for (int i = 0; i != 9; i++) {
+            for(int j = 0; j != 9; j++){
+                SudokuGrid grid = new SudokuGrid(id, R.drawable.custom_button,clone[i][j]);
+                sample[i][j]  = grid;
+                id++;
+            }
         }
         return sample;
     }
+
+//    private static int createBackground(int i, int j) {
+//
+//    }
 
     /**
      * make the implemented sudoku board a puzzle.
      * @param num the number of boxes that are empty.
      */
 
-    public List<List<String>> createPuzzle(int num, List<List<String>> solution) {
-        List<List<String>> puzzle = new ArrayList<>(solution);
+    public SudokuGrid[][] createPuzzle(int num, SudokuGrid[][] solution) {
+        SudokuGrid[][] puzzle = solution.clone();
         for (int i = 0; i != 9; i++) {
             for (int j = 0; j != num; j++){
                 int x = rand.nextInt(9);
-                puzzle.get(i).set(x, "");
+                puzzle[i][x].setNumber("");
             }
         }
         return puzzle;

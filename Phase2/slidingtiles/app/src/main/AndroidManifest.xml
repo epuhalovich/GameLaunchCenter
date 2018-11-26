@@ -33,7 +33,6 @@
         <activity android:name=".SudokuStartingActivity"/>
 
         <!-- MEMORY -->
-        <activity android:name=".memorygame.MemoryGameActivity"/>
 
 
     </application>
