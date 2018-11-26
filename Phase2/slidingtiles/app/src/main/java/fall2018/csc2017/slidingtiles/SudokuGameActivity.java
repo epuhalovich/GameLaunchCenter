@@ -85,23 +85,23 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
         loadFromFile();
         setContentView(R.layout.activity_sudoku);
         initView();
-//        addUndoButtonListener();
+        addUndoButtonListener();
     }
 
-//    private void addUndoButtonListener() {
-//        Button undoButton = findViewById(R.id.sudokuundo);
-//        undoButton.setOnClickListener(v -> {
-//            List<List<String>> before = sudokuManager.getPuzzle();
-//            sudokuManager.tryUndo();
-//            if (before == sudokuManager.getPuzzle()){
-//                makeToastNothingToUndo();
-//            }
-//        });
-//    }
-//
-//    private void makeToastNothingToUndo() {
-//        Toast.makeText(this, "there is nothing to undo", Toast.LENGTH_SHORT).show();
-//    }
+    private void addUndoButtonListener() {
+        Button undoButton = findViewById(R.id.sudokuundo);
+        undoButton.setOnClickListener(v -> {
+            SudokuGrid[][] before = sudokuManager.getPuzzle();
+            sudokuManager.tryUndo();
+            if (before == sudokuManager.getPuzzle()){
+                makeToastNothingToUndo();
+            }
+        });
+    }
+
+    private void makeToastNothingToUndo() {
+        Toast.makeText(this, "there is nothing to undo", Toast.LENGTH_SHORT).show();
+    }
 
 
     public void initView() {
