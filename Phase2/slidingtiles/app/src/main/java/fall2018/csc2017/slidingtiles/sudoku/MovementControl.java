@@ -23,7 +23,7 @@ public class MovementControl {
 
     public void processTapMovement(Context context, int position, boolean display) {
         if (sudokuManager.getNumberToFill().equals("")) {
-            Toast.makeText(context, "Please choose a number ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Please choose a number first ", Toast.LENGTH_SHORT).show();
         } else {
             if (sudokuManager.isValidTap(position)) {
                 sudokuManager.touchFill(position);
