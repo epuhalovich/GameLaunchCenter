@@ -40,11 +40,11 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     // the answer
     public List<List<String>> solution;
 
-//    private MyView myView;
+    // private MyView myView;
     private static int columnWidth, columnHeight;
     private GestureDetectView gridView;
 
-//    public MyView myView = new MyView(this);
+    // public MyView myView = new MyView(this);
 
     public ArrayList<Button> getBoxButtons(){
         return BoxButtons;
@@ -52,6 +52,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
 
 
     public void display() {
+        updateTileButtons();
         gridView.setAdapter(new CustomAdapt(BoxButtons, columnWidth, columnHeight));
     }
 
@@ -61,25 +62,26 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
         for (int row = 0; row != 9; row++) {
             for (int col = 0; col != 9; col++) {
                 Button tmp = new Button(context);
-                SudokuGrid setUp = sudokuPuzzle[row][col];
-                tmp.setText(setUp.getNumber());
-                tmp.setTextSize(17);
-                tmp.setBackgroundResource(setUp.getBackground());
+//                tmp.setText(sudokuPuzzle[row][col].getNumber());
+                tmp.setBackgroundResource(R.drawable.custom_button);
+                tmp.setId(sudokuPuzzle[row][col].getId());
                 this.BoxButtons.add(tmp);
             }
         }
     }
 
-//    private void updateTileButtons() {
-//        SudokuGrid[][] sudokuBoard = sudokuManager.getPuzzle();
-//        for (Button b : BoxButtons) {
-//            for(int row = 0; row != 9; row ++){
-//                for(int col = 0; col != 9; col++){
-//                    b.setText(sudokuBoard.get(row).get(col));
-//                }
-//            }
-//        }
-//    }
+    private void updateTileButtons() {
+        SudokuGrid[][] sudokuBoard = sudokuManager.getPuzzle();
+        int buttonPosition = 0;
+        for(int row = 0; row != 9; row ++){
+            for(int col = 0; col != 9; col++){
+                Button b = BoxButtons.get(buttonPosition);
+                b.setText(sudokuBoard[row][col].getNumber());
+                b.setTextSize(17);
+                buttonPosition ++;
+                }
+            }
+        }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +90,27 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
         setContentView(R.layout.activity_sudoku);
         initView();
         addUndoButtonListener();
+        addOneButtonListener();
+    }
+
+    private void addOneButtonListener() {
+        Button oneButton = findViewById(R.id.number1);
+        oneButton.setOnClickListener(v -> {
+            if (sudokuManager.checkRepeated()){
+                makeToastCantFillIn();
+            } else{
+                sudokuManager.setNumberToFill("1");
+                makeToastChooseSpot();
+            }
+        });
+    }
+
+    private void makeToastCantFillIn() {
+        Toast.makeText(this, "Can't fill in this number(repeated)", Toast.LENGTH_SHORT).show();
+    }
+
+    private void makeToastChooseSpot() {
+        Toast.makeText(this, "Please choose a spot to fill in this number", Toast.LENGTH_SHORT).show();
     }
 
     private void addUndoButtonListener() {
@@ -121,6 +144,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
         gridView.setNumColumns(9);
         gridView.setSudokuManager(sudokuManager);
         createTileButtons(this);
+        sudokuManager.addObserver(this);
 //        SlidingTilesStartingActivity.controller.getSlidingTilesManager().getSlidingTilesBoard().addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function
         gridView.getViewTreeObserver().addOnGlobalLayoutListener(
@@ -142,26 +166,11 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     }
     @Override
     public void update(Observable observable, Object o) {
-          display();
+        display();
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 

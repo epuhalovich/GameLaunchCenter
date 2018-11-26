@@ -22,23 +22,17 @@ public class MovementControl {
     }
 
     public void processTapMovement(Context context, int position, boolean display) {
-        if (sudokuManager.isValidTap(position)) {
-//            sudokuManager.touchFill(position);
-            if (sudokuManager.isGameOver()) {
-                Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
-            }
-            else{
-//                if(previousPosition == 0){
-//                    previousPosition = position;
-//                }
-//                else if(previousPosition != currectPosition){
-//                    setBackground(previousPosition,"Original");
-//                }
-                resetBackground(position,"Pressed");
-                Toast.makeText(context, "Please Fill In A Number ", Toast.LENGTH_SHORT).show();
-            }
+        if (sudokuManager.getNumberToFill().equals("")) {
+            Toast.makeText(context, "Please choose a number ", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "Invalid Tap ", Toast.LENGTH_SHORT).show();
+            if (sudokuManager.isValidTap(position)) {
+                sudokuManager.touchFill(position);
+                if (sudokuManager.isGameOver()) {
+                    Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(context, "Invalid Tap ", Toast.LENGTH_SHORT).show();
+            }
         }
     }
     private void resetBackground(int position, String mode){
