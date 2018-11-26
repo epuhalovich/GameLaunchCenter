@@ -3,11 +3,11 @@
 
 ## Contact Information
 
-* Luke (Kyungseoup) Han: (437) 970-2292, kyungseoup.han@mail.utoronto.ca
-* Ellen Puhalovich: (416) 833-6771, ellen.puhalovich@mail.utoronto.ca
-* Allen (Xuanzhong) Zhao:  (647) 673-5798, xuanzhong.zhao@mail.utoronto.ca
-* Nick Perrin: (647) 965-7083, nick.perrin@mail.utoronto.ca
-* Katherine (Keying) Chen: (647) 992-2327, kkeying.chen@mail.utoronto.ca
+* Luke (Kyungseoup) Han: (437) 970-2292, kyungseoup.han@mail.utoronto.ca, 'LukeHan'
+* Ellen Puhalovich: (416) 833-6771, ellen.puhalovich@mail.utoronto.ca, 'ellenpuhalovich'
+* Allen (Xuanzhong) Zhao:  (647) 673-5798, xuanzhong.zhao@mail.utoronto.ca, 'zhaoxuanzhong'
+* Nick Perrin: (647) 965-7083, nick.perrin@mail.utoronto.ca, 'perrinni'
+* Katherine (Keying) Chen: (647) 992-2327, kkeying.chen@mail.utoronto.ca, 'chenkey8'
 
 ## Primary Communication Tools
 
