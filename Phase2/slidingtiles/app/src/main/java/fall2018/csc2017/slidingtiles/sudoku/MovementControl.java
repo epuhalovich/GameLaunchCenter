@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles.slidingtiles;
+package fall2018.csc2017.slidingtiles.sudoku;
 
 import android.content.Context;
 import android.widget.Toast;

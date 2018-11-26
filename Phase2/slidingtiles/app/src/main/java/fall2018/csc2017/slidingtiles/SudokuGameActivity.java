@@ -60,9 +60,9 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
         for (int row = 0; row != 9; row++) {
             for (int col = 0; col != 9; col++) {
                 Button tmp = new Button(context);
-                tmp.setText(sudokuPuzzle[row][col].getNumber());
-                tmp.setBackgroundResource(R.drawable.custom_button);
-                tmp.setId(sudokuPuzzle[row][col].getId());
+                SudokuGrid setUp = sudokuPuzzle[row][col];
+                tmp.setText(setUp.getNumber());
+                tmp.setBackgroundResource(setUp.getBackground());
                 this.BoxButtons.add(tmp);
             }
         }
@@ -140,12 +140,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     }
     @Override
     public void update(Observable observable, Object o) {
-
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
+          display();
     }
 
 
