@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.Observable;
 import java.util.Observer;
 
-import fall2018.csc2017.slidingtiles.CustomAdapter;
+import fall2018.csc2017.slidingtiles.slidingtiles.CustomAdapter;
 import fall2018.csc2017.slidingtiles.LogInActivity;
 import fall2018.csc2017.slidingtiles.R;
 

@@ -18,6 +18,7 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
     public SudokuBoard sudokuBoard;
     private int score = 0;
     private Stack<Integer> undoPositionStack;
+    private String numberToFill = "";
 //    private List<List<String>> puzzle = sudokuBoard.listSudoku;
 //    private List<List<String>> solution = sudokuBoard.puzzleSudoku;
 
@@ -46,6 +47,14 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
 
     public SudokuGrid[][] getSolution(){
         return sudokuBoard.listSudoku;
+    }
+
+    public String getNumberToFill() {
+        return this.numberToFill;
+    }
+
+    public void setNumberToFill(String numberToFill) {
+        this.numberToFill = numberToFill;
     }
 
     public boolean checkSudoku(List<List<String>> s){
@@ -116,7 +125,7 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
     }
 
     public boolean getemptySpot(int x, int y){
-        return this.getPuzzle()[x][y].getNumber().equals("");
+        return ((this.getPuzzle())[x][y]).getNumber().equals("");
     }
 
     @Override
@@ -137,10 +146,13 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
 //        return checkSudoku(this.sudokuBoard.listSudoku);
     }
 
-    public void touchFill(int x, int y, String number) {
-        this.sudokuBoard.puzzleSudoku[x][y].setNumber(number);
+    public void touchFill(int position) {
+        int x = position / 9;
+        int y = position % 9;
+        ((this.getPuzzle())[x][y]).setNumber(this.numberToFill);
         this.undoPositionStack.push(x);
         this.undoPositionStack.push(y);
+        this.numberToFill = "";
         score++;
         setChanged();
         notifyObservers();
@@ -153,5 +165,9 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
             this.sudokuBoard.puzzleSudoku[x][y].setNumber("");
             score++;
         }
+    }
+
+    public boolean checkRepeated(){
+        return false;
     }
 }
