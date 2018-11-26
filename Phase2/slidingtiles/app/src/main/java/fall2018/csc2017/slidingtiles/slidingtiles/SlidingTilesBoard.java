@@ -79,6 +79,10 @@ public class SlidingTilesBoard extends Observable implements Serializable, Itera
         notifyObservers();
     }
 
+    /**
+     * https://www.cs.bham.ac.uk/~mdr/teaching/modules04/java2/TilesSolvability.html
+     * @param tiles
+     */
     public boolean isSolvable(List<Tile> tiles) {
         if (this.NUM_COLS == 3 || this.NUM_COLS == 5) {
             return getNumInversion(tiles) % 2 == 0;
@@ -91,6 +95,10 @@ public class SlidingTilesBoard extends Observable implements Serializable, Itera
         }
     }
 
+    /**
+     * return number of inversions.
+     * @param tiles
+     */
     private int getNumInversion(List<Tile> tiles){
         int sum = 0;
         for (int i = 0; i != tiles.size(); i++){
@@ -108,6 +116,9 @@ public class SlidingTilesBoard extends Observable implements Serializable, Itera
         return sum;
     }
 
+    /**
+     * return whether the empty tile is on the odd rows.
+     */
     private boolean checkEmptyOnOdd(){
         boolean onOdd = false;
         for (int i = 0; i != 4; i++){
