@@ -63,6 +63,10 @@ public class SlidingTilesManager implements GameManager, Serializable {
 
         Collections.shuffle(tiles);
         this.slidingTilesBoard = new SlidingTilesBoard(tiles, rows, cols);
+        while (!(this.slidingTilesBoard.isSolvable(tiles))){
+            Collections.shuffle(tiles);
+            this.slidingTilesBoard = new SlidingTilesBoard(tiles, rows, cols);
+        }
 
         this.numUndos = 3;
         this.undoDirectionStack = new Stack<>();

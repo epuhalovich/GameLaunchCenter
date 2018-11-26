@@ -12,46 +12,50 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+
 import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A UserManager to manage users.
  */
 
-public class UserManager implements Serializable{
+public class UserManager implements Serializable, PhaseTwoSubject{
 
     /**
      * A list that store all users.
      */
-    private ArrayList<User> allUsers = new ArrayList<>();
+    private ArrayList<User> allUsers;
+
 
     /**
-     * A name of the file that store the object UserManager.
+     * The list of observers of this class
      */
-    private static final String fileName = "allUsers.ser";
-
-    /**
-     * A private static UserManager
-     */
-    private static UserManager u;
+    private static List<PhaseTwoObserver> observers;
 
     /**
      * Construct a new UserManager with context and load it from "allUsers.ser" if needed.
      */
-    private UserManager() {
+    public UserManager() {
+        this.allUsers = new ArrayList<>();
+        observers = new ArrayList<>();
     }
 
     /**
-     * Construct a getter to create new UserManager iff UserManager hasn't been created.
+     * Return the list of users
+     * @return ArrayList<User>
      */
-
-    public static UserManager getUserManger(){
-        if(u == null){
-            u = new UserManager();
-        }
-        return u;
+    public ArrayList<User> getAllUsers() {
+        return allUsers;
     }
 
+    /**
+     * Set this UserManager's user list
+     * @param allUsers
+     */
+    public void setAllUsers(ArrayList<User> allUsers) {
+        this.allUsers = allUsers;
+    }
 
     /**
      * Return the index of the user in UserManger iff there exists a user with the account name.
@@ -81,7 +85,7 @@ public class UserManager implements Serializable{
      * @throws AccountsException if user doesn't provide username
      * @throws NoPassWordException if user doesn't provide password
      */
-    public void signUp(String account, String password, Context context) throws DuplicateException, AccountsException,
+    public void signUp(String account, String password) throws DuplicateException, AccountsException,
             NoPassWordException {
         if (hasAccount(account) != -1) {
             throw new DuplicateException();
@@ -93,14 +97,7 @@ public class UserManager implements Serializable{
             throw new NoPassWordException();
         }
         allUsers.add(new User(account, password));
-        try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(
-                    context.openFileOutput(fileName, MODE_PRIVATE));
-            outputStream.writeObject(allUsers);
-            outputStream.close();
-        } catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
-        }
+        notifyObservers();
     }
 
     /**
@@ -124,25 +121,18 @@ public class UserManager implements Serializable{
         }
     }
 
-    /**
-     *  Load the UserManager.
-     */
-    public void loadFromFile(Context context) {
+    public void register(PhaseTwoObserver obj){
+        if(obj == null) throw new NullPointerException("Null Observer");
+        if(!observers.contains(obj))
+        {observers.add(obj);
+            obj.setSubject(this);}
+    }
 
-        try {
-            InputStream inputStream = context.openFileInput(fileName);
-            if (inputStream != null) {
-                ObjectInputStream input = new ObjectInputStream(inputStream);
-                allUsers = (ArrayList<User>) input.readObject();
-                inputStream.close();
-            }
-        } catch (FileNotFoundException e) {
-            Log.e("login activity", "File not found: " + e.toString());
-        }
-        catch (IOException e) {
-            Log.e("login activity", "Can not read file: " + e.toString());
-        } catch (ClassNotFoundException e) {
-            Log.e("login activity", "File contained unexpected data type: " + e.toString());
+
+    //method to notify observers of change
+    public void notifyObservers(){
+        for (PhaseTwoObserver obj : observers) {
+            obj.update();
         }
     }
 }

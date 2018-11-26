@@ -26,7 +26,7 @@ public class LogInActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-        users = UserManager.getUserManger();
+        users = RegisterActivity.userManager;
         setupSignInListener();
     }
 

@@ -7,14 +7,18 @@ import android.widget.Button;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    public static UserManager userManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         setupSignInListener();
         setupSignUpListener();
-        UserManager u = UserManager.getUserManger();
-        u.loadFromFile(this);
+        userManager = new UserManager();
+        UserFileSaver fileSaver = new UserFileSaver(this);
+        userManager.register(fileSaver);
+        userManager.setAllUsers(fileSaver.getAllUsers());
 
     }
 
@@ -36,8 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
     public void setupSignUpListener(){
         Button signUp = findViewById(R.id.signUp);
         signUp.setOnClickListener((v) -> {
-//            Intent tmp = new Intent(this, SignUpActivity.class);
-            Intent tmp = new Intent(this, SudokuStartingActivity.class);
+            Intent tmp = new Intent(this, SignUpActivity.class);
             startActivity(tmp);
         });
 
