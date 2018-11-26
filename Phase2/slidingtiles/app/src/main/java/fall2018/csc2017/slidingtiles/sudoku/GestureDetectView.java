@@ -14,9 +14,7 @@ import android.widget.GridView;
 
 import fall2018.csc2017.slidingtiles.SudokuGameActivity;
 import fall2018.csc2017.slidingtiles.SudokuManager;
-import fall2018.csc2017.slidingtiles.slidingtiles.MovementControl;
-import fall2018.csc2017.slidingtiles.slidingtiles.MovementController;
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesManager;
+import fall2018.csc2017.slidingtiles.sudoku.MovementControl;
 
 public class GestureDetectView extends GridView {
     public static final int SWIPE_MIN_DISTANCE = 100;
