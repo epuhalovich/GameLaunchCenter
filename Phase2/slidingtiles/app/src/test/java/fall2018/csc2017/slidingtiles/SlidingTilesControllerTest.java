@@ -52,7 +52,7 @@ public class SlidingTilesControllerTest {
             slidingTilesManager.tryUndo();
         }
 
-        when(slidingTilesManager.getNumUndos()).thenReturn(0);
+        Assert.assertEquals(0, slidingTilesManager.getNumUndos());
     }
 
     @Test
