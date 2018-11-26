@@ -173,7 +173,7 @@ public class SlidingTilesManager implements GameManager, Serializable {
      * Checks if there are undo moves left, and if so, swaps tiles in the reverse order of
      * the last move.
      */
-    void tryUndo() {
+    public void tryUndo() {
         if (this.numUndos > 0 && !(this.undoDirectionStack.empty() && this.undoPositionStack.empty())) {
             numUndos--;
             int position = undoPositionStack.pop();
