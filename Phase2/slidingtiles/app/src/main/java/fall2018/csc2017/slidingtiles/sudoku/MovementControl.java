@@ -20,7 +20,7 @@ public class MovementControl {
 
     public void processTapMovement(Context context, int position, boolean display) {
         if (sudokuManager.isValidTap(position)) {
-//            sudokuManager.touchMove(position);
+//            sudokuManager.touchFill(position);
             if (sudokuManager.isGameOver()) {
                 Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
             }

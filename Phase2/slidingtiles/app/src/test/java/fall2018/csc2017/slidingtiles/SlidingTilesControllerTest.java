@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesBoard;
 import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesController;
@@ -35,6 +36,23 @@ public class SlidingTilesControllerTest {
         int boardDimension = controller.getSlidingTilesManager().getSlidingTilesBoard().NUM_ROWS * controller.getSlidingTilesManager().getSlidingTilesBoard().NUM_COLS;
         Assert.assertEquals(9, boardDimension);
         Assert.assertEquals(3, controller.getSlidingTilesManager().getNumUndos());
+    }
+
+    @Test
+    public void testUndoCount(){
+        SlidingTilesManager slidingTilesManager = mock(SlidingTilesManager.class);
+        Random random = new Random();
+        int numUndos = random.nextInt(6);
+        slidingTilesManager.setNumUndos(numUndos);
+
+        for (int i = 0; i < numUndos; i++) {
+            slidingTilesManager.touchMove(random.nextInt(3));
+        }
+        for (int i = 0; i < numUndos; i++) {
+            slidingTilesManager.tryUndo();
+        }
+
+        Assert.assertEquals(0, slidingTilesManager.getNumUndos());
     }
 
     @Test

@@ -8,10 +8,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.Stack;
+import java.util.Observable;
 
 import fall2018.csc2017.slidingtiles.sudoku.SudokuGrid;
 
-public class SudokuManager implements GameManager,Serializable{
+public class SudokuManager extends Observable implements GameManager,Serializable{
     private String arr[] = { "1","2","3","4","5","6","7","8","9" };
     private Set<String> correct = new HashSet<>(Arrays.asList(arr));
     public SudokuBoard sudokuBoard;
@@ -125,35 +126,32 @@ public class SudokuManager implements GameManager,Serializable{
 
     @Override
     public boolean isGameOver() {
-//        return this.sudokuBoard.listSudoku == this.sudokuBoard.puzzleSudoku;
-        return false;
+        return this.sudokuBoard.listSudoku == this.sudokuBoard.puzzleSudoku;
     }
 
     @Override
     public boolean isValidTap(int position) {
         int row = position / 9;
         int col = position % 9;
-        if(getemptySpot(row,col)){
-            return true;
-        }
+        return getemptySpot(row,col);
 //        return checkSudoku(this.sudokuBoard.listSudoku);
-        return false;
     }
-//
-//    public void touchFill(int x, int y, String number) {
-////        this.sudokuBoard.puzzleSudoku.get(x).set(y, number);
-////        this.undoPositionStack.push(x);
-////        this.undoPositionStack.push(y);
-////        score++;
-//
-//    }
-//
-////    void tryUndo() {
-////        if (!(this.undoPositionStack.empty())){
-////            int y = undoPositionStack.pop();
-////            int x = undoPositionStack.pop();
-////            this.sudokuBoard.puzzleSudoku.get(x).set(y, "");
-////            score++;
-////        }
-////    }
+
+    public void touchFill(int x, int y, String number) {
+        this.sudokuBoard.puzzleSudoku[x][y].setNumber(number);
+        this.undoPositionStack.push(x);
+        this.undoPositionStack.push(y);
+        score++;
+        setChanged();
+        notifyObservers();
+    }
+
+    public void tryUndo() {
+        if (!(this.undoPositionStack.empty())){
+            int y = undoPositionStack.pop();
+            int x = undoPositionStack.pop();
+            this.sudokuBoard.puzzleSudoku[x][y].setNumber("");
+            score++;
+        }
+    }
 }
