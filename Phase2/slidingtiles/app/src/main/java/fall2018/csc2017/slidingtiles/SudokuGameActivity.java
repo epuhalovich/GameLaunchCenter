@@ -1,6 +1,7 @@
 package fall2018.csc2017.slidingtiles;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -62,6 +63,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
                 Button tmp = new Button(context);
                 SudokuGrid setUp = sudokuPuzzle[row][col];
                 tmp.setText(setUp.getNumber());
+                tmp.setTextSize(17);
                 tmp.setBackgroundResource(setUp.getBackground());
                 this.BoxButtons.add(tmp);
             }
@@ -141,6 +143,26 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     @Override
     public void update(Observable observable, Object o) {
           display();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 

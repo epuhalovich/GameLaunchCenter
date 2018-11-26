@@ -15,8 +15,6 @@ import android.widget.GridView;
 import fall2018.csc2017.slidingtiles.SudokuGameActivity;
 import fall2018.csc2017.slidingtiles.SudokuManager;
 import fall2018.csc2017.slidingtiles.sudoku.MovementControl;
-import fall2018.csc2017.slidingtiles.slidingtiles.MovementController;
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesManager;
 
 public class GestureDetectView extends GridView {
     public static final int SWIPE_MIN_DISTANCE = 100;
@@ -112,6 +110,26 @@ public class GestureDetectView extends GridView {
 
     public void setBoxSide(int boxSide) {
         this.boxSide = boxSide;
+    }
+
+
+    @Override
+    protected void dispatchDraw(Canvas canvas){
+        super.dispatchDraw(canvas);
+        Paint boarder;
+        boarder = new Paint();
+        boarder.setStyle(Paint.Style.STROKE);
+        boarder.setColor(Color.BLACK);
+        boarder.setStrokeWidth(5);
+        float height  = getMeasuredHeight() / 9;
+        float width  = getMeasuredWidth() / 9;
+        for(int i = 0; i <= 9 ;i+=3){
+            //draw horizontal line
+            canvas.drawLine(0,height * i,getMeasuredWidth() - 5,height * i ,boarder);
+            //draw vertical line
+            canvas.drawLine(width * i, 0, width * i, getMeasuredHeight() - 5, boarder);
+        }
+
     }
 
 //    @Override

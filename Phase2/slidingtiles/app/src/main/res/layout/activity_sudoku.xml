@@ -172,15 +172,15 @@
 
     <fall2018.csc2017.slidingtiles.sudoku.GestureDetectView
         android:id="@+id/sudokugrid"
-        android:layout_width="365dp"
-        android:layout_height="344dp"
+        android:layout_width="370dp"
+        android:layout_height="380dp"
         android:layout_marginStart="11dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="11dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="39dp"
         app:layout_constraintBottom_toTopOf="@+id/number1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.81"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
