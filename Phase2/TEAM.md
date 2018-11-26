@@ -1,4 +1,4 @@
-# TEAM AGREEMENT
+# TEAM AGREEMENT (Group 0669)
 ***
 
 ## Contact Information & Responsibilities
