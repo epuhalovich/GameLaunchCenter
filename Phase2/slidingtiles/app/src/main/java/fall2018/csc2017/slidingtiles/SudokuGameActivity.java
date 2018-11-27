@@ -119,113 +119,73 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     private void addOneButtonListener() {
         Button button = findViewById(R.id.number1);
         button.setOnClickListener(v -> {
-            if (sudokuManager.checkRepeated()){
-                makeToastCantFillIn();
-            } else{
-                sudokuManager.setNumberToFill("1");
-                makeToastChooseSpot();
-            }
+            sudokuManager.setNumberToFill("1");
+            makeToastChooseSpot();
         });
     }
 
     private void addTwoButtonListener() {
         Button button = findViewById(R.id.number2);
         button.setOnClickListener(v -> {
-            if (sudokuManager.checkRepeated()){
-                makeToastCantFillIn();
-            } else{
-                sudokuManager.setNumberToFill("2");
-                makeToastChooseSpot();
-            }
+            sudokuManager.setNumberToFill("2");
+            makeToastChooseSpot();
         });
     }
 
     private void addThreeButtonListener() {
         Button button = findViewById(R.id.number3);
         button.setOnClickListener(v -> {
-            if (sudokuManager.checkRepeated()){
-                makeToastCantFillIn();
-            } else{
-                sudokuManager.setNumberToFill("3");
-                makeToastChooseSpot();
-            }
+            sudokuManager.setNumberToFill("3");
+            makeToastChooseSpot();
         });
     }
 
     private void addFourButtonListener() {
         Button button = findViewById(R.id.number4);
         button.setOnClickListener(v -> {
-            if (sudokuManager.checkRepeated()){
-                makeToastCantFillIn();
-            } else{
-                sudokuManager.setNumberToFill("4");
-                makeToastChooseSpot();
-            }
+            sudokuManager.setNumberToFill("4");
+            makeToastChooseSpot();
         });
     }
 
     private void addFiveButtonListener() {
         Button button = findViewById(R.id.number5);
         button.setOnClickListener(v -> {
-            if (sudokuManager.checkRepeated()){
-                makeToastCantFillIn();
-            } else{
-                sudokuManager.setNumberToFill("5");
-                makeToastChooseSpot();
-            }
+            sudokuManager.setNumberToFill("5");
+            makeToastChooseSpot();
         });
     }
 
     private void addSixButtonListener() {
         Button button = findViewById(R.id.number6);
         button.setOnClickListener(v -> {
-            if (sudokuManager.checkRepeated()){
-                makeToastCantFillIn();
-            } else{
-                sudokuManager.setNumberToFill("6");
-                makeToastChooseSpot();
-            }
+            sudokuManager.setNumberToFill("6");
+            makeToastChooseSpot();
         });
     }
 
     private void addSevenButtonListener() {
         Button button = findViewById(R.id.number7);
         button.setOnClickListener(v -> {
-            if (sudokuManager.checkRepeated()){
-                makeToastCantFillIn();
-            } else{
-                sudokuManager.setNumberToFill("7");
-                makeToastChooseSpot();
-            }
+            sudokuManager.setNumberToFill("7");
+            makeToastChooseSpot();
         });
     }
 
     private void addEightButtonListener() {
         Button button = findViewById(R.id.number8);
         button.setOnClickListener(v -> {
-            if (sudokuManager.checkRepeated()){
-                makeToastCantFillIn();
-            } else{
-                sudokuManager.setNumberToFill("8");
-                makeToastChooseSpot();
-            }
+            sudokuManager.setNumberToFill("8");
+            makeToastChooseSpot();
         });
     }
 
     private void addNineButtonListener() {
         Button button = findViewById(R.id.number9);
         button.setOnClickListener(v -> {
-            if (sudokuManager.checkRepeated()){
-                makeToastCantFillIn();
-            } else{
-                sudokuManager.setNumberToFill("9");
-                makeToastChooseSpot();
-            }
+            sudokuManager.setNumberToFill("9");
+            makeToastChooseSpot();
         });
-    }
-
-    private void makeToastCantFillIn() {
-        Toast.makeText(this, "Can't fill in this number(repeated)", Toast.LENGTH_SHORT).show();
     }
 
     private void makeToastChooseSpot() {

@@ -66,7 +66,15 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
 
     @Override
     public boolean isGameOver() {
-        return this.sudokuBoard.listSudoku == this.sudokuBoard.puzzleSudoku;
+        int correct = 0;
+        for (int i = 0; i != 9; i++){
+            for (int j = 0; j != 9; j++){
+                if (this.sudokuBoard.puzzleSudoku[i][j].getNumber().equals(sudokuBoard.listSudoku[i][j].getNumber())){
+                    correct ++;
+                }
+            }
+        }
+        return correct == 81;
     }
 
     @Override
@@ -97,7 +105,43 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
         notifyObservers();
     }
 
-    public boolean checkRepeated(){
-        return false;
+    private boolean checkSelectedRow(int row){
+        int wrongRow = 0;
+        for (SudokuGrid sudokuGrid : this.getPuzzle()[row]){
+            if (sudokuGrid.getNumber().equals(numberToFill)){
+                wrongRow ++;
+            }
+        }
+        return wrongRow != 0;
+    }
+
+    private boolean checkSelectedColoumn(int col){
+        int wrongCol = 0;
+        for (int i = 0; i != 9; i++){
+            if (this.getPuzzle()[i][col].getNumber().equals(numberToFill)){
+                wrongCol ++;
+            }
+        }
+        return wrongCol != 0;
+    }
+
+    private boolean checkSelectedSquare(int row, int col){
+        int beginRow = (row/3) * 3;
+        int beginCol = (col/3) * 3;
+        int wrongSquare = 0;
+        for(int i = beginRow; i < (beginRow + 3); i++){
+            for(int j = beginCol ;j < (beginCol + 3); j++){
+                if (this.getPuzzle()[i][j].getNumber().equals(numberToFill)){
+                    wrongSquare ++;
+                }
+            }
+        }
+        return wrongSquare != 0;
+    }
+
+    public boolean checkRepeated(int position){
+        int x = position / 9;
+        int y = position % 9;
+        return checkSelectedColoumn(y) && checkSelectedRow(x) && checkSelectedSquare(x, y);
     }
 }

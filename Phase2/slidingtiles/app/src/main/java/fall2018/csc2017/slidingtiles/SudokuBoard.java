@@ -148,7 +148,13 @@ public class SudokuBoard implements Serializable {
      */
 
     public SudokuGrid[][] createPuzzle(int num, SudokuGrid[][] solution) {
-        SudokuGrid[][] puzzle = solution.clone();
+        SudokuGrid[][] puzzle = new SudokuGrid[9][9];
+        for (int i = 0; i != 9; i++) {
+            for (int j = 0; j != 9; j++){
+                SudokuGrid current = solution[i][j];
+                puzzle[i][j] = new SudokuGrid(current.getId(), current.getBackground(), current.getNumber());
+            }
+        }
         for (int i = 0; i != 9; i++) {
             for (int j = 0; j != num; j++){
                 int x = rand.nextInt(9);
