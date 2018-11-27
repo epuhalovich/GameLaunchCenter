@@ -98,6 +98,22 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
         addSevenButtonListener();
         addEightButtonListener();
         addNineButtonListener();
+        addSaveButtonListerner();
+    }
+
+    private void addSaveButtonListerner() {
+        Button saveButton = findViewById(R.id.sudokusave);
+        saveButton.setOnClickListener(v -> {
+//            saveToFile(LogInActivity.currentPlayer.getGameFile());
+            makeToastSavedText();
+        });
+    }
+
+    /**
+     * Display that a game was saved successfully.
+     */
+    private void makeToastSavedText() {
+        Toast.makeText(this, "Game Saved", Toast.LENGTH_SHORT).show();
     }
 
     private void addOneButtonListener() {

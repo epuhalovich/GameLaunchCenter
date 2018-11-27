@@ -142,10 +142,6 @@ public class SudokuBoard implements Serializable {
         return sample;
     }
 
-//    private static int createBackground(int i, int j) {
-//
-//    }
-
     /**
      * make the implemented sudoku board a puzzle.
      * @param num the number of boxes that are empty.

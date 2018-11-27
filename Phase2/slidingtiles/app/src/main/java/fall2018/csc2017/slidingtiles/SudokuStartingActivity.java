@@ -42,14 +42,10 @@ public class SudokuStartingActivity extends AppCompatActivity implements PopupMe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        slidingTilesManager = new SlidingTilesManager(4, 4);(we don't need this line)
-
         setContentView(R.layout.activity_sudoku_starting);
         addStartButtonListener();
-//        addLoadButtonListener();
+        addLoadButtonListener();
 //        addViewScoreButtonListener();
-//        addSetUndoButtonListener();
-        // save the sudokuboard in to the temptsavefile
 //        saveToFile(TEMP_SAVE_FILENAME);
 
     }
@@ -101,27 +97,32 @@ public class SudokuStartingActivity extends AppCompatActivity implements PopupMe
 
     private void setUpSudokuBoard(String level) {
         sudokuManager = SudokuManager.getLevel(level);
-//        slidingTilesManager.setNumUndos(NumUndos);
-//        saveToFile(LogInActivity.currentPlayer.getGameFile());
     }
 
     /**
      * Activate the load button.
      */
-//    private void addLoadButtonListener() {
-//        Button loadButton = findViewById(R.id.LoadButton);
-//        loadButton.setOnClickListener(v -> {
-//            loadFromFile(LogInActivity.currentPlayer.getGameFile());
-//            if (sudokuManager != null){
-//                saveToFile(TEMP_SAVE_FILENAME);
-//                makeToastLoadedText();
-//                switchToGame();
-//            }
-//            else{
-//                makeToastNoLoadedText();
-//            }
-//        });
-//    }
+    private void addLoadButtonListener() {
+        Button loadButton = findViewById(R.id.sudokuload);
+        loadButton.setOnClickListener(v -> {
+            loadFromFile(LogInActivity.currentPlayer.getSudokuFile());
+            if (sudokuManager != null){
+                saveToFile(TEMP_SAVE_FILENAME);
+                makeToastLoadedText();
+                switchToGame();
+            }
+            else{
+//                loadFromFile(TEMP_SAVE_FILENAME);
+//                if (sudokuManager != null){
+//                    saveToFile(TEMP_SAVE_FILENAME);
+//                    makeToastLoadedText();
+//                    switchToGame();
+//                }
+//                else{
+                makeToastNoLoadedText();
+            }
+        });
+}
 
     /**
      * Display that a game was loaded successfully.
@@ -147,7 +148,7 @@ public class SudokuStartingActivity extends AppCompatActivity implements PopupMe
      * Switch to the SudookuGameActivity view to play the game.
      */
     private void switchToGame() {
-        saveToFile(TEMP_SAVE_FILENAME);
+        saveToFile(LogInActivity.currentPlayer.getSudokuFile());
         Intent tmp = new Intent(this, SudokuGameActivity.class);
         startActivity(tmp);
     }

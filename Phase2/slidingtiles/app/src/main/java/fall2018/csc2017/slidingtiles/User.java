@@ -10,12 +10,14 @@ public class User implements Serializable {
     private String account;
     private String password;
     private String gameFile;
+    private String sudokuFile;
 
 
     public User(String account, String password) {
         this.account = account;
         this.password = password;
         this.gameFile = this.account + ".ser";
+        this.sudokuFile = this.account + "sudoku.ser";
     }
 
     /**
@@ -36,6 +38,9 @@ public class User implements Serializable {
      * Returns this user's password.
      */
     public String getPassword() { return password; }
+
+    public String getSudokuFile(){return  sudokuFile;
+    }
 
     @Override
     public boolean equals(Object obj) {
