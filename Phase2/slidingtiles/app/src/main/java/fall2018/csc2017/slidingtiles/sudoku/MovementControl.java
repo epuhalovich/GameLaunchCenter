@@ -38,9 +38,14 @@ public class MovementControl extends Observable {
             Toast.makeText(context, "Please choose a number first ", Toast.LENGTH_SHORT).show();
         } else {
             if (sudokuManager.isValidTap(position)) {
-                sudokuManager.touchFill(position);
-                if (sudokuManager.isGameOver()) {
-                    Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
+                if (sudokuManager.checkRepeated(position)){
+                    Toast.makeText(context, "Can't fill in this number(repeated)", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    sudokuManager.touchFill(position);
+                    if (sudokuManager.isGameOver()) {
+                        Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             } else {
                 Toast.makeText(context, "Invalid Tap ", Toast.LENGTH_SHORT).show();
