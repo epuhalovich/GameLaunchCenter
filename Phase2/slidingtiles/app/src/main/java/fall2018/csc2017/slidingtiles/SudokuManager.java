@@ -142,6 +142,6 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
     public boolean checkRepeated(int position){
         int x = position / 9;
         int y = position % 9;
-        return checkSelectedColoumn(y) && checkSelectedRow(x) && checkSelectedSquare(x, y);
+        return checkSelectedColoumn(y) || checkSelectedRow(x) || checkSelectedSquare(x, y);
     }
 }
