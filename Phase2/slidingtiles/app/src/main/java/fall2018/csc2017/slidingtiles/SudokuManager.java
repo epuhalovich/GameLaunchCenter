@@ -1,5 +1,7 @@
 package fall2018.csc2017.slidingtiles;
 
+import android.widget.Toast;
+
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -51,6 +53,10 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
 
     public String getNumberToFill() {
         return this.numberToFill;
+    }
+
+    public Stack<Integer> getUndoPositionStack() {
+        return undoPositionStack;
     }
 
     public void setNumberToFill(String numberToFill) {
@@ -159,12 +165,12 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
     }
 
     public void tryUndo() {
-        if (!(this.undoPositionStack.empty())){
-            int y = undoPositionStack.pop();
-            int x = undoPositionStack.pop();
-            this.sudokuBoard.puzzleSudoku[x][y].setNumber("");
-            score++;
-        }
+        int y = undoPositionStack.pop();
+        int x = undoPositionStack.pop();
+        this.sudokuBoard.puzzleSudoku[x][y].setNumber("");
+        score++;
+        setChanged();
+        notifyObservers();
     }
 
     public boolean checkRepeated(){

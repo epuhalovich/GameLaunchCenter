@@ -35,7 +35,7 @@ public class MovementControl extends Observable {
         if(backgrounds.size() == 0){ setUpBackgrounds();}
         setUpBackground(position);
         if (sudokuManager.getNumberToFill().equals("")) {
-            Toast.makeText(context, "Please choose a number ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Please choose a number first ", Toast.LENGTH_SHORT).show();
         } else {
             if (sudokuManager.isValidTap(position)) {
                 sudokuManager.touchFill(position);
