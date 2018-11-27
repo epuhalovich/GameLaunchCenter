@@ -62,9 +62,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
         for (int row = 0; row != 9; row++) {
             for (int col = 0; col != 9; col++) {
                 Button tmp = new Button(context);
-//                tmp.setText(sudokuPuzzle[row][col].getNumber());
-                tmp.setBackgroundResource(R.drawable.custom_button);
-                tmp.setId(sudokuPuzzle[row][col].getId());
+                tmp.setBackgroundResource(sudokuPuzzle[row][col].getBackground());
                 this.BoxButtons.add(tmp);
             }
         }
@@ -78,6 +76,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
                 Button b = BoxButtons.get(buttonPosition);
                 b.setText(sudokuBoard[row][col].getNumber());
                 b.setTextSize(17);
+                b.setBackgroundResource(sudokuBoard[row][col].getBackground());
                 buttonPosition ++;
                 }
             }
@@ -144,7 +143,10 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
         gridView.setNumColumns(9);
         gridView.setSudokuManager(sudokuManager);
         createTileButtons(this);
+        gridView.setButtonArrayList(BoxButtons);
         sudokuManager.addObserver(this);
+        gridView.getmController().setGameActivity(this);
+        gridView.getmController().addObserver(this);
 //        SlidingTilesStartingActivity.controller.getSlidingTilesManager().getSlidingTilesBoard().addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function
         gridView.getViewTreeObserver().addOnGlobalLayoutListener(

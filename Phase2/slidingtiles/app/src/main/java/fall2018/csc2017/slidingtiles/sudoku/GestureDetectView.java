@@ -10,13 +10,18 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.widget.Button;
 import android.widget.GridView;
+
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import fall2018.csc2017.slidingtiles.SudokuGameActivity;
 import fall2018.csc2017.slidingtiles.SudokuManager;
 import fall2018.csc2017.slidingtiles.sudoku.MovementControl;
 
-public class GestureDetectView extends GridView {
+public class GestureDetectView extends GridView{
     public static final int SWIPE_MIN_DISTANCE = 100;
     public static final int SWIPE_MAX_OFF_PATH = 100;
     public static final int SWIPE_THRESHOLD_VELOCITY = 100;
@@ -25,6 +30,7 @@ public class GestureDetectView extends GridView {
     private boolean mFlingConfirmed = false;
     private float mTouchX;
     private float mTouchY;
+    private ArrayList<Button> buttonArrayList;
     private int boxSide;
     private SudokuManager sudokuManager;
 
@@ -69,6 +75,14 @@ public class GestureDetectView extends GridView {
             }
 
         });
+    }
+
+    public MovementControl getmController() {
+        return mController;
+    }
+
+    public void setButtonArrayList(ArrayList<Button> buttonArrayList) {
+        this.buttonArrayList = buttonArrayList;
     }
 
     @Override

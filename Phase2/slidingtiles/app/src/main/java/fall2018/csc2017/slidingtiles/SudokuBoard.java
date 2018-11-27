@@ -157,6 +157,7 @@ public class SudokuBoard implements Serializable {
             for (int j = 0; j != num; j++){
                 int x = rand.nextInt(9);
                 puzzle[i][x].setNumber("");
+                puzzle[i][x].setBackground(R.drawable.custom_button_empty);
             }
         }
         return puzzle;
