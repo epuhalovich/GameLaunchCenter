@@ -160,7 +160,7 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
 //        return checkSudoku(this.sudokuBoard.listSudoku);
     }
 
-    public void touchFill(int position) {
+    public void touchMove(int position) {
         int x = position / 9;
         int y = position % 9;
         ((this.getPuzzle())[x][y]).setNumber(this.numberToFill);

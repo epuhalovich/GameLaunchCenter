@@ -1,5 +1,4 @@
-package fall2018.csc2017.slidingtiles.slidingtiles;
-
+package fall2018.csc2017.slidingtiles;
 
 import android.content.Context;
 import android.util.Log;
@@ -12,19 +11,13 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import fall2018.csc2017.slidingtiles.PhaseTwoObserver;
-import fall2018.csc2017.slidingtiles.PhaseTwoSubject;
-import fall2018.csc2017.slidingtiles.Score;
-import fall2018.csc2017.slidingtiles.Scoreboard;
-
 import static android.content.Context.MODE_PRIVATE;
 
-public class SlidingTilesScoreboardFileSaver implements Serializable, PhaseTwoObserver {
-
+public class SudokuScoreboardFileSaver implements Serializable, PhaseTwoObserver {
     /**
      * A name of the file that store the object Scoreboard.
      */
-    private static final String fileName = "slidingtilesscores.ser";
+    private static final String fileName = "sudokuscores.ser";
     /**
      * A context.
      */
@@ -37,7 +30,7 @@ public class SlidingTilesScoreboardFileSaver implements Serializable, PhaseTwoOb
      * Construct a new SlidingTilesScoreboardFileSaver with context and load it from "globalscores.ser" if needed
      * @param context the context to store Scoreboard in the phone's storage
      */
-    public SlidingTilesScoreboardFileSaver(Context context){
+    public SudokuScoreboardFileSaver(Context context){
         this.context = context;
         loadFromFile();
     }

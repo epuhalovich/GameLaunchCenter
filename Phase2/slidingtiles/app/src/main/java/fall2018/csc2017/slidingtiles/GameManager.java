@@ -9,5 +9,5 @@ public interface GameManager {
 
     boolean isValidTap(int Position);
 
-    // void touchMove(int Postion);
+    void touchMove(int Postion);
 }

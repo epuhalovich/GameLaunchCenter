@@ -8,6 +8,7 @@ import java.util.List;
 
 import fall2018.csc2017.slidingtiles.PhaseTwoObserver;
 import fall2018.csc2017.slidingtiles.PhaseTwoSubject;
+import fall2018.csc2017.slidingtiles.Scoreboard;
 
 
 /**
@@ -122,13 +123,13 @@ public class SlidingTilesController implements PhaseTwoSubject {
 
 
     /**
-     * Add a score to the slidingTilesScoreboard iff the game is finished
-     * @param slidingTilesScoreboard
+     * Add a score to the scoreboard iff the game is finished
+     * @param scoreboard
      * @param user
      */
-    public void checkToAddScore(SlidingTilesScoreboard slidingTilesScoreboard, String user) {
+    public void checkToAddScore(Scoreboard scoreboard, String user) {
         if (slidingTilesManager.isGameOver()) {
-            slidingTilesScoreboard.addScore(user, slidingTilesManager.getScore());
+            scoreboard.addScore(user, slidingTilesManager.getScore());
         }
     }
 

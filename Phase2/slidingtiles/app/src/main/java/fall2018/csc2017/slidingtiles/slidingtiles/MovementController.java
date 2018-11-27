@@ -3,24 +3,24 @@ package fall2018.csc2017.slidingtiles.slidingtiles;
 import android.content.Context;
 import android.widget.Toast;
 
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesManager;
+import fall2018.csc2017.slidingtiles.GameManager;
 
 
 public class MovementController {
 
-    private SlidingTilesManager slidingTilesManager = null;
+    private GameManager gameManager = null;
 
     public MovementController() {
     }
 
-    public void setSlidingTilesManager(SlidingTilesManager slidingTilesManager) {
-        this.slidingTilesManager = slidingTilesManager;
+    public void setGameManager(GameManager gameManager) {
+        this.gameManager = gameManager;
     }
 
     public void processTapMovement(Context context, int position, boolean display) {
-        if (slidingTilesManager.isValidTap(position)) {
-            slidingTilesManager.touchMove(position);
-            if (slidingTilesManager.isGameOver()) {
+        if (gameManager.isValidTap(position)) {
+            gameManager.touchMove(position);
+            if (gameManager.isGameOver()) {
                 Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
             }
         } else {

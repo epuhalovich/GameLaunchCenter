@@ -3,14 +3,10 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesBoard;
 import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesController;
 import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesManager;
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesScoreboard;
-import fall2018.csc2017.slidingtiles.slidingtiles.Tile;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -57,14 +53,14 @@ public class SlidingTilesControllerTest {
 
     @Test
     public void testCheckToAddScore(){
-        SlidingTilesScoreboard slidingTilesScoreboard = new SlidingTilesScoreboard();
+        Scoreboard scoreboard = new Scoreboard();
         String user = "player1";
         SlidingTilesManager slidingTilesManager = mock(SlidingTilesManager.class);
         when(slidingTilesManager.isGameOver()).thenReturn(true);
         when(slidingTilesManager.getScore()).thenReturn(25);
         controller.setSlidingTilesManager(slidingTilesManager);
-        controller.checkToAddScore(slidingTilesScoreboard, user);
-        ArrayList<Score> actual = slidingTilesScoreboard.getGlobalScores();
+        controller.checkToAddScore(scoreboard, user);
+        ArrayList<Score> actual = scoreboard.getGlobalScores();
         ArrayList<Score> expected = new ArrayList<>();
         expected.add((new Score("player1",25)));
         Assert.assertEquals(actual, expected);

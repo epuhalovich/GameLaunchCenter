@@ -11,20 +11,21 @@ import android.widget.PopupMenu;
 
 import fall2018.csc2017.slidingtiles.LogInActivity;
 import fall2018.csc2017.slidingtiles.R;
+import fall2018.csc2017.slidingtiles.Scoreboard;
 
 /**
  * The initial activity for the sliding puzzle tile game.
  */
 public class SlidingTilesStartingActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
-    public static SlidingTilesScoreboard slidingTilesScoreboard;
+    public static Scoreboard scoreboard;
 
     public static SlidingTilesController controller;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Game MVC setup
-        SlidingTilesFileSaver gameFileSaver = new SlidingTilesFileSaver(this, LogInActivity.currentPlayer.getGameFile());
+        SlidingTilesFileSaver gameFileSaver = new SlidingTilesFileSaver(this, LogInActivity.currentPlayer.getSlidingTilesGameFile());
         controller = new SlidingTilesController();
         if(gameFileSaver.getSlidingTilesManager() != null){
             controller.setSlidingTilesManager(gameFileSaver.getSlidingTilesManager());
@@ -32,10 +33,10 @@ public class SlidingTilesStartingActivity extends AppCompatActivity implements P
         controller.register(gameFileSaver);
 
         //Scoreboard MVC setup
-        slidingTilesScoreboard = new SlidingTilesScoreboard();
+        scoreboard = new Scoreboard();
         SlidingTilesScoreboardFileSaver scoreboardFileSaver = new SlidingTilesScoreboardFileSaver(this);
-        slidingTilesScoreboard.register(scoreboardFileSaver);
-        slidingTilesScoreboard.setGlobalScores(scoreboardFileSaver.globalScores);
+        scoreboard.register(scoreboardFileSaver);
+        scoreboard.setGlobalScores(scoreboardFileSaver.globalScores);
         gameFileSaver.saveToFile();
 
         setContentView(R.layout.activity_starting_);
@@ -140,10 +141,10 @@ public class SlidingTilesStartingActivity extends AppCompatActivity implements P
     }
 
     /**
-     * Switch to the ScoreBoardActivity view.
+     * Switch to the SlidingTilesScoreBoardActivity view.
      */
     private void switchToScoreBoard(){
-        Intent tmp = new Intent(this, ScoreBoardActivity.class);
+        Intent tmp = new Intent(this, SlidingTilesScoreBoardActivity.class);
         startActivity(tmp);
     }
 

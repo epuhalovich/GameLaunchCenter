@@ -3,55 +3,44 @@ package fall2018.csc2017.slidingtiles;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.NoSuchElementException;
-
-import fall2018.csc2017.slidingtiles.slidingtiles.ScoreBoardActivity;
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesController;
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesGameActivity;
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesManager;
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesSetNumundoActivity;
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesStartingActivity;
 
 public class SudokuStartingActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
-    /**
-     * A temporary save file.
-     */
-    public static final String TEMP_SAVE_FILENAME = "save_file_tmp_1.ser";
-    /**
-     * The board manager.
-     */
-    private SudokuManager sudokuManager;
-
     public static SudokuController controller;
+
+    public static Scoreboard scoreboard;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        slidingTilesManager = new SlidingTilesManager(4, 4);(we don't need this line)
+
+        //Game MVC setup!!
+        SudokuFileSaver gameFileSaver = new SudokuFileSaver(this, LogInActivity.currentPlayer.getSudokuGameFile());
+        controller = new SudokuController();
+        if(gameFileSaver.getSudokuManager() != null){
+            controller.setSudokuManager(gameFileSaver.getSudokuManager());
+        }
+        controller.register(gameFileSaver);
+
+        //Scoreboard MVC setup
+        scoreboard = new Scoreboard();
+        SudokuScoreboardFileSaver scoreboardFileSaver = new SudokuScoreboardFileSaver(this);
+        scoreboard.register(scoreboardFileSaver);
+        scoreboard.setGlobalScores(scoreboardFileSaver.globalScores);
+        gameFileSaver.saveToFile();
 
         setContentView(R.layout.activity_sudoku_starting);
         addStartButtonListener();
-//        addLoadButtonListener();
-//        addViewScoreButtonListener();
-//        addSetUndoButtonListener();
-        // save the sudokuboard in to the temptsavefile
-//        saveToFile(TEMP_SAVE_FILENAME);
-
+        addLoadButtonListener();
+        addViewScoreButtonListener();
     }
 
     /**
@@ -59,8 +48,6 @@ public class SudokuStartingActivity extends AppCompatActivity implements PopupMe
      */
     private void addStartButtonListener() {
         Button startButton = findViewById(R.id.sudokustart);
-        //                slidingTilesManager = new SlidingTilesManager();
-//                switchToGame();
         startButton.setOnClickListener(this::showPopup);
     }
 
@@ -80,17 +67,17 @@ public class SudokuStartingActivity extends AppCompatActivity implements PopupMe
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item1:
-                setUpSudokuBoard("Easy");
+                controller.setUpSudokuBoard("Easy");
                 switchToGame();
                 return true;
 
             case R.id.item2:
-                setUpSudokuBoard("Medium");
+                controller.setUpSudokuBoard("Medium");
                 switchToGame();
                 return true;
 
             case R.id.item3:
-                setUpSudokuBoard("Hard");
+                controller.setUpSudokuBoard("Hard");
                 switchToGame();
                 return true;
 
@@ -99,29 +86,21 @@ public class SudokuStartingActivity extends AppCompatActivity implements PopupMe
         }
     }
 
-    private void setUpSudokuBoard(String level) {
-        sudokuManager = SudokuManager.getLevel(level);
-//        slidingTilesManager.setNumUndos(NumUndos);
-//        saveToFile(LogInActivity.currentPlayer.getGameFile());
-    }
-
     /**
      * Activate the load button.
      */
-//    private void addLoadButtonListener() {
-//        Button loadButton = findViewById(R.id.LoadButton);
-//        loadButton.setOnClickListener(v -> {
-//            loadFromFile(LogInActivity.currentPlayer.getGameFile());
-//            if (sudokuManager != null){
-//                saveToFile(TEMP_SAVE_FILENAME);
-//                makeToastLoadedText();
-//                switchToGame();
-//            }
-//            else{
-//                makeToastNoLoadedText();
-//            }
-//        });
-//    }
+    private void addLoadButtonListener() {
+        Button loadButton = findViewById(R.id.sudokuload);
+        loadButton.setOnClickListener(v -> {
+            if (controller.getSudokuManager() != null){
+                makeToastLoadedText();
+                switchToGame();
+            }
+            else{
+                makeToastNoLoadedText();
+            }
+        });
+    }
 
     /**
      * Display that a game was loaded successfully.
@@ -140,70 +119,29 @@ public class SudokuStartingActivity extends AppCompatActivity implements PopupMe
     @Override
     protected void onResume() {
         super.onResume();
-        loadFromFile(TEMP_SAVE_FILENAME);
     }
 
     /**
      * Switch to the SudookuGameActivity view to play the game.
      */
     private void switchToGame() {
-        saveToFile(TEMP_SAVE_FILENAME);
         Intent tmp = new Intent(this, SudokuGameActivity.class);
         startActivity(tmp);
     }
 
     /**
-     * Load the sudokuManager from fileName.
-     *
-     * @param fileName the name of the file
-     */
-    private void loadFromFile(String fileName) throws NoSuchElementException {
-
-        try {
-            InputStream inputStream = this.openFileInput(fileName);
-            if (inputStream != null) {
-                ObjectInputStream input = new ObjectInputStream(inputStream);
-                sudokuManager = (SudokuManager) input.readObject();
-                inputStream.close();
-            }
-        } catch (FileNotFoundException e) {
-            Log.e("login activity", "File not found: " + e.toString());
-        } catch (IOException e) {
-            Log.e("login activity", "Can not read file: " + e.toString());
-        } catch (ClassNotFoundException e) {
-            Log.e("login activity", "File contained unexpected data type: " + e.toString());
-        }
-    }
-
-    /**
-     * Save the SudokuManager to fileName.
-     *
-     * @param fileName the name of the file
-     */
-    public void saveToFile(String fileName) {
-        try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(
-                    this.openFileOutput(fileName, MODE_PRIVATE));
-            outputStream.writeObject(sudokuManager);
-            outputStream.close();
-        } catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
-        }
-    }
-
-    /**
      * Activate the view score button.
      */
-//    private void addViewScoreButtonListener() {
-//        Button ScoreBoardButton = findViewById(R.id.sudokuViewScore);
-//        ScoreBoardButton.setOnClickListener(v -> switchToScoreBoard());
-//    }
+    private void addViewScoreButtonListener() {
+        Button ScoreBoardButton = findViewById(R.id.sudokuViewScore);
+        ScoreBoardButton.setOnClickListener(v -> switchToScoreBoard());
+    }
 
     /**
-     * Switch to the ScoreBoardActivity view.
+     * Switch to the SlidingTilesScoreBoardActivity view.
      */
-//    private void switchToScoreBoard(){
-//        Intent tmp = new Intent(this, ScoreBoardActivity.class);
-//        startActivity(tmp);
-//    }
+    private void switchToScoreBoard(){
+        Intent tmp = new Intent(this, SudokuScoreboardActivity.class);
+        startActivity(tmp);
+    }
 }

@@ -1,6 +1,8 @@
 package fall2018.csc2017.slidingtiles;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A User.
@@ -9,21 +11,33 @@ import java.io.Serializable;
 public class User implements Serializable {
     private String account;
     private String password;
-    private String gameFile;
+    private List<String> gameFile;
 
 
     public User(String account, String password) {
         this.account = account;
         this.password = password;
-        this.gameFile = this.account + ".ser";
+        this.gameFile = generateGameFiles();
     }
 
+    private List<String> generateGameFiles(){
+        List<String> gameFiles = new ArrayList<>();
+        gameFiles.add(this.account + "Sudoku.ser");
+        gameFiles.add(this.account + "SlidingTiles.ser");
+        gameFiles.add(this.account + "Memory.ser");
+        return gameFiles;
+    }
     /**
      * Returns the file containing this user's data.
      */
-    public String getGameFile() {
-        return gameFile;
+    public String getSudokuGameFile() {
+        return gameFile.get(0);
     }
+
+
+    public String getSlidingTilesGameFile(){return gameFile.get(1);}
+
+    public String getMemoryGameFile(){return gameFile.get(2);}
 
     /**
      * Returns the string identifier for this user.

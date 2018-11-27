@@ -1,6 +1,5 @@
 package fall2018.csc2017.slidingtiles.slidingtiles;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ViewTreeObserver;
@@ -11,7 +10,6 @@ import java.io.Serializable;
 import java.util.Observable;
 import java.util.Observer;
 
-import fall2018.csc2017.slidingtiles.slidingtiles.CustomAdapter;
 import fall2018.csc2017.slidingtiles.LogInActivity;
 import fall2018.csc2017.slidingtiles.R;
 
@@ -58,7 +56,7 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
         // Add View to activity
         gridView = findViewById(R.id.grid);
         gridView.setNumColumns(NUM_COLS);
-        gridView.setSlidingTilesManager(SlidingTilesStartingActivity.controller.getSlidingTilesManager());
+        gridView.setGameManager(SlidingTilesStartingActivity.controller.getSlidingTilesManager());
         SlidingTilesStartingActivity.controller.getSlidingTilesManager().getSlidingTilesBoard().addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function
         gridView.getViewTreeObserver().addOnGlobalLayoutListener(
@@ -130,7 +128,7 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
     public void update(Observable o, Object arg) {
         display();
         SlidingTilesStartingActivity.controller.notifyObservers();
-        SlidingTilesStartingActivity.controller.checkToAddScore(SlidingTilesStartingActivity.slidingTilesScoreboard, LogInActivity.currentPlayer.getAccount());
+        SlidingTilesStartingActivity.controller.checkToAddScore(SlidingTilesStartingActivity.scoreboard, LogInActivity.currentPlayer.getAccount());
         }
 
 }

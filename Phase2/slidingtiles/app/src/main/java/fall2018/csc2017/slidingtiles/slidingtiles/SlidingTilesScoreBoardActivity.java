@@ -14,7 +14,7 @@ import fall2018.csc2017.slidingtiles.User;
 /**
  * The score board display activity.
  */
-public class ScoreBoardActivity extends AppCompatActivity {
+public class SlidingTilesScoreBoardActivity extends AppCompatActivity {
 
     /**
      * The quick reference for the currently logged in player.
@@ -32,11 +32,11 @@ public class ScoreBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_score_board);
         addReturnButtonListener();
         TextView globalScoresText = findViewById(R.id.GlobalScores);
-        String globalScoreValues = SlidingTilesStartingActivity.slidingTilesScoreboard.getScoreValues(false, currentPlayer);
+        String globalScoreValues = SlidingTilesStartingActivity.scoreboard.getScoreValues(false, currentPlayer);
         globalScoresText.setText(globalScoreValues);
 
         TextView userScoresText = findViewById(R.id.UserScores);
-        String userScoreValues = SlidingTilesStartingActivity.slidingTilesScoreboard.getScoreValues(true, currentPlayer);
+        String userScoreValues = SlidingTilesStartingActivity.scoreboard.getScoreValues(true, currentPlayer);
         userScoresText.setText(userScoreValues);
     }
 
