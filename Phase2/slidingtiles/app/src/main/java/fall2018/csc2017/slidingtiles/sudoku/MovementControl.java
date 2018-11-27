@@ -42,7 +42,7 @@ public class MovementControl extends Observable {
                     Toast.makeText(context, "Can't fill in this number(repeated)", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    sudokuManager.touchFill(position);
+                    sudokuManager.touchMove(position);
                     if (sudokuManager.isGameOver()) {
                         Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
                     }
