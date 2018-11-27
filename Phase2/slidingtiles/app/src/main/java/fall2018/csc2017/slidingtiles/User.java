@@ -36,4 +36,13 @@ public class User implements Serializable {
      * Returns this user's password.
      */
     public String getPassword() { return password; }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof User){
+            User o = (User) obj;
+            return(o.getAccount().equals(this.account));
+        }
+        return false;
+    }
 }

@@ -121,6 +121,10 @@ public class UserManager implements Serializable, PhaseTwoSubject{
         }
     }
 
+    public static List<PhaseTwoObserver> getObservers() {
+        return observers;
+    }
+
     public void register(PhaseTwoObserver obj){
         if(obj == null) throw new NullPointerException("Null Observer");
         if(!observers.contains(obj))
