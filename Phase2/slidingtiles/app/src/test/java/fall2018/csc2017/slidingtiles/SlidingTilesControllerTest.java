@@ -28,10 +28,10 @@ public class SlidingTilesControllerTest {
 
     @Test
     public void testSetUpSlidingTiles(){
-        controller.setUpSlidingTiles("Easy");
-        int boardDimension = controller.getSlidingTilesManager().getSlidingTilesBoard().NUM_ROWS * controller.getSlidingTilesManager().getSlidingTilesBoard().NUM_COLS;
+        controller.setUpBoard("Easy");
+        int boardDimension = controller.getGameManager().getSlidingTilesBoard().NUM_ROWS * controller.getGameManager().getSlidingTilesBoard().NUM_COLS;
         Assert.assertEquals(9, boardDimension);
-        Assert.assertEquals(3, controller.getSlidingTilesManager().getNumUndos());
+        Assert.assertEquals(3, controller.getGameManager().getNumUndos());
     }
 
     @Test
@@ -58,7 +58,7 @@ public class SlidingTilesControllerTest {
         SlidingTilesManager slidingTilesManager = mock(SlidingTilesManager.class);
         when(slidingTilesManager.isGameOver()).thenReturn(true);
         when(slidingTilesManager.getScore()).thenReturn(25);
-        controller.setSlidingTilesManager(slidingTilesManager);
+        controller.setGameManager(slidingTilesManager);
         controller.checkToAddScore(scoreboard, user);
         ArrayList<Score> actual = scoreboard.getGlobalScores();
         ArrayList<Score> expected = new ArrayList<>();

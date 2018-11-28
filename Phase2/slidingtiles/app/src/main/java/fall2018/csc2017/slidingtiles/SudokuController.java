@@ -8,7 +8,7 @@ import java.util.List;
 
 import fall2018.csc2017.slidingtiles.sudoku.SudokuGrid;
 
-class SudokuController implements PhaseTwoSubject {
+class SudokuController implements PhaseTwoSubject, GameController {
     /**
      * The list of observers of this class
      */
@@ -25,15 +25,15 @@ class SudokuController implements PhaseTwoSubject {
         return BoxButtons;
     }
 
-    public SudokuManager getSudokuManager(){
+    public SudokuManager getGameManager(){
         return this.sudokuManager;
     }
 
-    public void setSudokuManager(SudokuManager sudokuManager) {
-        this.sudokuManager = sudokuManager;
+    public void setGameManager(GameManager sudokuManager) {
+        this.sudokuManager = (SudokuManager) sudokuManager;
     }
 
-    public void setUpSudokuBoard(String level) {
+    public void setUpBoard(String level) {
         sudokuManager = SudokuManager.getLevel(level);
         notifyObservers();
     }

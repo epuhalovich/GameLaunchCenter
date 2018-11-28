@@ -45,8 +45,8 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.NUM_COLS = SlidingTilesStartingActivity.controller.getSlidingTilesManager().getSlidingTilesBoard().NUM_COLS;
-        this.NUM_ROWS = SlidingTilesStartingActivity.controller.getSlidingTilesManager().getSlidingTilesBoard().NUM_ROWS;
+        this.NUM_COLS = SlidingTilesStartingActivity.controller.getGameManager().getSlidingTilesBoard().NUM_COLS;
+        this.NUM_ROWS = SlidingTilesStartingActivity.controller.getGameManager().getSlidingTilesBoard().NUM_ROWS;
         SlidingTilesStartingActivity.controller.createTileButtons(this);
         setContentView(R.layout.activity_main);
         addUndoButtonListener();
@@ -56,8 +56,8 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
         // Add View to activity
         gridView = findViewById(R.id.grid);
         gridView.setNumColumns(NUM_COLS);
-        gridView.setGameManager(SlidingTilesStartingActivity.controller.getSlidingTilesManager());
-        SlidingTilesStartingActivity.controller.getSlidingTilesManager().getSlidingTilesBoard().addObserver(this);
+        gridView.setGameManager(SlidingTilesStartingActivity.controller.getGameManager());
+        SlidingTilesStartingActivity.controller.getGameManager().getSlidingTilesBoard().addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function
         gridView.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -82,10 +82,10 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
     private void addUndoButtonListener() {
         Button undoButton = findViewById(R.id.UndoButton);
         undoButton.setOnClickListener(v -> {
-            if (SlidingTilesStartingActivity.controller.getSlidingTilesManager().getNumUndos() == 0){
+            if (SlidingTilesStartingActivity.controller.getGameManager().getNumUndos() == 0){
                 makeToastNoUndosText();
             }
-            SlidingTilesStartingActivity.controller.getSlidingTilesManager().tryUndo();
+            SlidingTilesStartingActivity.controller.getGameManager().tryUndo();
         });
     }
 

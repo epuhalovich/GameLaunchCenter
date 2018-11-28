@@ -10,35 +10,37 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesController;
+
 import static android.content.Context.MODE_PRIVATE;
 
-
-public class SudokuFileSaver implements Serializable, PhaseTwoObserver {
-
+public class GameFileSaver implements Serializable, PhaseTwoObserver {
     private Context context;
-    private SudokuController subject;
-    private SudokuManager sudokuManager;
+    private GameController subject;
+    private GameManager gameManager;
     private String fileName;
 
-    public SudokuFileSaver(Context context, String fileName){
+
+    public GameFileSaver(Context context, String fileName){
         this.context = context;
         this.fileName = fileName;
         loadFromFile();
     }
+
+    public GameManager getGameManager() {
+        return gameManager;
+    }
+
+    public void setGameManager(GameManager manager) {
+        this.gameManager = manager;
+    }
+
     public void setSubject(PhaseTwoSubject subject){
-        this.subject = (SudokuController) subject;
-    }
-
-    public void setSudokuManager(SudokuManager sudokuManager) {
-        this.sudokuManager = sudokuManager;
-    }
-
-    public SudokuManager getSudokuManager(){
-        return this.sudokuManager;
+        this.subject = (GameController) subject;
     }
 
     public void update() {
-        setSudokuManager(subject.getSudokuManager());
+        setGameManager(subject.getGameManager());
         saveToFile();
     }
 
@@ -46,20 +48,19 @@ public class SudokuFileSaver implements Serializable, PhaseTwoObserver {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     context.openFileOutput(fileName, MODE_PRIVATE));
-            outputStream.writeObject(sudokuManager);
+            outputStream.writeObject(gameManager);
             outputStream.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
         }
     }
-
     public void loadFromFile() {
 
         try {
             InputStream inputStream = context.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
-                sudokuManager = (SudokuManager) input.readObject();
+                gameManager = (GameManager) input.readObject();
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {

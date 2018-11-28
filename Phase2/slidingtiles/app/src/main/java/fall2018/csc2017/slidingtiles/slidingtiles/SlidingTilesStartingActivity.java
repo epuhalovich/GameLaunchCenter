@@ -9,9 +9,11 @@ import android.widget.Button;
 import android.widget.Toast;
 import android.widget.PopupMenu;
 
+import fall2018.csc2017.slidingtiles.GameFileSaver;
 import fall2018.csc2017.slidingtiles.LogInActivity;
 import fall2018.csc2017.slidingtiles.R;
 import fall2018.csc2017.slidingtiles.Scoreboard;
+import fall2018.csc2017.slidingtiles.ScoreboardFileSaver;
 
 /**
  * The initial activity for the sliding puzzle tile game.
@@ -21,20 +23,22 @@ public class SlidingTilesStartingActivity extends AppCompatActivity implements P
     public static Scoreboard scoreboard;
 
     public static SlidingTilesController controller;
+
+    private static final String fileName = "slidingtilesscores.ser";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Game MVC setup
-        SlidingTilesFileSaver gameFileSaver = new SlidingTilesFileSaver(this, LogInActivity.currentPlayer.getSlidingTilesGameFile());
+        GameFileSaver gameFileSaver = new GameFileSaver(this, LogInActivity.currentPlayer.getSlidingTilesGameFile());
         controller = new SlidingTilesController();
-        if(gameFileSaver.getSlidingTilesManager() != null){
-            controller.setSlidingTilesManager(gameFileSaver.getSlidingTilesManager());
+        if(gameFileSaver.getGameManager() != null){
+            controller.setGameManager(gameFileSaver.getGameManager());
         }
         controller.register(gameFileSaver);
 
         //Scoreboard MVC setup
         scoreboard = new Scoreboard();
-        SlidingTilesScoreboardFileSaver scoreboardFileSaver = new SlidingTilesScoreboardFileSaver(this);
+        ScoreboardFileSaver scoreboardFileSaver = new ScoreboardFileSaver(this, fileName);
         scoreboard.register(scoreboardFileSaver);
         scoreboard.setGlobalScores(scoreboardFileSaver.globalScores);
         gameFileSaver.saveToFile();
@@ -70,17 +74,17 @@ public class SlidingTilesStartingActivity extends AppCompatActivity implements P
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item1:
-                controller.setUpSlidingTiles("Easy");
+                controller.setUpBoard("Easy");
                 switchToGame();
                 return true;
 
             case R.id.item2:
-                controller.setUpSlidingTiles("Medium");
+                controller.setUpBoard("Medium");
                 switchToGame();
                 return true;
 
             case R.id.item3:
-                controller.setUpSlidingTiles("Hard");
+                controller.setUpBoard("Hard");
                 switchToGame();
                 return true;
 
@@ -95,7 +99,7 @@ public class SlidingTilesStartingActivity extends AppCompatActivity implements P
     private void addLoadButtonListener() {
         Button loadButton = findViewById(R.id.LoadButton);
         loadButton.setOnClickListener(v -> {
-            if (controller.getSlidingTilesManager() != null){
+            if (controller.getGameManager() != null){
                 makeToastLoadedText();
                 switchToGame();
             }

@@ -56,7 +56,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     private void addOneButtonListener() {
         Button button = findViewById(R.id.number1);
         button.setOnClickListener(v -> {
-            SudokuStartingActivity.controller.getSudokuManager().setNumberToFill("1");
+            SudokuStartingActivity.controller.getGameManager().setNumberToFill("1");
             makeToastChooseSpot();
         });
     }
@@ -64,7 +64,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     private void addTwoButtonListener() {
         Button button = findViewById(R.id.number2);
         button.setOnClickListener(v -> {
-            SudokuStartingActivity.controller.getSudokuManager().setNumberToFill("2");
+            SudokuStartingActivity.controller.getGameManager().setNumberToFill("2");
             makeToastChooseSpot();
         });
     }
@@ -72,7 +72,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     private void addThreeButtonListener() {
         Button button = findViewById(R.id.number3);
         button.setOnClickListener(v -> {
-            SudokuStartingActivity.controller.getSudokuManager().setNumberToFill("3");
+            SudokuStartingActivity.controller.getGameManager().setNumberToFill("3");
             makeToastChooseSpot();
         });
     }
@@ -80,7 +80,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     private void addFourButtonListener() {
         Button button = findViewById(R.id.number4);
         button.setOnClickListener(v -> {
-            SudokuStartingActivity.controller.getSudokuManager().setNumberToFill("4");
+            SudokuStartingActivity.controller.getGameManager().setNumberToFill("4");
             makeToastChooseSpot();
         });
     }
@@ -88,7 +88,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     private void addFiveButtonListener() {
         Button button = findViewById(R.id.number5);
         button.setOnClickListener(v -> {
-            SudokuStartingActivity.controller.getSudokuManager().setNumberToFill("5");
+            SudokuStartingActivity.controller.getGameManager().setNumberToFill("5");
             makeToastChooseSpot();
         });
     }
@@ -96,7 +96,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     private void addSixButtonListener() {
         Button button = findViewById(R.id.number6);
         button.setOnClickListener(v -> {
-            SudokuStartingActivity.controller.getSudokuManager().setNumberToFill("6");
+            SudokuStartingActivity.controller.getGameManager().setNumberToFill("6");
             makeToastChooseSpot();
         });
     }
@@ -104,7 +104,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     private void addSevenButtonListener() {
         Button button = findViewById(R.id.number7);
         button.setOnClickListener(v -> {
-            SudokuStartingActivity.controller.getSudokuManager().setNumberToFill("7");
+            SudokuStartingActivity.controller.getGameManager().setNumberToFill("7");
             makeToastChooseSpot();
         });
     }
@@ -112,7 +112,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     private void addEightButtonListener() {
         Button button = findViewById(R.id.number8);
         button.setOnClickListener(v -> {
-            SudokuStartingActivity.controller.getSudokuManager().setNumberToFill("8");
+            SudokuStartingActivity.controller.getGameManager().setNumberToFill("8");
             makeToastChooseSpot();
         });
     }
@@ -120,7 +120,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     private void addNineButtonListener() {
         Button button = findViewById(R.id.number9);
         button.setOnClickListener(v -> {
-            SudokuStartingActivity.controller.getSudokuManager().setNumberToFill("9");
+            SudokuStartingActivity.controller.getGameManager().setNumberToFill("9");
             makeToastChooseSpot();
         });
     }
@@ -132,10 +132,10 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     private void addUndoButtonListener() {
         Button undoButton = findViewById(R.id.sudokuundo);
         undoButton.setOnClickListener(v -> {
-            if (SudokuStartingActivity.controller.getSudokuManager().getUndoPositionStack().empty()){
+            if (SudokuStartingActivity.controller.getGameManager().getUndoPositionStack().empty()){
                 makeToastNothingToUndo();
             } else {
-                SudokuStartingActivity.controller.getSudokuManager().tryUndo();
+                SudokuStartingActivity.controller.getGameManager().tryUndo();
                 makeToastUndoSuccessful();
             }
         });
@@ -152,7 +152,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     public void initView() {
 //        init View with My View
 //        MyView myView = new MyView(this);
-//        myView.setSudokuManager(sudokuManager);
+//        myView.setGameManager(sudokuManager);
 //        FrameLayout frameLayout = findViewById(R.id.sudokufram);
 //        int side = this.getWindow().getDecorView().getWidth();
 ////        ConstraintLayout.LayoutParams oldParams= new ConstraintLayout.LayoutParams(side,side);
@@ -162,10 +162,10 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     //initView with gridView
         gridView = findViewById(R.id.sudokugrid);
         gridView.setNumColumns(9);
-        gridView.setSudokuManager(SudokuStartingActivity.controller.getSudokuManager());
+        gridView.setSudokuManager(SudokuStartingActivity.controller.getGameManager());
         SudokuStartingActivity.controller.createTileButtons(this);
         gridView.setButtonArrayList(SudokuStartingActivity.controller.getBoxButtons());
-        SudokuStartingActivity.controller.getSudokuManager().addObserver(this);
+        SudokuStartingActivity.controller.getGameManager().addObserver(this);
         gridView.getmController().setGameActivity(this);
         gridView.getmController().addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function

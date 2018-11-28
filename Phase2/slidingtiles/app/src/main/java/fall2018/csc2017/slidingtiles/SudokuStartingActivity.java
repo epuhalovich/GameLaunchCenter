@@ -16,6 +16,8 @@ public class SudokuStartingActivity extends AppCompatActivity implements PopupMe
 
     public static Scoreboard scoreboard;
 
+    private static final String fileName = "sudokuscores.ser";
+
 
 
     @Override
@@ -23,16 +25,16 @@ public class SudokuStartingActivity extends AppCompatActivity implements PopupMe
         super.onCreate(savedInstanceState);
 
         //Game MVC setup!!
-        SudokuFileSaver gameFileSaver = new SudokuFileSaver(this, LogInActivity.currentPlayer.getSudokuGameFile());
+        GameFileSaver gameFileSaver = new GameFileSaver(this, LogInActivity.currentPlayer.getSudokuGameFile());
         controller = new SudokuController();
-        if(gameFileSaver.getSudokuManager() != null){
-            controller.setSudokuManager(gameFileSaver.getSudokuManager());
+        if(gameFileSaver.getGameManager() != null){
+            controller.setGameManager(gameFileSaver.getGameManager());
         }
         controller.register(gameFileSaver);
 
         //Scoreboard MVC setup
         scoreboard = new Scoreboard();
-        SudokuScoreboardFileSaver scoreboardFileSaver = new SudokuScoreboardFileSaver(this);
+        ScoreboardFileSaver scoreboardFileSaver = new ScoreboardFileSaver(this, fileName);
         scoreboard.register(scoreboardFileSaver);
         scoreboard.setGlobalScores(scoreboardFileSaver.globalScores);
         gameFileSaver.saveToFile();
@@ -67,17 +69,17 @@ public class SudokuStartingActivity extends AppCompatActivity implements PopupMe
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item1:
-                controller.setUpSudokuBoard("Easy");
+                controller.setUpBoard("Easy");
                 switchToGame();
                 return true;
 
             case R.id.item2:
-                controller.setUpSudokuBoard("Medium");
+                controller.setUpBoard("Medium");
                 switchToGame();
                 return true;
 
             case R.id.item3:
-                controller.setUpSudokuBoard("Hard");
+                controller.setUpBoard("Hard");
                 switchToGame();
                 return true;
 
@@ -92,7 +94,7 @@ public class SudokuStartingActivity extends AppCompatActivity implements PopupMe
     private void addLoadButtonListener() {
         Button loadButton = findViewById(R.id.sudokuload);
         loadButton.setOnClickListener(v -> {
-            if (controller.getSudokuManager() != null){
+            if (controller.getGameManager() != null){
                 makeToastLoadedText();
                 switchToGame();
             }

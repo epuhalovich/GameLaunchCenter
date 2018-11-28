@@ -6,6 +6,8 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
+import fall2018.csc2017.slidingtiles.GameController;
+import fall2018.csc2017.slidingtiles.GameManager;
 import fall2018.csc2017.slidingtiles.PhaseTwoObserver;
 import fall2018.csc2017.slidingtiles.PhaseTwoSubject;
 import fall2018.csc2017.slidingtiles.Scoreboard;
@@ -14,7 +16,7 @@ import fall2018.csc2017.slidingtiles.Scoreboard;
 /**
  * Control the view and model of a Sliding tiles game.
  */
-public class SlidingTilesController implements PhaseTwoSubject {
+public class SlidingTilesController implements PhaseTwoSubject, GameController {
 
 
     /**
@@ -56,7 +58,7 @@ public class SlidingTilesController implements PhaseTwoSubject {
      * Return the manager for sliding tiles
      * @return SlidingTilesManager
      */
-    public SlidingTilesManager getSlidingTilesManager() {
+    public SlidingTilesManager getGameManager() {
         return slidingTilesManager;
     }
 
@@ -64,15 +66,15 @@ public class SlidingTilesController implements PhaseTwoSubject {
      * Set a new slidingTilesManager for this class
      * @param slidingTilesManager
      */
-    public void setSlidingTilesManager(SlidingTilesManager slidingTilesManager) {
-        this.slidingTilesManager = slidingTilesManager;
+    public void setGameManager(GameManager slidingTilesManager) {
+        this.slidingTilesManager = (SlidingTilesManager) slidingTilesManager;
     }
 
     /**
      * Set up a slidingtiles game in accordance with the selected level
      * @param level the level the user has selected
      */
-    public void setUpSlidingTiles(String level) {
+    public void setUpBoard(String level) {
         slidingTilesManager = SlidingTilesManager.getLevel(level);
         slidingTilesManager.setNumUndos(NumUndos);
         notifyObservers();
