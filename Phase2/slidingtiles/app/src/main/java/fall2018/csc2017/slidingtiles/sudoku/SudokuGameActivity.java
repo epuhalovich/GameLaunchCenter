@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.slidingtiles.sudoku;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -12,8 +12,9 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import fall2018.csc2017.slidingtiles.sudoku.CustomAdapt;
-import fall2018.csc2017.slidingtiles.sudoku.GestureDetectView;
+import fall2018.csc2017.slidingtiles.LogInActivity;
+import fall2018.csc2017.slidingtiles.R;
+import fall2018.csc2017.slidingtiles.CustomAdapter;
 
 public class SudokuGameActivity extends AppCompatActivity implements Observer, Serializable {
 
@@ -26,7 +27,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
 
     // private MyView myView;
     private static int columnWidth, columnHeight;
-    private GestureDetectView gridView;
+    private SudokuGestureDetectGridView gridView;
 
     // public MyView myView = new MyView(this);
 
@@ -34,7 +35,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
 
     public void display() {
         SudokuStartingActivity.controller.updateTileButtons();
-        gridView.setAdapter(new CustomAdapt(SudokuStartingActivity.controller.getBoxButtons(), columnWidth, columnHeight));
+        gridView.setAdapter(new CustomAdapter(SudokuStartingActivity.controller.getBoxButtons(), columnWidth, columnHeight));
     }
 
     @Override
@@ -151,24 +152,17 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     }
 
     public void initView() {
-//        init View with My View
-//        MyView myView = new MyView(this);
-//        myView.setGameManager(sudokuManager);
-//        FrameLayout frameLayout = findViewById(R.id.sudokufram);
-//        int side = this.getWindow().getDecorView().getWidth();
-////        ConstraintLayout.LayoutParams oldParams= new ConstraintLayout.LayoutParams(side,side);
-////        frameLayout.setLayoutParams(oldParams);
-//        frameLayout.addView(myView);
-
     //initView with gridView
         gridView = findViewById(R.id.sudokugrid);
         gridView.setNumColumns(9);
-        gridView.setSudokuManager(SudokuStartingActivity.controller.getGameManager());
+        gridView.setmController(new SudokuMovementController());
+        gridView.setGameManager(SudokuStartingActivity.controller.getGameManager());
         SudokuStartingActivity.controller.createTileButtons(this);
         gridView.setButtonArrayList(SudokuStartingActivity.controller.getBoxButtons());
         SudokuStartingActivity.controller.getGameManager().addObserver(this);
-        gridView.getmController().setGameActivity(this);
-        gridView.getmController().addObserver(this);
+        SudokuMovementController movementController = (SudokuMovementController)gridView.getmController();
+        movementController.setGameActivity(this);
+        movementController.addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function
         gridView.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {

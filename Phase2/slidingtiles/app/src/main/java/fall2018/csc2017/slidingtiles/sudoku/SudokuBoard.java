@@ -1,11 +1,10 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.slidingtiles.sudoku;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
+import fall2018.csc2017.slidingtiles.R;
 import fall2018.csc2017.slidingtiles.sudoku.SudokuGrid;
 
 public class SudokuBoard implements Serializable {
@@ -141,10 +140,6 @@ public class SudokuBoard implements Serializable {
         }
         return sample;
     }
-
-//    private static int createBackground(int i, int j) {
-//
-//    }
 
     /**
      * make the implemented sudoku board a puzzle.

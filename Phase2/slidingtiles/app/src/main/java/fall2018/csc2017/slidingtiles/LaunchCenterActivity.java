@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.PopupMenu;
 
 import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesStartingActivity;
+import fall2018.csc2017.slidingtiles.sudoku.SudokuStartingActivity;
 
 /**
  * The launch center activity.
