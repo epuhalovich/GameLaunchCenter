@@ -34,6 +34,8 @@
         <activity android:name=".SudokuScoreboardActivity"/>
 
         <!-- MEMORY -->
+        <activity android:name=".Memory"/>
+
 
 
     </application>

@@ -40,7 +40,7 @@ public class MemoryBoard extends AppCompatActivity {
                     icon_11.setImageResource(frontcard[num]);
                     icon_11.invalidate();
                     count++;
-                } else if (count > 2) {
+                } else if (count >= 2) {
                     icon_11.setClickable(false);
                 }
             }
@@ -61,7 +61,7 @@ public class MemoryBoard extends AppCompatActivity {
                     icon_12.setImageResource(frontcard[num]);
                     icon_12.invalidate();
                     count++;
-                } else if (count > 2) {
+                } else if (count >= 2) {
                     icon_12.setClickable(false);
                 }
             }
@@ -82,7 +82,7 @@ public class MemoryBoard extends AppCompatActivity {
                     icon_13.setImageResource(frontcard[num]);
                     icon_13.invalidate();
                     count++;
-                } else if (count > 2) {
+                } else if (count >= 2) {
                     icon_13.setClickable(false);
                 }
             }
@@ -103,7 +103,7 @@ public class MemoryBoard extends AppCompatActivity {
                     icon_14.setImageResource(frontcard[num]);
                     icon_14.invalidate();
                     count++;
-                } else if (count > 2) {
+                } else if (count >= 2) {
                     icon_14.setClickable(false);
                 }
             }
@@ -124,7 +124,7 @@ public class MemoryBoard extends AppCompatActivity {
                     icon_21.setImageResource(frontcard[num]);
                     icon_21.invalidate();
                     count++;
-                } else if (count > 2) {
+                } else if (count >= 2) {
                     icon_21.setClickable(false);
                 }
             }
@@ -145,7 +145,7 @@ public class MemoryBoard extends AppCompatActivity {
                     icon_22.setImageResource(frontcard[num]);
                     icon_22.invalidate();
                     count++;
-                } else if (count > 2) {
+                } else if (count >= 2) {
                     icon_22.setClickable(false);
                 }
             }
@@ -166,7 +166,7 @@ public class MemoryBoard extends AppCompatActivity {
                     icon_23.setImageResource(frontcard[num]);
                     icon_23.invalidate();
                     count++;
-                } else if (count > 2) {
+                } else if (count >= 2) {
                     icon_23.setClickable(false);
                 }
             }
@@ -187,7 +187,7 @@ public class MemoryBoard extends AppCompatActivity {
                     icon_24.setImageResource(frontcard[num]);
                     icon_24.invalidate();
                     count++;
-                } else if (count > 2) {
+                } else if (count >= 2) {
                     icon_24.setClickable(false);
                 }
             }
@@ -208,7 +208,7 @@ public class MemoryBoard extends AppCompatActivity {
                     icon_31.setImageResource(frontcard[num]);
                     icon_31.invalidate();
                     count++;
-                } else if (count > 2) {
+                } else if (count >= 2) {
                     icon_31.setClickable(false);
                 }
             }
@@ -229,7 +229,7 @@ public class MemoryBoard extends AppCompatActivity {
                     icon_32.setImageResource(frontcard[num]);
                     icon_32.invalidate();
                     count++;
-                } else if (count > 2) {
+                } else if (count >= 2) {
                     icon_32.setClickable(false);
                 }
             }
@@ -250,7 +250,7 @@ public class MemoryBoard extends AppCompatActivity {
                     icon_33.setImageResource(frontcard[num]);
                     icon_33.invalidate();
                     count++;
-                } else if (count > 2) {
+                } else if (count >= 2) {
                     icon_33.setClickable(false);
                 }
             }
@@ -271,7 +271,7 @@ public class MemoryBoard extends AppCompatActivity {
                     icon_34.setImageResource(frontcard[num]);
                     icon_34.invalidate();
                     count++;
-                } else if (count > 2) {
+                } else if (count >= 2) {
                     icon_34.setClickable(false);
                 }
             }
@@ -292,7 +292,7 @@ public class MemoryBoard extends AppCompatActivity {
                     icon_41.setImageResource(frontcard[num]);
                     icon_41.invalidate();
                     count++;
-                } else if (count > 2) {
+                } else if (count >= 2) {
                     icon_41.setClickable(false);
                 }
             }
@@ -313,7 +313,7 @@ public class MemoryBoard extends AppCompatActivity {
                     icon_42.setImageResource(frontcard[num]);
                     icon_42.invalidate();
                     count++;
-                } else if (count > 2) {
+                } else if (count >= 2) {
                     icon_42.setClickable(false);
                 }
             }
@@ -334,7 +334,7 @@ public class MemoryBoard extends AppCompatActivity {
                     icon_43.setImageResource(frontcard[num]);
                     icon_43.invalidate();
                     count++;
-                } else if (count > 2) {
+                } else if (count >= 2) {
                     icon_43.setClickable(false);
                 }
             }
@@ -355,7 +355,7 @@ public class MemoryBoard extends AppCompatActivity {
                     icon_44.setImageResource(frontcard[num]);
                     icon_44.invalidate();
                     count++;
-                } else if (count > 2) {
+                } else if (count >= 2) {
                     icon_44.setClickable(false);
                 }
             }
