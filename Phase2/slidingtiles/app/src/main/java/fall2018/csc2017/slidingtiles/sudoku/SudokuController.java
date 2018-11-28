@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.slidingtiles.sudoku;
 
 import android.content.Context;
 import android.widget.Button;
@@ -6,7 +6,13 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
+import fall2018.csc2017.slidingtiles.GameController;
+import fall2018.csc2017.slidingtiles.GameManager;
+import fall2018.csc2017.slidingtiles.PhaseTwoObserver;
+import fall2018.csc2017.slidingtiles.PhaseTwoSubject;
+import fall2018.csc2017.slidingtiles.Scoreboard;
 import fall2018.csc2017.slidingtiles.sudoku.SudokuGrid;
+import fall2018.csc2017.slidingtiles.sudoku.SudokuManager;
 
 class SudokuController implements PhaseTwoSubject, GameController {
     /**

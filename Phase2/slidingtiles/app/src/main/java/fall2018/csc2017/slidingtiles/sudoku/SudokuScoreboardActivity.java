@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.slidingtiles.sudoku;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesStartingActivity;
+import fall2018.csc2017.slidingtiles.LogInActivity;
+import fall2018.csc2017.slidingtiles.R;
+import fall2018.csc2017.slidingtiles.User;
+import fall2018.csc2017.slidingtiles.sudoku.SudokuStartingActivity;
 
 public class SudokuScoreboardActivity extends AppCompatActivity {
     /**

@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.slidingtiles.sudoku;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.Toast;
+
+import fall2018.csc2017.slidingtiles.GameFileSaver;
+import fall2018.csc2017.slidingtiles.LogInActivity;
+import fall2018.csc2017.slidingtiles.R;
+import fall2018.csc2017.slidingtiles.Scoreboard;
+import fall2018.csc2017.slidingtiles.ScoreboardFileSaver;
 
 
 public class SudokuStartingActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {

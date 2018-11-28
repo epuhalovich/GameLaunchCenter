@@ -4,17 +4,18 @@ import android.content.Context;
 import android.widget.Toast;
 
 import fall2018.csc2017.slidingtiles.GameManager;
+import fall2018.csc2017.slidingtiles.MovementController;
 
 
-public class MovementController {
+public class SlidingTilesMovementController implements MovementController {
 
-    private GameManager gameManager = null;
+    private SlidingTilesManager gameManager = null;
 
-    public MovementController() {
+    public SlidingTilesMovementController() {
     }
 
     public void setGameManager(GameManager gameManager) {
-        this.gameManager = gameManager;
+        this.gameManager = (SlidingTilesManager) gameManager;
     }
 
     public void processTapMovement(Context context, int position, boolean display) {

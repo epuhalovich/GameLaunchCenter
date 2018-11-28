@@ -29,9 +29,9 @@
         <activity android:name=".slidingtiles.SlidingTilesSetNumundoActivity" />
 
         <!-- SUDOKU -->
-        <activity android:name=".SudokuGameActivity"/>
-        <activity android:name=".SudokuStartingActivity"/>
-        <activity android:name=".SudokuScoreboardActivity"/>
+        <activity android:name=".sudoku.SudokuGameActivity"/>
+        <activity android:name=".sudoku.SudokuStartingActivity"/>
+        <activity android:name=".sudoku.SudokuScoreboardActivity"/>
 
         <!-- MEMORY -->
 

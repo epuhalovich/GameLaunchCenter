@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.Observable;
 import java.util.Observer;
 
+import fall2018.csc2017.slidingtiles.CustomAdapter;
 import fall2018.csc2017.slidingtiles.LogInActivity;
 import fall2018.csc2017.slidingtiles.R;
 
@@ -56,6 +57,7 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
 
         // Add View to activity
         gridView = findViewById(R.id.grid);
+        gridView.setmController(new SlidingTilesMovementController());
         gridView.setNumColumns(NUM_COLS);
         gridView.setGameManager(SlidingTilesStartingActivity.controller.getGameManager());
         SlidingTilesStartingActivity.controller.getGameManager().getSlidingTilesBoard().addObserver(this);

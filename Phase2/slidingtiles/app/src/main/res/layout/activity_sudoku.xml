@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SudokuGameActivity">
+    tools:context=".sudoku.SudokuGameActivity">
 
     <Button
         android:id="@+id/number1"
@@ -237,7 +237,7 @@
         app:layout_constraintStart_toEndOf="@+id/sudokucheck"
         app:layout_constraintTop_toBottomOf="@+id/number6" />
 
-    <fall2018.csc2017.slidingtiles.sudoku.GestureDetectView
+    <fall2018.csc2017.slidingtiles.sudoku.SudokuGestureDetectGridView
         android:id="@+id/sudokugrid"
         android:layout_width="369dp"
         android:layout_height="386dp"
