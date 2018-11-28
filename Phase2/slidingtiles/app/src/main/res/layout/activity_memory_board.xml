@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
                                              xmlns:tools="http://schemas.android.com/tools"
+                                             android:background="#5467"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent">
     <LinearLayout
@@ -180,7 +181,7 @@
 
     </LinearLayout>
     <TextView
-            android:text="SCORE"
+            android:text="STEPS"
             android:gravity="left"
             android:textSize="17pt"
             android:paddingLeft="37dp"
@@ -188,7 +189,7 @@
             android:paddingTop="60dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/scoretitle"/>
+            android:id="@+id/steptitle"/>
     <TextView
             android:text=""
             android:gravity="right"
@@ -198,7 +199,7 @@
             android:paddingTop="60dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/score"/>
+            android:id="@+id/step"/>
 
 
 </android.support.constraint.ConstraintLayout>
