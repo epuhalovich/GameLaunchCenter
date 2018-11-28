@@ -16,8 +16,6 @@ public class MemoryGameActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory_board);
 
-        step = findViewById(R.id.step);
-
     }
 
 
