@@ -129,10 +129,14 @@ public class SlidingTilesController implements PhaseTwoSubject, GameController {
      * @param scoreboard
      * @param user
      */
-    public void checkToAddScore(Scoreboard scoreboard, String user) {
+    public boolean checkToAddScore(Scoreboard scoreboard, String user) {
         if (slidingTilesManager.isGameOver()) {
             scoreboard.addScore(user, slidingTilesManager.getScore());
+            slidingTilesManager = null;
+            notifyObservers();
+            return true;
         }
+        return false;
     }
 
     /**

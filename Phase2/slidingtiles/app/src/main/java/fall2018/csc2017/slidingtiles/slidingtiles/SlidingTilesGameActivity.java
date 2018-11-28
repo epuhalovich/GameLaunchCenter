@@ -1,5 +1,6 @@
 package fall2018.csc2017.slidingtiles.slidingtiles;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ViewTreeObserver;
@@ -128,7 +129,13 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
     public void update(Observable o, Object arg) {
         display();
         SlidingTilesStartingActivity.controller.notifyObservers();
-        SlidingTilesStartingActivity.controller.checkToAddScore(SlidingTilesStartingActivity.scoreboard, LogInActivity.currentPlayer.getAccount());
+        if(SlidingTilesStartingActivity.controller.checkToAddScore(SlidingTilesStartingActivity.scoreboard, LogInActivity.currentPlayer.getAccount()))
+        {switchToScoreBoard();}
         }
+
+    private void switchToScoreBoard(){
+        Intent tmp = new Intent(this, SlidingTilesScoreBoardActivity.class);
+        startActivity(tmp);
+    }
 
 }

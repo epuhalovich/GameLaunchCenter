@@ -38,10 +38,14 @@ class SudokuController implements PhaseTwoSubject, GameController {
         notifyObservers();
     }
 
-    public void checkToAddScore(Scoreboard scoreboard, String user) {
+    public boolean checkToAddScore(Scoreboard scoreboard, String user) {
         if (sudokuManager.isGameOver()) {
             scoreboard.addScore(user, sudokuManager.getScore());
+            sudokuManager = null;
+            notifyObservers();
+            return true;
         }
+        return false;
     }
 
     public void createTileButtons(Context context) {

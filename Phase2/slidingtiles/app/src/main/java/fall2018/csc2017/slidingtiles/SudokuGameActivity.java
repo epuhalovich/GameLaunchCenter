@@ -1,5 +1,6 @@
 package fall2018.csc2017.slidingtiles;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ViewTreeObserver;
@@ -190,7 +191,13 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     public void update(Observable observable, Object o) {
         display();
         SudokuStartingActivity.controller.notifyObservers();
-        SudokuStartingActivity.controller.checkToAddScore(SudokuStartingActivity.scoreboard, LogInActivity.currentPlayer.getAccount());
+        if(SudokuStartingActivity.controller.checkToAddScore(SudokuStartingActivity.scoreboard, LogInActivity.currentPlayer.getAccount()))
+        {switchToScoreBoard();}
+    }
+
+    private void switchToScoreBoard(){
+        Intent tmp = new Intent(this, SudokuScoreboardActivity.class);
+        startActivity(tmp);
     }
 
     @Override

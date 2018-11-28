@@ -22,7 +22,7 @@ public class SudokuScoreboardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_score_board);
+        setContentView(R.layout.activity_sudoku_score);
         addReturnButtonListener();
         TextView globalScoresText = findViewById(R.id.GlobalScores);
         String globalScoreValues = SudokuStartingActivity.scoreboard.getScoreValues(false, currentPlayer);
