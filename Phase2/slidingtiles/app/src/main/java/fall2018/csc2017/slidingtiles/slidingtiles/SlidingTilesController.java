@@ -80,49 +80,6 @@ public class SlidingTilesController implements PhaseTwoSubject, GameController {
         notifyObservers();
     }
 
-    /**
-     * Return the array of tile buttons
-     * @return ArrayList</Button>
-     */
-    public ArrayList<Button> getTileButtons() {
-        return tileButtons;
-    }
-
-    /**
-     * Create the buttons for displaying the tiles.
-     *
-     * @param context the context
-     */
-    public void createTileButtons(Context context) {
-        SlidingTilesBoard slidingTilesBoard = slidingTilesManager.getSlidingTilesBoard();
-        int NUM_ROWS = slidingTilesBoard.NUM_ROWS;
-        int NUM_COLS = slidingTilesBoard.NUM_COLS;
-        tileButtons = new ArrayList<>();
-        for (int row = 0; row != NUM_ROWS; row++) {
-            for (int col = 0; col != NUM_COLS; col++) {
-                Button tmp = new Button(context);
-                tmp.setBackgroundResource(slidingTilesBoard.getTile(row, col).getBackground());
-                this.tileButtons.add(tmp);
-            }
-        }
-    }
-
-    /**
-     * Update the backgrounds on the buttons to match the tiles.
-     */
-    public void updateTileButtons() {
-        SlidingTilesBoard slidingTilesBoard = slidingTilesManager.getSlidingTilesBoard();
-        int nextPos = 0;
-        int NUM_ROWS = slidingTilesBoard.NUM_ROWS;
-        int NUM_COLS = slidingTilesBoard.NUM_COLS;
-        for (Button b : tileButtons) {
-            int row = nextPos / NUM_ROWS;
-            int col = nextPos % NUM_COLS;
-            b.setBackgroundResource(slidingTilesBoard.getTile(row, col).getBackground());
-            nextPos++;
-        }
-    }
-
 
     /**
      * Add a score to the scoreboard iff the game is finished

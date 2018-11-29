@@ -1,5 +1,6 @@
 package fall2018.csc2017.slidingtiles.slidingtiles;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -28,6 +30,12 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
     public static final int LEFT = 3;
     public static final int RIGHT = 4;
 
+    /**
+     * Return the array of tile buttons
+     * @return ArrayList</Button>
+     */
+    public ArrayList<Button> tileButtons;
+
     // Grid View and calculated column height and width based on device size
     private GestureDetectGridView gridView;
     private static int columnWidth, columnHeight;
@@ -39,8 +47,8 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
      */
     // Display
     public void display() {
-        SlidingTilesStartingActivity.controller.updateTileButtons();
-        gridView.setAdapter(new CustomAdapter(SlidingTilesStartingActivity.controller.getTileButtons(), columnWidth, columnHeight));
+        updateTileButtons();
+        gridView.setAdapter(new CustomAdapter(getTileButtons(), columnWidth, columnHeight));
     }
 
     @Override
@@ -49,7 +57,7 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
 
         this.NUM_COLS = SlidingTilesStartingActivity.controller.getGameManager().getSlidingTilesBoard().NUM_COLS;
         this.NUM_ROWS = SlidingTilesStartingActivity.controller.getGameManager().getSlidingTilesBoard().NUM_ROWS;
-        SlidingTilesStartingActivity.controller.createTileButtons(this);
+        createTileButtons(this);
         setContentView(R.layout.activity_main);
         addUndoButtonListener();
         addSaveButtonListener();
@@ -138,6 +146,49 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
     private void switchToScoreBoard(){
         Intent tmp = new Intent(this, SlidingTilesScoreBoardActivity.class);
         startActivity(tmp);
+    }
+
+    /**
+     * Return the array of tile buttons
+     * @return ArrayList</Button>
+     */
+    public ArrayList<Button> getTileButtons() {
+        return tileButtons;
+    }
+
+    /**
+     * Create the buttons for displaying the tiles.
+     *
+     * @param context the context
+     */
+    public void createTileButtons(Context context) {
+        SlidingTilesBoard slidingTilesBoard = SlidingTilesStartingActivity.controller.getGameManager().getSlidingTilesBoard();
+        int NUM_ROWS = slidingTilesBoard.NUM_ROWS;
+        int NUM_COLS = slidingTilesBoard.NUM_COLS;
+        tileButtons = new ArrayList<>();
+        for (int row = 0; row != NUM_ROWS; row++) {
+            for (int col = 0; col != NUM_COLS; col++) {
+                Button tmp = new Button(context);
+                tmp.setBackgroundResource(slidingTilesBoard.getTile(row, col).getBackground());
+                this.tileButtons.add(tmp);
+            }
+        }
+    }
+
+    /**
+     * Update the backgrounds on the buttons to match the tiles.
+     */
+    public void updateTileButtons() {
+        SlidingTilesBoard slidingTilesBoard = SlidingTilesStartingActivity.controller.getGameManager().getSlidingTilesBoard();
+        int nextPos = 0;
+        int NUM_ROWS = slidingTilesBoard.NUM_ROWS;
+        int NUM_COLS = slidingTilesBoard.NUM_COLS;
+        for (Button b : tileButtons) {
+            int row = nextPos / NUM_ROWS;
+            int col = nextPos % NUM_COLS;
+            b.setBackgroundResource(slidingTilesBoard.getTile(row, col).getBackground());
+            nextPos++;
+        }
     }
 
 }

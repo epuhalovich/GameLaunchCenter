@@ -1,5 +1,6 @@
 package fall2018.csc2017.slidingtiles.sudoku;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -15,11 +17,12 @@ import java.util.Observer;
 import fall2018.csc2017.slidingtiles.LogInActivity;
 import fall2018.csc2017.slidingtiles.R;
 import fall2018.csc2017.slidingtiles.CustomAdapter;
+import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesStartingActivity;
 
 public class SudokuGameActivity extends AppCompatActivity implements Observer, Serializable {
 
 
-
+    private ArrayList<Button> BoxButtons;
 
     // the puzzle
     public List<List<String>> puzzle;
@@ -34,8 +37,8 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
 
 
     public void display() {
-        SudokuStartingActivity.controller.updateTileButtons();
-        gridView.setAdapter(new CustomAdapter(SudokuStartingActivity.controller.getBoxButtons(), columnWidth, columnHeight));
+        updateTileButtons();
+        gridView.setAdapter(new CustomAdapter(getBoxButtons(), columnWidth, columnHeight));
     }
 
     @Override
@@ -157,8 +160,8 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
         gridView.setNumColumns(9);
         gridView.setmController(new SudokuMovementController());
         gridView.setGameManager(SudokuStartingActivity.controller.getGameManager());
-        SudokuStartingActivity.controller.createTileButtons(this);
-        gridView.setButtonArrayList(SudokuStartingActivity.controller.getBoxButtons());
+        createTileButtons(this);
+        gridView.setButtonArrayList(getBoxButtons());
         SudokuStartingActivity.controller.getGameManager().addObserver(this);
         SudokuMovementController movementController = (SudokuMovementController)gridView.getmController();
         movementController.setGameActivity(this);
@@ -181,6 +184,36 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
                     }
                 });
     }
+
+    public void createTileButtons(Context context) {
+        SudokuGrid[][] sudokuPuzzle = SudokuStartingActivity.controller.getGameManager().getPuzzle();
+        BoxButtons = new ArrayList<>();
+        for (int row = 0; row != 9; row++) {
+            for (int col = 0; col != 9; col++) {
+                Button tmp = new Button(context);
+                tmp.setBackgroundResource(sudokuPuzzle[row][col].getBackground());
+                this.BoxButtons.add(tmp);
+            }
+        }
+    }
+
+    public void updateTileButtons() {
+        SudokuGrid[][] sudokuBoard = SudokuStartingActivity.controller.getGameManager().getPuzzle();
+        int buttonPosition = 0;
+        for(int row = 0; row != 9; row ++){
+            for(int col = 0; col != 9; col++){
+                Button b = BoxButtons.get(buttonPosition);
+                b.setText(sudokuBoard[row][col].getNumber());
+                b.setTextSize(17);
+                b.setBackgroundResource(sudokuBoard[row][col].getBackground());
+                buttonPosition ++;
+            }
+        }
+    }
+    public ArrayList<Button> getBoxButtons(){
+        return BoxButtons;
+    }
+
     @Override
     public void update(Observable observable, Object o) {
         display();
