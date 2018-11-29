@@ -20,11 +20,6 @@ public class SlidingTilesController implements PhaseTwoSubject, GameController {
 
 
     /**
-     * The buttons to display.
-     */
-    private ArrayList<Button> tileButtons;
-
-    /**
      * The amount of undos in a sliding tiles game
      */
     private int NumUndos = 3;
