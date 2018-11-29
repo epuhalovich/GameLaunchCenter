@@ -213,6 +213,13 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
         return checkSelectedColumn(y) || checkSelectedRow(x) || checkSelectedSquare(x, y);
     }
 
+    /**
+     * Set the background to the
+     * @param row
+     * @param col
+     * @param puzzle
+     */
+
     private void setSelectedBackground(int row, int col, SudokuGrid[][] puzzle){
         setSelectedRow(row,puzzle);
         setSelectedColoumn(col,puzzle);
@@ -220,12 +227,23 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
         sudokuBoard.getPuzzleSudoku()[row][col].setBackground(R.drawable.button_selected);
     }
 
+
+    /**
+     * Set up the background of the index row of the puzzle
+     * @param row int row
+     * @param puzzle the sudokugrid puzzle
+     */
     private void setSelectedRow(int row, SudokuGrid[][] puzzle){
         for (SudokuGrid sudokuGrid : puzzle[row]){
             sudokuGrid.setBackground(R.drawable.button_pressed);
         }
     }
 
+    /**
+     * Set up the background of the index column of the puzzle
+     * @param col int column
+     * @param puzzle the sudokugrid puzzle
+     */
     private void setSelectedColoumn(int col, SudokuGrid[][] puzzle){
         for (int i = 0; i != 9; i++){
             puzzle[i][col].setBackground(R.drawable.button_pressed);
@@ -243,10 +261,9 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
         }
     }
 
-//    public ArrayList<Integer> getBackgrounds(){
-//        return backgrounds;
-//    }
-
+    /**
+     * Set up the backgrounds instance variable.
+     */
     public void setUpBackgrounds(){
         if (backgrounds.size() == 0) {
             for (int i = 0; i != 9; i++) {
@@ -259,6 +276,10 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
         }
     }
 
+    /**
+     * Set up the background according to position
+     * @param position the posiiton
+     */
     public void setUpBackground(int position){
         int row = position / 9;
         int col = position % 9;
@@ -267,7 +288,10 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
         notifyObservers();
     }
 
-
+    /**
+     * Set the background to original puzzle's background.
+     * @param puzzle the  puzzle
+     */
     public void setOriginal(SudokuGrid[][] puzzle){
         for (int i = 0; i != 9; i++){
             for(int j = 0; j != 9; j++){
