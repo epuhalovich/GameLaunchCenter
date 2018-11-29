@@ -2,10 +2,12 @@ package fall2018.csc2017.slidingtiles.sudoku;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Stack;
 import java.util.Observable;
 
 import fall2018.csc2017.slidingtiles.GameManager;
+import fall2018.csc2017.slidingtiles.R;
 
 public class SudokuManager extends Observable implements GameManager,Serializable{
     /**
@@ -27,6 +29,11 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
      * The number to fill in the puzzleSudoku.
      */
     private String numberToFill = "";
+
+    /**
+     * A list of the original background.
+     */
+    private ArrayList<Integer> backgrounds = new ArrayList<>();
 
 
     /**
@@ -92,7 +99,8 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
      * @param y the col
      */
     private boolean getEmptySpot(int x, int y){
-        return ((this.getPuzzle())[x][y]).getNumber().equals("");
+
+        return (sudokuBoard.getClonePuzzle()[x][y]).getNumber().equals("");
     }
 
     /**
@@ -216,5 +224,68 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
         int x = position / 9;
         int y = position % 9;
         return checkSelectedColoumn(y) || checkSelectedRow(x) || checkSelectedSquare(x, y);
+    }
+
+    private void setSelectedBackground(int row, int col, SudokuGrid[][] puzzle){
+        setSelectedRow(row,puzzle);
+        setSelectedColoumn(col,puzzle);
+        setSelectedSquare(row,col,puzzle);
+        sudokuBoard.getPuzzleSudoku()[row][col].setBackground(R.drawable.button_selected);
+    }
+
+    private void setSelectedRow(int row, SudokuGrid[][] puzzle){
+        for (SudokuGrid sudokuGrid : puzzle[row]){
+            sudokuGrid.setBackground(R.drawable.button_pressed);
+        }
+    }
+
+    private void setSelectedColoumn(int col, SudokuGrid[][] puzzle){
+        for (int i = 0; i != 9; i++){
+            puzzle[i][col].setBackground(R.drawable.button_pressed);
+        }
+    }
+
+    private void setSelectedSquare(int row, int col, SudokuGrid[][] puzzle){
+        int beginRow = (row/3) * 3;
+        int beginCol = (col/3) * 3;
+        for(int i = beginRow; i < (beginRow + 3); i++){
+            for(int j = beginCol ;j < (beginCol + 3); j++){
+                puzzle[i][j].setBackground(R.drawable.button_pressed);
+            }
+
+        }
+    }
+
+//    public ArrayList<Integer> getBackgrounds(){
+//        return backgrounds;
+//    }
+
+    public void setUpBackgrounds(){
+        if (backgrounds.size() == 0) {
+            for (int i = 0; i != 9; i++) {
+                for (int j = 0; j != 9; j++) {
+                    int background = sudokuBoard.getPuzzleSudoku()[i][j].getBackground();
+                    backgrounds.add(background);
+
+                }
+            }
+        }
+    }
+
+    public void setUpBackground(int position){
+        int row = position / 9;
+        int col = position % 9;
+        setSelectedBackground(row,col,sudokuBoard.getPuzzleSudoku());
+        setChanged();
+        notifyObservers();
+    }
+
+
+    public void setOriginal(SudokuGrid[][] puzzle){
+        for (int i = 0; i != 9; i++){
+            for(int j = 0; j != 9; j++){
+                puzzle[i][j].setBackground(backgrounds.get(i * 9 + j));
+            }
+        }
     }
 }
