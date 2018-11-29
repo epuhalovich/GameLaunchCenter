@@ -153,11 +153,11 @@ public class SlidingTilesBoardAndTileTest {
     @Test
     public void testGetLevel(){
         SlidingTilesManager easy = SlidingTilesManager.getLevel("Easy");
-        Assert.assertEquals(3, easy.getSlidingTilesBoard().NUM_COLS);
+        Assert.assertEquals(3, easy.getSlidingTilesBoard().getNUM_COLS());
         SlidingTilesManager meduim = SlidingTilesManager.getLevel("Medium");
-        Assert.assertEquals(4, meduim.getSlidingTilesBoard().NUM_COLS);
+        Assert.assertEquals(4, meduim.getSlidingTilesBoard().getNUM_COLS());
         SlidingTilesManager hard = SlidingTilesManager.getLevel("Hard");
-        Assert.assertEquals(5, hard.getSlidingTilesBoard().NUM_COLS);
+        Assert.assertEquals(5, hard.getSlidingTilesBoard().getNUM_COLS());
     }
 
     @Test

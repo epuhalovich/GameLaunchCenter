@@ -66,7 +66,7 @@ public class SlidingTilesControllerTest {
     @Test
     public void testSetUpSlidingTiles(){
         controller.setUpBoard("Easy");
-        int boardDimension = controller.getGameManager().getSlidingTilesBoard().NUM_ROWS * controller.getGameManager().getSlidingTilesBoard().NUM_COLS;
+        int boardDimension = controller.getGameManager().getSlidingTilesBoard().getNUM_ROWS() * controller.getGameManager().getSlidingTilesBoard().getNUM_COLS();
         Assert.assertEquals(9, boardDimension);
         Assert.assertEquals(3, controller.getGameManager().getNumUndos());
     }
