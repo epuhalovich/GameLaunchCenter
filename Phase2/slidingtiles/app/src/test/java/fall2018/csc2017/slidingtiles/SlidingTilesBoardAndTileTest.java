@@ -165,5 +165,6 @@ public class SlidingTilesBoardAndTileTest {
         setUpCorrect();
         Assert.assertEquals(0,slidingTilesManager.getScore());
     }
+
 }
 

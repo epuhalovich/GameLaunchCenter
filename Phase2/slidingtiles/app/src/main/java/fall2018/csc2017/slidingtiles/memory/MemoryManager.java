@@ -29,6 +29,23 @@ public class MemoryManager implements GameManager, Serializable {
         flipCount = 0;
     }
 
+    public MemoryManager(MemoryBoard board){
+        this.board = board;
+        flipCount = 0;
+    }
+
+    public int getFirstFlippedPosition() {
+        return firstFlippedPosition;
+    }
+
+    public int getSecondFlippedPosition() {
+        return secondFlippedPosition;
+    }
+
+    public int getFlipCount() {
+        return flipCount;
+    }
+
     public static MemoryManager getLevel(String level){
         if(level.equals("Easy")){
             return new MemoryManager(2, 2);
