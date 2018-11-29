@@ -26,6 +26,7 @@ public class MemoryStartingActivity extends AppCompatActivity implements PopupMe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //Game MVC setup
         GameFileSaver gameFileSaver = new GameFileSaver(this, LogInActivity.currentPlayer.getMemoryGameFile());
         controller = new MemoryController();

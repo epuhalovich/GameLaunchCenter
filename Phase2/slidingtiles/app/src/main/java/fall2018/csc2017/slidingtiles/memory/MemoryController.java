@@ -11,7 +11,6 @@ import fall2018.csc2017.slidingtiles.GameManager;
 import fall2018.csc2017.slidingtiles.PhaseTwoObserver;
 import fall2018.csc2017.slidingtiles.PhaseTwoSubject;
 import fall2018.csc2017.slidingtiles.Scoreboard;
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesManager;
 
 class MemoryController implements GameController, PhaseTwoSubject {
 
@@ -99,7 +98,7 @@ class MemoryController implements GameController, PhaseTwoSubject {
      * @param context the context
      */
     public void createTileButtons(Context context) {
-        MemoryBoard2 memoryBoard = memoryManager.getMemoryBoard();
+        MemoryBoard memoryBoard = memoryManager.getMemoryBoard();
         int NUM_ROWS = memoryBoard.getNUM_ROWS();
         int NUM_COLS = memoryBoard.getNUM_COLS();
         tileButtons = new ArrayList<>();
@@ -116,7 +115,7 @@ class MemoryController implements GameController, PhaseTwoSubject {
      * Update the backgrounds on the buttons to match the tiles.
      */
     public void updateTileButtons() {
-        MemoryBoard2 memoryBoard = memoryManager.getMemoryBoard();
+        MemoryBoard memoryBoard = memoryManager.getMemoryBoard();
         int nextPos = 0;
         int NUM_ROWS = memoryBoard.getNUM_ROWS();
         int NUM_COLS = memoryBoard.getNUM_COLS();

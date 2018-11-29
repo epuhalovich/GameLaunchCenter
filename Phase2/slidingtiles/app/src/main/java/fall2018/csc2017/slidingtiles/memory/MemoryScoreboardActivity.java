@@ -9,7 +9,6 @@ import android.widget.TextView;
 import fall2018.csc2017.slidingtiles.LogInActivity;
 import fall2018.csc2017.slidingtiles.R;
 import fall2018.csc2017.slidingtiles.User;
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesStartingActivity;
 
 public class MemoryScoreboardActivity extends AppCompatActivity{ /**
  * The quick reference for the currently logged in player.

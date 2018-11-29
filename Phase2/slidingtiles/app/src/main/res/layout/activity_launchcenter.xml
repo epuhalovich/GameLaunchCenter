@@ -1,53 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#5467"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5467"
     tools:context="fall2018.csc2017.slidingtiles.LaunchCenterActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/Header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="50dp"
-        android:text="Welcome!\nPlease choose the game you want to play."
-        android:gravity="center"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/choosebutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread_inside" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Game Centre"
+        android:textAppearance="@android:style/TextAppearance.Widget.TextView"
+        android:textSize="36sp" />
 
-    <Button
-        android:id="@+id/choosebutton"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="117dp"
+    <TextView
+        android:id="@+id/SubHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_below="@+id/Header"
+        android:text="Please choose the game you want to play."
+        android:textAppearance="@android:style/TextAppearance.Widget.TextView" />
+
+    <TextView
+        android:id="@+id/SlidingTilesTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="117dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/choose_game"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/SubHeader"
+        android:text="Sliding Tiles"
+        android:textAppearance="@android:style/TextAppearance.Widget.TextView"
+        android:textSize="18sp" />
+
+    <ImageButton
+        android:id="@+id/SlidingTilesImageButton"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:scaleType="centerInside"
+        android:padding="3dp"
+        android:background="#0000CD"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/SlidingTilesTitle"
+        android:src="@drawable/slidingtilesimagebutton" />
+
+    <TextView
+        android:id="@+id/SudokuTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/SlidingTilesImageButton"
+        android:text="Sudoku"
+        android:textAppearance="@android:style/TextAppearance.Widget.TextView"
+        android:textSize="18sp" />
+
+    <ImageButton
+        android:id="@+id/SudokuImageButton"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:scaleType="centerInside"
+        android:layout_marginTop="0dp"
+        android:padding="3dp"
+        android:background="#0000CD"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/SudokuTitle"
+        android:src="@drawable/sudokuimagebutton" />
+
+    <TextView
+        android:id="@+id/MemoryTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/SudokuImageButton"
+        android:text="Memory Game"
+        android:textAppearance="@android:style/TextAppearance.Widget.TextView"
+        android:textSize="18sp" />
+
+    <ImageButton
+        android:id="@+id/MemoryImageButton"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:scaleType="centerInside"
+        android:layout_marginTop="0dp"
+        android:padding="3dp"
+        android:background="#0000CD"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/MemoryTitle"
+        android:src="@drawable/memoryimagebutton" />
 
     <Button
         android:id="@+id/logout"
+        style="@android:style/Widget.DeviceDefault.Button.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="46dp"
-        android:layout_centerHorizontal="true"
-        android:text="@string/log_out"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choosebutton" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="LOG OUT" />
+
+</RelativeLayout>

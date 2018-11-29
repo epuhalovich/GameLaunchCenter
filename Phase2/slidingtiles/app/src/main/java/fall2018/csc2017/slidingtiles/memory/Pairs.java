@@ -54,40 +54,63 @@ public class Pairs implements Serializable {
         // "This looks so ugly" Part 2!
         switch (backgroundId + 1) {
             case 1:
-                background = R.drawable.tile_1;
+                background = R.drawable.card_1;
                 break;
             case 2:
-                background = R.drawable.tile_2;
+                background = R.drawable.card_2;
                 break;
             case 3:
-                background = R.drawable.tile_3;
+                background = R.drawable.card_3;
                 break;
             case 4:
-                background = R.drawable.tile_4;
+                background = R.drawable.card_4;
                 break;
             case 5:
-                background = R.drawable.tile_5;
+                background = R.drawable.card_5;
                 break;
             case 6:
-                background = R.drawable.tile_6;
+                background = R.drawable.card_6;
                 break;
             case 7:
-                background = R.drawable.tile_7;
+                background = R.drawable.card_7;
                 break;
             case 8:
-                background = R.drawable.tile_8;
+                background = R.drawable.card_8;
                 break;
             case 9:
-                background = R.drawable.tile_9;
+                background = R.drawable.card_9;
                 break;
             case 10:
-                background = R.drawable.tile_10;
+                background = R.drawable.card_10;
                 break;
             case 11:
-                background = R.drawable.tile_25;
+                background = R.drawable.card_11;
                 break;
+            case 12:
+                background = R.drawable.card_12;
+                break;
+            case 13:
+                background = R.drawable.card_13;
+                break;
+            case 14:
+                background = R.drawable.card_14;
+                break;
+            case 15:
+                background = R.drawable.card_15;
+                break;
+            case 16:
+                background = R.drawable.card_16;
+                break;
+            case 17:
+                background = R.drawable.card_17;
+                break;
+            case 18:
+                background = R.drawable.card_18;
+                break;
+            case 19:
+                background = R.drawable.card_back;
             default:
-                background = R.drawable.tile_25;
+                background = R.drawable.card_back;
         }
     }
 }

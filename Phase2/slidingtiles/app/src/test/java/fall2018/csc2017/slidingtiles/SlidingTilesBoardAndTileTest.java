@@ -10,6 +10,11 @@ import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesManager;
 import fall2018.csc2017.slidingtiles.slidingtiles.Tile;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.doCallRealMethod;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -34,6 +39,20 @@ public class SlidingTilesBoardAndTileTest {
         tiles.add(new Tile(24));
 
         return tiles;
+    }
+
+    private SlidingTilesBoard setUpTestBoard(){
+        List<Tile> tiles = new ArrayList<>();
+        for(int tileNum = 0; tileNum !=3; tileNum++){
+            tiles.add(new Tile(tileNum));
+        }
+        tiles.add(new Tile(6));
+        tiles.add(new Tile(3));
+        tiles.add(new Tile(24));
+        tiles.add(new Tile(5));
+        tiles.add(new Tile(4));
+        tiles.add(new Tile(7));
+        return new SlidingTilesBoard(tiles, 3, 3);
     }
 
     /**
@@ -98,6 +117,53 @@ public class SlidingTilesBoardAndTileTest {
         Assert.assertEquals(true, slidingTilesManager.isValidTap(11));
         Assert.assertEquals(true, slidingTilesManager.isValidTap(14));
         Assert.assertEquals(false, slidingTilesManager.isValidTap(10));
+    }
+
+    @Test
+    public void testTouchMove(){
+        slidingTilesManager = new SlidingTilesManager(setUpTestBoard());
+        slidingTilesManager.touchMove(8);
+        Assert.assertEquals(slidingTilesManager.getSlidingTilesBoard().getTile(1,2).getId(), 8);
+        slidingTilesManager.touchMove(7);
+        Assert.assertEquals(slidingTilesManager.getSlidingTilesBoard().getTile(2,2).getId(), 5);
+        slidingTilesManager.touchMove(4);
+        Assert.assertEquals(slidingTilesManager.getSlidingTilesBoard().getTile(2,1).getId(), 4);
+        slidingTilesManager.touchMove(5);
+        Assert.assertEquals(slidingTilesManager.getSlidingTilesBoard().getTile(1,1).getId(), 8);
+    }
+
+    @Test
+    public void testTryUndo(){
+        slidingTilesManager = new SlidingTilesManager(setUpTestBoard());
+        slidingTilesManager.touchMove(8);
+        slidingTilesManager.touchMove(7);
+        slidingTilesManager.touchMove(4);
+        slidingTilesManager.touchMove(5);
+        slidingTilesManager.setNumUndos(4);
+        slidingTilesManager.tryUndo();
+        Assert.assertEquals(slidingTilesManager.getSlidingTilesBoard().getTile(1,2).getId(),8);
+        slidingTilesManager.tryUndo();
+        Assert.assertEquals(slidingTilesManager.getSlidingTilesBoard().getTile(1,1).getId(),4);
+        slidingTilesManager.tryUndo();
+        Assert.assertEquals(slidingTilesManager.getSlidingTilesBoard().getTile(2,1).getId(),5);
+        slidingTilesManager.tryUndo();
+        Assert.assertEquals(slidingTilesManager.getSlidingTilesBoard().getTile(2,2).getId(),8);
+    }
+
+    @Test
+    public void testGetLevel(){
+        SlidingTilesManager easy = SlidingTilesManager.getLevel("Easy");
+        Assert.assertEquals(3, easy.getSlidingTilesBoard().NUM_COLS);
+        SlidingTilesManager meduim = SlidingTilesManager.getLevel("Medium");
+        Assert.assertEquals(4, meduim.getSlidingTilesBoard().NUM_COLS);
+        SlidingTilesManager hard = SlidingTilesManager.getLevel("Hard");
+        Assert.assertEquals(5, hard.getSlidingTilesBoard().NUM_COLS);
+    }
+
+    @Test
+    public void testGetScore(){
+        setUpCorrect();
+        Assert.assertEquals(0,slidingTilesManager.getScore());
     }
 }
 

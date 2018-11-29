@@ -51,6 +51,20 @@ public class SlidingTilesScoreboard_Test {
         Assert.assertEquals(expectedUser, scoreboard.getScoreValues(true, userMock));
     }
 
+    @Test
+    public void testRegister(){
+        scoreboard = new Scoreboard();
+        boolean thrownNull = false;
+        PhaseTwoObserver observer = mock(PhaseTwoObserver.class);
+        try{
+            scoreboard.register(observer);
+            scoreboard.register(null);
+        }catch(NullPointerException e){
+            thrownNull = true;
+        }
+        Assert.assertTrue(thrownNull);
+    }
+
 
 
 
