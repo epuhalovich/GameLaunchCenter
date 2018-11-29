@@ -25,7 +25,6 @@ public class SlidingTilesManager implements GameManager, Serializable {
 
     /**
      * Manage a slidingTilesBoard that has been pre-populated.
-     *
      * @param slidingTilesBoard the slidingTilesBoard
      */
     public SlidingTilesManager(SlidingTilesBoard slidingTilesBoard) {
@@ -100,7 +99,6 @@ public class SlidingTilesManager implements GameManager, Serializable {
 
     /**
      * Return whether the tiles are in row-major order.
-     *
      * @return whether the tiles are in row-major order
      */
     @SuppressLint("DefaultLocale")
@@ -118,7 +116,6 @@ public class SlidingTilesManager implements GameManager, Serializable {
 
     /**
      * Return whether any of the four surrounding tiles is the blank tile.
-     *
      * @param position the tile to check
      * @return whether the tile at position is surrounded by a blank tile
      */
@@ -143,7 +140,6 @@ public class SlidingTilesManager implements GameManager, Serializable {
      * Process a touch at position in the slidingTilesBoard, swapping tiles as appropriate.
      * Also adds an integer to the undo stack. 0,1,2,3 correspond to a tile swapped to
      * the above, left, below, and right respectively.
-     *
      * @param position the position
      */
     public void touchMove(int position) {

@@ -90,7 +90,6 @@ public class SlidingTilesController implements PhaseTwoSubject, GameController {
 
     /**
      * Create the buttons for displaying the tiles.
-     *
      * @param context the context
      */
     public void createTileButtons(Context context) {

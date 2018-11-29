@@ -18,16 +18,16 @@ import fall2018.csc2017.slidingtiles.CustomAdapter;
 
 public class SudokuGameActivity extends AppCompatActivity implements Observer, Serializable {
 
-    // Grid View and calculated column height and width based on device size
-    private static int columnWidth, columnHeight;
+    /**
+     * Grid View and calculated column height and width based on device size
+     */
     private SudokuGestureDetectGridView gridView;
-
+    private static int columnWidth, columnHeight;
 
     /**
      * Set up the background image and number for each button based on the master list
      * of positions, and then call the adapter to set the view.
      */
-    // Display
     public void display() {
         SudokuStartingActivity.controller.updateTileButtons();
         gridView.setAdapter(new CustomAdapter(SudokuStartingActivity.controller.getBoxButtons(), columnWidth, columnHeight));

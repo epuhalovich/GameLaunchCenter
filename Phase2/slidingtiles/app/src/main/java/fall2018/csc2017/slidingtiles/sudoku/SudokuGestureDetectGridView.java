@@ -19,11 +19,11 @@ public class SudokuGestureDetectGridView extends GestureDetectGridView {
 //    public static final int SWIPE_THRESHOLD_VELOCITY = 100;
 //    private GestureDetector gDetector;
 //    private SudokuMovementController mController;
-////    private boolean mFlingConfirmed = false;
-////    private float mTouchX;
-////    private float mTouchY;
-////    private ArrayList<Button> buttonArrayList;
-////    private int boxSide;
+//    private boolean mFlingConfirmed = false;
+//    private float mTouchX;
+//    private float mTouchY;
+//    private ArrayList<Button> buttonArrayList;
+//    private int boxSide;
 //    private SudokuManager sudokuManager;
 
 

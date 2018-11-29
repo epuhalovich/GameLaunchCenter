@@ -16,11 +16,6 @@ public class SudokuScoreboardActivity extends AppCompatActivity {
      */
     private User currentPlayer = LogInActivity.currentPlayer;
 
-    /**
-     *The controller of this view
-     */
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +44,10 @@ public class SudokuScoreboardActivity extends AppCompatActivity {
         Button ReturnButton = findViewById(R.id.ReturnButton);
         ReturnButton.setOnClickListener(v -> switchToStarting());
     }
+
+    /**
+     * Switch to the sudoku starting activity page
+     */
     private void switchToStarting(){
         Intent tmp = new Intent(this, SudokuStartingActivity.class);
         startActivity(tmp);
