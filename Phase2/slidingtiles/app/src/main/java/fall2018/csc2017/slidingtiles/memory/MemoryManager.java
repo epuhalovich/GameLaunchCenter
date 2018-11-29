@@ -9,7 +9,7 @@ import java.util.List;
 import fall2018.csc2017.slidingtiles.GameManager;
 
 public class MemoryManager implements GameManager, Serializable {
-    private MemoryBoard2 board;
+    private MemoryBoard board;
     private int flipCount;
     private int firstFlippedPosition;
     private int secondFlippedPosition;
@@ -26,7 +26,7 @@ public class MemoryManager implements GameManager, Serializable {
             pairs.add(new Pairs(PairsId));
         }
         Collections.shuffle(pairs);
-        this.board = new MemoryBoard2(pairs, rows, cols);
+        this.board = new MemoryBoard(pairs, rows, cols);
         flipCount = 0;
     }
 
@@ -87,7 +87,7 @@ public class MemoryManager implements GameManager, Serializable {
         return this.score;
     }
 
-    public MemoryBoard2 getMemoryBoard(){return this.board;}
+    public MemoryBoard getMemoryBoard(){return this.board;}
 
 }
 
