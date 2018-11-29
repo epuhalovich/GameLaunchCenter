@@ -30,7 +30,11 @@ public class SlidingTilesManager implements GameManager, Serializable {
      */
     public SlidingTilesManager(SlidingTilesBoard slidingTilesBoard) {
         this.slidingTilesBoard = slidingTilesBoard;
+        this.numUndos = 3;
+        this.undoDirectionStack = new Stack<>();
+        this.undoPositionStack = new Stack<>();
     }
+
 
     /**
      * Return the current slidingTilesBoard.
