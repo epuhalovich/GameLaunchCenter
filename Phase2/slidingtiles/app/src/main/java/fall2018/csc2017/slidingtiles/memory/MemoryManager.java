@@ -14,8 +14,7 @@ public class MemoryManager implements GameManager, Serializable {
     private int firstFlippedPosition;
     private int secondFlippedPosition;
     private int score;
-    private boolean lastMoveMatched;
-
+    private int numMatches = 0;
 
     public MemoryManager(int rows, int cols) {
         List<Pairs> pairs = new ArrayList<>();
@@ -58,16 +57,16 @@ public class MemoryManager implements GameManager, Serializable {
             if (board.getPairs(firstFlippedPosition).getId() != board.getPairs(secondFlippedPosition).getId()) {
                 board.unFlipCard(firstFlippedPosition);
                 board.unFlipCard(secondFlippedPosition);
-                lastMoveMatched = false;
             }
+            else { numMatches++; }
             flipCount = 0;
             score++;
             touchMove(position);
         }
     }
 
-    public boolean checkLastMoveMatched() {
-        return lastMoveMatched;
+    public int getNumMatches() {
+        return numMatches;
     }
 
     public boolean isGameOver(){

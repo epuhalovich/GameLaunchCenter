@@ -20,8 +20,9 @@ public class MemoryMovementController implements MovementController {
 
     public void processTapMovement(Context context, int position, boolean display) {
         if (memoryManager.isValidTap(position)) {
+            int numMatches = memoryManager.getNumMatches();
             memoryManager.touchMove(position);
-            if (memoryManager.checkLastMoveMatched()) {
+            if (memoryManager.getNumMatches() > numMatches) {
                 Toast.makeText(context, "It's a match!", Toast.LENGTH_SHORT).show();
             }
 
