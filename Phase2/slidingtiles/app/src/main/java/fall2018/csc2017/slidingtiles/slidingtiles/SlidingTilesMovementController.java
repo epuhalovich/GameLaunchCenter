@@ -6,7 +6,10 @@ import android.widget.Toast;
 import fall2018.csc2017.slidingtiles.GameManager;
 import fall2018.csc2017.slidingtiles.MovementController;
 
-
+/**
+ * The movement controller for the sliding tiles game.
+ * Processes taps on the screen.
+ */
 public class SlidingTilesMovementController implements MovementController {
 
     private GameManager gameManager = null;

@@ -16,7 +16,7 @@ import fall2018.csc2017.slidingtiles.sudoku.SudokuStartingActivity;
 /**
  * The launch center activity.
  */
-public class LaunchCenterActivity extends AppCompatActivity { //implements PopupMenu.OnMenuItemClickListener {
+public class LaunchCenterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +26,6 @@ public class LaunchCenterActivity extends AppCompatActivity { //implements Popup
 
         addGameButtonListeners();
         setupLogOutListener();
-
-        // TODO: remove deprecated methods below
-        //addChooseButtonListener();
     }
 
     /**
@@ -45,6 +42,10 @@ public class LaunchCenterActivity extends AppCompatActivity { //implements Popup
         memoryButton.setOnClickListener(v -> switchToGame("memory"));
     }
 
+    /**
+     * Switch to the desired game.
+     * @param gameTitle a string referring to the type of game.
+     */
     public void switchToGame(String gameTitle){
         switch(gameTitle){
             case "slidingtiles":
@@ -69,69 +70,3 @@ public class LaunchCenterActivity extends AppCompatActivity { //implements Popup
         });
     }
 }
-
-//    /**
-//     * Activate the choose button.
-//     */
-//    private void addChooseButtonListener() {
-//        Button chooseButton = findViewById(R.id.choosebutton);
-//        chooseButton.setOnClickListener(this::popup);
-//    }
-//
-//    /**
-//     * Pop up a menu of games.
-//     */
-//    public void popup(View v) {
-//        PopupMenu pop = new PopupMenu(this, v);
-//        pop.setOnMenuItemClickListener(this);
-//        pop.inflate(R.menu.game_menu);
-//        pop.show();
-//    }
-//
-//    /**
-//     * Activate the items in the menu.
-//     */
-//    public boolean onMenuItemClick(MenuItem item){
-//        switch(item.getItemId()){
-//
-//            case R.id.game1:
-//                switchToSlidingTiles();
-//                return true;
-//
-//            case R.id.game2:
-//                switchToSudoku();
-//                return true;
-//
-//            case R.id.game3:
-//                switchToMemory();
-//                return true;
-//
-//            default:
-//                return false;
-//        }
-//    }
-//
-//    /**
-//     * Switch to the sliding tile starting acticity.
-//     */
-//    private void switchToSlidingTiles() {
-//        Intent tmp = new Intent(this, SlidingTilesStartingActivity.class);
-//        startActivity(tmp);
-//    }
-//
-//    /**
-//     * Switch to the sudoku starting acticity.
-//     */
-//    private void switchToSudoku() {
-//        Intent tmp = new Intent(this, SudokuStartingActivity.class);
-//        startActivity(tmp);
-//    }
-//
-//    /**
-//     * Switch to the memory starting acticity.
-//     */
-//    private void switchToMemory() {
-//        Intent tmp = new Intent(this, MemoryStartingActivity.class);
-//        startActivity(tmp);
-//    }
-

@@ -13,10 +13,9 @@ import fall2018.csc2017.slidingtiles.User;
 
 
 /**
- * A scoreboard for sliding tiles that can return a representation of the users scoreboard and global
- * scoreboard for sliding tiles.
+ * A scoreboard abstract class that can return a representation of the user scores and global scores
+ * for any game which fully implements the class.
  */
-
 public class Scoreboard implements Serializable, PhaseTwoSubject {
 
 
