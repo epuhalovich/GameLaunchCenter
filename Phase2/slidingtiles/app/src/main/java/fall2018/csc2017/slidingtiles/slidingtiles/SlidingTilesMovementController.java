@@ -8,7 +8,7 @@ import fall2018.csc2017.slidingtiles.MovementController;
 
 /**
  * The movement controller for the sliding tiles game.
- * Processes taps on the screen.
+ * Sets up the game manager and processes taps on the screen.
  */
 public class SlidingTilesMovementController implements MovementController {
 

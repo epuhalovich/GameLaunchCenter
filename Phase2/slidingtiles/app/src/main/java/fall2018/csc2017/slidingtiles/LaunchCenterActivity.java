@@ -18,6 +18,7 @@ import fall2018.csc2017.slidingtiles.sudoku.SudokuStartingActivity;
  */
 public class LaunchCenterActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

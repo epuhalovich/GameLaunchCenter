@@ -18,7 +18,6 @@ import fall2018.csc2017.slidingtiles.User;
  */
 public class Scoreboard implements Serializable, PhaseTwoSubject {
 
-
     private ArrayList<Score> globalScores;
     private static List<PhaseTwoObserver> observers;
 
