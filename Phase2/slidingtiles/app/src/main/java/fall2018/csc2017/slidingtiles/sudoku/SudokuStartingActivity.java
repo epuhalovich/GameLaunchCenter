@@ -25,7 +25,6 @@ public class SudokuStartingActivity extends AppCompatActivity implements PopupMe
     private static final String fileName = "sudokuscores.ser";
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
