@@ -1,25 +1,22 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.slidingtiles.sudoku;
 
-import android.widget.Toast;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 import java.util.Observable;
 
-import fall2018.csc2017.slidingtiles.sudoku.SudokuGrid;
+import fall2018.csc2017.slidingtiles.GameManager;
 
 public class SudokuManager extends Observable implements GameManager,Serializable{
+    private String arr[] = { "1","2","3","4","5","6","7","8","9" };
+    private Set<String> correct = new HashSet<>(Arrays.asList(arr));
     public SudokuBoard sudokuBoard;
     private int score = 0;
     private Stack<Integer> undoPositionStack;
     private String numberToFill = "";
-
 
     public static SudokuManager getLevel(String level){
         if(level.equals("Easy")){
@@ -84,7 +81,7 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
         return getemptySpot(row,col);
     }
 
-    public void touchFill(int position) {
+    public void touchMove(int position) {
         int x = position / 9;
         int y = position % 9;
         ((this.getPuzzle())[x][y]).setNumber(this.numberToFill);

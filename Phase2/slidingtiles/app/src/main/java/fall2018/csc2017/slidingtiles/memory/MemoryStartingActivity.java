@@ -1,13 +1,14 @@
-package fall2018.csc2017.slidingtiles.slidingtiles;
+package fall2018.csc2017.slidingtiles.memory;
+
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import fall2018.csc2017.slidingtiles.GameFileSaver;
 import fall2018.csc2017.slidingtiles.LogInActivity;
@@ -15,23 +16,20 @@ import fall2018.csc2017.slidingtiles.R;
 import fall2018.csc2017.slidingtiles.Scoreboard;
 import fall2018.csc2017.slidingtiles.ScoreboardFileSaver;
 
-/**
- * The initial activity for the sliding puzzle tile game.
- */
-public class SlidingTilesStartingActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+public class MemoryStartingActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
     public static Scoreboard scoreboard;
 
-    public static SlidingTilesController controller;
+    public static MemoryController controller;
 
-    private static final String fileName = "slidingtilesscores.ser";
+    private static final String fileName = "memoryscores.ser";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Game MVC setup
-        GameFileSaver gameFileSaver = new GameFileSaver(this, LogInActivity.currentPlayer.getSlidingTilesGameFile());
-        controller = new SlidingTilesController();
-        if(gameFileSaver.getGameManager() != null){
+        GameFileSaver gameFileSaver = new GameFileSaver(this, LogInActivity.currentPlayer.getMemoryGameFile());
+        controller = new MemoryController();
+        if (gameFileSaver.getGameManager() != null) {
             controller.setGameManager(gameFileSaver.getGameManager());
         }
         controller.register(gameFileSaver);
@@ -43,11 +41,11 @@ public class SlidingTilesStartingActivity extends AppCompatActivity implements P
         scoreboard.setGlobalScores(scoreboardFileSaver.globalScores);
         gameFileSaver.saveToFile();
 
-        setContentView(R.layout.activity_starting_);
+        setContentView(R.layout.activity_memory_starting);
         addStartButtonListener();
         addLoadButtonListener();
         addViewScoreButtonListener();
-        addSetUndoButtonListener();
+
     }
 
     /**
@@ -132,7 +130,7 @@ public class SlidingTilesStartingActivity extends AppCompatActivity implements P
      * Switch to the SlidingTilesGameActivity view to play the game.
      */
     private void switchToGame() {
-        Intent tmp = new Intent(this, SlidingTilesGameActivity.class);
+        Intent tmp = new Intent(this, MemoryGameActivity.class);
         startActivity(tmp);
     }
 
@@ -148,23 +146,8 @@ public class SlidingTilesStartingActivity extends AppCompatActivity implements P
      * Switch to the SlidingTilesScoreBoardActivity view.
      */
     private void switchToScoreBoard(){
-        Intent tmp = new Intent(this, SlidingTilesScoreBoardActivity.class);
-        startActivity(tmp);
-    }
-
-    /**
-     * Activate the setnumundo button.
-     */
-    private void addSetUndoButtonListener() {
-        Button UndoButton = findViewById(R.id.SetundoButton);
-        UndoButton.setOnClickListener(v -> switchToSetNumundo());
-    }
-
-    /**
-     * Switch to the SlidingTilesSetNumundoActivity view.
-     */
-    private void switchToSetNumundo(){
-        Intent tmp = new Intent(this, SlidingTilesSetNumundoActivity.class);
+        Intent tmp = new Intent(this, MemoryScoreboardActivity.class);
         startActivity(tmp);
     }
 }
+

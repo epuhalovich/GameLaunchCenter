@@ -3,14 +3,10 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesBoard;
 import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesController;
 import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesManager;
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesScoreboard;
-import fall2018.csc2017.slidingtiles.slidingtiles.Tile;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -32,10 +28,10 @@ public class SlidingTilesControllerTest {
 
     @Test
     public void testSetUpSlidingTiles(){
-        controller.setUpSlidingTiles("Easy");
-        int boardDimension = controller.getSlidingTilesManager().getSlidingTilesBoard().NUM_ROWS * controller.getSlidingTilesManager().getSlidingTilesBoard().NUM_COLS;
+        controller.setUpBoard("Easy");
+        int boardDimension = controller.getGameManager().getSlidingTilesBoard().NUM_ROWS * controller.getGameManager().getSlidingTilesBoard().NUM_COLS;
         Assert.assertEquals(9, boardDimension);
-        Assert.assertEquals(3, controller.getSlidingTilesManager().getNumUndos());
+        Assert.assertEquals(3, controller.getGameManager().getNumUndos());
     }
 
     @Test
@@ -57,14 +53,14 @@ public class SlidingTilesControllerTest {
 
     @Test
     public void testCheckToAddScore(){
-        SlidingTilesScoreboard slidingTilesScoreboard = new SlidingTilesScoreboard();
+        Scoreboard scoreboard = new Scoreboard();
         String user = "player1";
         SlidingTilesManager slidingTilesManager = mock(SlidingTilesManager.class);
         when(slidingTilesManager.isGameOver()).thenReturn(true);
         when(slidingTilesManager.getScore()).thenReturn(25);
-        controller.setSlidingTilesManager(slidingTilesManager);
-        controller.checkToAddScore(slidingTilesScoreboard, user);
-        ArrayList<Score> actual = slidingTilesScoreboard.getGlobalScores();
+        controller.setGameManager(slidingTilesManager);
+        controller.checkToAddScore(scoreboard, user);
+        ArrayList<Score> actual = scoreboard.getGlobalScores();
         ArrayList<Score> expected = new ArrayList<>();
         expected.add((new Score("player1",25)));
         Assert.assertEquals(actual, expected);

@@ -14,7 +14,7 @@ import fall2018.csc2017.slidingtiles.User;
 /**
  * The score board display activity.
  */
-public class ScoreBoardActivity extends AppCompatActivity {
+public class SlidingTilesScoreBoardActivity extends AppCompatActivity {
 
     /**
      * The quick reference for the currently logged in player.
@@ -29,14 +29,21 @@ public class ScoreBoardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_score_board);
+        setContentView(R.layout.activity_scoreboard);
         addReturnButtonListener();
+
+        // Change to appropriate game title and score description
+        TextView gameTitle = findViewById(R.id.GameTitle);
+        TextView scoreDescription = findViewById(R.id.ScoreDescription);
+        gameTitle.setText("Sliding Tiles");
+        scoreDescription.setText("Least moves taken");
+
         TextView globalScoresText = findViewById(R.id.GlobalScores);
-        String globalScoreValues = SlidingTilesStartingActivity.slidingTilesScoreboard.getScoreValues(false, currentPlayer);
+        String globalScoreValues = SlidingTilesStartingActivity.scoreboard.getScoreValues(false, currentPlayer);
         globalScoresText.setText(globalScoreValues);
 
         TextView userScoresText = findViewById(R.id.UserScores);
-        String userScoreValues = SlidingTilesStartingActivity.slidingTilesScoreboard.getScoreValues(true, currentPlayer);
+        String userScoreValues = SlidingTilesStartingActivity.scoreboard.getScoreValues(true, currentPlayer);
         userScoresText.setText(userScoreValues);
     }
 

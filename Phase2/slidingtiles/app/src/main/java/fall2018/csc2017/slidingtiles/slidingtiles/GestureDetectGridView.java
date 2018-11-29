@@ -13,7 +13,13 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.widget.Button;
 import android.widget.GridView;
+
+import java.util.ArrayList;
+
+import fall2018.csc2017.slidingtiles.GameManager;
+import fall2018.csc2017.slidingtiles.MovementController;
 
 public class GestureDetectGridView extends GridView {
     public static final int SWIPE_MIN_DISTANCE = 100;
@@ -24,7 +30,8 @@ public class GestureDetectGridView extends GridView {
     private boolean mFlingConfirmed = false;
     private float mTouchX;
     private float mTouchY;
-    private SlidingTilesManager slidingTilesManager;
+    private GameManager gameManager;
+    private ArrayList<Button> buttonArrayList;
 
     public GestureDetectGridView(Context context) {
         super(context);
@@ -48,8 +55,11 @@ public class GestureDetectGridView extends GridView {
         init(context);
     }
 
+    public void setmController(MovementController mController) {
+        this.mController = mController;
+    }
+
     private void init(final Context context) {
-        mController = new MovementController();
         gDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
 
             @Override
@@ -101,8 +111,16 @@ public class GestureDetectGridView extends GridView {
         return gDetector.onTouchEvent(ev);
     }
 
-    public void setSlidingTilesManager(SlidingTilesManager slidingTilesManager) {
-        this.slidingTilesManager = slidingTilesManager;
-        mController.setSlidingTilesManager(slidingTilesManager);
+    public void setGameManager(GameManager gameManager) {
+        this.gameManager = gameManager;
+        mController.setGameManager(gameManager);
+    }
+
+    public void setButtonArrayList(ArrayList<Button> buttonArrayList) {
+        this.buttonArrayList = buttonArrayList;
+    }
+
+    public MovementController getmController() {
+        return mController;
     }
 }

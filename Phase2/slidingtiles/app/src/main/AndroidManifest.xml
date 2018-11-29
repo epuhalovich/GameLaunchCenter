@@ -24,15 +24,20 @@
 
         <!-- SLIDING TILES -->
         <activity android:name=".slidingtiles.SlidingTilesGameActivity" />
-        <activity android:name=".slidingtiles.ScoreBoardActivity" />
+        <activity android:name=".slidingtiles.SlidingTilesScoreBoardActivity" />
         <activity android:name=".slidingtiles.SlidingTilesStartingActivity" />
         <activity android:name=".slidingtiles.SlidingTilesSetNumundoActivity" />
 
         <!-- SUDOKU -->
-        <activity android:name=".SudokuGameActivity"/>
-        <activity android:name=".SudokuStartingActivity"/>
+        <activity android:name=".sudoku.SudokuGameActivity"/>
+        <activity android:name=".sudoku.SudokuStartingActivity"/>
+        <activity android:name=".sudoku.SudokuScoreboardActivity"/>
 
-        <!-- MEMORY -->
+         MEMORY
+        <activity android:name=".memory.MemoryGameActivity"/>
+        <activity android:name=".memory.MemoryStartingActivity"/>
+        <activity android:name=".memory.MemoryScoreboardActivity"/>
+
 
 
     </application>

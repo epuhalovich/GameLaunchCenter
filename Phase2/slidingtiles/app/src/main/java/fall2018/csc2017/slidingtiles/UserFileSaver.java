@@ -58,6 +58,7 @@ public class UserFileSaver implements Serializable, PhaseTwoObserver {
         return allUsers;
     }
 
+    @SuppressWarnings("unchecked")
     public void loadFromFile(Context context) {
 
         try {

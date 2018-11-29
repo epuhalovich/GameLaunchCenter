@@ -1,34 +1,30 @@
 package fall2018.csc2017.slidingtiles.sudoku;
 
 import android.content.Context;
-import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Observable;
 
+import fall2018.csc2017.slidingtiles.GameManager;
+import fall2018.csc2017.slidingtiles.MovementController;
 import fall2018.csc2017.slidingtiles.R;
-import fall2018.csc2017.slidingtiles.SudokuGameActivity;
-import fall2018.csc2017.slidingtiles.SudokuManager;
-import fall2018.csc2017.slidingtiles.SudokuStartingActivity;
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesManager;
+import fall2018.csc2017.slidingtiles.CustomAdapter;
 
 
-public class MovementControl extends Observable {
+public class SudokuMovementController extends Observable implements MovementController {
 
     private SudokuManager sudokuManager = null;
     private int previousPosition =  0;
     private int previousBackground;
     private ArrayList<Integer> backgrounds = new ArrayList<>();
     private SudokuGameActivity gameActivity;
-    private CustomAdapt customAdapt;
-    public MovementControl() {
+    private CustomAdapter customAdapt;
+    public SudokuMovementController() {
     }
 
-    public void setSudokuManger(SudokuManager sudokuManger) {
-        this.sudokuManager = sudokuManger;
+    public void setGameManager(GameManager sudokuManger) {
+        this.sudokuManager = (SudokuManager) sudokuManger;
     }
 
     public void processTapMovement(Context context, int position, boolean display) {
@@ -42,7 +38,7 @@ public class MovementControl extends Observable {
                     Toast.makeText(context, "Can't fill in this number(repeated)", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    sudokuManager.touchFill(position);
+                    sudokuManager.touchMove(position);
                     if (sudokuManager.isGameOver()) {
                         Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
                     }
@@ -115,15 +111,15 @@ public class MovementControl extends Observable {
         }
     }
 
-    // set the background of the previous position back and set the new position to the button_pressed background
-    private void resetBackground(int position, String mode){
-        int row = position / 9;
-        int col = position % 9;
-        if (mode.equals("Original")){
-            sudokuManager.getPuzzle()[row][col].setBackground(previousBackground);
-        }
-        else if (mode.equals("Pressed")){
-            previousBackground = sudokuManager.getPuzzle()[row][col].getBackground();
-           sudokuManager.getPuzzle()[row][col].setBackground(R.drawable.button_pressed);}
-    }
+//    // set the background of the previous position back and set the new position to the button_pressed background
+//    private void resetBackground(int position, String mode){
+//        int row = position / 9;
+//        int col = position % 9;
+//        if (mode.equals("Original")){
+//            sudokuManager.getPuzzle()[row][col].setBackground(previousBackground);
+//        }
+//        else if (mode.equals("Pressed")){
+//            previousBackground = sudokuManager.getPuzzle()[row][col].getBackground();
+//           sudokuManager.getPuzzle()[row][col].setBackground(R.drawable.button_pressed);}
+//    }
 }

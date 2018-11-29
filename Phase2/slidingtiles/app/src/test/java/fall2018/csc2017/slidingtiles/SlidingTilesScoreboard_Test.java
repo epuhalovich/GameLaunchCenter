@@ -7,7 +7,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesScoreboard;
 
 /**
  * Unit tests for the sliding tiles scoreboard.
@@ -19,7 +18,7 @@ import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesScoreboard;
 public class SlidingTilesScoreboard_Test {
 
     /** the scoreboard for testing. */
-    SlidingTilesScoreboard slidingTilesScoreboard;
+    Scoreboard scoreboard;
 
     private void makePopulatedScoreboard(){
         ArrayList<Score> testScores = new ArrayList<>();
@@ -28,17 +27,17 @@ public class SlidingTilesScoreboard_Test {
         testScores.add(new Score("player1",50));
         testScores.add(new Score("player2", 75));
         testScores.add(new Score("player1",100));
-        slidingTilesScoreboard = new SlidingTilesScoreboard(testScores);
+        scoreboard = new Scoreboard(testScores);
     }
 
     @Test
     public void testAddScore(){
         makePopulatedScoreboard();
-        slidingTilesScoreboard.addScore("player2", 25);
+        scoreboard.addScore("player2", 25);
         Score expectedFirst = new Score("player2", 25);
-        Assert.assertEquals(expectedFirst, slidingTilesScoreboard.getGlobalScores().get(0));
+        Assert.assertEquals(expectedFirst, scoreboard.getGlobalScores().get(0));
         Score expectedLast = new Score("player1", 100);
-        Assert.assertEquals(expectedLast, slidingTilesScoreboard.getGlobalScores().get(5));
+        Assert.assertEquals(expectedLast, scoreboard.getGlobalScores().get(5));
     }
 
     @Test
@@ -47,9 +46,9 @@ public class SlidingTilesScoreboard_Test {
         User userMock = mock(User.class);
         when(userMock.getAccount()).thenReturn("player1");
         String expectedGlobal = "player1: 50\nplayer1: 50\nplayer1: 50\nplayer2: 75\nplayer1: 100\n";
-        Assert.assertEquals(expectedGlobal, slidingTilesScoreboard.getScoreValues(false, userMock));
+        Assert.assertEquals(expectedGlobal, scoreboard.getScoreValues(false, userMock));
         String expectedUser = "player1: 50\nplayer1: 50\nplayer1: 50\nplayer1: 100\n";
-        Assert.assertEquals(expectedUser, slidingTilesScoreboard.getScoreValues(true, userMock));
+        Assert.assertEquals(expectedUser, scoreboard.getScoreValues(true, userMock));
     }
 
 
