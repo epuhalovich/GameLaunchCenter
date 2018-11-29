@@ -15,11 +15,7 @@ import fall2018.csc2017.slidingtiles.CustomAdapter;
 public class SudokuMovementController extends Observable implements MovementController {
 
     private SudokuManager sudokuManager = null;
-    private int previousPosition =  0;
-    private int previousBackground;
     private ArrayList<Integer> backgrounds = new ArrayList<>();
-    private SudokuGameActivity gameActivity;
-    private CustomAdapter customAdapt;
     public SudokuMovementController() {
     }
 
@@ -59,9 +55,6 @@ public class SudokuMovementController extends Observable implements MovementCont
         notifyObservers();
     }
 
-    public void setGameActivity(SudokuGameActivity gameActivity) {
-        this.gameActivity = gameActivity;
-    }
 
     private void setOriginal(SudokuGrid[][] puzzle){
         for (int i = 0; i != 9; i++){
@@ -110,16 +103,4 @@ public class SudokuMovementController extends Observable implements MovementCont
         }
         }
     }
-
-//    // set the background of the previous position back and set the new position to the button_pressed background
-//    private void resetBackground(int position, String mode){
-//        int row = position / 9;
-//        int col = position % 9;
-//        if (mode.equals("Original")){
-//            sudokuManager.getPuzzle()[row][col].setBackground(previousBackground);
-//        }
-//        else if (mode.equals("Pressed")){
-//            previousBackground = sudokuManager.getPuzzle()[row][col].getBackground();
-//           sudokuManager.getPuzzle()[row][col].setBackground(R.drawable.button_pressed);}
-//    }
 }
