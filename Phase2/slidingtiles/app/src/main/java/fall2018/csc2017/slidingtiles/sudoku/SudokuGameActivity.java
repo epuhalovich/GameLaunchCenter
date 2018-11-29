@@ -215,8 +215,6 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
         gridView.setmController(new SudokuMovementController());
         gridView.setGameManager(SudokuStartingActivity.controller.getGameManager());
         SudokuStartingActivity.controller.createTileButtons(this);
-//        gridView.setButtonArrayList(SudokuStartingActivity.controller.getBoxButtons());
-
         SudokuStartingActivity.controller.getGameManager().addObserver(this);
         SudokuMovementController movementController = (SudokuMovementController) gridView.getmController();
         movementController.addObserver(this);
