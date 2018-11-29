@@ -12,7 +12,7 @@ import fall2018.csc2017.slidingtiles.PhaseTwoObserver;
 import fall2018.csc2017.slidingtiles.PhaseTwoSubject;
 import fall2018.csc2017.slidingtiles.Scoreboard;
 
-class MemoryController implements GameController, PhaseTwoSubject {
+public class MemoryController implements GameController, PhaseTwoSubject {
 
     /**
      * The list of observers of this class
