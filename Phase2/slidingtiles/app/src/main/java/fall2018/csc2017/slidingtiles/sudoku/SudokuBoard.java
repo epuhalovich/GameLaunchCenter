@@ -23,6 +23,10 @@ public class SudokuBoard implements Serializable {
      */
     private SudokuGrid[][] puzzleSudoku;
 
+    /**
+     * A clone initial puzzle
+     */
+    private SudokuGrid[][] clonePuzzle;
 
     /**
      * A string list of the sudokus that will be used to create solution
@@ -49,17 +53,16 @@ public class SudokuBoard implements Serializable {
 
     /**
      * Constrcut a SudokuBoard
-     *
      * @param level a int that indicates how many empty spot will be in the puzzle sudoku
      */
     public SudokuBoard(int level) {
         this.solutionSudoku = getSudoku(getNewSudoku());
         this.puzzleSudoku = createPuzzle(level, this.solutionSudoku);
+        this.clonePuzzle = cloneSudoku(puzzleSudoku);
     }
 
     /**
      * Return the puzzleSudoku.
-     *
      * @return the puzzleSudoku
      */
     public SudokuGrid[][] getPuzzleSudoku() {
@@ -68,7 +71,6 @@ public class SudokuBoard implements Serializable {
 
     /**
      * Return the solutionSudoku
-     *
      * @return the solutionSudoku
      */
     public SudokuGrid[][] getSolutionSudoku() {
@@ -77,7 +79,6 @@ public class SudokuBoard implements Serializable {
 
     /**
      * Return  a new sudoku by randomly getting a sudoku in the sudokulists.
-     *
      * @return a new Sudoku
      */
     private String[][] getNewSudoku() {
@@ -94,7 +95,6 @@ public class SudokuBoard implements Serializable {
 
     /**
      * Return a String lists that swap two number in the diagnal of the sample String lists.
-     *
      * @param sample a sample String lists
      */
     private String[][] swapDia(String[][] sample) {
@@ -109,7 +109,6 @@ public class SudokuBoard implements Serializable {
 
     /**
      * Return a String lists that swap two number of the sample String lists.
-     *
      * @param sample a sample String lists
      */
     private String[][] swapNumber(String[][] sample) {
@@ -132,7 +131,6 @@ public class SudokuBoard implements Serializable {
 
     /**
      * Return a String lists that swap the number in valid row of the sample String lists.
-     *
      * @param sample a sample String lists
      */
     private String[][] swapLine(String[][] sample) {
@@ -148,7 +146,6 @@ public class SudokuBoard implements Serializable {
 
     /**
      * Return a String lists that swap the number in valid column of the sample String lists.
-     *
      * @param sample a sample String lists
      */
     private String[][] swapColumn(String[][] sample) {
@@ -167,7 +164,6 @@ public class SudokuBoard implements Serializable {
 
     /**
      * Return a int that represents the changable index of column or row depends on i.
-     *
      * @param i the index of rows or columns
      */
     private int validChange(int i) {
@@ -183,7 +179,6 @@ public class SudokuBoard implements Serializable {
 
     /**
      * Return a String lists of sudoku by choosing randomly from listsudokus.
-     *
      * @return String lists of sudoku
      */
     private String[][] getSampleSudoku() {
@@ -194,7 +189,6 @@ public class SudokuBoard implements Serializable {
     /**
      * Return a lists of Sudokugrids by clone the number in clone in the corresponding position
      * and set up the default background.
-     *
      * @param clone the String lists of sudoku to clone
      */
     private static SudokuGrid[][] getSudoku(String[][] clone) {
@@ -210,18 +204,11 @@ public class SudokuBoard implements Serializable {
 
     /**
      * Return the implemented sudoku board a puzzle.
-     *
      * @param num the number of boxes that are empty.
      */
 
     public SudokuGrid[][] createPuzzle(int num, SudokuGrid[][] solution) {
-        SudokuGrid[][] puzzle = new SudokuGrid[9][9];
-        for (int i = 0; i != 9; i++) {
-            for (int j = 0; j != 9; j++) {
-                SudokuGrid current = solution[i][j];
-                puzzle[i][j] = new SudokuGrid(current.getBackground(), current.getNumber());
-            }
-        }
+        SudokuGrid[][] puzzle = cloneSudoku(solution);
         for (int i = 0; i != 9; i++) {
             for (int j = 0; j != num; j++) {
                 int x = rand.nextInt(9);
@@ -230,6 +217,26 @@ public class SudokuBoard implements Serializable {
             }
         }
         return puzzle;
+    }
+
+    public SudokuGrid[][] getClonePuzzle() {
+        return clonePuzzle;
+    }
+
+    /**
+     * Return a clone sudoku based on given sudoku
+     * @param sudoku original sudoku
+     * @return a clone sudoku
+     */
+    private SudokuGrid[][] cloneSudoku(SudokuGrid[][] sudoku){
+        SudokuGrid[][] clone = new SudokuGrid[9][9];
+        for (int i = 0; i != 9; i++) {
+            for (int j = 0; j != 9; j++){
+                SudokuGrid current = sudoku[i][j];
+                clone[i][j] = new SudokuGrid(current.getBackground(), current.getNumber());
+            }
+        }
+        return clone;
     }
 }
 
