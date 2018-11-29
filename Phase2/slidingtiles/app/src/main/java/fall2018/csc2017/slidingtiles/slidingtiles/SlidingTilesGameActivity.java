@@ -93,10 +93,12 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
     private void addUndoButtonListener() {
         Button undoButton = findViewById(R.id.UndoButton);
         undoButton.setOnClickListener(v -> {
-            if (SlidingTilesStartingActivity.controller.getGameManager().getNumUndos() == 0){
-                makeToastNoUndosText();
+            if (!(SlidingTilesStartingActivity.controller.getGameManager() == null)) {
+                if (SlidingTilesStartingActivity.controller.getGameManager().getNumUndos() == 0) {
+                    makeToastNoUndosText();
+                }
+                SlidingTilesStartingActivity.controller.getGameManager().tryUndo();
             }
-            SlidingTilesStartingActivity.controller.getGameManager().tryUndo();
         });
     }
 

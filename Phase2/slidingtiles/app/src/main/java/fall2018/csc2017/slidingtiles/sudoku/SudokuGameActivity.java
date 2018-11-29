@@ -186,11 +186,13 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     private void addUndoButtonListener() {
         Button undoButton = findViewById(R.id.sudokuundo);
         undoButton.setOnClickListener(v -> {
-            if (SudokuStartingActivity.controller.getGameManager().getUndoPositionStack().empty()) {
-                makeToastNothingToUndo();
-            } else {
-                SudokuStartingActivity.controller.getGameManager().tryUndo();
-                makeToastUndoSuccessful();
+            if (!(SudokuStartingActivity.controller.getGameManager() == null)) {
+                if (SudokuStartingActivity.controller.getGameManager().getUndoPositionStack().empty()) {
+                    makeToastNothingToUndo();
+                } else {
+                    SudokuStartingActivity.controller.getGameManager().tryUndo();
+                    makeToastUndoSuccessful();
+                }
             }
         });
     }
