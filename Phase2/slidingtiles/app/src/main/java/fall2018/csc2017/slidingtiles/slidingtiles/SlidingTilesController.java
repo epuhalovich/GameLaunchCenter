@@ -94,8 +94,8 @@ public class SlidingTilesController implements PhaseTwoSubject, GameController {
      */
     public void createTileButtons(Context context) {
         SlidingTilesBoard slidingTilesBoard = slidingTilesManager.getSlidingTilesBoard();
-        int NUM_ROWS = slidingTilesBoard.NUM_ROWS;
-        int NUM_COLS = slidingTilesBoard.NUM_COLS;
+        int NUM_ROWS = slidingTilesBoard.getNUM_ROWS();
+        int NUM_COLS = slidingTilesBoard.getNUM_COLS();
         tileButtons = new ArrayList<>();
         for (int row = 0; row != NUM_ROWS; row++) {
             for (int col = 0; col != NUM_COLS; col++) {
@@ -112,8 +112,8 @@ public class SlidingTilesController implements PhaseTwoSubject, GameController {
     public void updateTileButtons() {
         SlidingTilesBoard slidingTilesBoard = slidingTilesManager.getSlidingTilesBoard();
         int nextPos = 0;
-        int NUM_ROWS = slidingTilesBoard.NUM_ROWS;
-        int NUM_COLS = slidingTilesBoard.NUM_COLS;
+        int NUM_ROWS = slidingTilesBoard.getNUM_ROWS();
+        int NUM_COLS = slidingTilesBoard.getNUM_COLS();
         for (Button b : tileButtons) {
             int row = nextPos / NUM_ROWS;
             int col = nextPos % NUM_COLS;

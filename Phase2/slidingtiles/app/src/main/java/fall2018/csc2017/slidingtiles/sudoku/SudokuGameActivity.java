@@ -181,7 +181,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     private void addUndoButtonListener() {
         Button undoButton = findViewById(R.id.sudokuundo);
         undoButton.setOnClickListener(v -> {
-            if (SudokuStartingActivity.controller.getGameManager().getUndoPositionStack().empty()){
+            if (SudokuStartingActivity.controller.getGameManager().getUndoPositionStack().empty()) {
                 makeToastNothingToUndo();
             } else {
                 SudokuStartingActivity.controller.getGameManager().tryUndo();
@@ -208,7 +208,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
      * Initialize the view for sudoku
      */
     public void initView() {
-    //initView with gridView
+        //initView with gridView
         gridView = findViewById(R.id.sudokugrid);
         gridView.setNumColumns(9);
         gridView.setmController(new SudokuMovementController());
@@ -216,7 +216,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
         SudokuStartingActivity.controller.createTileButtons(this);
 //        gridView.setButtonArrayList(SudokuStartingActivity.controller.getBoxButtons());
         SudokuStartingActivity.controller.getGameManager().addObserver(this);
-        SudokuMovementController movementController = (SudokuMovementController)gridView.getmController();
+        SudokuMovementController movementController = (SudokuMovementController) gridView.getmController();
         movementController.addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function
         gridView.getViewTreeObserver().addOnGlobalLayoutListener(
@@ -240,14 +240,15 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     public void update(Observable observable, Object o) {
         display();
         SudokuStartingActivity.controller.notifyObservers();
-        if(SudokuStartingActivity.controller.checkToAddScore(SudokuStartingActivity.scoreboard, LogInActivity.currentPlayer.getAccount()))
-        {switchToScoreBoard();}
+        if (SudokuStartingActivity.controller.checkToAddScore(SudokuStartingActivity.scoreboard, LogInActivity.currentPlayer.getAccount())) {
+            switchToScoreBoard();
+        }
     }
 
     /**
      * Switch to scoreboard activity.
      */
-    private void switchToScoreBoard(){
+    private void switchToScoreBoard() {
         Intent tmp = new Intent(this, SudokuScoreboardActivity.class);
         startActivity(tmp);
     }

@@ -121,14 +121,14 @@ public class SlidingTilesManager implements GameManager, Serializable {
      */
     public boolean isValidTap(int position) {
 
-        int row = position / slidingTilesBoard.NUM_COLS;
-        int col = position % slidingTilesBoard.NUM_COLS;
+        int row = position / slidingTilesBoard.getNUM_COLS();
+        int col = position % slidingTilesBoard.getNUM_COLS();
         int blankId = 25;
         // Are any of the 4 the blank tile?
         Tile above = row == 0 ? null : slidingTilesBoard.getTile(row - 1, col);
-        Tile below = row == slidingTilesBoard.NUM_ROWS - 1 ? null : slidingTilesBoard.getTile(row + 1, col);
+        Tile below = row == slidingTilesBoard.getNUM_ROWS() - 1 ? null : slidingTilesBoard.getTile(row + 1, col);
         Tile left = col == 0 ? null : slidingTilesBoard.getTile(row, col - 1);
-        Tile right = col == slidingTilesBoard.NUM_COLS - 1 ? null : slidingTilesBoard.getTile(row, col + 1);
+        Tile right = col == slidingTilesBoard.getNUM_COLS() - 1 ? null : slidingTilesBoard.getTile(row, col + 1);
         return (below != null && below.getId() == blankId)
                 || (above != null && above.getId() == blankId)
                 || (left != null && left.getId() == blankId)
@@ -144,13 +144,13 @@ public class SlidingTilesManager implements GameManager, Serializable {
      */
     public void touchMove(int position) {
 
-        int row = position / slidingTilesBoard.NUM_ROWS;
-        int col = position % slidingTilesBoard.NUM_COLS;
+        int row = position / slidingTilesBoard.getNUM_ROWS();
+        int col = position % slidingTilesBoard.getNUM_COLS();
         int blankId = 25;
 
         Tile above = row == 0 ? null : slidingTilesBoard.getTile(row - 1, col);
         Tile left = col == 0 ? null : slidingTilesBoard.getTile(row, col - 1);
-        Tile below = row == slidingTilesBoard.NUM_ROWS - 1 ? null : slidingTilesBoard.getTile(row + 1, col);
+        Tile below = row == slidingTilesBoard.getNUM_ROWS() - 1 ? null : slidingTilesBoard.getTile(row + 1, col);
 
         if (above != null && above.getId() == blankId) {
             slidingTilesBoard.swapTiles(row, col, row - 1, col);
@@ -178,8 +178,8 @@ public class SlidingTilesManager implements GameManager, Serializable {
             numUndos--;
             int position = undoPositionStack.pop();
             int direction = undoDirectionStack.pop();
-            int row = position / slidingTilesBoard.NUM_ROWS;
-            int col = position % slidingTilesBoard.NUM_COLS;
+            int row = position / slidingTilesBoard.getNUM_ROWS();
+            int col = position % slidingTilesBoard.getNUM_COLS();
             score--;
             switch (direction) {
                 case 0: // Swap blank tile with ABOVE.

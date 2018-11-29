@@ -18,7 +18,7 @@ import fall2018.csc2017.slidingtiles.R;
 /**
  * The game activity.
  */
-public class SlidingTilesGameActivity extends AppCompatActivity implements Observer, Serializable{
+public class SlidingTilesGameActivity extends AppCompatActivity implements Observer, Serializable {
 
     /**
      * Constants for swiping directions. Should be an enum, probably.
@@ -47,8 +47,8 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.NUM_COLS = SlidingTilesStartingActivity.controller.getGameManager().getSlidingTilesBoard().NUM_COLS;
-        this.NUM_ROWS = SlidingTilesStartingActivity.controller.getGameManager().getSlidingTilesBoard().NUM_ROWS;
+        this.NUM_COLS = SlidingTilesStartingActivity.controller.getGameManager().getSlidingTilesBoard().getNUM_COLS();
+        this.NUM_ROWS = SlidingTilesStartingActivity.controller.getGameManager().getSlidingTilesBoard().getNUM_ROWS();
         SlidingTilesStartingActivity.controller.createTileButtons(this);
         setContentView(R.layout.activity_main);
         addUndoButtonListener();
@@ -85,7 +85,7 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
     private void addUndoButtonListener() {
         Button undoButton = findViewById(R.id.UndoButton);
         undoButton.setOnClickListener(v -> {
-            if (SlidingTilesStartingActivity.controller.getGameManager().getNumUndos() == 0){
+            if (SlidingTilesStartingActivity.controller.getGameManager().getNumUndos() == 0) {
                 makeToastNoUndosText();
             }
             SlidingTilesStartingActivity.controller.getGameManager().tryUndo();
@@ -126,19 +126,19 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
         SlidingTilesStartingActivity.controller.notifyObservers();
     }
 
-
     @Override
     public void update(Observable o, Object arg) {
         display();
         SlidingTilesStartingActivity.controller.notifyObservers();
-        if(SlidingTilesStartingActivity.controller.checkToAddScore(SlidingTilesStartingActivity.scoreboard, LogInActivity.currentPlayer.getAccount()))
-        {switchToScoreBoard();}
+        if (SlidingTilesStartingActivity.controller.checkToAddScore(SlidingTilesStartingActivity.scoreboard, LogInActivity.currentPlayer.getAccount())) {
+            switchToScoreBoard();
         }
+    }
 
     /**
      * Switch to the ScoreBoard page.
      */
-    private void switchToScoreBoard(){
+    private void switchToScoreBoard() {
         Intent tmp = new Intent(this, SlidingTilesScoreBoardActivity.class);
         startActivity(tmp);
     }

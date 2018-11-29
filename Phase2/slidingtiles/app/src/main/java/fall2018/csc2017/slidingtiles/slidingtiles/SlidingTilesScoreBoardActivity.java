@@ -21,11 +21,6 @@ public class SlidingTilesScoreBoardActivity extends AppCompatActivity {
      */
     private User currentPlayer = LogInActivity.currentPlayer;
 
-    /**
-     *The controller of this view
-     */
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

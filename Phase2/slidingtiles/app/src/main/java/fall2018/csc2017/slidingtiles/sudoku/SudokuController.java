@@ -36,26 +36,27 @@ class SudokuController implements PhaseTwoSubject, GameController {
     /**
      * Create a new SudokuController
      */
-    public SudokuController(){
+    public SudokuController() {
         observers = new ArrayList<>();
     }
 
     /**
      * Get the BoxButtons.
      */
-    public ArrayList<Button> getBoxButtons(){
+    public ArrayList<Button> getBoxButtons() {
         return BoxButtons;
     }
 
     /**
      * Get the sudokuManager
      */
-    public SudokuManager getGameManager(){
+    public SudokuManager getGameManager() {
         return this.sudokuManager;
     }
 
     /**
      * Set a new slidingTilesManager for this class
+     *
      * @param sudokuManager
      */
     public void setGameManager(GameManager sudokuManager) {
@@ -64,6 +65,7 @@ class SudokuController implements PhaseTwoSubject, GameController {
 
     /**
      * Set up a slidingtiles game in accordance with the selected level
+     *
      * @param level the level the user has selected
      */
     public void setUpBoard(String level) {
@@ -73,6 +75,7 @@ class SudokuController implements PhaseTwoSubject, GameController {
 
     /**
      * Add a score to the scoreboard iff the game is finished
+     *
      * @param scoreboard
      * @param user
      */
@@ -88,6 +91,7 @@ class SudokuController implements PhaseTwoSubject, GameController {
 
     /**
      * Create the buttons for displaying the tiles.
+     *
      * @param context the context
      */
     public void createTileButtons(Context context) {
@@ -108,32 +112,34 @@ class SudokuController implements PhaseTwoSubject, GameController {
     public void updateTileButtons() {
         SudokuGrid[][] sudokuBoard = sudokuManager.getPuzzle();
         int buttonPosition = 0;
-        for(int row = 0; row != 9; row ++){
-            for(int col = 0; col != 9; col++){
+        for (int row = 0; row != 9; row++) {
+            for (int col = 0; col != 9; col++) {
                 Button b = BoxButtons.get(buttonPosition);
                 b.setText(sudokuBoard[row][col].getNumber());
                 b.setTextSize(17);
                 b.setBackgroundResource(sudokuBoard[row][col].getBackground());
-                buttonPosition ++;
+                buttonPosition++;
             }
         }
     }
 
     /**
      * Add an observer, obj, to this class
+     *
      * @param obj The observer to be added
      */
-    public void register(PhaseTwoObserver obj){
-        if(obj == null) throw new NullPointerException("Null Observer");
-        if(!observers.contains(obj))
-        {observers.add(obj);
-            obj.setSubject(this);}
+    public void register(PhaseTwoObserver obj) {
+        if (obj == null) throw new NullPointerException("Null Observer");
+        if (!observers.contains(obj)) {
+            observers.add(obj);
+            obj.setSubject(this);
+        }
     }
 
     /**
      * Update the observers of this class
      */
-    public void notifyObservers(){
+    public void notifyObservers() {
         for (PhaseTwoObserver obj : observers) {
             obj.update();
         }
