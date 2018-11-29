@@ -28,10 +28,6 @@ public class MemoryManager extends Observable implements GameManager {
         this.board = new MemoryBoard2(pairs, rows, cols);
     }
 
-    public Pairs[][] getPuzzle() {
-        return this.board.getPairsPuzzle();
-    }
-
     public boolean isValidTap(int position) {
         return board.getPairs(position).getId() == 11 && flipCount < 2;
     }
@@ -47,6 +43,7 @@ public class MemoryManager extends Observable implements GameManager {
                 board.unFlipCard(lastFlippedPosition);
             }
             score++;
+            flipCount = 0;
         }
         setChanged();
         notifyObservers();

@@ -16,6 +16,7 @@ public class MemoryBoard2 {
         this.NUM_ROWS = r;
         this.NUM_COLS = c;
         this.pairsSolution = new Pairs[NUM_ROWS][NUM_COLS];
+        this.pairsPuzzle = new Pairs[NUM_ROWS][NUM_COLS];
         for (int row = 0; row != this.NUM_ROWS; row++) {
             for (int col = 0; col != this.NUM_COLS; col++) {
                 this.pairsSolution[row][col] = iter.next();
