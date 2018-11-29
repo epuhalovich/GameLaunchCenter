@@ -23,6 +23,10 @@ public class SudokuBoard implements Serializable {
      */
     private SudokuGrid[][] puzzleSudoku;
 
+    /**
+     * A clone initial puzzle
+     */
+    private SudokuGrid[][] clonePuzzle;
 
     /**
      * A string list of the sudokus that will be used to create solution
@@ -54,6 +58,7 @@ public class SudokuBoard implements Serializable {
     public SudokuBoard(int level){
         this.solutionSudoku = getSudoku(getNewSudoku());
         this.puzzleSudoku = createPuzzle(level, this.solutionSudoku);
+        this.clonePuzzle = cloneSudoku(puzzleSudoku);
     }
 
     /**
@@ -205,13 +210,7 @@ public class SudokuBoard implements Serializable {
      */
 
     public SudokuGrid[][] createPuzzle(int num, SudokuGrid[][] solution) {
-        SudokuGrid[][] puzzle = new SudokuGrid[9][9];
-        for (int i = 0; i != 9; i++) {
-            for (int j = 0; j != 9; j++){
-                SudokuGrid current = solution[i][j];
-                puzzle[i][j] = new SudokuGrid(current.getBackground(), current.getNumber());
-            }
-        }
+        SudokuGrid[][] puzzle = cloneSudoku(solution);
         for (int i = 0; i != 9; i++) {
             for (int j = 0; j != num; j++){
                 int x = rand.nextInt(9);
@@ -220,6 +219,26 @@ public class SudokuBoard implements Serializable {
             }
         }
         return puzzle;
+    }
+
+    public SudokuGrid[][] getClonePuzzle() {
+        return clonePuzzle;
+    }
+
+    /**
+     * Return a clone sudoku based on given sudoku
+     * @param sudoku original sudoku
+     * @return a clone sudoku
+     */
+    private SudokuGrid[][] cloneSudoku(SudokuGrid[][] sudoku){
+        SudokuGrid[][] clone = new SudokuGrid[9][9];
+        for (int i = 0; i != 9; i++) {
+            for (int j = 0; j != 9; j++){
+                SudokuGrid current = sudoku[i][j];
+                clone[i][j] = new SudokuGrid(current.getBackground(), current.getNumber());
+            }
+        }
+        return clone;
     }
 }
 

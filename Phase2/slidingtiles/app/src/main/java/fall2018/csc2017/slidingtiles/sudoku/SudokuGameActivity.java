@@ -37,6 +37,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SudokuStartingActivity.controller.getGameManager().setUpBackgrounds();
         setContentView(R.layout.activity_sudoku);
         initView();
         addUndoButtonListener();
@@ -215,6 +216,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
         gridView.setGameManager(SudokuStartingActivity.controller.getGameManager());
         SudokuStartingActivity.controller.createTileButtons(this);
 //        gridView.setButtonArrayList(SudokuStartingActivity.controller.getBoxButtons());
+
         SudokuStartingActivity.controller.getGameManager().addObserver(this);
         SudokuMovementController movementController = (SudokuMovementController)gridView.getmController();
         movementController.addObserver(this);
