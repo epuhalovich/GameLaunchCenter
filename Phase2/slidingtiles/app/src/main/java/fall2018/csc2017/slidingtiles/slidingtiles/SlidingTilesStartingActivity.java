@@ -43,7 +43,7 @@ public class SlidingTilesStartingActivity extends AppCompatActivity implements P
         scoreboard.setGlobalScores(scoreboardFileSaver.globalScores);
         gameFileSaver.saveToFile();
 
-        setContentView(R.layout.activity_starting_);
+        setContentView(R.layout.activity_slidingtiles_starting);
         addStartButtonListener();
         addLoadButtonListener();
         addViewScoreButtonListener();
