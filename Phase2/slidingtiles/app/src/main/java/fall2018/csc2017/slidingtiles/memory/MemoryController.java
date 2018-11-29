@@ -20,10 +20,6 @@ class MemoryController implements GameController, PhaseTwoSubject {
     private static List<PhaseTwoObserver> observers;
 
 
-    /**
-     * The buttons to display.
-     */
-    private ArrayList<Button> tileButtons;
 
     /**
      * The SlidingTilesManager that is being controlled
@@ -83,51 +79,8 @@ class MemoryController implements GameController, PhaseTwoSubject {
             obj.update();
         }
     }
-
-    /**
-     * Return the array of tile buttons
-     * @return ArrayList</Button>
-     */
-    public ArrayList<Button> getTileButtons() {
-        return tileButtons;
-    }
-
-    /**
-     * Create the buttons for displaying the tiles.
-     *
-     * @param context the context
-     */
-    public void createTileButtons(Context context) {
-        MemoryBoard memoryBoard = memoryManager.getMemoryBoard();
-        int NUM_ROWS = memoryBoard.getNUM_ROWS();
-        int NUM_COLS = memoryBoard.getNUM_COLS();
-        tileButtons = new ArrayList<>();
-        for (int row = 0; row != NUM_ROWS; row++) {
-            for (int col = 0; col != NUM_COLS; col++) {
-                Button tmp = new Button(context);
-                tmp.setBackgroundResource(memoryBoard.getPairs(row, col).getBackground());
-                this.tileButtons.add(tmp);
-            }
-        }
-    }
-
-    /**
-     * Update the backgrounds on the buttons to match the tiles.
-     */
-    public void updateTileButtons() {
-        MemoryBoard memoryBoard = memoryManager.getMemoryBoard();
-        int nextPos = 0;
-        int NUM_ROWS = memoryBoard.getNUM_ROWS();
-        int NUM_COLS = memoryBoard.getNUM_COLS();
-        for (Button b : tileButtons) {
-            int row = nextPos / NUM_ROWS;
-            int col = nextPos % NUM_COLS;
-            b.setBackgroundResource(memoryBoard.getPairs(row, col).getBackground());
-            nextPos++;
-        }
     }
 
 
 
 
-}

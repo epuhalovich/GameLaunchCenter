@@ -26,7 +26,7 @@ public class SudokuScoreboardActivity extends AppCompatActivity {
         TextView gameTitle = findViewById(R.id.GameTitle);
         TextView scoreDescription = findViewById(R.id.ScoreDescription);
         gameTitle.setText("Sudoku");
-        scoreDescription.setText("Score description goes here");
+        scoreDescription.setText("Least moves taken");
 
         TextView globalScoresText = findViewById(R.id.GlobalScores);
         String globalScoreValues = SudokuStartingActivity.scoreboard.getScoreValues(false, currentPlayer);

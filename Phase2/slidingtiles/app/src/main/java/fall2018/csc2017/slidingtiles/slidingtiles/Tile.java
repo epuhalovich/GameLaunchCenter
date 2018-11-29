@@ -1,5 +1,6 @@
 package fall2018.csc2017.slidingtiles.slidingtiles;
 
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
@@ -11,6 +12,7 @@ import fall2018.csc2017.slidingtiles.R;
  */
 public class Tile implements Comparable<Tile>, Serializable {
 
+    private Drawable image;
     /**
      * The background id to find the tile image.
      */
