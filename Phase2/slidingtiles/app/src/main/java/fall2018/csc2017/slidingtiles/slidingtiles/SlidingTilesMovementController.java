@@ -22,13 +22,15 @@ public class SlidingTilesMovementController implements MovementController {
     }
 
     public void processTapMovement(Context context, int position, boolean display) {
-        if (gameManager.isValidTap(position)) {
-            gameManager.touchMove(position);
-            if (gameManager.isGameOver()) {
-                Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
+        if (!(gameManager == null)) {
+            if (gameManager.isValidTap(position)) {
+                gameManager.touchMove(position);
+                if (gameManager.isGameOver()) {
+                    Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(context, "Invalid Tap", Toast.LENGTH_SHORT).show();
             }
-        } else {
-            Toast.makeText(context, "Invalid Tap", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -25,24 +25,25 @@ public class SudokuMovementController extends Observable implements MovementCont
     }
 
     public void processTapMovement(Context context, int position, boolean display) {
-        sudokuManager.setUpBackground(position);
-        if (sudokuManager.getNumberToFill().equals("")) {
-            Toast.makeText(context, "Choose a number", Toast.LENGTH_SHORT).show();
-        } else {
-            if (sudokuManager.isValidTap(position)) {
-                if (sudokuManager.checkRepeated(position)){
-                    Toast.makeText(context, "There is repeated number!", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    sudokuManager.touchMove(position);
-                    if (sudokuManager.isGameOver()) {
-                        Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
-                    }
-                }
+        if (!(sudokuManager == null)) {
+            sudokuManager.setUpBackground(position);
+            if (sudokuManager.getNumberToFill().equals("")) {
+                Toast.makeText(context, "Choose a number", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(context, "Invalid Tap", Toast.LENGTH_SHORT).show();
+                if (sudokuManager.isValidTap(position)) {
+                    if (sudokuManager.checkRepeated(position)) {
+                        Toast.makeText(context, "There is repeated number!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        sudokuManager.touchMove(position);
+                        if (sudokuManager.isGameOver()) {
+                            Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } else {
+                    Toast.makeText(context, "Invalid Tap", Toast.LENGTH_SHORT).show();
+                }
             }
+            sudokuManager.setOriginal(sudokuManager.getSudokuBoard().getPuzzleSudoku());
         }
-        sudokuManager.setOriginal(sudokuManager.getSudokuBoard().getPuzzleSudoku());
     }
 }
