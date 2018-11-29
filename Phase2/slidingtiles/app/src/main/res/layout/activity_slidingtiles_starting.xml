@@ -8,13 +8,24 @@
     tools:context="fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesStartingActivity">
 
     <TextView
-        android:id="@+id/GameText"
+        android:id="@+id/GameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="174dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Sliding Tiles"
+        android:textAppearance="@android:style/TextAppearance.Widget.TextView"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/GameDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/GameTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
         android:gravity="center"
-        android:text="Welcome to Sliding Tiles:\na puzzle game where you must arrange \nthe numbers in the correct order."
+        android:text="A puzzle game where you must arrange \nthe numbers in the correct order."
         android:textAppearance="@android:style/TextAppearance.Material.Small"
         android:textSize="16sp" />
 
@@ -22,8 +33,8 @@
         android:id="@+id/LoadButton"
         style="@android:style/Widget.DeviceDefault.Button.Small"
         android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/GameText"
+        android:layout_height="60dp"
+        android:layout_below="@+id/GameDescription"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:text="@string/load_saved_game" />
@@ -32,28 +43,37 @@
         android:id="@+id/StartButton"
         style="@android:style/Widget.DeviceDefault.Button.Small"
         android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_below="@+id/LoadButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="25dp"
         android:text="New Game" />
 
     <Button
         android:id="@+id/ScoreBoardButton"
         android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_below="@+id/StartButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="25dp"
         android:text="View Scoreboard" />
 
     <Button
         android:id="@+id/SetundoButton"
         android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/StartButton"
+        android:layout_height="60dp"
+        android:layout_below="@+id/ScoreBoardButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
-        android:text="set numundo" />
+        android:layout_marginTop="25dp"
+        android:text="set number of undos" />
+
+    <Button
+        android:id="@+id/QuitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/SetundoButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Quit" />
 
 </RelativeLayout>

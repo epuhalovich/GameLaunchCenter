@@ -22,12 +22,11 @@ public class MemoryMovementController implements MovementController {
         if (memoryManager.isValidTap(position)) {
             int numMatches = memoryManager.getNumMatches();
             memoryManager.touchMove(position);
-            if (memoryManager.getNumMatches() > numMatches) {
-                Toast.makeText(context, "You got a match!", Toast.LENGTH_SHORT).show();
-            }
-
             if (memoryManager.isGameOver()) {
                 Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
+            }
+            else if (memoryManager.getNumMatches() > numMatches) {
+                Toast.makeText(context, String.format("That's match #%d!", memoryManager.getNumMatches()), Toast.LENGTH_SHORT).show();
             }
         } else {
             Toast.makeText(context, "Invalid Tap", Toast.LENGTH_SHORT).show();
