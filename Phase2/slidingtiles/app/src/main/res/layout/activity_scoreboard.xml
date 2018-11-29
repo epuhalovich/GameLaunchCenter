@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_centerHorizontal="true"
-        android:text="Sliding Tiles"
+        android:text="Game Title"
         android:textAppearance="@android:style/TextAppearance.Widget.TextView"
         android:textSize="36sp" />
 
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/GameTitle"
-        android:text="(Least steps taken)"
+        android:text="Score description"
         android:textAppearance="@android:style/TextAppearance.Widget.TextView" />
 
     <TextView

@@ -29,8 +29,15 @@ public class SlidingTilesScoreBoardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_score_board);
+        setContentView(R.layout.activity_scoreboard);
         addReturnButtonListener();
+
+        // Change to appropriate game title and score description
+        TextView gameTitle = findViewById(R.id.GameTitle);
+        TextView scoreDescription = findViewById(R.id.ScoreDescription);
+        gameTitle.setText("Sliding Tiles");
+        scoreDescription.setText("Least moves taken");
+
         TextView globalScoresText = findViewById(R.id.GlobalScores);
         String globalScoreValues = SlidingTilesStartingActivity.scoreboard.getScoreValues(false, currentPlayer);
         globalScoresText.setText(globalScoreValues);

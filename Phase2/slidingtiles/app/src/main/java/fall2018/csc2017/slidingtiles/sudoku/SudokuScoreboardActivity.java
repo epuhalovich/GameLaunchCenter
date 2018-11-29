@@ -9,7 +9,6 @@ import android.widget.TextView;
 import fall2018.csc2017.slidingtiles.LogInActivity;
 import fall2018.csc2017.slidingtiles.R;
 import fall2018.csc2017.slidingtiles.User;
-import fall2018.csc2017.slidingtiles.sudoku.SudokuStartingActivity;
 
 public class SudokuScoreboardActivity extends AppCompatActivity {
     /**
@@ -25,8 +24,15 @@ public class SudokuScoreboardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sudoku_score);
+        setContentView(R.layout.activity_scoreboard);
         addReturnButtonListener();
+
+        // Change to appropriate game title and score description
+        TextView gameTitle = findViewById(R.id.GameTitle);
+        TextView scoreDescription = findViewById(R.id.ScoreDescription);
+        gameTitle.setText("Sudoku");
+        scoreDescription.setText("Score description goes here");
+
         TextView globalScoresText = findViewById(R.id.GlobalScores);
         String globalScoreValues = SudokuStartingActivity.scoreboard.getScoreValues(false, currentPlayer);
         globalScoresText.setText(globalScoreValues);
