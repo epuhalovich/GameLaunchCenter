@@ -47,14 +47,13 @@ public class SudokuMovementController extends Observable implements MovementCont
                 Toast.makeText(context, "Invalid Tap ", Toast.LENGTH_SHORT).show();
             }
         }
+        setOriginal(sudokuManager.getPuzzle());
     }
 
     private void setUpBackground(int position){
         int row = position / 9;
         int col = position % 9;
-        setOriginal(sudokuManager.getPuzzle());
         setSelectedBackground(row,col,sudokuManager.getPuzzle());
-
         setChanged();
         notifyObservers();
     }
