@@ -53,7 +53,6 @@ public class SudokuBoard implements Serializable {
 
     /**
      * Constrcut a SudokuBoard
-     *
      * @param level a int that indicates how many empty spot will be in the puzzle sudoku
      */
     public SudokuBoard(int level){
@@ -79,7 +78,6 @@ public class SudokuBoard implements Serializable {
 
     /**
      * Return  a new sudoku by randomly getting a sudoku in the sudokulists.
-     *
      * @return a new Sudoku
      */
     private String[][] getNewSudoku(){
@@ -96,7 +94,6 @@ public class SudokuBoard implements Serializable {
 
     /**
      * Return a String lists that swap two number in the diagnal of the sample String lists.
-     *
      * @param sample a sample String lists
      */
     private String[][] swapDia(String[][] sample) {
@@ -111,7 +108,6 @@ public class SudokuBoard implements Serializable {
 
     /**
      * Return a String lists that swap two number of the sample String lists.
-     *
      * @param sample a sample String lists
      */
     private String[][] swapNumber(String[][] sample){
@@ -135,7 +131,6 @@ public class SudokuBoard implements Serializable {
 
     /**
      * Return a String lists that swap the number in valid row of the sample String lists.
-     *
      * @param sample a sample String lists
      */
     private String[][] swapLine(String[][] sample){
@@ -151,7 +146,6 @@ public class SudokuBoard implements Serializable {
 
     /**
      * Return a String lists that swap the number in valid column of the sample String lists.
-     *
      * @param sample a sample String lists
      */
     private String[][] swapColumn(String[][] sample){
@@ -187,7 +181,6 @@ public class SudokuBoard implements Serializable {
 
     /**
      * Return a String lists of sudoku by choosing randomly from listsudokus.
-     *
      * @return String lists of sudoku
      */
     private String[][] getSampleSudoku(){
@@ -198,7 +191,6 @@ public class SudokuBoard implements Serializable {
     /**
      * Return a lists of Sudokugrids by clone the number in clone in the corresponding position
      * and set up the default background.
-     *
      * @param clone the String lists of sudoku to clone
      */
     private static SudokuGrid[][] getSudoku(String[][] clone){

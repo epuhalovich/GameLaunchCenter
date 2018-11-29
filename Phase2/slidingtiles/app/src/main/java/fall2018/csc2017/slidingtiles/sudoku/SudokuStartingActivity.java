@@ -117,6 +117,9 @@ public class SudokuStartingActivity extends AppCompatActivity implements PopupMe
         Toast.makeText(this, "Loaded Game", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Display that there are no saved games.
+     */
     private void makeToastNoLoadedText() {
         Toast.makeText(this, "No Saved Game", Toast.LENGTH_SHORT).show();
     }

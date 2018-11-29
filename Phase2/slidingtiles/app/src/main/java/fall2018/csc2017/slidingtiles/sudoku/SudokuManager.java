@@ -38,7 +38,6 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
 
     /**
      * Return a new SudokuManger depends on level.
-     *
      * @param level the difficulty of the game
      * @return the SudokuManger
      */
@@ -55,7 +54,6 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
 
     /**
      * Constrcutor for SudokuManger depends on the level.
-     *
      * @param num the level of Sudoku puzzle.
      */
     public SudokuManager(int num){
@@ -81,6 +79,9 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
     }
 
 
+    /**
+     * Return the undoPositionStack
+     */
     public Stack<Integer> getUndoPositionStack() {
         return undoPositionStack;
     }
@@ -103,19 +104,11 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
         return (sudokuBoard.getClonePuzzle()[x][y]).getNumber().equals("");
     }
 
-    /**
-     * Return the Score.
-     * @return score
-     */
     @Override
     public int getScore() {
         return this.score;
     }
 
-    /**
-     * Return True iff we finish the game.
-     * @return a boolean
-     */
     @Override
     public boolean isGameOver() {
         int correct = 0;
@@ -129,11 +122,6 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
         return correct == 81;
     }
 
-    /**
-     * Return true iff the position is a valid tap.
-     * @param position a int position
-     * @return a boolean
-     */
     @Override
     public boolean isValidTap(int position) {
         int row = position / 9;
@@ -157,6 +145,9 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
         notifyObservers();
     }
 
+    /**
+     * Return the puzzle sudoku to the state one step before
+     */
     public void tryUndo() {
         int y = undoPositionStack.pop();
         int x = undoPositionStack.pop();
@@ -167,9 +158,8 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
     }
 
     /**
-     * Return true iff there is
-     * @param row
-     * @return
+     * Return true iff there are no numbers equals to the number to fill in the row
+     * @param row the row selected
      */
     private boolean checkSelectedRow(int row){
         int wrongRow = 0;
@@ -182,11 +172,10 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
     }
 
     /**
-     *
-     * @param col
-     * @return
+     * Return true iff there are no numbers equals to the number to fill in the column
+     * @param col the column selected
      */
-    private boolean checkSelectedColoumn(int col){
+    private boolean checkSelectedColumn(int col){
         int wrongCol = 0;
         for (int i = 0; i != 9; i++){
             if (this.getPuzzle()[i][col].getNumber().equals(numberToFill)){
@@ -197,10 +186,8 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
     }
 
     /**
-     *
-     * @param row
-     * @param col
-     * @return
+     * Return true iff there are no numbers equals to the number to fill in the corresponding square
+     * @param row,col the row and column selected
      */
     private boolean checkSelectedSquare(int row, int col){
         int beginRow = (row/3) * 3;
@@ -217,13 +204,13 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
     }
 
     /**
-     *
-     * @param position a int position
+     * Return true iff the number to fill in can fill in the selected position.
+     * @param position the position selected
      */
     public boolean checkRepeated(int position){
         int x = position / 9;
         int y = position % 9;
-        return checkSelectedColoumn(y) || checkSelectedRow(x) || checkSelectedSquare(x, y);
+        return checkSelectedColumn(y) || checkSelectedRow(x) || checkSelectedSquare(x, y);
     }
 
     private void setSelectedBackground(int row, int col, SudokuGrid[][] puzzle){

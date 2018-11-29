@@ -135,6 +135,9 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
         {switchToScoreBoard();}
         }
 
+    /**
+     * Switch to the ScoreBoard page.
+     */
     private void switchToScoreBoard(){
         Intent tmp = new Intent(this, SlidingTilesScoreBoardActivity.class);
         startActivity(tmp);
