@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#5467"
+    android:background= "@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="fall2018.csc2017.slidingtiles.LaunchCenterActivity">
@@ -90,7 +90,7 @@
         android:scaleType="centerInside"
         android:layout_marginTop="0dp"
         android:padding="3dp"
-        android:background="#0000CD"
+        android:background="#ffffff"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/MemoryTitle"
         android:src="@drawable/memoryimagebutton" />
@@ -98,12 +98,14 @@
     <Button
         android:id="@+id/logout"
         style="@android:style/Widget.DeviceDefault.Button.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
-        android:text="LOG OUT" />
+        android:background="@drawable/buttonshape"
+        android:text="LOG OUT"
+        android:textColor="#82C5FF" />
 
 </RelativeLayout>
