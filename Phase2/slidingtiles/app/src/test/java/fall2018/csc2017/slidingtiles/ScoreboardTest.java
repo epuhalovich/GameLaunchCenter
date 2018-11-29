@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * - http://d.android.com/tools/testing
  * - https://developer.android.com/training/testing/unit-testing/local-unit-tests
  */
-public class SlidingTilesScoreboard_Test {
+public class ScoreboardTest {
 
     /** the scoreboard for testing. */
     Scoreboard scoreboard;

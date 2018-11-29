@@ -21,7 +21,7 @@ import static org.mockito.Mockito.verify;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class SlidingTilesBoardAndTileTest {
+public class SlidingTilesManagerTest {
 
     /** The board manager for testing. */
     SlidingTilesManager slidingTilesManager;
