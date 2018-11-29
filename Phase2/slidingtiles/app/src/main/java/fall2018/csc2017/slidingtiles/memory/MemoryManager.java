@@ -1,12 +1,10 @@
 package fall2018.csc2017.slidingtiles.memory;
 
 import java.io.Serializable;
-import java.util.Observable;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Stack;
 
 import fall2018.csc2017.slidingtiles.GameManager;
 
@@ -16,6 +14,7 @@ public class MemoryManager implements GameManager, Serializable {
     private int firstFlippedPosition;
     private int secondFlippedPosition;
     private int score;
+    private boolean lastMoveMatched;
 
 
     public MemoryManager(int rows, int cols) {
@@ -52,18 +51,23 @@ public class MemoryManager implements GameManager, Serializable {
         flipCount = flipCount + 1;
         if (flipCount == 1) {
             this.firstFlippedPosition = position;
-        } else if(flipCount ==2) {
+        } else if(flipCount == 2) {
             this.secondFlippedPosition = position;
         }
         else{
             if (board.getPairs(firstFlippedPosition).getId() != board.getPairs(secondFlippedPosition).getId()) {
                 board.unFlipCard(firstFlippedPosition);
                 board.unFlipCard(secondFlippedPosition);
+                lastMoveMatched = false;
             }
             flipCount = 0;
             score++;
             touchMove(position);
         }
+    }
+
+    public boolean checkLastMoveMatched() {
+        return lastMoveMatched;
     }
 
     public boolean isGameOver(){

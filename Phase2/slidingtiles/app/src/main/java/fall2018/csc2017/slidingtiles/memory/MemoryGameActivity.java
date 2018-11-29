@@ -3,10 +3,8 @@ package fall2018.csc2017.slidingtiles.memory;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.Serializable;
@@ -17,7 +15,6 @@ import fall2018.csc2017.slidingtiles.CustomAdapter;
 import fall2018.csc2017.slidingtiles.LogInActivity;
 import fall2018.csc2017.slidingtiles.R;
 import fall2018.csc2017.slidingtiles.slidingtiles.GestureDetectGridView;
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesMovementController;
 
 public class MemoryGameActivity extends AppCompatActivity implements Observer, Serializable {
 
@@ -49,7 +46,7 @@ public class MemoryGameActivity extends AppCompatActivity implements Observer, S
 
             // Add View to activity
             gridView = findViewById(R.id.grid);
-            gridView.setmController(new SlidingTilesMovementController());
+            gridView.setmController(new MemoryMovementController());
             gridView.setNumColumns(NUM_COLS);
             gridView.setGameManager(MemoryStartingActivity.controller.getGameManager());
             MemoryStartingActivity.controller.getGameManager().getMemoryBoard().addObserver(this);
@@ -71,7 +68,6 @@ public class MemoryGameActivity extends AppCompatActivity implements Observer, S
                     });
         }
 
-
         /**
          * Activate the save button.
          */
@@ -88,6 +84,13 @@ public class MemoryGameActivity extends AppCompatActivity implements Observer, S
          */
         private void makeToastSavedText() {
             Toast.makeText(this, "Game Saved", Toast.LENGTH_SHORT).show();
+        }
+
+        /**
+        * Display that a game was saved successfully.
+         */
+        public void makeToastMatchText() {
+            Toast.makeText(this, "It's a match!", Toast.LENGTH_SHORT).show();
         }
 
         /**
@@ -113,7 +116,7 @@ public class MemoryGameActivity extends AppCompatActivity implements Observer, S
             startActivity(tmp);
         }
 
-    }
+}
 
 
 

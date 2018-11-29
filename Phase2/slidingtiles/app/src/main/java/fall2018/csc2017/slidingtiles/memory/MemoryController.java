@@ -11,7 +11,6 @@ import fall2018.csc2017.slidingtiles.GameManager;
 import fall2018.csc2017.slidingtiles.PhaseTwoObserver;
 import fall2018.csc2017.slidingtiles.PhaseTwoSubject;
 import fall2018.csc2017.slidingtiles.Scoreboard;
-import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesManager;
 
 class MemoryController implements GameController, PhaseTwoSubject {
 

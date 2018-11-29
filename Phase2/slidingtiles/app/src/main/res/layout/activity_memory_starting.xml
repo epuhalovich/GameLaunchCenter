@@ -14,7 +14,7 @@
             android:layout_marginTop="174dp"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:text="Welcome to Memory Gamess:\na card game : memorize identical pair of cards and match that cards."
+            android:text="Welcome to Memory Game:\nRemember the numbers and match the cards!"
             android:textAppearance="@android:style/TextAppearance.Material.Small"
             android:textSize="16sp" />
 
