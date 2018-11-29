@@ -178,7 +178,6 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
 
                         columnWidth = displayWidth / 9;
                         columnHeight = displayHeight / 9;
-//                        gridView.setBoxSide(displayWidth / 9);
 
                         display();
                     }

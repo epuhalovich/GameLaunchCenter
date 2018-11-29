@@ -14,12 +14,15 @@ import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesController;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/**
+ * A file saver for game states in all of the Game Centre games, implementing the Observer pattern.
+ */
 public class GameFileSaver implements Serializable, PhaseTwoObserver {
+
     private Context context;
     private GameController subject;
     private GameManager gameManager;
     private String fileName;
-
 
     public GameFileSaver(Context context, String fileName){
         this.context = context;

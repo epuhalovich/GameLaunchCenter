@@ -55,8 +55,8 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.NUM_COLS = SlidingTilesStartingActivity.controller.getGameManager().getSlidingTilesBoard().NUM_COLS;
-        this.NUM_ROWS = SlidingTilesStartingActivity.controller.getGameManager().getSlidingTilesBoard().NUM_ROWS;
+        this.NUM_COLS = SlidingTilesStartingActivity.controller.getGameManager().getSlidingTilesBoard().getNUM_COLS();
+        this.NUM_ROWS = SlidingTilesStartingActivity.controller.getGameManager().getSlidingTilesBoard().getNUM_ROWS();
         createTileButtons(this);
         setContentView(R.layout.activity_main);
         addUndoButtonListener();
@@ -163,8 +163,8 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
      */
     public void createTileButtons(Context context) {
         SlidingTilesBoard slidingTilesBoard = SlidingTilesStartingActivity.controller.getGameManager().getSlidingTilesBoard();
-        int NUM_ROWS = slidingTilesBoard.NUM_ROWS;
-        int NUM_COLS = slidingTilesBoard.NUM_COLS;
+        int NUM_ROWS = slidingTilesBoard.getNUM_ROWS();
+        int NUM_COLS = slidingTilesBoard.getNUM_COLS();
         tileButtons = new ArrayList<>();
         for (int row = 0; row != NUM_ROWS; row++) {
             for (int col = 0; col != NUM_COLS; col++) {
@@ -181,8 +181,8 @@ public class SlidingTilesGameActivity extends AppCompatActivity implements Obser
     public void updateTileButtons() {
         SlidingTilesBoard slidingTilesBoard = SlidingTilesStartingActivity.controller.getGameManager().getSlidingTilesBoard();
         int nextPos = 0;
-        int NUM_ROWS = slidingTilesBoard.NUM_ROWS;
-        int NUM_COLS = slidingTilesBoard.NUM_COLS;
+        int NUM_ROWS = slidingTilesBoard.getNUM_ROWS();
+        int NUM_COLS = slidingTilesBoard.getNUM_COLS();
         for (Button b : tileButtons) {
             int row = nextPos / NUM_ROWS;
             int col = nextPos % NUM_COLS;

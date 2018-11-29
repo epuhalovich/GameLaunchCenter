@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import fall2018.csc2017.slidingtiles.R;
 
+/**
+ * The activity screen for changing the number of undos allowed in the Sliding Tiles game.
+ */
 public class SlidingTilesSetNumundoActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
 
     @Override

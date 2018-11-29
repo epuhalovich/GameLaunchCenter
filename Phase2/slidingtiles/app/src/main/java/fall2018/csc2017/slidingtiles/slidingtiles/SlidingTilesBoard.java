@@ -18,12 +18,12 @@ public class SlidingTilesBoard extends Observable implements Serializable, Itera
     /**
      * The number of rows.
      */
-    public int NUM_ROWS;
+    private int NUM_ROWS;
 
     /**
      * The number of rows.
      */
-    public int NUM_COLS;
+    private int NUM_COLS;
 
     /**
      * The tiles on the board in row-major order.
@@ -47,6 +47,20 @@ public class SlidingTilesBoard extends Observable implements Serializable, Itera
                 this.tiles[row][col] = iter.next();
             }
         }
+    }
+
+    /**
+     * Return NUM_COLS.
+     */
+    public int getNUM_COLS() {
+        return NUM_COLS;
+    }
+
+    /**
+     * Return NUM_ROWS.
+     */
+    public int getNUM_ROWS() {
+        return NUM_ROWS;
     }
 
     /**

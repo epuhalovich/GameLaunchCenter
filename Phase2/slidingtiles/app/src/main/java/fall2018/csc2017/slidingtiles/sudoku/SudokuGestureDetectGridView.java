@@ -14,17 +14,18 @@ import fall2018.csc2017.slidingtiles.slidingtiles.GestureDetectGridView;
 
 
 public class SudokuGestureDetectGridView extends GestureDetectGridView {
-    public static final int SWIPE_MIN_DISTANCE = 100;
-    public static final int SWIPE_MAX_OFF_PATH = 100;
-    public static final int SWIPE_THRESHOLD_VELOCITY = 100;
-    private GestureDetector gDetector;
-    private SudokuMovementController mController;
-    private boolean mFlingConfirmed = false;
-    private float mTouchX;
-    private float mTouchY;
-    private ArrayList<Button> buttonArrayList;
-    private int boxSide;
-    private SudokuManager sudokuManager;
+//    public static final int SWIPE_MIN_DISTANCE = 100;
+//    public static final int SWIPE_MAX_OFF_PATH = 100;
+//    public static final int SWIPE_THRESHOLD_VELOCITY = 100;
+//    private GestureDetector gDetector;
+//    private SudokuMovementController mController;
+//    private boolean mFlingConfirmed = false;
+//    private float mTouchX;
+//    private float mTouchY;
+//    private ArrayList<Button> buttonArrayList;
+//    private int boxSide;
+//    private SudokuManager sudokuManager;
+
 
     public SudokuGestureDetectGridView(Context context) {
         super(context);
