@@ -84,8 +84,31 @@ public class Pairs implements Serializable {
                 background = R.drawable.tile_10;
                 break;
             case 11:
-                background = R.drawable.tile_25;
+                background = R.drawable.tile_11;
                 break;
+            case 12:
+                background = R.drawable.tile_12;
+                break;
+            case 13:
+                background = R.drawable.tile_13;
+                break;
+            case 14:
+                background = R.drawable.tile_14;
+                break;
+            case 15:
+                background = R.drawable.tile_15;
+                break;
+            case 16:
+                background = R.drawable.tile_16;
+                break;
+            case 17:
+                background = R.drawable.tile_17;
+                break;
+            case 18:
+                background = R.drawable.tile_18;
+                break;
+            case 19:
+                background = R.drawable.tile_25;
             default:
                 background = R.drawable.tile_25;
         }

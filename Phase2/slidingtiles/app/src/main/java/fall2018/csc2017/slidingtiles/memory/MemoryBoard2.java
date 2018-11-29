@@ -22,7 +22,7 @@ public class MemoryBoard2 extends Observable implements Serializable {
         for (int row = 0; row != this.NUM_ROWS; row++) {
             for (int col = 0; col != this.NUM_COLS; col++) {
                 this.pairsSolution[row][col] = iter.next();
-                this.pairsPuzzle[row][col] = new Pairs(10);
+                this.pairsPuzzle[row][col] = new Pairs(18);
             }
         }
     }
@@ -50,7 +50,7 @@ public class MemoryBoard2 extends Observable implements Serializable {
     public void unFlipCard(int position){
         int row = position / this.getNUM_COLS();
         int col = position % this.getNUM_COLS();
-        pairsPuzzle[row][col] = new Pairs(10);
+        pairsPuzzle[row][col] = new Pairs(18);
         setChanged();
         notifyObservers();
     }

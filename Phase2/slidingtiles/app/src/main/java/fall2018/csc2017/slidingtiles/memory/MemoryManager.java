@@ -13,7 +13,8 @@ import fall2018.csc2017.slidingtiles.GameManager;
 public class MemoryManager implements GameManager, Serializable {
     private MemoryBoard2 board;
     private int flipCount;
-    private int lastFlippedPosition;
+    private int firstFlippedPosition;
+    private int secondFlippedPosition;
     private int score;
 
 
@@ -32,32 +33,36 @@ public class MemoryManager implements GameManager, Serializable {
 
     public static MemoryManager getLevel(String level){
         if(level.equals("Easy")){
-            return new MemoryManager(3, 4);
+            return new MemoryManager(2, 2);
         }
         else if(level.equals("Medium")){
             return new MemoryManager(4, 4);
         }
         else{
-            return new MemoryManager(5, 4);
+            return new MemoryManager(6, 6);
         }
     }
 
     public boolean isValidTap(int position) {
-        return board.getPairs(position).getId() == 11 && flipCount < 2;
+        return board.getPairs(position).getId() == 19 && flipCount < 3;
     }
 
     public void touchMove(int position) {
         board.flipCard(position);
         flipCount = flipCount + 1;
         if (flipCount == 1) {
-            this.lastFlippedPosition = position;
-        } else {
-            if (board.getPairs(position).getId() != board.getPairs(lastFlippedPosition).getId()) {
-                board.unFlipCard(position);
-                board.unFlipCard(lastFlippedPosition);
+            this.firstFlippedPosition = position;
+        } else if(flipCount ==2) {
+            this.secondFlippedPosition = position;
+        }
+        else{
+            if (board.getPairs(firstFlippedPosition).getId() != board.getPairs(secondFlippedPosition).getId()) {
+                board.unFlipCard(firstFlippedPosition);
+                board.unFlipCard(secondFlippedPosition);
             }
             flipCount = 0;
             score++;
+            touchMove(position);
         }
     }
 
