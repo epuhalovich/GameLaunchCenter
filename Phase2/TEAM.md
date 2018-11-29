@@ -7,13 +7,13 @@
 -- Memory card game
 
 * Ellen Puhalovich: (416) 833-6771, ellen.puhalovich@mail.utoronto.ca, 'ellenpuhalovich'
--- Refactoring, design patterns, unit testing
+-- Refactoring, design patterns, unit testing, memory card game
 
 * Allen (Xuanzhong) Zhao:  (647) 673-5798, xuanzhong.zhao@mail.utoronto.ca, 'zhaoxuanzhong' 
 -- Sudoku game, make sliding tiles always solvable
 
 * Nick Perrin: (647) 965-7083, nick.perrin@mail.utoronto.ca, 'perrinni'
--- Team documentation & repo setup, unit testing, minor refactoring
+-- Team documentation & repo setup, unit testing, minor refactoring/graphics
 
 * Katherine (Keying) Chen: (647) 992-2327, kkeying.chen@mail.utoronto.ca, 'chenkey8'
 -- Sudoku game

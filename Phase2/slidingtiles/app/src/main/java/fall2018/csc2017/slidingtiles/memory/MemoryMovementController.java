@@ -23,7 +23,7 @@ public class MemoryMovementController implements MovementController {
             int numMatches = memoryManager.getNumMatches();
             memoryManager.touchMove(position);
             if (memoryManager.getNumMatches() > numMatches) {
-                Toast.makeText(context, "It's a match!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "You got a match!", Toast.LENGTH_SHORT).show();
             }
 
             if (memoryManager.isGameOver()) {
