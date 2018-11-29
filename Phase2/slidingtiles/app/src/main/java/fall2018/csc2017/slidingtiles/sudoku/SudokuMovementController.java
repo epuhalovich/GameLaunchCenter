@@ -43,6 +43,6 @@ public class SudokuMovementController extends Observable implements MovementCont
                 Toast.makeText(context, "Invalid Tap", Toast.LENGTH_SHORT).show();
             }
         }
-        sudokuManager.setOriginal(sudokuManager.getPuzzle());
+        sudokuManager.setOriginal(sudokuManager.getSudokuBoard().getPuzzleSudoku());
     }
 }

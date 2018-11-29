@@ -50,6 +50,15 @@ public class SlidingTilesController implements PhaseTwoSubject, GameController {
     }
 
     /**
+     * Return the number of undos left
+     * @return numUndos
+     */
+    public int getNumUndos() {
+        return NumUndos;
+    }
+
+
+    /**
      * Return the manager for sliding tiles
      * @return SlidingTilesManager
      */

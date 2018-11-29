@@ -104,7 +104,18 @@ public class SlidingTilesControllerTest {
     }
 
     @Test
-    public void testCreateTileButtons(){
+    public void testCheckToAddScoreNotFinished(){
+        Scoreboard scoreboard = new Scoreboard();
+        String user = "player1";
+        SlidingTilesManager slidingTilesManager = mock(SlidingTilesManager.class);
+        when(slidingTilesManager.isGameOver()).thenReturn(false);
+        controller.setGameManager(slidingTilesManager);
+        controller.checkToAddScore(scoreboard, user);
+        Assert.assertEquals(scoreboard.getGlobalScoreboard().size(), 0);
+    }
+
+//    @Test
+//    public void testCreateTileButtons(){
 //        setUpCorrect();
 //        View view = mock(View.class);
 //        when(view.getContext()).thenReturn(mock(Context.class));
@@ -115,7 +126,7 @@ public class SlidingTilesControllerTest {
 //            Assert.assertEquals(buttons.get(0).getBackground(),view.getContext().getResources().getDrawable(R.drawable.tile_1));
 //        }
 
-    }
+   // }
 
     @Test
     public void testRegister(){
@@ -129,6 +140,13 @@ public class SlidingTilesControllerTest {
             thrownNull = true;
         }
         Assert.assertTrue(thrownNull);
+    }
+
+    @Test
+    public void testSetNumUndos(){
+        controller = new SlidingTilesController();
+        controller.setNumUndos(4);
+        Assert.assertEquals(controller.getNumUndos(), 4);
     }
 
 }

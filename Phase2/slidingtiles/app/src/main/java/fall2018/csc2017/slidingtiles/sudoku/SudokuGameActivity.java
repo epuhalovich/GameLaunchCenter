@@ -259,7 +259,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
         startActivity(tmp);
     }
     public void createTileButtons(Context context) {
-        SudokuGrid[][] sudokuPuzzle = SudokuStartingActivity.controller.getGameManager().getPuzzle();
+        SudokuGrid[][] sudokuPuzzle = SudokuStartingActivity.controller.getGameManager().getSudokuBoard().getPuzzleSudoku();
         BoxButtons = new ArrayList<>();
         for (int row = 0; row != 9; row++) {
             for (int col = 0; col != 9; col++) {
@@ -271,7 +271,7 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
     }
 
     public void updateTileButtons() {
-        SudokuGrid[][] sudokuBoard = SudokuStartingActivity.controller.getGameManager().getPuzzle();
+        SudokuGrid[][] sudokuBoard = SudokuStartingActivity.controller.getGameManager().getSudokuBoard().getPuzzleSudoku();
         int buttonPosition = 0;
         for(int row = 0; row != 9; row ++){
             for(int col = 0; col != 9; col++){
