@@ -1,5 +1,6 @@
 package fall2018.csc2017.slidingtiles.memory;
 
+import java.io.Serializable;
 import java.util.Observable;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.Stack;
 
 import fall2018.csc2017.slidingtiles.GameManager;
 
-public class MemoryManager extends Observable implements GameManager {
+public class MemoryManager implements GameManager, Serializable {
     private MemoryBoard2 board;
     private int flipCount;
     private int lastFlippedPosition;
@@ -26,6 +27,19 @@ public class MemoryManager extends Observable implements GameManager {
         }
         Collections.shuffle(pairs);
         this.board = new MemoryBoard2(pairs, rows, cols);
+        flipCount = 0;
+    }
+
+    public static MemoryManager getLevel(String level){
+        if(level.equals("Easy")){
+            return new MemoryManager(3, 4);
+        }
+        else if(level.equals("Medium")){
+            return new MemoryManager(4, 4);
+        }
+        else{
+            return new MemoryManager(5, 4);
+        }
     }
 
     public boolean isValidTap(int position) {
@@ -42,20 +56,29 @@ public class MemoryManager extends Observable implements GameManager {
                 board.unFlipCard(position);
                 board.unFlipCard(lastFlippedPosition);
             }
-            score++;
             flipCount = 0;
+            score++;
         }
-        setChanged();
-        notifyObservers();
     }
 
     public boolean isGameOver(){
-        return board.getPairsPuzzle() == board.getSolutionPairs();
+        Pairs[][] solution = board.getSolutionPairs();
+        Pairs[][] puzzle = board.getPairsPuzzle();
+        boolean over = true;
+        for(int i = 0; i<board.getPairsPuzzle().length; i++){
+            for(int j = 0; j<board.getPairsPuzzle()[0].length; j++)
+            if(solution[i][j] != puzzle[i][j]){
+                over = false;
+            }
+        }
+        return over;
     }
 
     public int getScore(){
         return this.score;
     }
+
+    public MemoryBoard2 getMemoryBoard(){return this.board;}
 
 }
 

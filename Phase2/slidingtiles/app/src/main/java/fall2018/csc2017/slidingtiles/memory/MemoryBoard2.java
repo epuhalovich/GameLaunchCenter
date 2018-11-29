@@ -1,10 +1,12 @@
 package fall2018.csc2017.slidingtiles.memory;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Observable;
 
-public class MemoryBoard2 {
+public class MemoryBoard2 extends Observable implements Serializable {
 
     private int NUM_ROWS;
     private int NUM_COLS;
@@ -20,7 +22,7 @@ public class MemoryBoard2 {
         for (int row = 0; row != this.NUM_ROWS; row++) {
             for (int col = 0; col != this.NUM_COLS; col++) {
                 this.pairsSolution[row][col] = iter.next();
-                this.pairsPuzzle[row][col] = new Pairs(11);
+                this.pairsPuzzle[row][col] = new Pairs(10);
             }
         }
     }
@@ -36,16 +38,21 @@ public class MemoryBoard2 {
     public Pairs[][] getPairsPuzzle() {
         return pairsPuzzle;
     }
+
     public void flipCard(int position){
         int row = position / this.getNUM_COLS();
         int col = position % this.getNUM_COLS();
         pairsPuzzle[row][col] = pairsSolution[row][col];
+        setChanged();
+        notifyObservers();
     }
 
     public void unFlipCard(int position){
         int row = position / this.getNUM_COLS();
         int col = position % this.getNUM_COLS();
-        pairsPuzzle[row][col] = new Pairs(11);
+        pairsPuzzle[row][col] = new Pairs(10);
+        setChanged();
+        notifyObservers();
     }
 
 
@@ -58,6 +65,10 @@ public class MemoryBoard2 {
     public Pairs getPairs(int position) {
         int row = position / this.getNUM_COLS();
         int col = position % this.getNUM_COLS();
+        return pairsPuzzle[row][col];
+    }
+
+    public Pairs getPairs(int row, int col){
         return pairsPuzzle[row][col];
     }
 

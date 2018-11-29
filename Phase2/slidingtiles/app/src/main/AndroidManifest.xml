@@ -33,8 +33,10 @@
         <activity android:name=".sudoku.SudokuStartingActivity"/>
         <activity android:name=".sudoku.SudokuScoreboardActivity"/>
 
-        <!-- MEMORY -->
-        <activity android:name=".Memory"/>
+         MEMORY
+        <activity android:name=".memory.MemoryGameActivity"/>
+        <activity android:name=".memory.MemoryStartingActivity"/>
+        <activity android:name=".memory.MemoryScoreboardActivity"/>
 
 
 

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
 
+import fall2018.csc2017.slidingtiles.memory.MemoryStartingActivity;
 import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesStartingActivity;
 import fall2018.csc2017.slidingtiles.sudoku.SudokuStartingActivity;
 
@@ -56,6 +57,10 @@ public class LaunchCenterActivity extends AppCompatActivity implements PopupMenu
                 switchToSlidingTile();
                 return true;
 
+            case R.id.game3:
+                switchToMemory();
+                return true;
+
             default:
                 return false;
         }
@@ -74,6 +79,14 @@ public class LaunchCenterActivity extends AppCompatActivity implements PopupMenu
      */
     private void switchToSudoku() {
         Intent tmp = new Intent(this, SudokuStartingActivity.class);
+        startActivity(tmp);
+    }
+
+    /**
+     * Switch to the memory starting acticity.
+     */
+    private void switchToMemory() {
+        Intent tmp = new Intent(this, MemoryStartingActivity.class);
         startActivity(tmp);
     }
 

@@ -9,13 +9,13 @@ import fall2018.csc2017.slidingtiles.MovementController;
 
 public class SlidingTilesMovementController implements MovementController {
 
-    private SlidingTilesManager gameManager = null;
+    private GameManager gameManager = null;
 
     public SlidingTilesMovementController() {
     }
 
     public void setGameManager(GameManager gameManager) {
-        this.gameManager = (SlidingTilesManager) gameManager;
+        this.gameManager = gameManager;
     }
 
     public void processTapMovement(Context context, int position, boolean display) {
