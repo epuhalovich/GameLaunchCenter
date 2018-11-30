@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fall2018.csc2017.slidingtiles.memory.MemoryStartingActivity">
+    tools:context="fall2018.csc2017.gamecentre.memory.MemoryStartingActivity">
 
     <Button
         android:id="@+id/save"
@@ -15,13 +15,13 @@
         android:background="@drawable/custom_button_empty"
         android:text="Save" />
 
-    <fall2018.csc2017.slidingtiles.slidingtiles.GestureDetectGridView xmlns:android="http://schemas.android.com/apk/res/android"
+    <fall2018.csc2017.gamecentre.slidingtiles.GestureDetectGridView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/save"
-        tools:context="fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesGameActivity"/>
+        tools:context="fall2018.csc2017.gamecentre.slidingtiles.SlidingTilesGameActivity"/>
 
 
 

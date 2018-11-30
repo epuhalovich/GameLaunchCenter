@@ -5,7 +5,7 @@
                 android:background= "@drawable/background"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesStartingActivity">
+                tools:context="fall2018.csc2017.gamecentre.slidingtiles.SlidingTilesStartingActivity">
 
     <TextView
             android:id="@+id/GameText"

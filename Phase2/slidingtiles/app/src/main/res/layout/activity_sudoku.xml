@@ -211,7 +211,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/number6" />
 
-    <fall2018.csc2017.slidingtiles.sudoku.SudokuGestureDetectGridView
+    <fall2018.csc2017.gamecentre.sudoku.SudokuGestureDetectGridView
         android:id="@+id/sudokugrid"
         android:layout_width="369dp"
         android:layout_height="386dp"
