@@ -92,8 +92,7 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
      * @param x the row
      * @param y the col
      */
-    private boolean getEmptySpot(int x, int y){
-
+    public boolean getEmptySpot(int x, int y){
         return (sudokuBoard.getClonePuzzle()[x][y]).getNumber().equals("");
     }
 
