@@ -42,17 +42,6 @@ public class SlidingTilesManager implements GameManager, Serializable {
         return slidingTilesBoard;
     }
 
-    public static SlidingTilesManager getLevel(String level){
-        if(level.equals("Easy")){
-            return new SlidingTilesManager(3, 3);
-        }
-        else if(level.equals("Medium")){
-            return new SlidingTilesManager(4, 4);
-        }
-        else{
-            return new SlidingTilesManager(5, 5);
-        }
-    }
     /**
      * Manage a new shuffled slidingTilesBoard.
      */
