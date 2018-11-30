@@ -18,7 +18,14 @@ import fall2018.csc2017.slidingtiles.User;
  */
 public class Scoreboard implements Serializable, PhaseTwoSubject {
 
+    /**
+     * A lists of globalSocres
+     */
     private ArrayList<Score> globalScores;
+
+    /**
+     * An Observer.
+     */
     private static List<PhaseTwoObserver> observers;
 
     public Scoreboard(){
@@ -191,6 +198,7 @@ public class Scoreboard implements Serializable, PhaseTwoSubject {
         return UserScores;
     }
 
+    @Override
     public void register(PhaseTwoObserver obj){
         if(obj == null) throw new NullPointerException("Null Observer");
         if(!observers.contains(obj))
@@ -198,7 +206,7 @@ public class Scoreboard implements Serializable, PhaseTwoSubject {
         obj.setSubject(this);}
     }
 
-
+    @Override
     public void notifyObservers(){
         for (PhaseTwoObserver obj : observers) {
             obj.update();

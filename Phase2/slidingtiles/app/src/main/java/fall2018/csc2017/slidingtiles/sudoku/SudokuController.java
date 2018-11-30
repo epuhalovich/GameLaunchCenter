@@ -36,6 +36,7 @@ public class SudokuController implements PhaseTwoSubject, GameController {
      * Return the sudoku manager being controlled
      * @return sudokuManager
      */
+    @Override
     public SudokuManager getGameManager(){
         return this.sudokuManager;
     }
@@ -44,6 +45,7 @@ public class SudokuController implements PhaseTwoSubject, GameController {
      * Set the sudoku manager to be controlled
      * @param sudokuManager to be controlled
      */
+    @Override
     public void setGameManager(GameManager sudokuManager) {
         this.sudokuManager = (SudokuManager) sudokuManager;
     }
@@ -52,6 +54,7 @@ public class SudokuController implements PhaseTwoSubject, GameController {
      * Set up board according to given level
      * @param level to set up board
      */
+    @Override
     public void setUpBoard(String level) {
         switch (level) {
             case "Easy":
@@ -74,6 +77,7 @@ public class SudokuController implements PhaseTwoSubject, GameController {
      * @param user name thats playing
      * @return true if score is ready to be added
      */
+    @Override
     public boolean checkToAddScore(Scoreboard scoreboard, String user) {
         if (sudokuManager.isGameOver()) {
             scoreboard.addScore(user, sudokuManager.getScore());
@@ -89,6 +93,7 @@ public class SudokuController implements PhaseTwoSubject, GameController {
      * Add an observer, obj, to this class
      * @param obj The observer to be added
      */
+    @Override
     public void register(PhaseTwoObserver obj){
         if(!observers.contains(obj))
         {observers.add(obj);
@@ -98,6 +103,7 @@ public class SudokuController implements PhaseTwoSubject, GameController {
     /**
      * Update the observers of this class
      */
+    @Override
     public void notifyObservers(){
         for (PhaseTwoObserver obj : observers) {
             obj.update();

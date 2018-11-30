@@ -5,6 +5,7 @@ import java.io.Serializable;
 import fall2018.csc2017.slidingtiles.R;
 
 public class Pairs implements Serializable {
+
     /**
      * The background id to find the pair image.
      */

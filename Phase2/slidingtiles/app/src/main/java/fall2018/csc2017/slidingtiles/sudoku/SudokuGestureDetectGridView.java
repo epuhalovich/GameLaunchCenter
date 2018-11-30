@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.widget.Button;
+import android.widget.GridView;
 
 import java.util.ArrayList;
 
@@ -15,7 +16,10 @@ import fall2018.csc2017.slidingtiles.slidingtiles.GestureDetectGridView;
 
 public class SudokuGestureDetectGridView extends GestureDetectGridView {
 
-
+    /**
+     * Initialize the SudokuGestureDetectGridView() with context.
+     * @param context the context.
+     */
     public SudokuGestureDetectGridView(Context context) {
         super(context);
     }
@@ -28,6 +32,11 @@ public class SudokuGestureDetectGridView extends GestureDetectGridView {
         super(context, attrs, defStyleAttr);
     }
 
+
+    /**
+     * Draw the row and column line in gridView.
+     * @param canvas the canvas
+     */
     @Override
     protected void dispatchDraw(Canvas canvas){
         super.dispatchDraw(canvas);

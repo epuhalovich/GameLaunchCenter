@@ -49,6 +49,10 @@ public class SlidingTilesScoreBoardActivity extends AppCompatActivity {
         Button ReturnButton = findViewById(R.id.ReturnButton);
         ReturnButton.setOnClickListener(v -> switchToStarting());
     }
+
+    /**
+     * Switch to SlidingTilesStartingActivity.
+     */
     private void switchToStarting(){
         Intent tmp = new Intent(this, SlidingTilesStartingActivity.class);
         startActivity(tmp);

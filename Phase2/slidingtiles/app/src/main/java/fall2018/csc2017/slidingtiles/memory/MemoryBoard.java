@@ -8,16 +8,24 @@ import java.util.Observable;
 
 public class MemoryBoard extends Observable implements Serializable {
 
-    /** The number of rows on the board **/
+    /**
+     * The number of rows on the board
+     **/
     private int NUM_ROWS;
 
-    /** The number of columns on the board**/
+    /**
+     * The number of columns on the board
+     */
     private int NUM_COLS;
 
-    /** The array containg the solution to the Memory game **/
+    /**
+     * The array containg the solution to the Memory game
+     */
     private Pairs[][] pairsSolution;
 
-    /** The array of the memory game being played**/
+    /**
+     * The array of the memory game being played
+     */
     private Pairs[][] pairsPuzzle;
 
     /**
@@ -92,7 +100,7 @@ public class MemoryBoard extends Observable implements Serializable {
     /**
      * Return the Pairs at (row, col)
      *
-     * @param position
+     * @param position the position
      * @return the tile at (row, col)
      */
     public Pairs getPairs(int position) {

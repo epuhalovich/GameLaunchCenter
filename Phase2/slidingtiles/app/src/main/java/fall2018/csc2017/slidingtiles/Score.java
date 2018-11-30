@@ -10,7 +10,14 @@ import java.io.Serializable;
  */
 
 public class Score implements Comparable<Score>, Serializable {
+    /**
+     * An String of UserId
+     */
     private String userId;
+
+    /**
+     * A int Score
+     */
     private int score;
 
     /**

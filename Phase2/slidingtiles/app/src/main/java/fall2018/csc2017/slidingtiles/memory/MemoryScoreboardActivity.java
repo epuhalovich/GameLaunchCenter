@@ -10,16 +10,16 @@ import fall2018.csc2017.slidingtiles.LogInActivity;
 import fall2018.csc2017.slidingtiles.R;
 import fall2018.csc2017.slidingtiles.User;
 
-public class MemoryScoreboardActivity extends AppCompatActivity{ /**
- * The quick reference for the currently logged in player.
- */
-private User currentPlayer = LogInActivity.currentPlayer;
+public class MemoryScoreboardActivity extends AppCompatActivity{
+
+    /**
+     * The quick reference for the currently logged in player.
+     */
+    private User currentPlayer = LogInActivity.currentPlayer;
 
         /**
          *The controller of this view
          */
-
-
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);

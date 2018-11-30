@@ -1,5 +1,6 @@
 package fall2018.csc2017.slidingtiles.memory;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -9,15 +10,24 @@ import fall2018.csc2017.slidingtiles.MovementController;
 
 public class MemoryMovementController implements MovementController {
 
+    /**
+     * A MemoryManager
+     */
     private MemoryManager memoryManager = null;
 
+    /**
+     * A Initializer of MovementController.
+     */
     public MemoryMovementController() {
     }
 
+    @Override
     public void setGameManager(GameManager memoryManager) {
         this.memoryManager = (MemoryManager) memoryManager;
     }
 
+    @SuppressLint("DefaultLocale")
+    @Override
     public void processTapMovement(Context context, int position, boolean display) {
         if (!(memoryManager == null)) {
             if (memoryManager.isValidTap(position)) {
@@ -26,7 +36,8 @@ public class MemoryMovementController implements MovementController {
                 if (memoryManager.isGameOver()) {
                     Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
                 } else if (memoryManager.getNumMatches() > numMatches) {
-                    Toast.makeText(context, String.format("That's match #%d!", memoryManager.getNumMatches()), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, String.format("That's match #%d!",
+                            memoryManager.getNumMatches()), Toast.LENGTH_SHORT).show();
                 }
             } else {
                 Toast.makeText(context, "Invalid Tap", Toast.LENGTH_SHORT).show();

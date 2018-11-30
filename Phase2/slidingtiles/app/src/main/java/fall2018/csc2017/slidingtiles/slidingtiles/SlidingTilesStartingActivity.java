@@ -21,11 +21,22 @@ import fall2018.csc2017.slidingtiles.ScoreboardFileSaver;
  */
 public class SlidingTilesStartingActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
+    /**
+     * The Scoreboard
+     */
     public static Scoreboard scoreboard;
 
+    /**
+     * The SlidingTilesController
+     */
     public static SlidingTilesController controller;
 
+    /**
+     * The file of slidingtilesscores.
+     */
     private static final String fileName = "slidingtilesscores.ser";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,6 +137,9 @@ public class SlidingTilesStartingActivity extends AppCompatActivity implements P
         Toast.makeText(this, "Loaded Game", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Display that there is no more saved game.
+     */
     private void makeToastNoLoadedText() {
         Toast.makeText(this, "No Saved Game", Toast.LENGTH_SHORT).show();
     }

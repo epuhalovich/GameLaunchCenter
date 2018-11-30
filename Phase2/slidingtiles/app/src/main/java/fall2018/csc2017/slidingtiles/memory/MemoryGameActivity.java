@@ -110,7 +110,7 @@ public class MemoryGameActivity extends AppCompatActivity implements Observer, S
     public void update(Observable o, Object arg) {
         display();
         MemoryStartingActivity.controller.notifyObservers();
-        if (MemoryStartingActivity.controller.checkToAddScore(MemoryStartingActivity.scoreboard, LogInActivity.currentPlayer.getAccount())) {
+        if (MemoryStartingActivity.controller.checkToAddScore(MemoryStartingActivity.scoreboard, LogInActivity.currentPlayer.getAccount())){
             switchToScoreBoard();
         }
     }

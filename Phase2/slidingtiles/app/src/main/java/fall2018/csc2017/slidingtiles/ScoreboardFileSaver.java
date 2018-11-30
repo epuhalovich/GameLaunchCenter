@@ -18,13 +18,20 @@ public class ScoreboardFileSaver implements Serializable, PhaseTwoObserver {
      * A name of the file that store the object Scoreboard.
      */
     private String fileName;
+
     /**
      * A context.
      */
     private Context context;
 
+    /**
+     * A list of GlobalScores.
+     */
     public ArrayList<Score> globalScores = new ArrayList<>();
 
+    /**
+     * A ScoreBoard Subject.
+     */
     private Scoreboard subject;
 
     /**
@@ -51,8 +58,10 @@ public class ScoreboardFileSaver implements Serializable, PhaseTwoObserver {
     }
 
     @SuppressWarnings("unchecked")
+    /**
+     * Load globalScores from fileName.
+     */
     public void loadFromFile() {
-
         try {
             InputStream inputStream = context.openFileInput(fileName);
             if (inputStream != null) {
@@ -70,6 +79,10 @@ public class ScoreboardFileSaver implements Serializable, PhaseTwoObserver {
         }
     }
 
+    /**
+     * Save globalScores to fileName.
+     * @param fileName
+     */
     public void saveToFile(String fileName) {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(

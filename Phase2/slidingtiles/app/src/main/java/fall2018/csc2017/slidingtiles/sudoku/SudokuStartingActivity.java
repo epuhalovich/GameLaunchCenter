@@ -19,10 +19,19 @@ import fall2018.csc2017.slidingtiles.ScoreboardFileSaver;
 
 public class SudokuStartingActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
+    /**
+     * A SudokuController.
+     */
     public static SudokuController controller;
 
+    /**
+     * A ScoreBoard.
+     */
     public static Scoreboard scoreboard;
 
+    /**
+     * A file with sudokuscores.
+     */
     private static final String fileName = "sudokuscores.ser";
 
 

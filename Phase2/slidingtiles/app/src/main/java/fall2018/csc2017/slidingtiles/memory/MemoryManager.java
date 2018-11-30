@@ -10,22 +10,34 @@ import fall2018.csc2017.slidingtiles.GameManager;
 
 public class MemoryManager implements GameManager, Serializable {
 
-    /**the memory board to be managed**/
+    /**
+     * the memory board to be managed
+     */
     private MemoryBoard board;
 
-    /** the amount of cards being flipped **/
+    /**
+     * the amount of cards being flipped
+     */
     private int flipCount;
 
-    /** the position of the flipped first card **/
+    /**
+     * the position of the flipped first card
+     */
     private int firstFlippedPosition;
 
-    /** the position of the second flipped card **/
+    /**
+     * the position of the second flipped card
+     */
     private int secondFlippedPosition;
 
-    /** the score of the current Memory game **/
+    /**
+     * the score of the current Memory game
+     */
     private int score;
 
-    /**the amount of matches on the memory board**/
+    /**
+     * the amount of matches on the memory board
+     */
     private int numMatches = 0;
 
     /**
@@ -84,6 +96,7 @@ public class MemoryManager implements GameManager, Serializable {
      * @param position of card that user wants to flip
      * @return boolean
      */
+    @Override
     public boolean isValidTap(int position) {
         return board.getPairs(position).getId() == 19 && flipCount < 3;
     }
@@ -92,6 +105,7 @@ public class MemoryManager implements GameManager, Serializable {
      * Flip over the selected card.
      * @param position of card to flip
      */
+    @Override
     public void touchMove(int position) {
         board.flipCard(position);
         flipCount = flipCount + 1;
@@ -124,6 +138,7 @@ public class MemoryManager implements GameManager, Serializable {
      * Return true iff all cards have found it's pair
      * @return boolean
      */
+    @Override
     public boolean isGameOver(){
         Pairs[][] solution = board.getSolutionPairs();
         Pairs[][] puzzle = board.getPairsPuzzle();
@@ -141,6 +156,7 @@ public class MemoryManager implements GameManager, Serializable {
      * Return the score of the current Memory game
      * @return score
      */
+    @Override
     public int getScore(){
         return this.score;
     }

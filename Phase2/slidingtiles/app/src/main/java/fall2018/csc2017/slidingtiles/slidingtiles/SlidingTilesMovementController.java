@@ -12,20 +12,28 @@ import fall2018.csc2017.slidingtiles.MovementController;
  */
 public class SlidingTilesMovementController implements MovementController {
 
-    private GameManager gameManager = null;
+    /**
+     * A SudokuManager
+     */
+    private SlidingTilesManager slidingTilesManager  = null;
 
+    /**
+     * Initialize the SlidingTilesMovementController.
+     */
     public SlidingTilesMovementController() {
     }
 
-    public void setGameManager(GameManager gameManager) {
-        this.gameManager = gameManager;
+    @Override
+    public void setGameManager(GameManager slidingTilesManager) {
+        this.slidingTilesManager = (SlidingTilesManager) slidingTilesManager;
     }
 
+    @Override
     public void processTapMovement(Context context, int position, boolean display) {
-        if (!(gameManager == null)) {
-            if (gameManager.isValidTap(position)) {
-                gameManager.touchMove(position);
-                if (gameManager.isGameOver()) {
+        if (!(slidingTilesManager == null)) {
+            if (slidingTilesManager.isValidTap(position)) {
+                slidingTilesManager.touchMove(position);
+                if (slidingTilesManager.isGameOver()) {
                     Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
                 }
             } else {

@@ -69,6 +69,7 @@ public class SlidingTilesManager implements GameManager, Serializable {
      * Return the score of a slidingtiles game.
      * @return score
      */
+    @Override
     public int getScore() {
         return score;
     }
@@ -91,6 +92,7 @@ public class SlidingTilesManager implements GameManager, Serializable {
      * @return whether the tiles are in row-major order
      */
     @SuppressLint("DefaultLocale")
+    @Override
     public boolean isGameOver() {
         boolean solved = true;
         int i = 1;
@@ -108,6 +110,7 @@ public class SlidingTilesManager implements GameManager, Serializable {
      * @param position the tile to check
      * @return whether the tile at position is surrounded by a blank tile
      */
+    @Override
     public boolean isValidTap(int position) {
 
         int row = position / slidingTilesBoard.getNUM_COLS();
@@ -131,6 +134,7 @@ public class SlidingTilesManager implements GameManager, Serializable {
      * the above, left, below, and right respectively.
      * @param position the position
      */
+    @Override
     public void touchMove(int position) {
 
         int row = position / slidingTilesBoard.getNUM_ROWS();

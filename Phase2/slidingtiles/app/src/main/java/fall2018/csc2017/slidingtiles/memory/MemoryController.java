@@ -19,8 +19,6 @@ public class MemoryController implements GameController, PhaseTwoSubject {
      */
     private static List<PhaseTwoObserver> observers;
 
-
-
     /**
      * The SlidingTilesManager that is being controlled
      */
@@ -37,14 +35,16 @@ public class MemoryController implements GameController, PhaseTwoSubject {
      * Return the current game manager
      * @return memoryManager
      */
+    @Override
     public MemoryManager getGameManager() {
         return memoryManager;
     }
 
     /**
      * Set memory game manager
-     * @param manager to set
+     * @param manager the game manager
      */
+    @Override
     public void setGameManager(GameManager manager) {
         this.memoryManager = (MemoryManager) manager;
     }
@@ -53,6 +53,7 @@ public class MemoryController implements GameController, PhaseTwoSubject {
      * Set up Memory game according to level
      * @param level given level
      */
+    @Override
     public void setUpBoard(String level) {
         switch (level) {
             case "Easy":
@@ -67,11 +68,14 @@ public class MemoryController implements GameController, PhaseTwoSubject {
         }
         notifyObservers();
     }
+
+
     /**
      * Add a score to the scoreboard iff the game is finished
      * @param scoreboard memory controller scoreboard
      * @param user name of current player
      */
+    @Override
     public boolean checkToAddScore(Scoreboard scoreboard, String user) {
         if (memoryManager.isGameOver()) {
             scoreboard.addScore(user, memoryManager.getScore());
@@ -86,6 +90,7 @@ public class MemoryController implements GameController, PhaseTwoSubject {
      * Add an observer, obj, to this class
      * @param obj The observer to be added
      */
+    @Override
     public void register(PhaseTwoObserver obj){
         if(!observers.contains(obj))
         {observers.add(obj);
@@ -95,6 +100,7 @@ public class MemoryController implements GameController, PhaseTwoSubject {
     /**
      * Update the observers of this class
      */
+    @Override
     public void notifyObservers(){
         for (PhaseTwoObserver obj : observers) {
             obj.update();

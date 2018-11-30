@@ -62,6 +62,7 @@ public class SlidingTilesController implements PhaseTwoSubject, GameController {
      * Return the manager for sliding tiles
      * @return SlidingTilesManager
      */
+    @Override
     public SlidingTilesManager getGameManager() {
         return slidingTilesManager;
     }
@@ -70,6 +71,7 @@ public class SlidingTilesController implements PhaseTwoSubject, GameController {
      * Set a new slidingTilesManager for this class
      * @param slidingTilesManager
      */
+    @Override
     public void setGameManager(GameManager slidingTilesManager) {
         this.slidingTilesManager = (SlidingTilesManager) slidingTilesManager;
     }
@@ -78,6 +80,7 @@ public class SlidingTilesController implements PhaseTwoSubject, GameController {
      * Set up a slidingtiles game in accordance with the selected level
      * @param level the level the user has selected
      */
+    @Override
     public void setUpBoard(String level) {
         switch (level) {
             case "Easy":
@@ -99,6 +102,7 @@ public class SlidingTilesController implements PhaseTwoSubject, GameController {
      * @param scoreboard for sliding tiles
      * @param user name of current player
      */
+    @Override
     public boolean checkToAddScore(Scoreboard scoreboard, String user) {
         if (slidingTilesManager.isGameOver()) {
             scoreboard.addScore(user, slidingTilesManager.getScore());
@@ -113,8 +117,8 @@ public class SlidingTilesController implements PhaseTwoSubject, GameController {
      * Add an observer, obj, to this class
      * @param obj The observer to be added
      */
+    @Override
     public void register(PhaseTwoObserver obj){
-//        if(obj == null) throw new NullPointerException("Null Observer");
         if(!observers.contains(obj))
         {observers.add(obj);
             obj.setSubject(this);}
@@ -123,6 +127,7 @@ public class SlidingTilesController implements PhaseTwoSubject, GameController {
     /**
      * Update the observers of this class
      */
+    @Override
     public void notifyObservers(){
         for (PhaseTwoObserver obj : observers) {
             obj.update();

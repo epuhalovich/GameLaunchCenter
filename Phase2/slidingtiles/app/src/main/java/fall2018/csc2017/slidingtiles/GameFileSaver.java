@@ -18,10 +18,24 @@ import static android.content.Context.MODE_PRIVATE;
  * A file saver for game states in all of the Game Centre games, implementing the Observer pattern.
  */
 public class GameFileSaver implements Serializable, PhaseTwoObserver {
-
+    /**
+     * The context
+     */
     private Context context;
+
+    /**
+     * the GameController
+     */
     private GameController subject;
+
+    /**
+     * The GameManager
+     */
     private GameManager gameManager;
+
+    /**
+     * The fileName
+     */
     private String fileName;
 
     public GameFileSaver(Context context, String fileName){

@@ -130,6 +130,7 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
      * Make the move according to int position
      * @param position int position
      */
+    @Override
     public void touchMove(int position) {
         int x = position / 9;
         int y = position % 9;

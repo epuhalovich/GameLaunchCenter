@@ -14,16 +14,23 @@ import fall2018.csc2017.slidingtiles.CustomAdapter;
 
 public class SudokuMovementController extends Observable implements MovementController {
 
-
+    /**
+     * A SudokuManger.
+     */
     private SudokuManager sudokuManager = null;
 
+    /**
+     * Initilize a SudokuMovementController.
+     */
     public SudokuMovementController() {
     }
 
+    @Override
     public void setGameManager(GameManager sudokuManger) {
         this.sudokuManager = (SudokuManager) sudokuManger;
     }
 
+    @Override
     public void processTapMovement(Context context, int position, boolean display) {
         if (!(sudokuManager == null)) {
             sudokuManager.setUpBackground(position);

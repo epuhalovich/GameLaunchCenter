@@ -25,15 +25,23 @@ import static org.mockito.Mockito.verify;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class SudokuBoardAndSudokuGridTest {
+public class SudokuBoardManagerTest {
 
     /** The sudokuManager for testing. */
     private SudokuManager sudokuManager;
 
+
+    /**
+     * Set up the sudokuManager for testing
+     */
     private void setUpSudokuManager(){
             sudokuManager = new SudokuManager(3);
     }
 
+
+    /**
+     * Test if the get empty spot return true iff we have an empty spot in sudokuPuzzle.
+     */
     @Test
     public void testGetEmptySpot(){
         setUpSudokuManager();
@@ -51,6 +59,11 @@ public class SudokuBoardAndSudokuGridTest {
     }
 
 
+    /**
+     * Test if the number that customer given is filled in the puzzle sudoku after calling
+     * touchMove() method. Also, the UndoStack will  record the position and the score will
+     * add one.(one more step)
+     */
     @Test
     public void testTouchMove() {
         setUpSudokuManager();
@@ -77,6 +90,10 @@ public class SudokuBoardAndSudokuGridTest {
     }
 
 
+    /**
+     * Test if checkRepeated return true iff there is the same number
+     * in the same row, col or square.
+     */
     @Test
     public void testCheckRepeated(){
         setUpSudokuManager();
@@ -92,7 +109,10 @@ public class SudokuBoardAndSudokuGridTest {
         }
     }
 
-
+    /**
+     * Test if the instance variable backgrounds in sudokuManager will store all the original
+     * background id for sudokuBoard after calling setupbackgrounds().
+     */
     @Test
     public void testSetUpBackgrounds(){
         setUpSudokuManager();
@@ -106,7 +126,10 @@ public class SudokuBoardAndSudokuGridTest {
         }
     }
 
-
+    /**
+     * Test if the background id of each grid in puzzle sudoku is seted back to the
+     * same as the original background id.
+     */
     @Test
     public void testSetOriginal(){
         setUpSudokuManager();
@@ -123,7 +146,10 @@ public class SudokuBoardAndSudokuGridTest {
 
     }
 
-
+    /**
+     * Test if the background id changes according to which row, col and squares is the position
+     * in.
+     */
     @Test
     public void testSetUpBackground(){
         setUpSudokuManager();
@@ -149,6 +175,9 @@ public class SudokuBoardAndSudokuGridTest {
     }
 
 
+    /**
+     * Test if the isValidTap() method return true iff the position is an empty spot.
+     */
     @Test
     public void testIsValidTap() {
         setUpSudokuManager();
@@ -163,7 +192,9 @@ public class SudokuBoardAndSudokuGridTest {
         }
     }
 
-
+    /**
+     * Test if the isGameOver() method return true iff the game finish.
+     */
     @Test
     public void testIsGameOver(){
         setUpSudokuManager();
@@ -179,6 +210,9 @@ public class SudokuBoardAndSudokuGridTest {
         Assert.assertTrue(sudokuManager.isGameOver());
     }
 
+    /**
+     * Test if the TryUndo() method will undo one step before.
+     */
     @Test
     public void testTryUndo(){
         setUpSudokuManager();

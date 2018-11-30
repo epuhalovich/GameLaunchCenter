@@ -19,10 +19,19 @@ import fall2018.csc2017.slidingtiles.ScoreboardFileSaver;
 
 public class MemoryStartingActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
+    /**
+     * The Scoreboard
+     */
     public static Scoreboard scoreboard;
 
+    /**
+     * The controller
+     */
     public static MemoryController controller;
 
+    /**
+     * A file to save memoryscores.
+     */
     private static final String fileName = "memoryscores.ser";
     @Override
     protected void onCreate(Bundle savedInstanceState) {

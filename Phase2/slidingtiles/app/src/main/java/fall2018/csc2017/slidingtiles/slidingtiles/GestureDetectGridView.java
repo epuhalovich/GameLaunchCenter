@@ -7,6 +7,7 @@ https://github.com/DaveNOTDavid/sample-puzzle/blob/master/app/src/main/java/com/
 This extension of GridView contains built in logic for handling swipes between buttons
  */
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
@@ -22,17 +23,45 @@ import fall2018.csc2017.slidingtiles.GameManager;
 import fall2018.csc2017.slidingtiles.MovementController;
 
 public class GestureDetectGridView extends GridView {
+    /**
+     * A final static Swipe_Min_Distance.
+     */
     public static final int SWIPE_MIN_DISTANCE = 100;
-    public static final int SWIPE_MAX_OFF_PATH = 100;
-    public static final int SWIPE_THRESHOLD_VELOCITY = 100;
-    private GestureDetector gDetector;
-    private MovementController mController;
-    private boolean mFlingConfirmed = false;
-    private float mTouchX;
-    private float mTouchY;
-    private GameManager gameManager;
-    private ArrayList<Button> buttonArrayList;
 
+    /**
+     * A GestrueDetector
+     */
+    private GestureDetector gDetector;
+
+    /**
+     * A MovementContorller
+     */
+    private MovementController mController;
+
+    /**
+     * A mFlingConfimed
+     */
+    private boolean mFlingConfirmed = false;
+
+    /**
+     * A float about the X value when touching screen
+     */
+    private float mTouchX;
+
+    /**
+     * A float about the Y value when touching screen
+     */
+    private float mTouchY;
+
+    /**
+     * A Game Manager
+     */
+    private GameManager gameManager;
+
+    /**
+     * Initialize the GestureDetectGridView
+     * @param context the context
+     */
     public GestureDetectGridView(Context context) {
         super(context);
         init(context);
@@ -55,10 +84,18 @@ public class GestureDetectGridView extends GridView {
         init(context);
     }
 
+    /**
+     * Set up the Controller.
+     * @param mController
+     */
     public void setmController(MovementController mController) {
         this.mController = mController;
     }
 
+    /**
+     * Initialize the the View with context.
+     * @param context the context
+     */
     private void init(final Context context) {
         gDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
 
@@ -106,20 +143,25 @@ public class GestureDetectGridView extends GridView {
         return super.onInterceptTouchEvent(ev);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         return gDetector.onTouchEvent(ev);
     }
 
+    /**
+     * A Setter of gameManager.
+     * @param gameManager GameManager
+     */
     public void setGameManager(GameManager gameManager) {
         this.gameManager = gameManager;
         mController.setGameManager(gameManager);
     }
 
-    public void setButtonArrayList(ArrayList<Button> buttonArrayList) {
-        this.buttonArrayList = buttonArrayList;
-    }
-
+    /**
+     * A getter for Contoller
+     * @return Movement Contoller
+     */
     public MovementController getmController() {
         return mController;
     }

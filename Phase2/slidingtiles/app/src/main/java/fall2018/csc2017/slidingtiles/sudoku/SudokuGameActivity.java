@@ -258,6 +258,11 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
         Intent tmp = new Intent(this, SudokuScoreboardActivity.class);
         startActivity(tmp);
     }
+
+    /**
+     * Create the tile Buttons with context
+     * @param context the context
+     */
     public void createTileButtons(Context context) {
         SudokuGrid[][] sudokuPuzzle = SudokuStartingActivity.controller.getGameManager().getSudokuBoard().getPuzzleSudoku();
         BoxButtons = new ArrayList<>();
@@ -270,6 +275,9 @@ public class SudokuGameActivity extends AppCompatActivity implements Observer, S
         }
     }
 
+    /**
+     * Update the tile buttons.
+     */
     public void updateTileButtons() {
         SudokuGrid[][] sudokuBoard = SudokuStartingActivity.controller.getGameManager().getSudokuBoard().getPuzzleSudoku();
         int buttonPosition = 0;

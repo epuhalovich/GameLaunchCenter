@@ -13,6 +13,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class MemoryControllerTest {
+
+
     /** MemoryController to be tested **/
     MemoryController controller;
 
