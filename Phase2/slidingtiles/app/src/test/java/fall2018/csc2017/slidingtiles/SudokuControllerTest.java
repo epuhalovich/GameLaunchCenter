@@ -77,17 +77,6 @@ public class SudokuControllerTest {
     }
 
     /**
-     * Test this controller properlly sets up a board given a difficulty
-     */
-    @Test
-    public void testSetUpBoard() {
-        controller = new SudokuController();
-        controller.setUpBoard("Easy");
-        Assert.assertNotNull(controller.getGameManager());
-
-    }
-
-    /**
      * Test that this contoller will not add a score to the scoreboard when game is not finished
      */
     @Test
