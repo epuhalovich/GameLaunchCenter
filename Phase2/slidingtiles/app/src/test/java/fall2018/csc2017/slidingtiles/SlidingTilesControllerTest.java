@@ -1,11 +1,7 @@
 package fall2018.csc2017.slidingtiles;
-import android.content.Context;
-import android.view.View;
-import android.widget.Button;
 
 import junit.framework.Assert;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +12,6 @@ import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesController;
 import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesManager;
 import fall2018.csc2017.slidingtiles.slidingtiles.Tile;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.isA;
-import static org.mockito.Mockito.doCallRealMethod;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
