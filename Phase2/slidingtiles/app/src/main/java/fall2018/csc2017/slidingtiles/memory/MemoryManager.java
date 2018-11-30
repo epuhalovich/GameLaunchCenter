@@ -80,23 +80,6 @@ public class MemoryManager implements GameManager, Serializable {
     }
 
     /**
-     * Return a MemoryManager set up according to a given String level
-     * @param level given for setup. Easy, medium, or hard.
-     * @return MemoryManager
-     */
-    public static MemoryManager getLevel(String level){
-        if(level.equals("Easy")){
-            return new MemoryManager(2, 2);
-        }
-        else if(level.equals("Medium")){
-            return new MemoryManager(4, 4);
-        }
-        else{
-            return new MemoryManager(6, 6);
-        }
-    }
-
-    /**
      * Return true iff the card has not already been flipped and the flipcount is under 3
      * @param position of card that user wants to flip
      * @return boolean

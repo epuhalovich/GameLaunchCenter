@@ -13,6 +13,7 @@ import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesManager;
 import fall2018.csc2017.slidingtiles.slidingtiles.Tile;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -58,9 +59,15 @@ public class SlidingTilesControllerTest {
     @Test
     public void testSetUpSlidingTiles(){
         controller.setUpBoard("Easy");
-        int boardDimension = controller.getGameManager().getSlidingTilesBoard().getNUM_ROWS() * controller.getGameManager().getSlidingTilesBoard().getNUM_COLS();
-        Assert.assertEquals(9, boardDimension);
+        int boardDimensionEasy = controller.getGameManager().getSlidingTilesBoard().getNUM_ROWS() * controller.getGameManager().getSlidingTilesBoard().getNUM_COLS();
+        Assert.assertEquals(9, boardDimensionEasy);
         Assert.assertEquals(3, controller.getGameManager().getNumUndos());
+        controller.setUpBoard("Medium");
+        int boardDimensionMedium = controller.getGameManager().getSlidingTilesBoard().getNUM_ROWS() * controller.getGameManager().getSlidingTilesBoard().getNUM_COLS();
+        Assert.assertEquals(16, boardDimensionMedium);
+        controller.setUpBoard("Hard");
+        int boardDimensionHard = controller.getGameManager().getSlidingTilesBoard().getNUM_ROWS() * controller.getGameManager().getSlidingTilesBoard().getNUM_COLS();
+        Assert.assertEquals(25, boardDimensionHard);
     }
 
     @Test
@@ -127,6 +134,7 @@ public class SlidingTilesControllerTest {
         PhaseTwoObserver observer = mock(PhaseTwoObserver.class);
         try{
             controller.register(observer);
+            verify(observer).setSubject(controller);
             controller.register(null);
         }catch(NullPointerException e){
             thrownNull = true;
@@ -139,6 +147,15 @@ public class SlidingTilesControllerTest {
         controller = new SlidingTilesController();
         controller.setNumUndos(4);
         Assert.assertEquals(controller.getNumUndos(), 4);
+    }
+
+    @Test
+    public void testNotifyObservers(){
+        controller = new SlidingTilesController();
+        PhaseTwoObserver observer = mock(PhaseTwoObserver.class);
+        controller.register(observer);
+        controller.notifyObservers();
+        verify(observer).update();
     }
 
 }

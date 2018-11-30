@@ -79,8 +79,17 @@ public class SlidingTilesController implements PhaseTwoSubject, GameController {
      * @param level the level the user has selected
      */
     public void setUpBoard(String level) {
-        slidingTilesManager = SlidingTilesManager.getLevel(level);
-        slidingTilesManager.setNumUndos(NumUndos);
+        switch (level) {
+            case "Easy":
+                slidingTilesManager = new SlidingTilesManager(3, 3);
+                break;
+            case "Medium":
+                slidingTilesManager = new SlidingTilesManager(4, 4);
+                break;
+            default:
+                slidingTilesManager = new SlidingTilesManager(5, 5);
+                break;
+        }
         notifyObservers();
     }
 
@@ -105,7 +114,7 @@ public class SlidingTilesController implements PhaseTwoSubject, GameController {
      * @param obj The observer to be added
      */
     public void register(PhaseTwoObserver obj){
-        if(obj == null) throw new NullPointerException("Null Observer");
+//        if(obj == null) throw new NullPointerException("Null Observer");
         if(!observers.contains(obj))
         {observers.add(obj);
             obj.setSubject(this);}

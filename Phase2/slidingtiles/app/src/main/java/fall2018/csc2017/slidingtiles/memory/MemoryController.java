@@ -33,22 +33,44 @@ public class MemoryController implements GameController, PhaseTwoSubject {
         observers = new ArrayList<>();
     }
 
+    /**
+     * Return the current game manager
+     * @return memoryManager
+     */
     public MemoryManager getGameManager() {
         return memoryManager;
     }
 
+    /**
+     * Set memory game manager
+     * @param manager to set
+     */
     public void setGameManager(GameManager manager) {
         this.memoryManager = (MemoryManager) manager;
     }
 
+    /**
+     * Set up Memory game according to level
+     * @param level given level
+     */
     public void setUpBoard(String level) {
-        memoryManager = MemoryManager.getLevel(level);
+        switch (level) {
+            case "Easy":
+                memoryManager = new MemoryManager(2, 2);
+                break;
+            case "Medium":
+                memoryManager = new MemoryManager(4, 4);
+                break;
+            default:
+                memoryManager = new MemoryManager(6, 6);
+                break;
+        }
         notifyObservers();
     }
     /**
      * Add a score to the scoreboard iff the game is finished
-     * @param scoreboard
-     * @param user
+     * @param scoreboard memory controller scoreboard
+     * @param user name of current player
      */
     public boolean checkToAddScore(Scoreboard scoreboard, String user) {
         if (memoryManager.isGameOver()) {
@@ -65,7 +87,6 @@ public class MemoryController implements GameController, PhaseTwoSubject {
      * @param obj The observer to be added
      */
     public void register(PhaseTwoObserver obj){
-        if(obj == null) throw new NullPointerException("Null Observer");
         if(!observers.contains(obj))
         {observers.add(obj);
             obj.setSubject(this);}
