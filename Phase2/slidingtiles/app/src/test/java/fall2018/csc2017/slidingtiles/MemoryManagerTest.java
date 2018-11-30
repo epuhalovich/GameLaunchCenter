@@ -28,15 +28,6 @@ public class MemoryManagerTest {
         manager = new MemoryManager(new MemoryBoard(pairs, rows, cols));
     }
 
-    @Test
-    public void testGetLevel(){
-        MemoryManager easy = MemoryManager.getLevel("Easy");
-        Assert.assertEquals(2, easy.getMemoryBoard().getNUM_COLS());
-        MemoryManager meduim = MemoryManager.getLevel("Medium");
-        Assert.assertEquals(4, meduim.getMemoryBoard().getNUM_COLS());
-        MemoryManager hard = MemoryManager.getLevel("Hard");
-        Assert.assertEquals(6, hard.getMemoryBoard().getNUM_COLS());
-    }
 
     @Test
     public void testIsValidTap(){

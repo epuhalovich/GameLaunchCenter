@@ -58,9 +58,15 @@ public class SlidingTilesControllerTest {
     @Test
     public void testSetUpSlidingTiles(){
         controller.setUpBoard("Easy");
-        int boardDimension = controller.getGameManager().getSlidingTilesBoard().getNUM_ROWS() * controller.getGameManager().getSlidingTilesBoard().getNUM_COLS();
-        Assert.assertEquals(9, boardDimension);
+        int boardDimensionEasy = controller.getGameManager().getSlidingTilesBoard().getNUM_ROWS() * controller.getGameManager().getSlidingTilesBoard().getNUM_COLS();
+        Assert.assertEquals(9, boardDimensionEasy);
         Assert.assertEquals(3, controller.getGameManager().getNumUndos());
+        controller.setUpBoard("Medium");
+        int boardDimensionMedium = controller.getGameManager().getSlidingTilesBoard().getNUM_ROWS() * controller.getGameManager().getSlidingTilesBoard().getNUM_COLS();
+        Assert.assertEquals(16, boardDimensionMedium);
+        controller.setUpBoard("Hard");
+        int boardDimensionHard = controller.getGameManager().getSlidingTilesBoard().getNUM_ROWS() * controller.getGameManager().getSlidingTilesBoard().getNUM_COLS();
+        Assert.assertEquals(25, boardDimensionHard);
     }
 
     @Test

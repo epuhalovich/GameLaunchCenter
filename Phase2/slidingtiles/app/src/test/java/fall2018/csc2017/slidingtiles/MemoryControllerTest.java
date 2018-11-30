@@ -32,8 +32,14 @@ public class MemoryControllerTest {
     public void testSeutUpBoard() {
         controller = new MemoryController();
         controller.setUpBoard("Easy");
-        int boardDimension = controller.getGameManager().getMemoryBoard().getNUM_ROWS() * controller.getGameManager().getMemoryBoard().getNUM_COLS();
-        Assert.assertEquals(4, boardDimension);
+        int boardDimensionEasy = controller.getGameManager().getMemoryBoard().getNUM_ROWS() * controller.getGameManager().getMemoryBoard().getNUM_COLS();
+        Assert.assertEquals(4, boardDimensionEasy);
+        controller.setUpBoard("Medium");
+        int boardDimensionMedium = controller.getGameManager().getMemoryBoard().getNUM_ROWS() * controller.getGameManager().getMemoryBoard().getNUM_COLS();
+        Assert.assertEquals(16, boardDimensionMedium);
+        controller.setUpBoard("Hard");
+        int boardDimensionHard = controller.getGameManager().getMemoryBoard().getNUM_ROWS() * controller.getGameManager().getMemoryBoard().getNUM_COLS();
+        Assert.assertEquals(36, boardDimensionHard);
     }
 
     @Test
