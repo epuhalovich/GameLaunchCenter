@@ -22,20 +22,38 @@ public class Scoreboard implements Serializable, PhaseTwoSubject {
      */
     private static List<PhaseTwoObserver> observers;
 
+    /**
+     * Make a new Scoreboard
+     */
     public Scoreboard(){
         globalScores = new ArrayList<>();
         observers = new ArrayList<>();
     }
 
+
+    /**
+     * Make a scoreboard with given globalScores
+     * @param globalScores to make a scoreboard from
+     */
     public Scoreboard(ArrayList<Score> globalScores){
         this.globalScores = globalScores;
         observers = new ArrayList<>();
     }
 
+
+    /**
+     * Get the globalScores
+     * @return ArrayList of global scores
+     */
     public ArrayList<Score> getGlobalScores() {
         return globalScores;
     }
 
+
+    /**
+     * Set the gloabl score to given globalScores
+     * @param globalScores to set
+     */
     public void setGlobalScores(ArrayList<Score> globalScores) {
         this.globalScores = globalScores;
     }
@@ -192,6 +210,10 @@ public class Scoreboard implements Serializable, PhaseTwoSubject {
         return UserScores;
     }
 
+    /**
+     * Register an observer to watch this class
+     * @param obj to register
+     */
     @Override
     public void register(PhaseTwoObserver obj){
         if(obj == null) throw new NullPointerException("Null Observer");
@@ -200,6 +222,9 @@ public class Scoreboard implements Serializable, PhaseTwoSubject {
         obj.setSubject(this);}
     }
 
+    /**
+     * Notify observers for an update
+     */
     @Override
     public void notifyObservers(){
         for (PhaseTwoObserver obj : observers) {
