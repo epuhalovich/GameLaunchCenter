@@ -10,6 +10,7 @@ import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesBoard;
 import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesManager;
 import fall2018.csc2017.slidingtiles.slidingtiles.Tile;
 import fall2018.csc2017.slidingtiles.sudoku.SudokuBoard;
+import fall2018.csc2017.slidingtiles.sudoku.SudokuGrid;
 import fall2018.csc2017.slidingtiles.sudoku.SudokuManager;
 
 import static org.junit.Assert.*;
@@ -28,19 +29,34 @@ public class SudokuBoardAndSudokuGridTest {
 
     /** The sudokuManager for testing. */
     private SudokuManager sudokuManager;
+//    private SudokuGrid[][] sudokuPuzzle;
+//    private SudokuGrid[][] sudokuAnswer;
+//    private SudokuGrid[][] cloneSudoku;
 
 
 
-    private SudokuManager setupSudokuManager(){
-        if(sudokuManager == null){
-         sudokuManager = new SudokuManager(3);
-        }
-        return sudokuManager;
+    private void setUpSudokuManager(){
+            sudokuManager = new SudokuManager(3);
     }
+
+//    private void setUpSudokupuzzle(){
+//        sudokuPuzzle = sudokuManager.getSudokuBoard().getPuzzleSudoku();
+//    }
+//
+//    private void setUpSudokuAnswer(){
+//        sudokuAnswer = sudokuManager.getSudokuBoard().getSolutionSudoku();
+//    }
+//
+//    private void setUpCloneSudoku(){
+//        cloneSudoku = sudokuManager.getSudokuBoard().getClonePuzzle();
+//    }
 
     @Test
     public void testGetEmptySpot(){
-        setupSudokuManager();
+        setUpSudokuManager();
+//        setUpSudokuAnswer();
+//        setUpSudokupuzzle();
+//        setUpCloneSudoku();
         for(int row = 0; row != 9; row++){
             for(int col = 0; col != 9; col++){
                 if(sudokuManager.getSudokuBoard().getPuzzleSudoku()[row][col].getNumber().equals(""))
@@ -59,6 +75,7 @@ public class SudokuBoardAndSudokuGridTest {
      */
     @Test
     public void testIsValidTap() {
+        setUpSudokuManager();
         for(int row = 0; row != 9; row++){
             for(int col = 0; col != 9; col++){
                 if(sudokuManager.getEmptySpot(row,col)){
@@ -68,6 +85,22 @@ public class SudokuBoardAndSudokuGridTest {
                 Assert.assertFalse(sudokuManager.isValidTap(row * 9 + col));}
             }
         }
+    }
+
+    @Test
+    public void testIsGameOver(){
+        setUpSudokuManager();
+        Assert.assertFalse(sudokuManager.isGameOver());
+        for(int row = 0; row != 9; row++){
+            for(int col = 0; col != 9; col++){
+                if(sudokuManager.getEmptySpot(row,col)){
+                    String number = sudokuManager.getSudokuBoard().getSolutionSudoku()[row][col].getNumber();
+                    sudokuManager.getSudokuBoard().getPuzzleSudoku()[row][col].setNumber(number);
+                }
+            }
+        }
+        Assert.assertTrue(sudokuManager.isGameOver());
+
     }
 
 //    @Test
