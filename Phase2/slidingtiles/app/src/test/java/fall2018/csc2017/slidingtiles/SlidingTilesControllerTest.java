@@ -13,6 +13,7 @@ import fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesManager;
 import fall2018.csc2017.slidingtiles.slidingtiles.Tile;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -133,6 +134,7 @@ public class SlidingTilesControllerTest {
         PhaseTwoObserver observer = mock(PhaseTwoObserver.class);
         try{
             controller.register(observer);
+            verify(observer).setSubject(controller);
             controller.register(null);
         }catch(NullPointerException e){
             thrownNull = true;
@@ -145,6 +147,15 @@ public class SlidingTilesControllerTest {
         controller = new SlidingTilesController();
         controller.setNumUndos(4);
         Assert.assertEquals(controller.getNumUndos(), 4);
+    }
+
+    @Test
+    public void testNotifyObservers(){
+        controller = new SlidingTilesController();
+        PhaseTwoObserver observer = mock(PhaseTwoObserver.class);
+        controller.register(observer);
+        controller.notifyObservers();
+        verify(observer).update();
     }
 
 }

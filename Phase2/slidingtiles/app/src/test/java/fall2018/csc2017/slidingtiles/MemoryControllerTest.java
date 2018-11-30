@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class MemoryControllerTest {
@@ -21,6 +22,7 @@ public class MemoryControllerTest {
         PhaseTwoObserver observer = mock(PhaseTwoObserver.class);
         try {
             controller.register(observer);
+            verify(observer).setSubject(controller);
             controller.register(null);
         } catch (NullPointerException e) {
             thrownNull = true;
@@ -68,5 +70,14 @@ public class MemoryControllerTest {
         ArrayList<Score> expected = new ArrayList<>();
         expected.add((new Score("player1",25)));
         Assert.assertEquals(actual, expected);
+    }
+
+    @Test
+    public void testNotifyObservers(){
+        controller = new MemoryController();
+        PhaseTwoObserver observer = mock(PhaseTwoObserver.class);
+        controller.register(observer);
+        controller.notifyObservers();
+        verify(observer).update();
     }
 }

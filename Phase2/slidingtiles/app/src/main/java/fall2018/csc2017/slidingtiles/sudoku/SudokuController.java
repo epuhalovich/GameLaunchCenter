@@ -80,7 +80,6 @@ public class SudokuController implements PhaseTwoSubject, GameController {
      * @param obj The observer to be added
      */
     public void register(PhaseTwoObserver obj){
-        if(obj == null) throw new NullPointerException("Null Observer");
         if(!observers.contains(obj))
         {observers.add(obj);
             obj.setSubject(this);}
