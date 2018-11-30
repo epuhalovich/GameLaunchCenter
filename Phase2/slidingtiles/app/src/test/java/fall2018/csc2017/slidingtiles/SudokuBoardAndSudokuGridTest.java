@@ -50,6 +50,7 @@ public class SudokuBoardAndSudokuGridTest {
         }
     }
 
+
     @Test
     public void testTouchMove() {
         setUpSudokuManager();
@@ -75,17 +76,22 @@ public class SudokuBoardAndSudokuGridTest {
 
     }
 
-//    @Test
-//    public void testCheckRepeated(){
-//        setUpSudokuManager();
-//        Assert.assertTrue(sudokuManager.checkRepeated(2 * 9 + 3));
-//        sudokuManager.setNumberToFill("4");
-//        for (int col = 0; col != 9; col++) {
-//            sudokuManager.getSudokuBoard().getPuzzleSudoku()[0][col].setNumber("4");
-//        }
-//        Assert.assertFalse(sudokuManager.checkRepeated(0));
-//
-//    }
+
+    @Test
+    public void testCheckRepeated(){
+        setUpSudokuManager();
+        for (int row = 0; row != 9; row++) {
+            for (int col = 0; col != 9; col++) {
+                if (!(sudokuManager.getEmptySpot(row, col))) {
+                    String num = sudokuManager.getSudokuBoard().getPuzzleSudoku()[row][col].getNumber();
+                    sudokuManager.getSudokuBoard().getPuzzleSudoku()[row][col].setNumber("");
+                    sudokuManager.setNumberToFill(num);
+                    Assert.assertFalse(sudokuManager.checkRepeated(row * 9 + col));
+                }
+            }
+        }
+    }
+
 
     @Test
     public void testSetUpBackgrounds(){
@@ -142,9 +148,7 @@ public class SudokuBoardAndSudokuGridTest {
         }
     }
 
-    /**
-     * Test whether isValidHelp works.
-     */
+
     @Test
     public void testIsValidTap() {
         setUpSudokuManager();
@@ -159,6 +163,7 @@ public class SudokuBoardAndSudokuGridTest {
         }
     }
 
+
     @Test
     public void testIsGameOver(){
         setUpSudokuManager();
@@ -172,18 +177,24 @@ public class SudokuBoardAndSudokuGridTest {
             }
         }
         Assert.assertTrue(sudokuManager.isGameOver());
-
     }
 
-//    @Test
-//    public void testGetLevel(){
-//        SudokuManager easy = SudokuManager.getLevel("Easy");
-//        Assert.assertEquals(3, easy.SudokuManager().getNUM_COLS());
-//        SlidingTilesManager meduim = SlidingTilesManager.getLevel("Medium");
-//        Assert.assertEquals(4, meduim.getSlidingTilesBoard().getNUM_COLS());
-//        SlidingTilesManager hard = SlidingTilesManager.getLevel("Hard");
-//        Assert.assertEquals(5, hard.getSlidingTilesBoard().getNUM_COLS());
-//    }
-
-
+    @Test
+    public void testTryUndo(){
+        setUpSudokuManager();
+        Assert.assertEquals(0, sudokuManager.getUndoPositionStack().size());
+        sudokuManager.setNumberToFill("3");
+        for (int row = 0; row != 9; row++) {
+            for (int col = 0; col != 9; col++) {
+                int position = row * 9 + col;
+                if (sudokuManager.getEmptySpot(row, col) && !(sudokuManager.checkRepeated(position))) {
+                    sudokuManager.touchMove(position);
+                    Assert.assertEquals(2, sudokuManager.getUndoPositionStack().size());
+                    sudokuManager.tryUndo();
+                    Assert.assertEquals(0, sudokuManager.getUndoPositionStack().size());
+                    Assert.assertEquals("", sudokuManager.getSudokuBoard().getPuzzleSudoku()[row][col].getNumber());
+                }
+            }
+        }
+    }
 }
