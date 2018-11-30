@@ -15,8 +15,13 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class SudokuControllerTest {
+
+    /** The SudukoController to be tested**/
     SudokuController controller;
 
+    /**
+     * Test that this controller properly registers a PhaseTwoObserver
+     */
     @Test
     public void testRegister() {
         controller = new SudokuController();
@@ -32,14 +37,20 @@ public class SudokuControllerTest {
         Assert.assertTrue(thrownNull);
     }
 
+    /**
+     * Test this controller properlly sets up a board given a difficulty
+     */
     @Test
-    public void testSeutUpBoard() {
+    public void testSetUpBoard() {
         controller = new SudokuController();
         controller.setUpBoard("Easy");
         Assert.assertNotNull(controller.getGameManager());
 
     }
 
+    /**
+     * Test that this contoller will not add a score to the scoreboard when game is not finished
+     */
     @Test
     public void testCheckToAddScoreNotFinished(){
         controller = new SudokuController();
@@ -52,6 +63,9 @@ public class SudokuControllerTest {
         Assert.assertEquals(scoreboard.getGlobalScoreboard().size(), 0);
     }
 
+    /**
+     * Test that this contoller will add a score to the scoreboard when game is finished
+     */
     @Test
     public void testCheckToAddScore(){
         controller = new SudokuController();
@@ -68,6 +82,9 @@ public class SudokuControllerTest {
         Assert.assertEquals(actual, expected);
     }
 
+    /**
+     * Test that this controller properly notifies it's observers
+     */
     @Test
     public void testNotifyObservers(){
         controller = new SudokuController();

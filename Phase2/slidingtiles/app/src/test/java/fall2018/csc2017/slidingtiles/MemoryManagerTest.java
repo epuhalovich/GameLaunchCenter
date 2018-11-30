@@ -17,6 +17,11 @@ public class MemoryManagerTest {
     /** The memory manager for testing **/
     MemoryManager manager;
 
+    /**
+     * Set up an ordered memory board with given dimensions
+     * @param rows dimension
+     * @param cols dimension
+     */
     private void setUp(int rows, int cols){
         List<Pairs> pairs = new ArrayList<>();
         int numTiles = rows * cols;
@@ -29,6 +34,9 @@ public class MemoryManagerTest {
     }
 
 
+    /**
+     * Test if the MemoryManager can differentiate between a valid and non valid tap
+     */
     @Test
     public void testIsValidTap(){
         setUp(4,4);
@@ -37,6 +45,9 @@ public class MemoryManagerTest {
         Assert.assertTrue(manager.isValidTap(2));
     }
 
+    /**
+     * Test the sequence of events for when the user selects two cards that are not a match.
+     */
     @Test
     public void testTouchMoveNoMatch(){
         setUp(2,2);
@@ -53,6 +64,9 @@ public class MemoryManagerTest {
         Assert.assertEquals(1, manager.getScore());
     }
 
+    /**
+     * Test the sequence of events when the user selects two cards that are a match
+     */
     @Test
     public void testTouchMoveMatch(){
         setUp(2,2);
@@ -62,12 +76,19 @@ public class MemoryManagerTest {
         Assert.assertEquals(1, manager.getNumMatches());
     }
 
+    /**
+     * Test isGameOver on an unifished game should return false
+     */
     @Test
     public void testGameNotOver(){
         setUp(2,2);
         Assert.assertFalse(manager.isGameOver());
     }
 
+    /**
+     * Test isGaveOver on a finished game should return true.
+     */
+    @Test
     public void testGameOver(){
         setUp(2,2);
         manager.touchMove(0);
