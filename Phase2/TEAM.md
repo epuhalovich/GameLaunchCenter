@@ -3,20 +3,20 @@
 
 ## Contact Information & Responsibilities
 
-* Luke (Kyungseoup) Han: (437) 970-2292, kyungseoup.han@mail.utoronto.ca, 'LukeHan'
--- Memory card game
-
 * Ellen Puhalovich: (416) 833-6771, ellen.puhalovich@mail.utoronto.ca, 'ellenpuhalovich'
 -- Refactoring, design patterns, unit testing, memory card game
 
 * Allen (Xuanzhong) Zhao:  (647) 673-5798, xuanzhong.zhao@mail.utoronto.ca, 'zhaoxuanzhong' 
--- Sudoku game, make sliding tiles always solvable
+-- Sudoku game, graphics and UI, make sliding tiles always solvable, unit tests
 
 * Nick Perrin: (647) 965-7083, nick.perrin@mail.utoronto.ca, 'perrinni'
--- Team documentation & repo setup, unit testing, minor refactoring/graphics
+-- Team documentation & repo setup, unit testing, graphics, refactoring
 
 * Katherine (Keying) Chen: (647) 992-2327, kkeying.chen@mail.utoronto.ca, 'chenkey8'
--- Sudoku game
+-- Sudoku game, unit testing
+
+* Luke (Kyungseoup) Han: (437) 970-2292, kyungseoup.han@mail.utoronto.ca, 'LukeHan'
+-- Memory card game
 
 ###### All team members will contribute to small, general fixes with regards to style and documentation of their code.
 #
