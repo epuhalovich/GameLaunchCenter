@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="fall2018.csc2017.slidingtiles">
+    package="fall2018.csc2017.gamecentre">
 
     <application
         android:allowBackup="true"
@@ -11,10 +11,10 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         <!-- GAME CENTRE FUNCTIONALITY -->
-        <activity android:name=".LogInActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".LaunchCenterActivity" />
-        <activity android:name=".RegisterActivity">
+        <activity android:name="fall2018.csc2017.gamecentre.LogInActivity" />
+        <activity android:name="fall2018.csc2017.gamecentre.SignUpActivity" />
+        <activity android:name="fall2018.csc2017.gamecentre.LaunchCenterActivity" />
+        <activity android:name="fall2018.csc2017.gamecentre.RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,20 +23,20 @@
         </activity>
 
         <!-- SLIDING TILES -->
-        <activity android:name=".slidingtiles.SlidingTilesGameActivity" />
-        <activity android:name=".slidingtiles.SlidingTilesScoreBoardActivity" />
-        <activity android:name=".slidingtiles.SlidingTilesStartingActivity" />
-        <activity android:name=".slidingtiles.SlidingTilesSetNumundoActivity" />
+        <activity android:name="fall2018.csc2017.gamecentre.slidingtiles.SlidingTilesGameActivity" />
+        <activity android:name="fall2018.csc2017.gamecentre.slidingtiles.SlidingTilesScoreBoardActivity" />
+        <activity android:name="fall2018.csc2017.gamecentre.slidingtiles.SlidingTilesStartingActivity" />
+        <activity android:name="fall2018.csc2017.gamecentre.slidingtiles.SlidingTilesSetNumundoActivity" />
 
         <!-- SUDOKU -->
-        <activity android:name=".sudoku.SudokuGameActivity"/>
-        <activity android:name=".sudoku.SudokuStartingActivity"/>
-        <activity android:name=".sudoku.SudokuScoreboardActivity"/>
+        <activity android:name="fall2018.csc2017.gamecentre.sudoku.SudokuGameActivity"/>
+        <activity android:name="fall2018.csc2017.gamecentre.sudoku.SudokuStartingActivity"/>
+        <activity android:name="fall2018.csc2017.gamecentre.sudoku.SudokuScoreboardActivity"/>
 
          MEMORY
-        <activity android:name=".memory.MemoryGameActivity"/>
-        <activity android:name=".memory.MemoryStartingActivity"/>
-        <activity android:name=".memory.MemoryScoreboardActivity"/>
+        <activity android:name="fall2018.csc2017.gamecentre.memory.MemoryGameActivity"/>
+        <activity android:name="fall2018.csc2017.gamecentre.memory.MemoryStartingActivity"/>
+        <activity android:name="fall2018.csc2017.gamecentre.memory.MemoryScoreboardActivity"/>
 
 
 
