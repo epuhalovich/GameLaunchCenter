@@ -119,11 +119,5 @@ public class MemoryBoard extends Observable implements Serializable {
         return pairsSolution;
     }
 
-    @Override
-    public String toString() {
-        return "SlidingTilesBoard{" +
-                "tiles=" + Arrays.toString(pairsSolution) +
-                '}';
-    }
 
 }

@@ -149,12 +149,21 @@ public class UserManagerTest {
         PhaseTwoObserver observer = mock(PhaseTwoObserver.class);
         try{
             userManager.register(observer);
+            verify(observer).setSubject(userManager);
             Assert.assertTrue(UserManager.getObservers().contains(observer));
             userManager.register(null);
         }catch(NullPointerException e){
             thrownNull = true;
         }
         Assert.assertTrue(thrownNull);
+    }
+    @Test
+    public void testNotifyObservers(){
+        userManager = new UserManager();
+        PhaseTwoObserver observer = mock(PhaseTwoObserver.class);
+        userManager.register(observer);
+        userManager.notifyObservers();
+        verify(observer).update();
     }
 
 }
