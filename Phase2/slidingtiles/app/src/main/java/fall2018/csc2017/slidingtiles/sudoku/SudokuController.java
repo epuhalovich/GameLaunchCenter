@@ -20,25 +20,50 @@ public class SudokuController implements PhaseTwoSubject, GameController {
      */
     private static List<PhaseTwoObserver> observers;
 
+    /**
+     * the sudokuManager to control
+     */
     private SudokuManager sudokuManager;
 
+    /**
+     * Create a new SudokuController
+     */
     public SudokuController(){
         observers = new ArrayList<>();
     }
 
+    /**
+     * Return the sudoku manager being controlled
+     * @return sudokuManager
+     */
     public SudokuManager getGameManager(){
         return this.sudokuManager;
     }
 
+    /**
+     * Set the sudoku manager to be controlled
+     * @param sudokuManager to be controlled
+     */
     public void setGameManager(GameManager sudokuManager) {
         this.sudokuManager = (SudokuManager) sudokuManager;
     }
 
+    /**
+     * Set up board according to given level
+     * @param level to set up board
+     */
     public void setUpBoard(String level) {
         sudokuManager = SudokuManager.getLevel(level);
         notifyObservers();
     }
 
+    /**
+     * Return true if the game is over and then add the games score to the scoreboard and reset
+     * the sudoku manager to null.
+     * @param scoreboard for sudoku
+     * @param user name thats playing
+     * @return true if score is ready to be added
+     */
     public boolean checkToAddScore(Scoreboard scoreboard, String user) {
         if (sudokuManager.isGameOver()) {
             scoreboard.addScore(user, sudokuManager.getScore());

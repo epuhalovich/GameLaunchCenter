@@ -87,8 +87,8 @@ public class SlidingTilesController implements PhaseTwoSubject, GameController {
 
     /**
      * Add a score to the scoreboard iff the game is finished
-     * @param scoreboard
-     * @param user
+     * @param scoreboard for sliding tiles
+     * @param user name of current player
      */
     public boolean checkToAddScore(Scoreboard scoreboard, String user) {
         if (slidingTilesManager.isGameOver()) {

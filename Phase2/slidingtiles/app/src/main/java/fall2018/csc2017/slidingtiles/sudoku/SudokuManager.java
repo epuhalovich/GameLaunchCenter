@@ -96,11 +96,19 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
         return (sudokuBoard.getClonePuzzle()[x][y]).getNumber().equals("");
     }
 
+    /**
+     * Return the score of the game
+     * @return score
+     */
     @Override
     public int getScore() {
         return this.score;
     }
 
+    /**
+     * Return whether or not the sudoku board is all filled out
+     * @return is the sudoku board full
+     */
     @Override
     public boolean isGameOver() {
         int correct = 0;
@@ -114,6 +122,11 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
         return correct == 81;
     }
 
+    /**
+     * Return whether the position is an empty spot.
+     * @param position spot to check
+     * @return whether the spot is empty
+     */
     @Override
     public boolean isValidTap(int position) {
         int row = position / 9;
