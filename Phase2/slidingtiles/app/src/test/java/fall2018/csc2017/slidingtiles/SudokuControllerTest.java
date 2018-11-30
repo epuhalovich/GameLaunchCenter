@@ -18,6 +18,45 @@ public class SudokuControllerTest {
     SudokuController controller;
 
     @Test
+    public void testSetUpBoard(){
+        controller = new SudokuController();
+        controller.setUpBoard("Easy");
+        int easy = 0;
+        for(int row = 0; row != 9; row++) {
+            for (int col = 0; col != 9; col++) {
+                if (controller.getGameManager().getEmptySpot(row, col)) {
+                    easy++;
+                }
+            }
+        }
+        Assert.assertTrue(easy <= 27);
+        Assert.assertTrue(easy >= 9);
+        controller.setUpBoard("Medium");
+        int medium = 0;
+        for(int row = 0; row != 9; row++) {
+            for (int col = 0; col != 9; col++) {
+                if (controller.getGameManager().getEmptySpot(row, col)) {
+                    medium++;
+                }
+            }
+        }
+        Assert.assertTrue(medium <= 45);
+        Assert.assertTrue(medium >= 9);
+        controller.setUpBoard("Hard");
+        int hard = 0;
+        for(int row = 0; row != 9; row++) {
+            for (int col = 0; col != 9; col++) {
+                if (controller.getGameManager().getEmptySpot(row, col)) {
+                    hard++;
+                }
+            }
+        }
+        Assert.assertTrue(hard <= 63);
+        Assert.assertTrue(hard >= 9);
+
+    }
+
+    @Test
     public void testRegister() {
         controller = new SudokuController();
         boolean thrownNull = false;

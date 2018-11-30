@@ -53,7 +53,17 @@ public class SudokuController implements PhaseTwoSubject, GameController {
      * @param level to set up board
      */
     public void setUpBoard(String level) {
-        sudokuManager = SudokuManager.getLevel(level);
+        switch (level) {
+            case "Easy":
+                sudokuManager = new SudokuManager(3);
+                break;
+            case "Medium":
+                sudokuManager = new SudokuManager(5);
+                break;
+            default:
+                sudokuManager = new SudokuManager(7);
+                break;
+        }
         notifyObservers();
     }
 

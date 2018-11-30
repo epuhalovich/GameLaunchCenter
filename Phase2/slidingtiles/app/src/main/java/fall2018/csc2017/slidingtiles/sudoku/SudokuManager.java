@@ -37,23 +37,6 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
     private ArrayList<Integer> backgrounds = new ArrayList<>();
 
 
-
-    /**
-     * Return a new SudokuManger depends on level.
-     * @param level the difficulty of the game
-     * @return the SudokuManger
-     */
-    public static SudokuManager getLevel(String level){
-        switch (level) {
-            case "Easy":
-                return new SudokuManager(3);
-            case "Medium":
-                return new SudokuManager(5);
-            default:
-                return new SudokuManager(7);
-        }
-    }
-
     /**
      * Constrcutor for SudokuManger depends on the level.
      * @param num the level of Sudoku puzzle.
