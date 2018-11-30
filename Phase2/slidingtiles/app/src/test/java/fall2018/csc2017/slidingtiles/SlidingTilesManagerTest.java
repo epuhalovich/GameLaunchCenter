@@ -41,6 +41,10 @@ public class SlidingTilesManagerTest {
         return tiles;
     }
 
+    /**
+     * Set up a SlidingTilesBoard to manipulate in testing
+     * @return SlidingTilesBoard
+     */
     private SlidingTilesBoard setUpTestBoard(){
         List<Tile> tiles = new ArrayList<>();
         for(int tileNum = 0; tileNum !=3; tileNum++){
@@ -119,6 +123,9 @@ public class SlidingTilesManagerTest {
         Assert.assertEquals(false, slidingTilesManager.isValidTap(10));
     }
 
+    /**
+     * Test that SlidingTilesManager can properly move a tile either up, down, left, right given it's position.
+     */
     @Test
     public void testTouchMove(){
         slidingTilesManager = new SlidingTilesManager(setUpTestBoard());
@@ -132,6 +139,9 @@ public class SlidingTilesManagerTest {
         Assert.assertEquals(slidingTilesManager.getSlidingTilesBoard().getTile(1,1).getId(), 8);
     }
 
+    /**
+     * Test that SlidingTilesManager can properly undo a move either up, down, left, right.
+     */
     @Test
     public void testTryUndo(){
         slidingTilesManager = new SlidingTilesManager(setUpTestBoard());
@@ -151,6 +161,9 @@ public class SlidingTilesManagerTest {
     }
 
 
+    /**
+     * Test that this SlidingTilesManager can return score
+     */
     @Test
     public void testGetScore(){
         setUpCorrect();

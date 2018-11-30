@@ -26,6 +26,9 @@ public class UserManagerTest {
     /** The user manager to be test.*/
     private UserManager userManager;
 
+    /**
+     * Make a populated UserManager to use in testing
+     */
     private void makePopulatedUserManager(){
         userManager = new UserManager();
         ArrayList<User> testUsers = new ArrayList<>();
@@ -35,6 +38,9 @@ public class UserManagerTest {
         userManager.setAllUsers(testUsers);
     }
 
+    /**
+     * Test to whether or not UserManager has an account
+     */
     @Test
     public void testHasAccount(){
         makePopulatedUserManager();
@@ -42,6 +48,10 @@ public class UserManagerTest {
         Assert.assertEquals(-1, userManager.hasAccount("player4"));
     }
 
+    /**
+     * Test that the Duplicate exception is thrown if a user tries to set up an account
+     * with an already existing user name.
+     */
     @Test
     public void testSignUpTakenAccount(){
         makePopulatedUserManager();
@@ -58,6 +68,9 @@ public class UserManagerTest {
         Assert.assertTrue(thrownDuplicate);
     }
 
+    /**
+     * Test that no exceptions are thrown when a proper account signs up
+     */
     @Test
     public void testSuccesfulSignUp(){
         makePopulatedUserManager();
@@ -71,6 +84,11 @@ public class UserManagerTest {
         }
         Assert.assertFalse(exceptions);
     }
+
+    /**
+     * Test that NoPasswordException is thrown when a user tries to make an account with an empty
+     * password
+     */
     @Test
     public void testSignUpNoPassword(){
         makePopulatedUserManager();
@@ -88,6 +106,10 @@ public class UserManagerTest {
         Assert.assertFalse(otherExcpetions);
     }
 
+    /**
+     * Test that AccountsException is thrown when a user tries to make an account with an empty
+     * username.
+     */
     @Test
     public void testSignUpNoAccount(){
         makePopulatedUserManager();
@@ -105,6 +127,9 @@ public class UserManagerTest {
         Assert.assertFalse(otherExceptions);
     }
 
+    /**
+     * Test sign in with a non existent account throws an AccountsException
+     */
     @Test
     public void testSignInNoAccount(){
         makePopulatedUserManager();
@@ -116,6 +141,9 @@ public class UserManagerTest {
             Assert.assertTrue(thrownNoAccount);
     }
 
+    /**
+     * Test sign in with the wrong password throws an AccountsException
+     */
     @Test
     public void testSignInWrongPassword(){
         makePopulatedUserManager();
@@ -128,6 +156,9 @@ public class UserManagerTest {
         Assert.assertTrue(thrownWrongPassword);
     }
 
+    /**
+     * Test that a succesful sign in throws no excpetions
+     */
     @Test
     public void testSuccesfulSignIn(){
         makePopulatedUserManager();
@@ -142,6 +173,9 @@ public class UserManagerTest {
         Assert.assertFalse(excpetionThrown);
     }
 
+    /**
+     * Test that UserManager properly registers PhaseTwoObservers
+     */
     @Test
     public void testRegister(){
         userManager = new UserManager();
@@ -157,6 +191,10 @@ public class UserManagerTest {
         }
         Assert.assertTrue(thrownNull);
     }
+
+    /**
+     * Test that UserManager properly notifies observers.
+     */
     @Test
     public void testNotifyObservers(){
         userManager = new UserManager();

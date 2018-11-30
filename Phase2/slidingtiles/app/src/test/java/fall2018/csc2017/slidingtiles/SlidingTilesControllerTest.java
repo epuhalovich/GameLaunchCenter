@@ -56,6 +56,7 @@ public class SlidingTilesControllerTest {
     }
 
 
+    /** Test this SlidingTilesController can properlly set up a game given the level of difficulty**/
     @Test
     public void testSetUpSlidingTiles(){
         controller.setUpBoard("Easy");
@@ -70,6 +71,9 @@ public class SlidingTilesControllerTest {
         Assert.assertEquals(25, boardDimensionHard);
     }
 
+    /**
+     * Test that slidingtiles will run out of undos
+     */
     @Test
     public void testUndoCount(){
         SlidingTilesManager slidingTilesManager = mock(SlidingTilesManager.class);
@@ -87,6 +91,9 @@ public class SlidingTilesControllerTest {
         Assert.assertEquals(0, slidingTilesManager.getNumUndos());
     }
 
+    /**
+     * Test that this contoller will add a score to the scoreboard when game is finished
+     */
     @Test
     public void testCheckToAddScore(){
         Scoreboard scoreboard = new Scoreboard();
@@ -102,6 +109,9 @@ public class SlidingTilesControllerTest {
         Assert.assertEquals(actual, expected);
     }
 
+    /**
+     * Test that this controller won't add the game's score if game is not finished
+     */
     @Test
     public void testCheckToAddScoreNotFinished(){
         Scoreboard scoreboard = new Scoreboard();
@@ -113,20 +123,9 @@ public class SlidingTilesControllerTest {
         Assert.assertEquals(scoreboard.getGlobalScoreboard().size(), 0);
     }
 
-//    @Test
-//    public void testCreateTileButtons(){
-//        setUpCorrect();
-//        View view = mock(View.class);
-//        when(view.getContext()).thenReturn(mock(Context.class));
-//        doCallRealMethod().when(view).setBackgroundResource(any(Integer.class));
-//        controller.createTileButtons(view.getContext());
-//        ArrayList<Button> buttons = controller.getTileButtons();
-//        for(int i = 0; i<buttons.size(); i++){
-//            Assert.assertEquals(buttons.get(0).getBackground(),view.getContext().getResources().getDrawable(R.drawable.tile_1));
-//        }
-
-   // }
-
+    /**
+     * Test that this controller properly registers a PhaseTwoObserver
+     */
     @Test
     public void testRegister(){
         controller = new SlidingTilesController();
@@ -142,6 +141,9 @@ public class SlidingTilesControllerTest {
         Assert.assertTrue(thrownNull);
     }
 
+    /**
+     * Test that the number of undos is properly set
+     */
     @Test
     public void testSetNumUndos(){
         controller = new SlidingTilesController();
@@ -149,6 +151,9 @@ public class SlidingTilesControllerTest {
         Assert.assertEquals(controller.getNumUndos(), 4);
     }
 
+    /**
+     * Test that this controller properly notifies it's observers
+     */
     @Test
     public void testNotifyObservers(){
         controller = new SlidingTilesController();

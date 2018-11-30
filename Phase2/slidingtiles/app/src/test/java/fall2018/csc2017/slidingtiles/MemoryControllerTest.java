@@ -13,8 +13,12 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class MemoryControllerTest {
+    /** MemoryController to be tested **/
     MemoryController controller;
 
+    /**
+     * Test if MemoryController can register a PhaseTwoObserver
+     */
     @Test
     public void testRegister() {
         controller = new MemoryController();
@@ -30,6 +34,9 @@ public class MemoryControllerTest {
         Assert.assertTrue(thrownNull);
     }
 
+    /**
+     * Test if the MemoryController can set up the correct board given a difficulty
+     */
     @Test
     public void testSeutUpBoard() {
         controller = new MemoryController();
@@ -44,6 +51,9 @@ public class MemoryControllerTest {
         Assert.assertEquals(36, boardDimensionHard);
     }
 
+    /**
+     * Test that checkToAddScore won't add the score of an unfinished game
+     */
     @Test
     public void testCheckToAddScoreNotFinished(){
         controller = new MemoryController();
@@ -56,6 +66,9 @@ public class MemoryControllerTest {
         Assert.assertEquals(scoreboard.getGlobalScoreboard().size(), 0);
     }
 
+    /**
+     * Test that checkToAddScore will add score from a finished game
+     */
     @Test
     public void testCheckToAddScore(){
         controller = new MemoryController();
@@ -72,6 +85,9 @@ public class MemoryControllerTest {
         Assert.assertEquals(actual, expected);
     }
 
+    /**
+     * Test that MemoryController properly notifies observers
+     */
     @Test
     public void testNotifyObservers(){
         controller = new MemoryController();

@@ -20,6 +20,9 @@ public class ScoreboardTest {
     /** the scoreboard for testing. */
     Scoreboard scoreboard;
 
+    /**
+     * Make a populated scoreboard
+     */
     private void makePopulatedScoreboard(){
         ArrayList<Score> testScores = new ArrayList<>();
         testScores.add(new Score("player1",50));
@@ -30,6 +33,9 @@ public class ScoreboardTest {
         scoreboard = new Scoreboard(testScores);
     }
 
+    /**
+     * Test that addScore adds the score in the properly sorted position
+     */
     @Test
     public void testAddScore(){
         makePopulatedScoreboard();
@@ -40,6 +46,9 @@ public class ScoreboardTest {
         Assert.assertEquals(expectedLast, scoreboard.getGlobalScores().get(5));
     }
 
+    /**
+     * Test that getScoreValues returns the proper list of top five values in the case of user and global scoreboard.
+     */
     @Test
     public void testGetScoreValues(){
         makePopulatedScoreboard();
@@ -51,6 +60,9 @@ public class ScoreboardTest {
         Assert.assertEquals(expectedUser, scoreboard.getScoreValues(true, userMock));
     }
 
+    /**
+     * Test that this scoreboard can properly register a PhaseTwoObserver
+     */
     @Test
     public void testRegister(){
         scoreboard = new Scoreboard();
