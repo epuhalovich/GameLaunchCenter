@@ -37,6 +37,7 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
     private ArrayList<Integer> backgrounds = new ArrayList<>();
 
 
+
     /**
      * Return a new SudokuManger depends on level.
      * @param level the difficulty of the game
@@ -71,6 +72,14 @@ public class SudokuManager extends Observable implements GameManager,Serializabl
         return this.numberToFill;
     }
 
+
+    /**
+     * Return the backgrounds' id.
+     * @return backgrounds
+     */
+    public ArrayList<Integer> getBackgrounds() {
+        return backgrounds;
+    }
 
     /**
      * Return the undoPositionStack
