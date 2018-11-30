@@ -10,6 +10,7 @@ import android.widget.Toast;
 import android.widget.PopupMenu;
 
 import fall2018.csc2017.slidingtiles.GameFileSaver;
+import fall2018.csc2017.slidingtiles.LaunchCenterActivity;
 import fall2018.csc2017.slidingtiles.LogInActivity;
 import fall2018.csc2017.slidingtiles.R;
 import fall2018.csc2017.slidingtiles.Scoreboard;
@@ -48,6 +49,15 @@ public class SlidingTilesStartingActivity extends AppCompatActivity implements P
         addLoadButtonListener();
         addViewScoreButtonListener();
         addSetUndoButtonListener();
+        addQuitButtonListener();
+    }
+
+    /**
+     * Activate the quit button.
+     */
+    private void addQuitButtonListener() {
+        Button QuitButton = findViewById(R.id.QuitButton);
+        QuitButton.setOnClickListener(v -> switchToLauchCnter());
     }
 
     /**
@@ -165,6 +175,14 @@ public class SlidingTilesStartingActivity extends AppCompatActivity implements P
      */
     private void switchToSetNumundo(){
         Intent tmp = new Intent(this, SlidingTilesSetNumundoActivity.class);
+        startActivity(tmp);
+    }
+
+    /**
+     * Switch to the SlidingTilesSetNumundoActivity view.
+     */
+    private void switchToLauchCnter(){
+        Intent tmp = new Intent(this, LaunchCenterActivity.class);
         startActivity(tmp);
     }
 }

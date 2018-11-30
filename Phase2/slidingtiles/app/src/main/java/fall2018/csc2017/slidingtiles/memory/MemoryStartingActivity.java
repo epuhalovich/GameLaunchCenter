@@ -11,6 +11,7 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import fall2018.csc2017.slidingtiles.GameFileSaver;
+import fall2018.csc2017.slidingtiles.LaunchCenterActivity;
 import fall2018.csc2017.slidingtiles.LogInActivity;
 import fall2018.csc2017.slidingtiles.R;
 import fall2018.csc2017.slidingtiles.Scoreboard;
@@ -46,7 +47,16 @@ public class MemoryStartingActivity extends AppCompatActivity implements PopupMe
         addStartButtonListener();
         addLoadButtonListener();
         addViewScoreButtonListener();
+        addQuitButtonListener();
 
+    }
+
+    /**
+     * Activate the quit button.
+     */
+    private void addQuitButtonListener() {
+        Button QuitButton = findViewById(R.id.QuitButton);
+        QuitButton.setOnClickListener(v -> switchToLauchCnter());
     }
 
     /**
@@ -148,6 +158,14 @@ public class MemoryStartingActivity extends AppCompatActivity implements PopupMe
      */
     private void switchToScoreBoard(){
         Intent tmp = new Intent(this, MemoryScoreboardActivity.class);
+        startActivity(tmp);
+    }
+
+    /**
+     * Switch to the SlidingTilesSetNumundoActivity view.
+     */
+    private void switchToLauchCnter(){
+        Intent tmp = new Intent(this, LaunchCenterActivity.class);
         startActivity(tmp);
     }
 }

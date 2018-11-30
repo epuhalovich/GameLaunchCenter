@@ -12,7 +12,6 @@
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="20dp"
         android:background="@drawable/custom_button"
         android:shadowColor="#969696"
         android:shadowDx="2"
@@ -21,7 +20,6 @@
         android:text="1"
         android:textColor="#141414"
         android:textSize="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/sudokucheck"
         app:layout_constraintEnd_toStartOf="@+id/number2"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +30,6 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="20dp"
         android:background="@drawable/custom_button"
         android:shadowColor="#969696"
         android:shadowDx="2"
@@ -41,7 +38,6 @@
         android:text="2"
         android:textColor="#141414"
         android:textSize="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/sudokucheck"
         app:layout_constraintEnd_toStartOf="@+id/number3"
         app:layout_constraintStart_toEndOf="@+id/number1"
         app:layout_constraintTop_toBottomOf="@+id/sudokugrid" />
@@ -51,7 +47,6 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="20dp"
         android:background="@drawable/custom_button"
         android:shadowColor="#969696"
         android:shadowDx="2"
@@ -60,7 +55,6 @@
         android:text="3"
         android:textColor="#141414"
         android:textSize="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/sudokucheck"
         app:layout_constraintEnd_toStartOf="@+id/number4"
         app:layout_constraintStart_toEndOf="@+id/number2"
         app:layout_constraintTop_toBottomOf="@+id/sudokugrid" />
@@ -183,7 +177,7 @@
     <Button
         android:id="@+id/sudokuundo"
         android:layout_width="72dp"
-        android:layout_height="29dp"
+        android:layout_height="30dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="50dp"
@@ -196,35 +190,16 @@
         android:textColor="#141414"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.828"
         app:layout_constraintStart_toEndOf="@+id/sudokusave"
         app:layout_constraintTop_toBottomOf="@+id/number7" />
-
-    <Button
-        android:id="@+id/sudokucheck"
-        android:layout_width="72dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="28dp"
-        android:background="@drawable/custom_button_empty"
-        android:shadowColor="#969696"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="2"
-        android:text="Check"
-        android:textColor="#141414"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toStartOf="@+id/sudokusave"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/number1" />
 
     <Button
         android:id="@+id/sudokusave"
         android:layout_width="72dp"
         android:layout_height="29dp"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
         android:background="@drawable/custom_button_empty"
         android:shadowColor="#969696"
         android:shadowDx="2"
@@ -233,8 +208,7 @@
         android:text="Save"
         android:textColor="#141414"
         android:textSize="12sp"
-        app:layout_constraintEnd_toStartOf="@+id/sudokuundo"
-        app:layout_constraintStart_toEndOf="@+id/sudokucheck"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/number6" />
 
     <fall2018.csc2017.slidingtiles.sudoku.SudokuGestureDetectGridView
