@@ -14,7 +14,7 @@ import fall2018.csc2017.slidingtiles.Scoreboard;
 import fall2018.csc2017.slidingtiles.sudoku.SudokuGrid;
 import fall2018.csc2017.slidingtiles.sudoku.SudokuManager;
 
-class SudokuController implements PhaseTwoSubject, GameController {
+public class SudokuController implements PhaseTwoSubject, GameController {
     /**
      * The list of observers of this class
      */
