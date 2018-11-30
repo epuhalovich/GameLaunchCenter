@@ -11,11 +11,12 @@
         android:id="@+id/GameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
         android:text="Game Title"
-        android:textAppearance="@android:style/TextAppearance.Widget.TextView"
-        android:textSize="36sp" />
+        android:textColor="#fd737272"
+        android:textSize="26sp"
+        android:textAppearance="@android:style/TextAppearance.Widget.TabWidget" />
 
     <TextView
         android:id="@+id/ScoreDescription"
@@ -24,6 +25,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/GameTitle"
         android:text="Score description"
+        android:textColor="#fd747474"
         android:textAppearance="@android:style/TextAppearance.Widget.TextView" />
 
     <TextView
@@ -34,6 +36,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/ScoreDescription"
         android:text="Global Top Scores"
+        android:textColor="#fd747474"
         android:textAppearance="@android:style/TextAppearance.Widget.TextView"
         android:textSize="24sp" />
 
@@ -45,6 +48,7 @@
         android:layout_marginTop="25dp"
         android:layout_centerHorizontal="true"
         android:text=""
+        android:textColor="#fd747474"
         android:textAppearance="@android:style/TextAppearance.Widget.TextView" />
 
     <TextView
@@ -55,6 +59,7 @@
         android:layout_marginTop="25dp"
         android:layout_centerHorizontal="true"
         android:text="User Top Scores"
+        android:textColor="#fd747474"
         android:textAppearance="@android:style/TextAppearance.Widget.TextView"
         android:textSize="24sp"/>
 
@@ -66,6 +71,7 @@
         android:layout_marginTop="25dp"
         android:layout_centerHorizontal="true"
         android:text=""
+        android:textColor="#fd747474"
         android:textAppearance="@android:style/TextAppearance.Widget.TextView" />
 
     <Button
