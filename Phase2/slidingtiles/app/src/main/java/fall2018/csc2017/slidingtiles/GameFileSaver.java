@@ -30,23 +30,41 @@ public class GameFileSaver implements Serializable, PhaseTwoObserver {
         loadFromFile();
     }
 
+    /**
+     * Returns the associated GameManager.
+     * @return the associated GameManager.
+     */
     public GameManager getGameManager() {
         return gameManager;
     }
 
+    /**
+     * Sets this game file saver's GameManager.
+     * @param manager
+     */
     public void setGameManager(GameManager manager) {
         this.gameManager = manager;
     }
 
+    /**
+     * Sets this game file saver's subject for observation.
+     * @param subject
+     */
     public void setSubject(PhaseTwoSubject subject){
         this.subject = (GameController) subject;
     }
 
+    /**
+     * Updates the game file saver, calls a save to file.
+     */
     public void update() {
         setGameManager(subject.getGameManager());
         saveToFile();
     }
 
+    /**
+     * Saves the current GameManager to a file.
+     */
     public void saveToFile() {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
@@ -57,6 +75,10 @@ public class GameFileSaver implements Serializable, PhaseTwoObserver {
             Log.e("Exception", "File write failed: " + e.toString());
         }
     }
+
+    /**
+     * Loads a GameManager from a file, if the corresponding file exists.
+     */
     public void loadFromFile() {
 
         try {
