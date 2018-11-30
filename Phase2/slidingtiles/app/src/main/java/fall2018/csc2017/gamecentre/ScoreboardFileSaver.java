@@ -27,7 +27,7 @@ public class ScoreboardFileSaver implements Serializable, PhaseTwoObserver {
     /**
      * A list of GlobalScores.
      */
-    public ArrayList<Score> globalScores = new ArrayList<>();
+    private ArrayList<Score> globalScores = new ArrayList<>();
 
     /**
      * A ScoreBoard Subject.
@@ -44,14 +44,25 @@ public class ScoreboardFileSaver implements Serializable, PhaseTwoObserver {
         loadFromFile();
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    /**
+     * Return the save global scores
+     * @return
+     */
+    public ArrayList<Score> getGlobalScores() {
+        return globalScores;
     }
 
+    /**
+     * Set the Obsevable subject for this class
+     * @param subject to be observed
+     */
     public void setSubject(PhaseTwoSubject subject){
         this.subject = (Scoreboard) subject;
     }
 
+    /**
+     * Update the subjects global scores and save the global scores
+     */
     public void update() {
         globalScores = subject.getGlobalScores();
         saveToFile(fileName);
@@ -81,7 +92,7 @@ public class ScoreboardFileSaver implements Serializable, PhaseTwoObserver {
 
     /**
      * Save globalScores to fileName.
-     * @param fileName
+     * @param fileName where scores are saved
      */
     public void saveToFile(String fileName) {
         try {

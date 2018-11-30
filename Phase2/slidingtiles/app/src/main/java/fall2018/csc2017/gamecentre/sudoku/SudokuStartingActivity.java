@@ -51,7 +51,7 @@ public class SudokuStartingActivity extends AppCompatActivity implements PopupMe
         scoreboard = new Scoreboard();
         ScoreboardFileSaver scoreboardFileSaver = new ScoreboardFileSaver(this, fileName);
         scoreboard.register(scoreboardFileSaver);
-        scoreboard.setGlobalScores(scoreboardFileSaver.globalScores);
+        scoreboard.setGlobalScores(scoreboardFileSaver.getGlobalScores());
         gameFileSaver.saveToFile();
 
         setContentView(R.layout.activity_sudoku_starting);

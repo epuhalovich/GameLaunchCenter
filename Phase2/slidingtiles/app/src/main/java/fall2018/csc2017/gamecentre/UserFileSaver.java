@@ -45,19 +45,31 @@ public class UserFileSaver implements Serializable, PhaseTwoObserver {
         loadFromFile(context);
     }
 
+    /**
+     * Set the subject to be observed
+     * @param subject to be obsevred
+     */
     public void setSubject(PhaseTwoSubject subject){
         this.subject = (UserManager) subject;
     }
 
+    /**
+     * Update the subjects users and save the users
+     */
     public void update() {
         allUsers= subject.getAllUsers();
         saveToFile(fileName);
     }
 
+    /**
+     * Return the saved Array list of users
+     * @return
+     */
     public ArrayList<User> getAllUsers() {
         return allUsers;
     }
 
+    /**Load Users from fileName**/
     @SuppressWarnings("unchecked")
     public void loadFromFile(Context context) {
 
@@ -78,6 +90,7 @@ public class UserFileSaver implements Serializable, PhaseTwoObserver {
         }
     }
 
+    /** Save users to fileName**/
     public void saveToFile(String fileName){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
