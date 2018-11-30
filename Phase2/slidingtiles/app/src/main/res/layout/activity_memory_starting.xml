@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
-                android:background="#5467"
+                android:background= "@drawable/background"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context="fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesStartingActivity">
@@ -26,6 +26,8 @@
         android:layout_below="@+id/GameText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="142dp"
+        android:background="@drawable/buttonshape"
+        android:textColor="#82C5FF"
         android:text="New Game" />
 
     <Button
@@ -35,6 +37,8 @@
         android:layout_below="@+id/StartButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="54dp"
+        android:background="@drawable/buttonshape"
+        android:textColor="#82C5FF"
         android:text="View Scoreboard" />
 
     <Button
@@ -45,6 +49,8 @@
         android:layout_below="@+id/GameText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="43dp"
+        android:background="@drawable/buttonshape"
+        android:textColor="#82C5FF"
         android:text="@string/load_saved_game" />
 </RelativeLayout>
 

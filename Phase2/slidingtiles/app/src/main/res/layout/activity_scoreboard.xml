@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#5467"
+    android:background= "@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="fall2018.csc2017.slidingtiles.slidingtiles.SlidingTilesStartingActivity">
@@ -71,11 +71,13 @@
     <Button
         android:id="@+id/ReturnButton"
         style="@android:style/Widget.DeviceDefault.Button.Small"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/UserScores"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
+        android:background="@drawable/buttonshape"
+        android:textColor="#82C5FF"
         android:text="Return" />
 
 </RelativeLayout>
